@@ -2,7 +2,8 @@
 
 *Know your food. Understand your choices.*
 
-NutriGlimpse is a grocery companion built for the Congressional App Challenge. It identifies foods from product photos, explains general nutrition considerations, and suggests alternatives with retailer information when available.
+NutriGlimpse is a iPhone App which is meant for seniors and moms as a health and nutrition grocery companion. To help user make better food choices it provides easy to use interface through which user can find out whether a given product is healthy given their circumstances. It identifies foods from product photos, explains general nutrition considerations, and suggests alternatives with information about availability in the current store or nearby store. 
+It also includes a feature called ShelfScan which can scan a grocery shelf or part of a shelf and rank products in that shelf according to their health credentials. 
 
 This is a **private Beta 0 development repository**. Current status, acceptance evidence and open issues live in the [implementation project plan](docs/ImplementationProjectPlanDocument.md). Build **0.1.0 (23)** is available to the existing owner TestFlight group. Availability is not a claim of physical-device acceptance or validated nutrition accuracy.
 
@@ -34,11 +35,11 @@ Live development and the backend remain on **project-server**. [Remote operation
 
 ## Current scan behavior
 
-- A normal product photo starts Gemini and GPT requests using the same approved shopper prompt. Gemini controls the original rating and its first alternatives; GPT can fill missing eligible alternative slots when needed. Results stream progressively.
-- Shopper health details and preferences are shared only through the implemented explicit consent path. General food guidance is not a personalized medical recommendation.
-- On iPhone, Shelf Camera detects full packages locally, checks duplicates and creates grids of up to 16 crops for GPT-6 Luna review.
+- A normal product photo goes through several processing. It goes through OCR decoding on phone and that is used to query OpenFood/USDA. The photos are also sent to LLM using the approved shopper prompt, which includes user dietary preferences and health information. Results stream progressively.
+- Shopper health details and preferences are shared only through the implemented explicit consent path. General food guidance is not a medical recommendation but a healthy food recommendation.
+- On iPhone, Shelf Camera detects full packages locally using Apple Vision capabilities, checks duplicates and creates grids of up to 16 crops for further review.
 - Store names and available aisle evidence are shown when returned. Catalog membership or an AI suggestion does not establish branch stock.
-- USDA and Open Food Facts provide optional reference checks. Nutrition estimates, exact formulations and missing evidence remain active quality work.
+- USDA and Open Food Facts provide additional reference checks. 
 
 ## Configuration, assets and licenses
 
