@@ -3,8 +3,9 @@
 **Prepared:** October 25, 2026, America/New_York  
 **Owner:** `cankyIl`  
 **Target:** `https://github.com/cankyIl/NutriGlimpse`  
-**Initial visibility:** Private; owner now intends public publication after cleanup  
-**Status:** Connected on `main`. The initial private setup is historical; [publication cleanup](Publication-Cleanup-2026-10-25.md) records the current MIT/privacy/history treatment.
+**Current visibility:** Public, enabled by the owner October 25, 2026
+
+**Status:** Anonymous HTTPS cloning and public page/API access verified. Connected on `main`. The initial private setup is historical; [publication cleanup](Publication-Cleanup-2026-10-25.md) records the current MIT/privacy/history treatment.
 
 ## Project-specific connection
 
@@ -49,9 +50,9 @@ sha256sum --check docs/Repository-External-Assets.sha256
 
 Do not fetch an arbitrary similarly named model or silently substitute weights. Review the preserved ShelfSet, SKU110K and Ultralytics notices and the release/licensing record in `45-testflight-release-and-encryption.md` before any wider distribution.
 
-## Public release remains separate
+## Public source access - verified October 25
 
-The owner selected MIT licensing for original project code and authorized publication cleanup. Existing third-party notices remain intact; model permissions are not declared resolved. The history/contact cleanup and data treatment are documented in Publication-Cleanup-2026-10-25.md. Git visibility itself requires a repository administrator; the deploy key only grants Git read/write access.
+The owner selected MIT licensing for original project code and authorized publication cleanup. Existing third-party notices remain intact; model permissions are not declared resolved. The history/contact cleanup and data treatment are documented in Publication-Cleanup-2026-10-25.md. The owner has enabled public visibility; the deploy key only grants Git read/write access. See [public verification](Public-Repository-Verification-2026-10-25.md) for successful anonymous access and the remaining old-commit data-removal follow-up.
 
 ## Normal updates
 

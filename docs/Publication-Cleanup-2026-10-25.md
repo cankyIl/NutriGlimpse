@@ -1,6 +1,6 @@
 # Publication cleanup - October 25, 2026
 
-The owner authorized the publication cleanup, MIT licensing of original code, inclusion of diagnostic photographs and retention of image metadata. App verification and restrictions on use of the hosted paid backend remain explicitly deferred. Public GitHub visibility is a separate repository setting; this checkpoint does not claim it was changed.
+The owner authorized the publication cleanup, MIT licensing of original code, inclusion of diagnostic photographs and retention of image metadata. App verification and restrictions on use of the hosted paid backend remain explicitly deferred. After this cleanup, the owner made the repository public. [Anonymous access verification](Public-Repository-Verification-2026-10-25.md) confirms a clean current clone and records a remaining GitHub-retained old-commit contact-data issue.
 
 ## Completed source changes
 
