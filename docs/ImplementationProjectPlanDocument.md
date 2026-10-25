@@ -19,6 +19,10 @@ This is the active plan. It incorporates the [side-chat handoff](71-side-chat-ne
 - Personal medical recommendations remain disabled. The October 25 single-product flow now supports explicitly consented shopper details for general food guidance; the new phone opt-in is included in build 20. Shelf health/lab transmission and BMI-derived clinical personalization remain disabled. News authorization remains separate.
 - At reconciliation, all **324 frozen build-15 source paths matched** the current workspace. No missing native upload or unreleased news implementation is recorded. Recheck source before any later deployment/build.
 
+## Public source release review - October 25, 2026
+
+**Review complete; visibility remains private.** Checked 694 tracked files and both uploaded commits at `bb2c9d7`; full-history secret scan has no unresolved credential finding (one public Apple Issuer ID). Personal/project contacts in seven project files, machine-specific paths, historical developer instructions and license-scope/third-party data notices need a publication decision and cleanup. Detector binaries and private runtime data are absent from both commits. The key-free live beta endpoint remains an existing abuse/spend consideration; no paid requests or runtime changes were made. [Detailed review, evidence and exact owner decisions](Public-Release-Review-2026-10-25.md). No history replacement, broad license or public visibility is authorized by the review itself.
+
 ## GitHub source-control checkpoint - October 25, 2026
 
 **Private repository connected:** [cankyIl/NutriGlimpse](https://github.com/cankyIl/NutriGlimpse), branch **main**. Repository-local identity and a dedicated write deploy key are configured; authenticated read/write succeeded and initial commit **8a47b15** matches GitHub. Unauthenticated GitHub API access returns 404, consistent with private visibility. The reviewed source excludes credentials, runtime data, build outputs and separately managed detector binaries. The owner's repository/key setup is complete; no further account action is needed for Git push/pull. See the [GitHub setup record](GitHub-Repository-Setup.md).
