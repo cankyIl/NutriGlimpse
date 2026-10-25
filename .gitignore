@@ -1,0 +1,59 @@
+node_modules/
+.expo/
+dist/
+coverage/
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+*.jks
+*.p8
+*.p12
+*.mobileprovision
+apps/mobile/android/
+apps/mobile/ios/
+artifacts/
+
+.tools/
+migration-source.tar.gz
+
+# Local Apple/Expo credentials must never enter a cloud source archive.
+credentials.json
+*.p8
+*.p12
+*.mobileprovision
+*.pem
+*.key
+
+# Native module build outputs and local tooling state are not cloud build sources.
+apps/mobile/modules/*/android/build/
+apps/mobile/modules/*/android/.gradle/
+apps/mobile/modules/*/android/.cxx/
+__pycache__/
+.claude/
+
+# Private credentials and operator metadata stay on this server.
+/.secrets/
+
+# GitHub source publication: credentials, runtime data and separately managed model assets.
+/docs/AppleCredentials
+*.sqlite
+*.sqlite3
+*.sqlite-*
+*.db
+*.db-*
+*.log
+*.ipa
+*.apk
+*.aab
+.DS_Store
+/apps/mobile/modules/shelf-benchmark/**/*.onnx
+/apps/mobile/modules/shelf-benchmark/**/*.mlpackage/
+/apps/mobile/modules/shelf-benchmark/android/src/androidTest/assets/*.jpg
+
+# Machine-specific settings and authentication caches.
+/.work/
+/.agents/
+/.codex/
+.npmrc
+*.keystore

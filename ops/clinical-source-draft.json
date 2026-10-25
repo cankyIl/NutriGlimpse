@@ -1,0 +1,70 @@
+{
+  "version": "section11-reference-draft-2026-10-14",
+  "sources": [
+    {
+      "id": "candidate-cardiovascular",
+      "title": "AHA 2026 dietary guidance",
+      "url": "https://professional.heart.org/en/science-news/2026-dietary-guidance-to-improve-cardiovascular-health/top-things-to-know",
+      "version": "reference-checked-2026-10-14",
+      "checkedAt": "2026-10-14T00:00:00Z",
+      "usage": "pending"
+    },
+    {
+      "id": "candidate-hypertension",
+      "title": "NHLBI DASH",
+      "url": "https://www.nhlbi.nih.gov/health/dash/following-dash",
+      "version": "reference-checked-2026-10-14",
+      "checkedAt": "2026-10-14T00:00:00Z",
+      "usage": "pending"
+    },
+    {
+      "id": "candidate-diabetes",
+      "title": "ADA nutrition clinical support",
+      "url": "https://professional.diabetes.org/clinical-support/nutrition-wellness",
+      "version": "reference-checked-2026-10-14",
+      "checkedAt": "2026-10-14T00:00:00Z",
+      "usage": "pending"
+    },
+    {
+      "id": "candidate-celiac",
+      "title": "NIDDK celiac disease",
+      "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/celiac-disease",
+      "version": "reference-checked-2026-10-14",
+      "checkedAt": "2026-10-14T00:00:00Z",
+      "usage": "pending"
+    },
+    {
+      "id": "candidate-ckd",
+      "title": "KDIGO CKD guidance",
+      "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+      "version": "reference-checked-2026-10-14",
+      "checkedAt": "2026-10-14T00:00:00Z",
+      "usage": "pending"
+    },
+    {
+      "id": "candidate-masld",
+      "title": "AASLD MASLD guidance",
+      "url": "https://www.aasld.org/practice-guidelines/clinical-assessment-and-management-metabolic-dysfunction-associated-steatotic",
+      "version": "reference-checked-2026-10-14",
+      "checkedAt": "2026-10-14T00:00:00Z",
+      "usage": "pending"
+    },
+    {
+      "id": "candidate-weight",
+      "title": "NIDDK weight management",
+      "url": "https://www.niddk.nih.gov/health-information/weight-management/adult-overweight-obesity/treatment",
+      "version": "reference-checked-2026-10-14",
+      "checkedAt": "2026-10-14T00:00:00Z",
+      "usage": "pending"
+    },
+    {
+      "id": "candidate-sibo",
+      "title": "ACG SIBO",
+      "url": "https://gi.org/topics/small-intestinal-bacterial-overgrowth-sibo/",
+      "version": "reference-checked-2026-10-14",
+      "checkedAt": "2026-10-14T00:00:00Z",
+      "usage": "pending"
+    }
+  ],
+  "rules": []
+}

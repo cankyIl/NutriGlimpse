@@ -1,0 +1,19 @@
+import {supportedStoreTags} from '../apps/service/src/storeCategory.ts';
+import {readFileSync,mkdirSync,writeFileSync,renameSync} from 'node:fs';
+import {storeDirectorySchema} from '../packages/core/src/storeDetection.ts';
+import {z} from 'zod';
+const root='/path/to/NutriGlimpse';
+const input=process.argv[2];if(!input)throw Error('Usage: import-osm-directory.ts path-to-reviewed-OSM-JSON');
+const raw=readFileSync(input,'utf8');if(raw.length>12000000)throw Error('Input exceeds limit');
+const point=z.object({lat:z.number().min(-90).max(90),lon:z.number().min(-180).max(180)});
+const schema=z.object({remark:z.string().optional(),osm3s:z.object({timestamp_osm_base:z.string().datetime()}),elements:z.array(z.object({type:z.enum(['node','way']),id:z.number().int().positive(),lat:z.number().optional(),lon:z.number().optional(),center:point.optional(),bounds:z.object({minlat:z.number(),minlon:z.number(),maxlat:z.number(),maxlon:z.number()}).optional(),geometry:z.array(point).optional(),tags:z.record(z.string(),z.string())})).max(10000)});
+const data=schema.parse(JSON.parse(raw));if(data.remark)throw Error('Incomplete provider response');
+const stores=data.elements.filter(e=>supportedStoreTags(e.tags)).map(e=>{
+ const center=e.center??(e.bounds?{lat:(e.bounds.minlat+e.bounds.maxlat)/2,lon:(e.bounds.minlon+e.bounds.maxlon)/2}:{lat:e.lat!,lon:e.lon!});point.parse(center);
+ const geometry=e.geometry;const closed=geometry&&geometry.length>=4&&geometry.length<=300&&geometry[0].lat===geometry.at(-1)!.lat&&geometry[0].lon===geometry.at(-1)!.lon;
+ return {id:e.type+'/'+e.id,name:e.tags.name,address:['addr:housenumber','addr:street','addr:city','addr:postcode'].map(k=>e.tags[k]).filter(Boolean).join(' '),coordinates:{latitude:center.lat,longitude:center.lon},polygon:closed?geometry.map(p=>({latitude:p.lat,longitude:p.lon})):null,sourceUrl:'https://www.openstreetmap.org/'+e.type+'/'+e.id};
+});
+const directory=storeDirectorySchema.parse({schemaVersion:1,provider:'OpenStreetMap',license:'ODbL-1.0',attribution:'© OpenStreetMap contributors',licenseUrl:'https://opendatacommons.org/licenses/odbl/1-0/',region:'Massachusetts',retrievedAt:new Date().toISOString(),sourceTimestamp:data.osm3s.timestamp_osm_base,stores});
+mkdirSync(root+'/.tools/stores',{recursive:true,mode:0o700});
+const path=root+'/.tools/stores/osm-ma.json';writeFileSync(path+'.tmp',JSON.stringify(directory),{mode:0o600});renameSync(path+'.tmp',path);
+console.log(JSON.stringify({stores:directory.stores.length,polygonStores:directory.stores.filter(s=>s.polygon).length,region:directory.region,bytes:JSON.stringify(directory).length}));

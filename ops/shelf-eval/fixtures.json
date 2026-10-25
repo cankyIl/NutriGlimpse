@@ -1,0 +1,46 @@
+[
+  {
+    "id": "cereal-wide",
+    "title": "Tesco Supermarket (Cereal) (1).jpg",
+    "author": "Vauxford",
+    "license": "CC-BY-SA-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Tesco_Supermarket_%28Cereal%29_%281%29.jpg",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Tesco_Supermarket_%28Cereal%29_%281%29.jpg",
+    "sha256": "cd3c8625f2f29fa324677cf93ddcedda7f38f574d28fa47b1de68188050c9da8",
+    "bytes": 8396653
+  },
+  {
+    "id": "cookies-wide",
+    "title": "Tesco Supermarket (Cakes & Biscuits).jpg",
+    "author": "Vauxford",
+    "license": "CC-BY-SA-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/7/76/Tesco_Supermarket_%28Cakes_%26_Biscuits%29.jpg",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Tesco_Supermarket_%28Cakes_%26_Biscuits%29.jpg",
+    "sha256": "b38259be95b9674a0e4e110acec32c18a64befc41d3e38d4b56863f16087d5a0",
+    "bytes": 8754400
+  },
+  {
+    "id": "cereal-close",
+    "title": "Cereal Sobeys Edmonton 2019.jpg",
+    "author": "Rowanswiki",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/2/24/Cereal_Sobeys_Edmonton_2019.jpg",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Cereal_Sobeys_Edmonton_2019.jpg",
+    "sha256": "f160161b50d67226f200a98ece9cbca65ee2e7cacca3f6024b98db885938aab1",
+    "bytes": 330908
+  },
+  {
+    "id": "cheese-tubs",
+    "title": "Beyaz peynir (2).jpg",
+    "author": "E4024",
+    "license": "CC-BY-SA-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Beyaz_peynir_%282%29.jpg",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Beyaz_peynir_(2).jpg",
+    "sha256": "1b14b3920054248752d82db21d97f7f97ba2c36ab1fbe2b8727a698eab718e8b",
+    "bytes": 1060177
+  }
+]

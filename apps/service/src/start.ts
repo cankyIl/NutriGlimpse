@@ -1,0 +1,17 @@
+import {createLabelEvidenceProvider} from './productLabelEvidence.ts';
+import {loadStoreDirectory} from './storeDirectory.ts';
+import { mkdirSync } from 'node:fs';
+import { PublicDatabase } from './publicDatabase.ts';
+process.umask(0o077);
+const directory='/path/to/NutriGlimpse/.tools/catalog';
+mkdirSync(directory,{recursive:true,mode:0o700});
+const catalog=new PublicDatabase(directory+'/public.sqlite');
+import { createFictionalProvider } from './fictionalProvider.ts';
+import { createAppServer } from './server.ts';
+const port = Number(process.env.PORT ?? 3001);
+if (!Number.isInteger(port) || port < 1024 || port > 65535) throw new Error('Invalid local service port.');
+const server = createAppServer({labelEvidence:createLabelEvidenceProvider('/path/to/NutriGlimpse'),directory:loadStoreDirectory('/path/to/NutriGlimpse/.tools/stores/osm-ma.json'),catalog,fictional:process.env.CONGRESS_FICTIONAL_AI==='1'?createFictionalProvider('/path/to/NutriGlimpse'):undefined});
+server.listen(port, '127.0.0.1', () => console.info(`Catalog and fictional example service: http://127.0.0.1:${port}`));
+server.once('close',()=>catalog.close());
+process.once('SIGINT', () => server.close());
+process.once('SIGTERM', () => server.close());

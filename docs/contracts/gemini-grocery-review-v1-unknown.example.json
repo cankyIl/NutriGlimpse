@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "gemini-grocery-review-v1",
+  "status": "unidentified",
+  "original": null,
+  "recommendationMode": "none",
+  "recommendations": [],
+  "recommendationShortfall": "A clear product identity is needed before comparing foods.",
+  "sources": [],
+  "safetyReminder": "Please double-check store signage, PLU stickers and packaging for the exact product, serving, allergens and sourcing before purchasing."
+}

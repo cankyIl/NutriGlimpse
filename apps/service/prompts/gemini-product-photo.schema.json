@@ -1,0 +1,933 @@
+{
+  "type": "object",
+  "properties": {
+    "shopping_location": {
+      "type": "object",
+      "properties": {
+        "store_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "store_address": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "town": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "store_name",
+        "store_address",
+        "town"
+      ],
+      "additionalProperties": false
+    },
+    "product": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "identity": {
+              "type": "object",
+              "properties": {
+                "brand": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "product_name": {
+                  "type": "string"
+                },
+                "variant": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "package_size": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "category": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "brand",
+                "product_name",
+                "variant",
+                "package_size",
+                "category"
+              ],
+              "additionalProperties": false
+            },
+            "serving_size": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "nutrition": {
+              "type": "object",
+              "properties": {
+                "calories": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "total_fat": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "saturated_fat": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "trans_fat": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "sodium": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "carbohydrates": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "dietary_fiber": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "total_sugars": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "added_sugars": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "protein": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "potassium": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "calcium": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "iron": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "calories",
+                "total_fat",
+                "saturated_fat",
+                "trans_fat",
+                "sodium",
+                "carbohydrates",
+                "dietary_fiber",
+                "total_sugars",
+                "added_sugars",
+                "protein",
+                "potassium",
+                "calcium",
+                "iron"
+              ],
+              "additionalProperties": false
+            },
+            "nutrition_evidence_status": {
+              "type": "string",
+              "enum": [
+                "web_verified",
+                "partially_verified",
+                "unavailable"
+              ]
+            },
+            "nutrition_source_ids": {
+              "type": "object",
+              "properties": {
+                "calories": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "total_fat": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "saturated_fat": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "trans_fat": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "sodium": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "carbohydrates": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "dietary_fiber": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "total_sugars": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "added_sugars": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "protein": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "potassium": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "calcium": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "iron": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "calories",
+                "total_fat",
+                "saturated_fat",
+                "trans_fat",
+                "sodium",
+                "carbohydrates",
+                "dietary_fiber",
+                "total_sugars",
+                "added_sugars",
+                "protein",
+                "potassium",
+                "calcium",
+                "iron"
+              ],
+              "additionalProperties": false
+            },
+            "verification_notes": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "rating": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "healthy",
+                "neutral",
+                "not_healthy",
+                null
+              ]
+            },
+            "reasons": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "tradeoffs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "store_name": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "store_address": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "town": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "state": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "aisle": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "section": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "retailer_url": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "image_url": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "image_source_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "availability_source_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "aisle_source_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "availability_status": {
+              "type": "string",
+              "enum": [
+                "confirmed_at_branch",
+                "retailer_listing_only",
+                "unknown"
+              ]
+            }
+          },
+          "required": [
+            "identity",
+            "serving_size",
+            "nutrition",
+            "nutrition_evidence_status",
+            "nutrition_source_ids",
+            "verification_notes",
+            "rating",
+            "reasons",
+            "tradeoffs",
+            "store_name",
+            "store_address",
+            "town",
+            "state",
+            "aisle",
+            "section",
+            "retailer_url",
+            "image_url",
+            "image_source_id",
+            "availability_source_id",
+            "aisle_source_id",
+            "availability_status"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "alternatives": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "identity": {
+            "type": "object",
+            "properties": {
+              "brand": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "product_name": {
+                "type": "string"
+              },
+              "variant": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "package_size": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "category": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "brand",
+              "product_name",
+              "variant",
+              "package_size",
+              "category"
+            ],
+            "additionalProperties": false
+          },
+          "serving_size": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "nutrition": {
+            "type": "object",
+            "properties": {
+              "calories": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "total_fat": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "saturated_fat": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "trans_fat": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "sodium": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "carbohydrates": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "dietary_fiber": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "total_sugars": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "added_sugars": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "protein": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "potassium": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "calcium": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "iron": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "calories",
+              "total_fat",
+              "saturated_fat",
+              "trans_fat",
+              "sodium",
+              "carbohydrates",
+              "dietary_fiber",
+              "total_sugars",
+              "added_sugars",
+              "protein",
+              "potassium",
+              "calcium",
+              "iron"
+            ],
+            "additionalProperties": false
+          },
+          "nutrition_evidence_status": {
+            "type": "string",
+            "enum": [
+              "web_verified",
+              "partially_verified",
+              "unavailable"
+            ]
+          },
+          "nutrition_source_ids": {
+            "type": "object",
+            "properties": {
+              "calories": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "total_fat": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "saturated_fat": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "trans_fat": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "sodium": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "carbohydrates": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "dietary_fiber": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "total_sugars": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "added_sugars": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "protein": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "potassium": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "calcium": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "iron": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "calories",
+              "total_fat",
+              "saturated_fat",
+              "trans_fat",
+              "sodium",
+              "carbohydrates",
+              "dietary_fiber",
+              "total_sugars",
+              "added_sugars",
+              "protein",
+              "potassium",
+              "calcium",
+              "iron"
+            ],
+            "additionalProperties": false
+          },
+          "verification_notes": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "rating": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "healthy",
+              "neutral",
+              "not_healthy",
+              null
+            ]
+          },
+          "reasons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "tradeoffs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "store_name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "store_address": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "town": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "state": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "aisle": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "section": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "retailer_url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "image_url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "image_source_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "availability_source_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "aisle_source_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "availability_status": {
+            "type": "string",
+            "enum": [
+              "confirmed_at_branch",
+              "retailer_listing_only",
+              "unknown"
+            ]
+          }
+        },
+        "required": [
+          "identity",
+          "serving_size",
+          "nutrition",
+          "nutrition_evidence_status",
+          "nutrition_source_ids",
+          "verification_notes",
+          "rating",
+          "reasons",
+          "tradeoffs",
+          "store_name",
+          "store_address",
+          "town",
+          "state",
+          "aisle",
+          "section",
+          "retailer_url",
+          "image_url",
+          "image_source_id",
+          "availability_source_id",
+          "aisle_source_id",
+          "availability_status"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "alternatives_shortfall": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source_id": {
+            "type": "string"
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "title": {
+            "type": "string"
+          },
+          "matched_product": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "serving_size": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "supported_nutrients": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "calories",
+                "total_fat",
+                "saturated_fat",
+                "trans_fat",
+                "sodium",
+                "carbohydrates",
+                "dietary_fiber",
+                "total_sugars",
+                "added_sugars",
+                "protein",
+                "potassium",
+                "calcium",
+                "iron"
+              ]
+            }
+          },
+          "evidence_excerpt": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "store_name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "town": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "state": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "branch_address": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "aisle": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "section": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "source_id",
+          "url",
+          "title",
+          "matched_product",
+          "serving_size",
+          "supported_nutrients",
+          "evidence_excerpt",
+          "store_name",
+          "town",
+          "state",
+          "branch_address",
+          "aisle",
+          "section"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "shopping_location",
+    "product",
+    "alternatives",
+    "alternatives_shortfall",
+    "sources"
+  ],
+  "additionalProperties": false
+}

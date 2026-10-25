@@ -1,0 +1,17 @@
+[Unit]
+Description=Congress App Challenge backend
+After=network.target
+[Service]
+Type=simple
+WorkingDirectory=/path/to/NutriGlimpse
+ExecStart=/bin/bash /path/to/NutriGlimpse/ops/run-backend.sh
+Restart=on-failure
+RestartSec=5
+UMask=0077
+Environment=CI=1
+MemoryHigh=3G
+MemoryMax=5G
+CPUQuota=200%
+Nice=5
+[Install]
+WantedBy=default.target

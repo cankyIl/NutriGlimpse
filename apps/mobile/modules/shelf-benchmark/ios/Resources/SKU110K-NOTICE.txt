@@ -1,0 +1,12 @@
+ShelfSKU11Diagnostic — academic/non-commercial research diagnostic only
+
+Source model: chistopat/sku110k-yolo11-object-detector, YOLO11s 640
+https://huggingface.co/chistopat/sku110k-yolo11-object-detector
+Pinned revision: ee1b8ac34eb3b68969ffa8165e50c43457fe4e35
+Checkpoint SHA256: b7e86554a746c2f02ee0626bcde5b77038b84692c225a642a5a5ebc150f6718a
+
+The author publishes these weights as research/development artifacts and does not grant rights beyond the SKU-110K dataset terms. SKU-110K is available solely for academic and non-commercial purposes; see https://github.com/eg4000/SKU110K_CVPR19#dataset . Underlying Ultralytics code/model licensing must also be respected; the AGPL-3.0 license text accompanies this artifact. No unrestricted commercial or App Store distribution clearance is asserted.
+
+This is a pretrained model. This project did not train or fine-tune it. Export: CoreML MLProgram FP16 + class-agnostic NMS, 640 RGB image, confidence 0.25 and IoU 0.50. The true class is product; 79 additional class score columns are exactly zero in the PyTorch adapter and exist solely for the upstream CoreML NMS workaround: https://github.com/ultralytics/ultralytics/issues/22309 . Runtime should reject padding labels.
+
+Export and PyTorch adapter/trace parity were checked on Linux. Actual CoreML execution, iPhone correctness, and sustained 2 Hz remain unverified. Public fixture detection scores do not verify product identity, nutritional interpretation, or personalized health recommendations.

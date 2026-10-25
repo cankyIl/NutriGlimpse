@@ -1,0 +1,130 @@
+[
+  {
+    "condition": "cardiovascular",
+    "sourceId": "candidate-cardiovascular",
+    "status": "needs-qualified-review",
+    "reviewedBy": null,
+    "reviewQuestions": "Review translation from overall dietary patterns to individual-food explanations; confirm age/pregnancy/multiple-condition applicability.",
+    "referenceCasesRequired": [
+      "positive",
+      "conflicting-conditions",
+      "missing-context",
+      "age-boundary",
+      "pregnancy",
+      "older-adult",
+      "unknown-certification"
+    ]
+  },
+  {
+    "condition": "hypertension",
+    "sourceId": "candidate-hypertension",
+    "status": "needs-qualified-review",
+    "reviewedBy": null,
+    "reviewQuestions": "Review sodium/portion logic and exceptions; do not invent a personalized treatment target.",
+    "referenceCasesRequired": [
+      "positive",
+      "conflicting-conditions",
+      "missing-context",
+      "age-boundary",
+      "pregnancy",
+      "older-adult",
+      "unknown-certification"
+    ]
+  },
+  {
+    "condition": "diabetes",
+    "sourceId": "candidate-diabetes",
+    "status": "needs-qualified-review",
+    "reviewedBy": null,
+    "reviewQuestions": "Review carbohydrate/portion needs, medication context and missing-data outcomes; total sugars alone is insufficient.",
+    "referenceCasesRequired": [
+      "positive",
+      "conflicting-conditions",
+      "missing-context",
+      "age-boundary",
+      "pregnancy",
+      "older-adult",
+      "unknown-certification"
+    ]
+  },
+  {
+    "condition": "celiac",
+    "sourceId": "candidate-celiac",
+    "status": "needs-qualified-review",
+    "reviewedBy": null,
+    "reviewQuestions": "Review ingredient versus certified-product evidence, cross-contact and approved certification authorities.",
+    "referenceCasesRequired": [
+      "positive",
+      "conflicting-conditions",
+      "missing-context",
+      "age-boundary",
+      "pregnancy",
+      "older-adult",
+      "unknown-certification"
+    ]
+  },
+  {
+    "condition": "ckd",
+    "sourceId": "candidate-ckd",
+    "status": "needs-qualified-review",
+    "reviewedBy": null,
+    "reviewQuestions": "Review stage/lab/medication applicability, required nutrient/context gaps and contraindications.",
+    "referenceCasesRequired": [
+      "positive",
+      "conflicting-conditions",
+      "missing-context",
+      "age-boundary",
+      "pregnancy",
+      "older-adult",
+      "unknown-certification"
+    ]
+  },
+  {
+    "condition": "masld",
+    "sourceId": "candidate-masld",
+    "status": "needs-qualified-review",
+    "reviewedBy": null,
+    "reviewQuestions": "Review applicability and evidence strength; distinguish terminology updates from recommendations.",
+    "referenceCasesRequired": [
+      "positive",
+      "conflicting-conditions",
+      "missing-context",
+      "age-boundary",
+      "pregnancy",
+      "older-adult",
+      "unknown-certification"
+    ]
+  },
+  {
+    "condition": "weight",
+    "sourceId": "candidate-weight",
+    "status": "needs-qualified-review",
+    "reviewedBy": null,
+    "reviewQuestions": "Review suitable populations, portion context and pregnancy exceptions; no invented calorie prescription.",
+    "referenceCasesRequired": [
+      "positive",
+      "conflicting-conditions",
+      "missing-context",
+      "age-boundary",
+      "pregnancy",
+      "older-adult",
+      "unknown-certification"
+    ]
+  },
+  {
+    "condition": "sibo",
+    "sourceId": "candidate-sibo",
+    "status": "needs-qualified-review",
+    "reviewedBy": null,
+    "reviewQuestions": "Review direct SIBO evidence; do not substitute IBS/low-FODMAP guidance or claim measured FODMAP contents.",
+    "referenceCasesRequired": [
+      "positive",
+      "conflicting-conditions",
+      "missing-context",
+      "age-boundary",
+      "pregnancy",
+      "older-adult",
+      "unknown-certification"
+    ]
+  }
+]

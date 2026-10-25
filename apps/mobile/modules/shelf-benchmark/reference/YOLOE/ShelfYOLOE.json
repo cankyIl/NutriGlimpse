@@ -1,0 +1,43 @@
+{
+  "modelName": "ShelfYOLOE",
+  "modelFingerprint": "9df009bf0210de105bf65707f1c4f10e33d8f447187c86667e90bb836c2cf956",
+  "inputSize": 640,
+  "prompts": [
+    "cereal box",
+    "cookie package",
+    "cheese package",
+    "food box",
+    "food bag",
+    "food container",
+    "bottle",
+    "jar"
+  ],
+  "confidenceThreshold": 0.1,
+  "iouThreshold": 0.5,
+  "sourceCheckpoint": "yoloe-11s-seg.pt",
+  "sourceCheckpointSha256": "8e439445c87338b79d9ce21dec109f4621e26df67e94d26ea1a98c1e64dce3e3",
+  "export": "detection-only fixed prompt CoreML FP16 weights with NMS",
+  "acceptance": "evaluation only; crowded shelf recall not yet acceptable; no physical iPhone timing recorded",
+  "coremltools": "8.3.0",
+  "inputSpec": "[name: \"image\"\nshortDescription: \"Input image\"\ntype {\n  imageType {\n    width: 640\n    height: 640\n    colorSpace: RGB\n  }\n}\n, name: \"iouThreshold\"\nshortDescription: \"(optional) IoU threshold override (default: 0.5)\"\ntype {\n  doubleType {\n  }\n}\n, name: \"confidenceThreshold\"\nshortDescription: \"(optional) Confidence threshold override (default: 0.1)\"\ntype {\n  doubleType {\n  }\n}\n]",
+  "outputSpec": "[name: \"confidence\"\nshortDescription: \"Boxes \u00d7 Class confidence (see user-defined metadata \\\"classes\\\")\"\ntype {\n  multiArrayType {\n    dataType: FLOAT32\n    shapeRange {\n      sizeRanges {\n        upperBound: -1\n      }\n      sizeRanges {\n        lowerBound: 8\n        upperBound: 8\n      }\n    }\n  }\n}\n, name: \"coordinates\"\nshortDescription: \"Boxes \u00d7 [x, y, width, height] (relative to image size)\"\ntype {\n  multiArrayType {\n    dataType: FLOAT32\n    shapeRange {\n      sizeRanges {\n        upperBound: -1\n      }\n      sizeRanges {\n        lowerBound: 4\n        upperBound: 4\n      }\n    }\n  }\n}\n]",
+  "files": [
+    {
+      "path": "Data/com.apple.CoreML/model.mlmodel",
+      "bytes": 164550,
+      "sha256": "e2bc48626565170c2cd3bdb68b8844045d1dc98241b33d143d092b084752a078"
+    },
+    {
+      "path": "Data/com.apple.CoreML/weights/weight.bin",
+      "bytes": 18893408,
+      "sha256": "2ae73347c2cd00ab261c5b14f5a63756b79b2a2e958b8e3c9e6de7618056dcb8"
+    },
+    {
+      "path": "Manifest.json",
+      "bytes": 617,
+      "sha256": "22e54d5df09e1f9a451f9eb13b2a7c4b8f605100aa01c4ac7cb46762e4aec839"
+    }
+  ],
+  "predictionMode": "single-full-frame",
+  "agnosticNmsIouThreshold": 0.5
+}

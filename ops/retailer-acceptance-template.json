@@ -1,0 +1,3502 @@
+[
+  {
+    "retailer": "wegmans",
+    "category": "cereal-oats",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "cereal-oats",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "cereal-oats",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "cereal-oats",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "cereal-oats",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "bread-tortillas",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "bread-tortillas",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "bread-tortillas",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "bread-tortillas",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "bread-tortillas",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "dairy",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "dairy",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "dairy",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "dairy",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "dairy",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "pasta-rice",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "pasta-rice",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "pasta-rice",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "pasta-rice",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "pasta-rice",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "sauces-condiments",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "sauces-condiments",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "sauces-condiments",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "sauces-condiments",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "sauces-condiments",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "beans-canned-food",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "beans-canned-food",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "beans-canned-food",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "beans-canned-food",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "beans-canned-food",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "nuts-spreads",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "nuts-spreads",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "nuts-spreads",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "nuts-spreads",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "nuts-spreads",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "snacks",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "snacks",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "snacks",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "snacks",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "snacks",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "produce-frozen-vegetables",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "produce-frozen-vegetables",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "produce-frozen-vegetables",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "produce-frozen-vegetables",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "produce-frozen-vegetables",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "protein-eggs",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "protein-eggs",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "protein-eggs",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "protein-eggs",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "wegmans",
+    "category": "protein-eggs",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "cereal-oats",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "cereal-oats",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "cereal-oats",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "cereal-oats",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "cereal-oats",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "bread-tortillas",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "bread-tortillas",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "bread-tortillas",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "bread-tortillas",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "bread-tortillas",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "dairy",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "dairy",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "dairy",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "dairy",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "dairy",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "pasta-rice",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "pasta-rice",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "pasta-rice",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "pasta-rice",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "pasta-rice",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "sauces-condiments",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "sauces-condiments",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "sauces-condiments",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "sauces-condiments",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "sauces-condiments",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "beans-canned-food",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "beans-canned-food",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "beans-canned-food",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "beans-canned-food",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "beans-canned-food",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "nuts-spreads",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "nuts-spreads",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "nuts-spreads",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "nuts-spreads",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "nuts-spreads",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "snacks",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "snacks",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "snacks",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "snacks",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "snacks",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "produce-frozen-vegetables",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "produce-frozen-vegetables",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "produce-frozen-vegetables",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "produce-frozen-vegetables",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "produce-frozen-vegetables",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "protein-eggs",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "protein-eggs",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "protein-eggs",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "protein-eggs",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "walmart",
+    "category": "protein-eggs",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "cereal-oats",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "cereal-oats",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "cereal-oats",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "cereal-oats",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "cereal-oats",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "bread-tortillas",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "bread-tortillas",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "bread-tortillas",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "bread-tortillas",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "bread-tortillas",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "dairy",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "dairy",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "dairy",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "dairy",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "dairy",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "pasta-rice",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "pasta-rice",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "pasta-rice",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "pasta-rice",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "pasta-rice",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "sauces-condiments",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "sauces-condiments",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "sauces-condiments",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "sauces-condiments",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "sauces-condiments",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "beans-canned-food",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "beans-canned-food",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "beans-canned-food",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "beans-canned-food",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "beans-canned-food",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "nuts-spreads",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "nuts-spreads",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "nuts-spreads",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "nuts-spreads",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "nuts-spreads",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "snacks",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "snacks",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "snacks",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "snacks",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "snacks",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "produce-frozen-vegetables",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "produce-frozen-vegetables",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "produce-frozen-vegetables",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "produce-frozen-vegetables",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "produce-frozen-vegetables",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "protein-eggs",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "protein-eggs",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "protein-eggs",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "protein-eggs",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "price-chopper",
+    "category": "protein-eggs",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "cereal-oats",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "cereal-oats",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "cereal-oats",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "cereal-oats",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "cereal-oats",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "bread-tortillas",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "bread-tortillas",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "bread-tortillas",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "bread-tortillas",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "bread-tortillas",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "dairy",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "dairy",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "dairy",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "dairy",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "dairy",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "pasta-rice",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "pasta-rice",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "pasta-rice",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "pasta-rice",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "pasta-rice",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "sauces-condiments",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "sauces-condiments",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "sauces-condiments",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "sauces-condiments",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "sauces-condiments",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "beans-canned-food",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "beans-canned-food",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "beans-canned-food",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "beans-canned-food",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "beans-canned-food",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "nuts-spreads",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "nuts-spreads",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "nuts-spreads",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "nuts-spreads",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "nuts-spreads",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "snacks",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "snacks",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "snacks",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "snacks",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "snacks",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "produce-frozen-vegetables",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "produce-frozen-vegetables",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "produce-frozen-vegetables",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "produce-frozen-vegetables",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "produce-frozen-vegetables",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "protein-eggs",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "protein-eggs",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "protein-eggs",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "protein-eggs",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "whole-foods",
+    "category": "protein-eggs",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "cereal-oats",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "cereal-oats",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "cereal-oats",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "cereal-oats",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "cereal-oats",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "bread-tortillas",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "bread-tortillas",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "bread-tortillas",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "bread-tortillas",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "bread-tortillas",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "dairy",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "dairy",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "dairy",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "dairy",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "dairy",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "pasta-rice",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "pasta-rice",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "pasta-rice",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "pasta-rice",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "pasta-rice",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "sauces-condiments",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "sauces-condiments",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "sauces-condiments",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "sauces-condiments",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "sauces-condiments",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "beans-canned-food",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "beans-canned-food",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "beans-canned-food",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "beans-canned-food",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "beans-canned-food",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "nuts-spreads",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "nuts-spreads",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "nuts-spreads",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "nuts-spreads",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "nuts-spreads",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "snacks",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "snacks",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "snacks",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "snacks",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "snacks",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "produce-frozen-vegetables",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "produce-frozen-vegetables",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "produce-frozen-vegetables",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "produce-frozen-vegetables",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "produce-frozen-vegetables",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "protein-eggs",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "protein-eggs",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "protein-eggs",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "protein-eggs",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "target",
+    "category": "protein-eggs",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "cereal-oats",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "cereal-oats",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "cereal-oats",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "cereal-oats",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "cereal-oats",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "bread-tortillas",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "bread-tortillas",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "bread-tortillas",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "bread-tortillas",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "bread-tortillas",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "dairy",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "dairy",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "dairy",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "dairy",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "dairy",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "pasta-rice",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "pasta-rice",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "pasta-rice",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "pasta-rice",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "pasta-rice",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "sauces-condiments",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "sauces-condiments",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "sauces-condiments",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "sauces-condiments",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "sauces-condiments",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "beans-canned-food",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "beans-canned-food",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "beans-canned-food",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "beans-canned-food",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "beans-canned-food",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "nuts-spreads",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "nuts-spreads",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "nuts-spreads",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "nuts-spreads",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "nuts-spreads",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "snacks",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "snacks",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "snacks",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "snacks",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "snacks",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "produce-frozen-vegetables",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "produce-frozen-vegetables",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "produce-frozen-vegetables",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "produce-frozen-vegetables",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "produce-frozen-vegetables",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "protein-eggs",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "protein-eggs",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "protein-eggs",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "protein-eggs",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "shaws",
+    "category": "protein-eggs",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "cereal-oats",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "cereal-oats",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "cereal-oats",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "cereal-oats",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "cereal-oats",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "bread-tortillas",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "bread-tortillas",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "bread-tortillas",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "bread-tortillas",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "bread-tortillas",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "dairy",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "dairy",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "dairy",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "dairy",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "dairy",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "pasta-rice",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "pasta-rice",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "pasta-rice",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "pasta-rice",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "pasta-rice",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "sauces-condiments",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "sauces-condiments",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "sauces-condiments",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "sauces-condiments",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "sauces-condiments",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "beans-canned-food",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "beans-canned-food",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "beans-canned-food",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "beans-canned-food",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "beans-canned-food",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "nuts-spreads",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "nuts-spreads",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "nuts-spreads",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "nuts-spreads",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "nuts-spreads",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "snacks",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "snacks",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "snacks",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "snacks",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "snacks",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "produce-frozen-vegetables",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "produce-frozen-vegetables",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "produce-frozen-vegetables",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "produce-frozen-vegetables",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "produce-frozen-vegetables",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "protein-eggs",
+    "slot": 1,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "protein-eggs",
+    "slot": 2,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "protein-eggs",
+    "slot": 3,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "protein-eggs",
+    "slot": 4,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  },
+  {
+    "retailer": "trader-joes",
+    "category": "protein-eggs",
+    "slot": 5,
+    "barcode": null,
+    "productName": null,
+    "branchId": null,
+    "observedAt": null,
+    "sourceUrl": null
+  }
+]

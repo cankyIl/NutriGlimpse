@@ -1,0 +1,887 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Gemini grocery review v1 - discussion draft",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "enum": [
+        "gemini-grocery-review-v1"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "complete",
+        "partial",
+        "unidentified"
+      ]
+    },
+    "original": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/food"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "recommendationMode": {
+      "type": "string",
+      "enum": [
+        "alternatives",
+        "complements",
+        "none"
+      ]
+    },
+    "recommendations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/recommendation"
+      },
+      "maxItems": 3
+    },
+    "recommendationShortfall": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 220
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "photo_label",
+              "manufacturer",
+              "retailer",
+              "usda",
+              "guideline",
+              "certifier"
+            ]
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 1500
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 250
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "url",
+          "title"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 24
+    },
+    "safetyReminder": {
+      "type": "string",
+      "maxLength": 300
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "status",
+    "original",
+    "recommendationMode",
+    "recommendations",
+    "recommendationShortfall",
+    "sources",
+    "safetyReminder"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "food": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "identity": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": [
+                "packaged",
+                "produce",
+                "bulk",
+                "unknown"
+              ]
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "identified",
+                "uncertain"
+              ]
+            },
+            "brand": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 160
+            },
+            "name": {
+              "type": "string",
+              "maxLength": 160
+            },
+            "variant": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 160
+            },
+            "size": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 100
+            },
+            "category": {
+              "type": "string",
+              "maxLength": 100
+            }
+          },
+          "required": [
+            "kind",
+            "status",
+            "brand",
+            "name",
+            "variant",
+            "size",
+            "category"
+          ],
+          "additionalProperties": false
+        },
+        "serving": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 160
+            },
+            "grams": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 1000
+            },
+            "milliliters": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 3000
+            },
+            "basis": {
+              "type": "string",
+              "enum": [
+                "package_label",
+                "usda_reference",
+                "unknown"
+              ]
+            },
+            "sourceId": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 40
+            }
+          },
+          "required": [
+            "text",
+            "grams",
+            "milliliters",
+            "basis",
+            "sourceId"
+          ],
+          "additionalProperties": false
+        },
+        "nutrition": {
+          "type": "object",
+          "properties": {
+            "caloriesKcal": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 3000
+            },
+            "totalFatG": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 300
+            },
+            "saturatedFatG": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 200
+            },
+            "transFatG": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 100
+            },
+            "sodiumMg": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 10000
+            },
+            "carbohydrateG": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 500
+            },
+            "fiberG": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 200
+            },
+            "sugarsG": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 300
+            },
+            "addedSugarsG": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 300
+            },
+            "proteinG": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 300
+            },
+            "potassiumMg": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 10000
+            },
+            "calciumMg": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 5000
+            },
+            "ironMg": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 100
+            },
+            "magnesiumMg": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 5000
+            },
+            "phosphorusMg": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 5000
+            },
+            "vitaminDmcg": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 1000
+            }
+          },
+          "required": [
+            "caloriesKcal",
+            "totalFatG",
+            "saturatedFatG",
+            "transFatG",
+            "sodiumMg",
+            "carbohydrateG",
+            "fiberG",
+            "sugarsG",
+            "addedSugarsG",
+            "proteinG",
+            "potassiumMg",
+            "calciumMg",
+            "ironMg",
+            "magnesiumMg",
+            "phosphorusMg",
+            "vitaminDmcg"
+          ],
+          "additionalProperties": false,
+          "description": "Values per one stated serving; null means unknown, never zero by default."
+        },
+        "nutrientEvidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "nutrient": {
+                "type": "string",
+                "enum": [
+                  "caloriesKcal",
+                  "totalFatG",
+                  "saturatedFatG",
+                  "transFatG",
+                  "sodiumMg",
+                  "carbohydrateG",
+                  "fiberG",
+                  "sugarsG",
+                  "addedSugarsG",
+                  "proteinG",
+                  "potassiumMg",
+                  "calciumMg",
+                  "ironMg",
+                  "magnesiumMg",
+                  "phosphorusMg",
+                  "vitaminDmcg"
+                ]
+              },
+              "sourceId": {
+                "type": "string",
+                "maxLength": 40
+              }
+            },
+            "required": [
+              "nutrient",
+              "sourceId"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 16
+        },
+        "ingredients": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 1500
+        },
+        "dietaryEvidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "restriction": {
+                "type": "string",
+                "maxLength": 80
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "manufacturer_claim_found",
+                  "certification_found",
+                  "conflict",
+                  "unknown"
+                ]
+              },
+              "claim": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "maxLength": 160
+              },
+              "sourceIds": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                "maxItems": 5
+              }
+            },
+            "required": [
+              "restriction",
+              "status",
+              "claim",
+              "sourceIds"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 6
+        },
+        "assessment": {
+          "type": "object",
+          "properties": {
+            "rating": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "very_healthy",
+                "healthy",
+                "neutral",
+                "not_healthy",
+                null
+              ]
+            },
+            "primaryConcern": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "caloriesKcal",
+                "totalFatG",
+                "saturatedFatG",
+                "transFatG",
+                "sodiumMg",
+                "carbohydrateG",
+                "fiberG",
+                "sugarsG",
+                "addedSugarsG",
+                "proteinG",
+                "potassiumMg",
+                "calciumMg",
+                "ironMg",
+                "magnesiumMg",
+                "phosphorusMg",
+                "vitaminDmcg",
+                null
+              ]
+            },
+            "highlightNutrients": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "caloriesKcal",
+                  "totalFatG",
+                  "saturatedFatG",
+                  "transFatG",
+                  "sodiumMg",
+                  "carbohydrateG",
+                  "fiberG",
+                  "sugarsG",
+                  "addedSugarsG",
+                  "proteinG",
+                  "potassiumMg",
+                  "calciumMg",
+                  "ironMg",
+                  "magnesiumMg",
+                  "phosphorusMg",
+                  "vitaminDmcg"
+                ]
+              },
+              "maxItems": 4
+            },
+            "reasons": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "maxLength": 110
+                  },
+                  "nutrientKeys": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "caloriesKcal",
+                        "totalFatG",
+                        "saturatedFatG",
+                        "transFatG",
+                        "sodiumMg",
+                        "carbohydrateG",
+                        "fiberG",
+                        "sugarsG",
+                        "addedSugarsG",
+                        "proteinG",
+                        "potassiumMg",
+                        "calciumMg",
+                        "ironMg",
+                        "magnesiumMg",
+                        "phosphorusMg",
+                        "vitaminDmcg"
+                      ]
+                    },
+                    "maxItems": 4
+                  },
+                  "sourceIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "maxLength": 40
+                    },
+                    "maxItems": 5
+                  }
+                },
+                "required": [
+                  "text",
+                  "nutrientKeys",
+                  "sourceIds"
+                ],
+                "additionalProperties": false
+              },
+              "maxItems": 3
+            },
+            "limitations": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 180
+              },
+              "maxItems": 4
+            }
+          },
+          "required": [
+            "rating",
+            "primaryConcern",
+            "highlightNutrients",
+            "reasons",
+            "limitations"
+          ],
+          "additionalProperties": false
+        },
+        "image": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": [
+                "scan_photo",
+                "reference",
+                "none"
+              ]
+            },
+            "url": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 1500
+            },
+            "sourceId": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 40
+            }
+          },
+          "required": [
+            "kind",
+            "url",
+            "sourceId"
+          ],
+          "additionalProperties": false
+        },
+        "availability": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "branch_stock_reported",
+                "branch_listed",
+                "chain_listed",
+                "not_found",
+                "unknown"
+              ]
+            },
+            "storeName": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 160
+            },
+            "town": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 100
+            },
+            "state": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 40
+            },
+            "branch": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 200
+            },
+            "sourceId": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 40
+            },
+            "aisleNumber": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 60
+            },
+            "section": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 100
+            },
+            "aisleSourceId": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 40
+            },
+            "aisleEvidence": {
+              "type": "string",
+              "enum": [
+                "branch_specific",
+                "unknown"
+              ]
+            }
+          },
+          "required": [
+            "status",
+            "storeName",
+            "town",
+            "state",
+            "branch",
+            "sourceId",
+            "aisleNumber",
+            "section",
+            "aisleSourceId",
+            "aisleEvidence"
+          ],
+          "additionalProperties": false,
+          "description": "Aisle/section are nullable strings. Never use chain-level evidence as an exact-branch location or stock guarantee."
+        },
+        "ingredientSourceId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 40
+        }
+      },
+      "required": [
+        "id",
+        "identity",
+        "serving",
+        "nutrition",
+        "nutrientEvidence",
+        "ingredients",
+        "ingredientSourceId",
+        "dietaryEvidence",
+        "assessment",
+        "image",
+        "availability"
+      ],
+      "additionalProperties": false
+    },
+    "recommendation": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "alternative",
+            "complement"
+          ]
+        },
+        "food": {
+          "$ref": "#/$defs/food"
+        },
+        "comparisonBasis": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": [
+                "equal_mass",
+                "equal_volume",
+                "meal_pairing",
+                "not_comparable"
+              ]
+            },
+            "amount": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 3000
+            },
+            "unit": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "g",
+                "ml",
+                null
+              ]
+            }
+          },
+          "required": [
+            "kind",
+            "amount",
+            "unit"
+          ],
+          "additionalProperties": false
+        },
+        "benefits": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string",
+                "maxLength": 110
+              },
+              "nutrientKeys": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "caloriesKcal",
+                    "totalFatG",
+                    "saturatedFatG",
+                    "transFatG",
+                    "sodiumMg",
+                    "carbohydrateG",
+                    "fiberG",
+                    "sugarsG",
+                    "addedSugarsG",
+                    "proteinG",
+                    "potassiumMg",
+                    "calciumMg",
+                    "ironMg",
+                    "magnesiumMg",
+                    "phosphorusMg",
+                    "vitaminDmcg"
+                  ]
+                },
+                "maxItems": 4
+              },
+              "sourceIds": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                "maxItems": 5
+              }
+            },
+            "required": [
+              "text",
+              "nutrientKeys",
+              "sourceIds"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 3
+        },
+        "reasonShortfall": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 180
+        },
+        "tradeoffs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 160
+          },
+          "maxItems": 3
+        }
+      },
+      "required": [
+        "type",
+        "food",
+        "comparisonBasis",
+        "benefits",
+        "reasonShortfall",
+        "tradeoffs"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

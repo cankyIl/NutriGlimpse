@@ -1,0 +1,15 @@
+f160161b50d67226f200a98ece9cbca65ee2e7cacca3f6024b98db885938aab1  apps/mobile/modules/shelf-benchmark/android/src/androidTest/assets/cereal-close.jpg
+cd3c8625f2f29fa324677cf93ddcedda7f38f574d28fa47b1de68188050c9da8  apps/mobile/modules/shelf-benchmark/android/src/androidTest/assets/cereal-wide.jpg
+1b14b3920054248752d82db21d97f7f97ba2c36ab1fbe2b8727a698eab718e8b  apps/mobile/modules/shelf-benchmark/android/src/androidTest/assets/cheese-tubs.jpg
+b38259be95b9674a0e4e110acec32c18a64befc41d3e38d4b56863f16087d5a0  apps/mobile/modules/shelf-benchmark/android/src/androidTest/assets/cookies-wide.jpg
+6bd812d08451db54943f5f9792fa689f4bed1b90cae38812db5a856eb374219e  apps/mobile/modules/shelf-benchmark/android/src/main/assets/shelfset.onnx
+ac2944d24eb405e2e2b3b2b6f88228595223f0a35920a5a0ce3e22373e0c4db0  apps/mobile/modules/shelf-benchmark/android/src/main/assets/sku110k.onnx
+476b7ec59c199602350f0f63e6a32bb2810c7082dfd2e29aac5414b070a7abf3  apps/mobile/modules/shelf-benchmark/ios/Resources/ShelfSKU11Diagnostic.mlpackage/Data/com.apple.CoreML/model.mlmodel
+c8399d9ee21f4476535ea8e8dbfadd113de18139504a2aec765e9ccf8c4c5c78  apps/mobile/modules/shelf-benchmark/ios/Resources/ShelfSKU11Diagnostic.mlpackage/Data/com.apple.CoreML/weights/weight.bin
+243e1bd10ae46cb18b1e68df490cec414c405940446f621350918165036f2cad  apps/mobile/modules/shelf-benchmark/ios/Resources/ShelfSKU11Diagnostic.mlpackage/Manifest.json
+0c0c4526077aaf1520fe769bb05778f87ecafb01cfbefff633b9f12fed0736cd  apps/mobile/modules/shelf-benchmark/ios/Resources/ShelfSetDiagnostic.mlpackage/Data/com.apple.CoreML/model.mlmodel
+879225de9929c9f4bf5fdec72ab347e47e05e28448be0c343a82ac95f403f4cf  apps/mobile/modules/shelf-benchmark/ios/Resources/ShelfSetDiagnostic.mlpackage/Data/com.apple.CoreML/weights/weight.bin
+7cff2dc8865309a71a92cf7637e2f7221114541b6347aef14d39356b6e699d72  apps/mobile/modules/shelf-benchmark/ios/Resources/ShelfSetDiagnostic.mlpackage/Manifest.json
+e2bc48626565170c2cd3bdb68b8844045d1dc98241b33d143d092b084752a078  apps/mobile/modules/shelf-benchmark/reference/YOLOE/ShelfYOLOE.mlpackage/Data/com.apple.CoreML/model.mlmodel
+2ae73347c2cd00ab261c5b14f5a63756b79b2a2e958b8e3c9e6de7618056dcb8  apps/mobile/modules/shelf-benchmark/reference/YOLOE/ShelfYOLOE.mlpackage/Data/com.apple.CoreML/weights/weight.bin
+22e54d5df09e1f9a451f9eb13b2a7c4b8f605100aa01c4ac7cb46762e4aec839  apps/mobile/modules/shelf-benchmark/reference/YOLOE/ShelfYOLOE.mlpackage/Manifest.json

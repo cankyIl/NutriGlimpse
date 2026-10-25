@@ -1,0 +1,540 @@
+{
+  "schemaVersion": 1,
+  "automaticPersonalization": false,
+  "tables": [
+    {
+      "sourceId": "dash",
+      "sourceLocator": "DASH Eating Plan—Number of Food Servings by Calorie Level",
+      "calorieLevels": [
+        1200,
+        1400,
+        1600,
+        1800,
+        2000,
+        2600,
+        3100
+      ],
+      "rows": [
+        {
+          "foodGroup": "grains",
+          "period": "day",
+          "ranges": [
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              6,
+              8
+            ],
+            [
+              10,
+              11
+            ],
+            [
+              12,
+              13
+            ]
+          ]
+        },
+        {
+          "foodGroup": "vegetables",
+          "period": "day",
+          "ranges": [
+            [
+              3,
+              4
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              6
+            ]
+          ]
+        },
+        {
+          "foodGroup": "fruits",
+          "period": "day",
+          "ranges": [
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              6,
+              6
+            ]
+          ]
+        },
+        {
+          "foodGroup": "low-fat-or-fat-free-dairy",
+          "period": "day",
+          "ranges": [
+            [
+              2,
+              3
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              3,
+              4
+            ]
+          ]
+        },
+        {
+          "foodGroup": "lean-meat-poultry-fish",
+          "period": "day",
+          "sourceAmounts": [
+            "3 or less",
+            "3–4 or less",
+            "3–4 or less",
+            "6 or less",
+            "6 or less",
+            "6 or less",
+            "6–9"
+          ]
+        },
+        {
+          "foodGroup": "nuts-seeds-legumes",
+          "periods": [
+            "week",
+            "week",
+            "week",
+            "week",
+            "week",
+            "day",
+            "day"
+          ],
+          "ranges": [
+            [
+              3,
+              3
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ]
+        },
+        {
+          "foodGroup": "fats-oils",
+          "period": "day",
+          "ranges": [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              4,
+              4
+            ]
+          ]
+        },
+        {
+          "foodGroup": "sweets-added-sugars",
+          "periods": [
+            "week",
+            "week",
+            "week",
+            "week",
+            "week",
+            "day",
+            "day"
+          ],
+          "maximum": [
+            3,
+            3,
+            3,
+            5,
+            5,
+            2,
+            2
+          ]
+        }
+      ],
+      "servingExamples": {
+        "grains": [
+          "1 slice bread",
+          "1 oz dry cereal",
+          "0.5 cup cooked rice/pasta/cereal"
+        ],
+        "vegetables": [
+          "1 cup raw leafy vegetables",
+          "0.5 cup cut vegetables"
+        ],
+        "fruits": [
+          "1 medium fruit",
+          "0.25 cup dried fruit",
+          "0.5 cup fresh/frozen/canned fruit"
+        ],
+        "dairy": [
+          "1 cup milk/yogurt",
+          "1.5 oz cheese"
+        ],
+        "lean-meat-poultry-fish": [
+          "1 oz cooked meat/poultry/fish",
+          "1 egg"
+        ],
+        "nuts-seeds-legumes": [
+          "1.5 oz nuts",
+          "2 tbsp peanut butter",
+          "0.5 cup cooked legumes"
+        ],
+        "fats-oils": [
+          "1 tsp vegetable oil",
+          "1 tbsp mayonnaise"
+        ],
+        "sweets-added-sugars": [
+          "1 tbsp sugar"
+        ]
+      },
+      "notes": [
+        "Cereal volume varies by type; check source and package.",
+        "Dairy intolerance options and dressing fat-content adjustments are in source footnotes.",
+        "No automatic calorie selection or clinical applicability decision."
+      ]
+    },
+    {
+      "sourceId": "dga-servings",
+      "sourceLocator": "Printed p. 1; visually checked",
+      "calorieLevels": [
+        1000,
+        1200,
+        1400,
+        1600,
+        1800,
+        2000,
+        2200,
+        2400,
+        2600,
+        2800,
+        3000,
+        3200
+      ],
+      "period": "day",
+      "rows": [
+        {
+          "foodGroup": "protein-foods",
+          "ranges": [
+            [
+              1,
+              1.5
+            ],
+            [
+              1.5,
+              2
+            ],
+            [
+              2,
+              2.5
+            ],
+            [
+              2.5,
+              3.5
+            ],
+            [
+              2.5,
+              3.5
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              3.5,
+              4.5
+            ],
+            [
+              3.5,
+              4.5
+            ],
+            [
+              3.5,
+              4.5
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              4,
+              5
+            ]
+          ]
+        },
+        {
+          "foodGroup": "dairy",
+          "amounts": [
+            2,
+            2.5,
+            2.5,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3
+          ]
+        },
+        {
+          "foodGroup": "vegetables",
+          "amounts": [
+            1.25,
+            1.75,
+            1.75,
+            2.5,
+            3,
+            3,
+            3.5,
+            3.5,
+            4.25,
+            4.25,
+            4.75,
+            4.75
+          ]
+        },
+        {
+          "foodGroup": "fruits",
+          "amounts": [
+            1,
+            1,
+            1.5,
+            1.5,
+            1.5,
+            2,
+            2,
+            2,
+            2,
+            2.5,
+            2.5,
+            2.5
+          ]
+        },
+        {
+          "foodGroup": "whole-grains",
+          "ranges": [
+            [
+              1,
+              2
+            ],
+            [
+              1.5,
+              2.75
+            ],
+            [
+              1.75,
+              3.25
+            ],
+            [
+              1.75,
+              3.25
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2.25,
+              4.5
+            ],
+            [
+              2.75,
+              5.25
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              3.25,
+              6.5
+            ],
+            [
+              3.25,
+              6.5
+            ],
+            [
+              3.25,
+              6.5
+            ]
+          ]
+        },
+        {
+          "foodGroup": "healthy-fats",
+          "amounts": [
+            2.5,
+            2.5,
+            2.5,
+            3.5,
+            4,
+            4.5,
+            4.5,
+            5,
+            5.5,
+            6,
+            7,
+            8
+          ]
+        }
+      ],
+      "servingExamples": {
+        "protein-foods": [
+          "3 oz cooked meat/poultry/seafood",
+          "1 egg",
+          "0.5 cup beans/peas/lentils",
+          "1 oz nuts/seeds",
+          "2 tbsp nut/seed butter",
+          "3 oz soy"
+        ],
+        "dairy": [
+          "1 cup milk",
+          "0.75 cup yogurt",
+          "1 oz cheese"
+        ],
+        "vegetables": [
+          "1 cup raw/cooked vegetables",
+          "2 cups leafy greens"
+        ],
+        "fruits": [
+          "1 cup raw fruit",
+          "0.5 cup dried fruit"
+        ],
+        "whole-grains": [
+          "0.5 cup cooked oats/brown rice/barley/quinoa/buckwheat",
+          "1 slice bread",
+          "1 tortilla"
+        ],
+        "healthy-fats": [
+          "1 tsp olive oil or butter"
+        ]
+      },
+      "notes": [
+        "Food choices within each group vary in energy and nutrients.",
+        "Energy needs depend on age, sex, height, weight and activity.",
+        "Supplement allows whole through nonfat dairy and fortified alternatives; preserve distinction from main DGA wording.",
+        "No automatic individualized target assignment."
+      ]
+    }
+  ]
+}

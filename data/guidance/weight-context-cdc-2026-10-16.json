@@ -1,0 +1,37 @@
+{
+  "version": "cdc-adult-bmi-2026-10-16.1",
+  "retrievedOn": "2026-10-16",
+  "source": "https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html",
+  "limitationsSource": "https://www.cdc.gov/bmi/faq/index.html",
+  "pediatricSource": "https://www.cdc.gov/bmi/child-teen-calculator/bmi-categories.html",
+  "sourceMinimumAge": 20,
+  "betaMinimumAge": 21,
+  "formula": "weightKg / (heightCm / 100) ** 2",
+  "thresholds": {
+    "underweightBelow": 18.5,
+    "goodWeightBelow": 25,
+    "overweightBelow": 30
+  },
+  "categories": [
+    "underweight",
+    "good_weight",
+    "overweight",
+    "obese"
+  ],
+  "sexSpecific": false,
+  "limitation": "BMI is a screening measure, not a diagnosis or a measure of body composition.",
+  "exclusions": [
+    "under-21",
+    "pregnant-or-unspecified",
+    "missing-or-invalid",
+    "stale-measurements"
+  ],
+  "inputPolicy": {
+    "minimumHeightCm": 50,
+    "maximumHeightCm": 275,
+    "minimumWeightKg": 10,
+    "maximumWeightKg": 650,
+    "maximumAge": 120,
+    "maximumMeasurementAgeDays": 180
+  }
+}

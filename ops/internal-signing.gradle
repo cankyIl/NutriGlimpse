@@ -1,0 +1,26 @@
+// Configure signing during Android DSL finalization, including composite builds.
+gradle.beforeProject { project ->
+    project.pluginManager.withPlugin('com.android.application') {
+        // Workspace core lives outside the app's default Gradle input tree.
+        // Always regenerate the release bundle so source provenance cannot mask stale JS.
+        project.tasks.configureEach { task ->
+            if (task.name == 'createBundleReleaseJsAndAssets') {
+                task.outputs.upToDateWhen { false }
+            }
+        }
+
+        project.extensions.getByName('androidComponents').finalizeDsl { android ->
+            def keyPath = System.getenv('CONGRESS_SIGNING_STORE')
+            def password = System.getenv('CONGRESS_SIGNING_PASSWORD')
+            if (!keyPath || !password || !new File(keyPath).isFile()) {
+                throw new GradleException('Internal signing credentials are unavailable.')
+            }
+            def signing = android.signingConfigs.findByName('congressInternal') ?: android.signingConfigs.create('congressInternal')
+            signing.storeFile = new File(keyPath)
+            signing.storePassword = password
+            signing.keyAlias = 'congress-internal'
+            signing.keyPassword = password
+            android.buildTypes.release.signingConfig = signing
+        }
+    }
+}

@@ -1,0 +1,12 @@
+import {existsSync,readFileSync,writeFileSync,statSync} from 'node:fs';
+import {randomBytes} from 'node:crypto';
+import {ed25519} from '@noble/curves/ed25519.js';
+import {hexToBytes,bytesToHex} from '@noble/hashes/utils.js';
+const root='/path/to/NutriGlimpse',dir=root+'/.tools/section11',path=dir+'/label-signing.json';
+process.umask(0o077);
+if(!existsSync(path))writeFileSync(path,JSON.stringify({keyId:'product-label-2026-10',privateHex:randomBytes(32).toString('hex')}),{mode:0o600,flag:'wx'});
+if(statSync(path).mode&0o077)throw Error('Private key file permissions too broad');
+const key=JSON.parse(readFileSync(path,'utf8'));
+writeFileSync(root+'/packages/core/src/labelEvidenceKeys.ts','// Public verification key only; product evidence is separate from clinical rules.\nexport const labelEvidenceKeys:Readonly<Record<string,string>>='+JSON.stringify({[key.keyId]:bytesToHex(ed25519.getPublicKey(hexToBytes(key.privateHex)))})+';\n');
+if(!existsSync(dir+'/label-trust.json'))writeFileSync(dir+'/label-trust.json',JSON.stringify({version:1,acceptedAuthorities:[],permittedRightsRecords:[],approvedReviewers:[],manufacturerHosts:[]},null,2),{mode:0o600,flag:'wx'});
+console.log('Product-label signing prepared; no products or reviewers approved.');

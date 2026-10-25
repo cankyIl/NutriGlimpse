@@ -1,0 +1,90 @@
+[
+  {
+    "id": "dash",
+    "url": "https://www.nhlbi.nih.gov/health/dash/following-dash",
+    "finalUrl": "https://www.nhlbi.nih.gov/health/dash/following-dash",
+    "file": "data/guidance/sources/2026-10-14/dash.html",
+    "sha256": "a08e2763354382daf5480ef5c06440e01ff5902fad28f7e887391effce024439",
+    "bytes": 73197,
+    "retrievedAt": "2026-10-15T00:01:46.972810+00:00",
+    "lastModified": "Thu, 15 Oct 2026 00:00:44 GMT",
+    "contentType": "text/html; charset=utf-8"
+  },
+  {
+    "id": "diabetes",
+    "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/healthy-living-with-diabetes",
+    "finalUrl": "https://www.niddk.nih.gov/health-information/diabetes/overview/healthy-living-with-diabetes",
+    "file": "data/guidance/sources/2026-10-14/diabetes.html",
+    "sha256": "70c15914917d75085697c29a4d34cf71e1b8f09036b1566a0e752b449900d968",
+    "bytes": 71786,
+    "retrievedAt": "2026-10-15T00:02:03.000036+00:00",
+    "lastModified": null,
+    "contentType": "text/html; charset=utf-8"
+  },
+  {
+    "id": "ckd",
+    "url": "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
+    "finalUrl": "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
+    "file": "data/guidance/sources/2026-10-14/ckd.html",
+    "sha256": "e41ffefc3bbce56b2411e2f2615804f409a5875a05fe0d71e8d46a0ab835c8de",
+    "bytes": 64578,
+    "retrievedAt": "2026-10-15T00:02:03.328050+00:00",
+    "lastModified": null,
+    "contentType": "text/html; charset=utf-8"
+  },
+  {
+    "id": "dga",
+    "url": "https://cdn.realfood.gov/DGA.pdf",
+    "finalUrl": "https://cdn.realfood.gov/DGA.pdf",
+    "file": "data/guidance/sources/2026-10-14/dga.pdf",
+    "sha256": "c34f1bec5c9416265670b7fcb24556bb8616ba95e8de2f2890460b6bbca1a472",
+    "bytes": 3422452,
+    "retrievedAt": "2026-10-15T00:02:03.562894+00:00",
+    "lastModified": "Wed, 07 Jan 2026 03:31:51 GMT",
+    "contentType": "application/pdf"
+  },
+  {
+    "id": "dga-servings",
+    "url": "https://cdn.realfood.gov/Daily%20Serving%20Sizes.pdf",
+    "finalUrl": "https://cdn.realfood.gov/Daily%20Serving%20Sizes.pdf",
+    "file": "data/guidance/sources/2026-10-14/dga-servings.pdf",
+    "sha256": "dbc315c24735cc7ecb660e303f4636ab7089547194acf58baafc64e24fc78c73",
+    "bytes": 208317,
+    "retrievedAt": "2026-10-15T00:02:03.627383+00:00",
+    "lastModified": "Wed, 07 Jan 2026 03:31:49 GMT",
+    "contentType": "application/pdf"
+  },
+  {
+    "id": "dga-index",
+    "url": "https://www.dietaryguidelines.gov/",
+    "finalUrl": "https://www.dietaryguidelines.gov/",
+    "file": "data/guidance/sources/2026-10-14/dga-index.html",
+    "sha256": "94e69f5d9607b18fdf5bdde3a518f71991ba868869c2694a273886f745c1eccf",
+    "bytes": 22322,
+    "retrievedAt": "2026-10-15T00:02:04.355047+00:00",
+    "lastModified": null,
+    "contentType": "text/html; charset=utf-8"
+  },
+  {
+    "id": "niddk-rights",
+    "url": "https://www.niddk.nih.gov/copyright",
+    "finalUrl": "https://www.niddk.nih.gov/copyright",
+    "file": "data/guidance/sources/2026-10-14/niddk-rights.html",
+    "sha256": "c11dd24f95f04af9eaf3c54513f61d8c2b995b682b7550750e8f5e82127bf1b5",
+    "bytes": 31550,
+    "retrievedAt": "2026-10-15T00:02:04.566925+00:00",
+    "lastModified": null,
+    "contentType": "text/html; charset=utf-8"
+  },
+  {
+    "id": "nhlbi-rights",
+    "url": "https://www.nhlbi.nih.gov/about/contact/trademark-branding-and-logo",
+    "finalUrl": "https://www.nhlbi.nih.gov/about/contact/trademark-branding-and-logo",
+    "file": "data/guidance/sources/2026-10-14/nhlbi-rights.html",
+    "sha256": "71c2c6a9e838a4ae9615f7c6896289c0fc382926857abcd804f99bbadeb43a66",
+    "bytes": 63211,
+    "retrievedAt": "2026-10-15T00:02:05.287307+00:00",
+    "lastModified": "Thu, 15 Oct 2026 00:02:04 GMT",
+    "contentType": "text/html; charset=utf-8"
+  }
+]

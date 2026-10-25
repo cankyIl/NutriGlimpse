@@ -1,0 +1,62 @@
+import type {ComparisonMetric} from './catalogAlternatives.ts';
+import type {PublicFood} from './publicFood.ts';
+
+// Educational copy only. No health profile, treatment target or scoring inputs.
+export const nutritionEducationPolicy = {
+ version:'2026-10-14.4', sourceCheckedOn:'2026-10-14',
+ personalizedRecommendationsEnabled:false, clinicalReviewStatus:'pending',
+} as const;
+export const nutritionSources = {
+ dash:{title:'NHLBI: Following DASH',url:'https://www.nhlbi.nih.gov/health/dash/following-dash'},
+ ahaSodium:{title:'AHA: Daily sodium guidance',url:'https://www.heart.org/en/healthy-living/healthy-eating/eat-smart/sodium/how-much-sodium-should-i-eat-per-day'},
+ ahaPotassium:{title:'AHA: Potassium and blood pressure',url:'https://www.heart.org/en/health-topics/high-blood-pressure/changes-you-can-make-to-manage-high-blood-pressure/how-potassium-can-help-control-high-blood-pressure'},
+ fdaLabel:{title:'FDA: Understanding the Nutrition Facts label',url:'https://www.fda.gov/food/nutrition-facts-label/how-understand-and-use-nutrition-facts-label'},
+ fdaGluten:{title:'FDA: Gluten-free labeling questions',url:'https://www.fda.gov/food/nutrition-food-labeling-and-critical-foods/questions-and-answers-gluten-free-food-labeling-final-rule'},
+ academyGluten:{title:'Academy: Building a gluten-free grocery list',url:'https://www.eatright.org/health/health-conditions/celiac-disease/the-gluten-free-diet-building-the-grocery-list'},
+ fdaTrans:{title:'FDA: Trans fat label rounding',url:'https://www.fda.gov/regulatory-information/search-fda-guidance-documents/small-entity-compliance-guide-trans-fatty-acids-nutrition-labeling-nutrient-content-claims-and'},
+ adaMnt:{title:'ADA: Nutrition & Wellness',url:'https://professional.diabetes.org/clinical-support/nutrition-wellness'},
+ cdc:{title:'CDC: Diabetes Meal Planning',url:'https://www.cdc.gov/diabetes/healthy-eating/diabetes-meal-planning.html'},
+ medline:{title:'MedlinePlus: Diabetic Diet',url:'https://medlineplus.gov/diabeticdiet.html'},
+ adaFoods:{title:'ADA: Superstar Foods',url:'https://diabetes.org/food-nutrition/food-and-blood-sugar/diabetes-superstar-foods'},
+ mayo:{title:'Mayo Clinic: Diabetes diet',url:'https://www.mayoclinic.org/diseases-conditions/diabetes/in-depth/diabetes-diet/art-20044295'},
+} as const;
+export type NutritionSourceId=keyof typeof nutritionSources;
+export type EducationCard={id:string;title:string;text:string;sources:readonly NutritionSourceId[]};
+export const nutritionEducationCards:readonly EducationCard[]=[
+ {id:'dash',title:'Blood pressure and DASH',text:'DASH emphasizes vegetables, fruit, whole grains and lower-fat dairy within an eating pattern. AHA recommends no more than 2,300 mg sodium daily, with an optimal goal of no more than 1,500 mg for most adults. These are general references, not an automatic personal limit.',sources:['dash','ahaSodium']},
+ {id:'sodium-labels',title:'Read the Daily Value in context',text:'FDA’s general label guide uses 5% Daily Value or less as low and 20% or more as high per serving. A nutrient comparison does not certify a product or prove that a whole meal suits your health needs. Low-sodium package claims have additional regulatory criteria.',sources:['fdaLabel']},
+ {id:'minerals',title:'Potassium needs context',text:'Potassium can help manage blood pressure, but extra potassium can be harmful with kidney disease or certain medicines. We do not give automatic mineral-benefit badges. The catalog shows potassium, magnesium and calcium when reported by the source; missing amounts remain unknown. Check the current package.',sources:['ahaPotassium','dash']},
+ {id:'gluten-labels',title:'Gluten evidence, not a safety guess',text:'For FDA-regulated foods, a gluten-free claim must meet rules including less than 20 ppm gluten. A claim is different from third-party certification. A facility advisory can coexist with a compliant claim. Our text check cannot measure gluten. Strict matching requires an exact-product review of certification or a manufacturer claim; unknown evidence stays unverified.',sources:['fdaGluten']},
+ {id:'gluten-ingredients',title:'Read ingredients and claims together',text:'Check wheat, barley, rye and related ingredients. Malt and brewer’s yeast need source context; buckwheat is not wheat. Processed wheat starch can require further review rather than a keyword verdict. With uncertain evidence, do not treat a product as suitable for a strict gluten-free diet.',sources:['academyGluten','fdaGluten']},
+ {id:'trans-fat',title:'Zero on a label is not always zero',text:'Under FDA rounding rules, less than 0.5 g trans fat per serving can be declared as 0 g. Missing trans-fat data is not zero. The catalog shows source-reported amounts when available and does not award a trans-fat-free badge.',sources:['fdaTrans']},
+ {id:'individual',title:'Your eating plan is individual',text:'Medical nutrition therapy is individualized care with a registered dietitian. Food choices, portions, medicines, preferences and other health conditions matter. This app provides education; personalized medical recommendations remain disabled pending review.',sources:['adaMnt','medline']},
+ {id:'plate',title:'A simple meal-planning picture',text:'CDC describes a 9-inch plate: half non-starchy vegetables, one quarter lean protein and one quarter carbohydrate foods, with water or an unsweetened drink. Beans supply protein and carbohydrates. This is a general teaching tool, not your prescribed meal plan.',sources:['cdc']},
+ {id:'vegetables',title:'Non-starchy vegetables',text:'Spinach, kale, collards and broccoli are examples to explore. Preparation matters: sauces and seasonings can change the nutrition of a packaged vegetable.',sources:['adaFoods','cdc']},
+ {id:'legumes',title:'Beans, lentils and chickpeas',text:'Legumes offer fiber and plant protein, and also contain carbohydrates. Portions still matter. For canned beans, compare sodium and consider draining and rinsing. No food guarantees prevention of a glucose spike.',sources:['adaFoods','cdc']},
+ {id:'fats',title:'Fish, nuts and unsaturated fats',text:'Salmon and sardines are examples of omega-3-rich fish. Nuts, olive oil and avocado provide unsaturated fats. Avocado belongs here as a fat-containing food; it is not nutritionally interchangeable with leafy greens. Fats are energy-dense, so portions matter. ADA favors baked, grilled or broiled fish over breaded, fried preparations.',sources:['adaFoods','mayo']},
+ {id:'carbohydrates',title:'Whole grains and whole fruit',text:'Oats, whole-grain foods, berries and citrus can contribute fiber. Choose whole fruit rather than juice for more fiber. These foods still contain carbohydrates; a product name alone does not establish its whole-grain content or glucose effect.',sources:['adaFoods','mayo']},
+ {id:'protein',title:'Eggs, yogurt and other proteins',text:'Eggs are one protein option. Plain lower-fat yogurt can also fit an eating pattern, but dairy contains carbohydrates. Check the label rather than assuming yogurt or kefir is sugar-free. We do not promise that fermented dairy reduces inflammation or that eggs cannot affect glucose.',sources:['cdc','adaFoods','medline']},
+ {id:'grain-label',title:'Look beyond the cereal name',text:'ADA suggests looking for a whole grain as the first ingredient. Check the ingredient list and nutrition panel together. A cereal category or higher fiber value alone does not verify whole-grain content.',sources:['adaFoods']},
+ {id:'budget',title:'Food choices on a budget',text:'Frozen or canned produce can be practical options; check for added sugar and sauces. Dry beans and grains can stretch a budget. For nuts, compare sodium as well as portions.',sources:['adaFoods']},
+ {id:'gi',title:'Glycemic index is not a sugar score',text:'Glycemic index describes a carbohydrate food’s blood-glucose effect. Mayo Clinic advises discussing its use with a dietitian. Our catalog does not contain verified glycemic-index values and cannot predict your glucose response.',sources:['mayo']},
+];
+export const metricEducation:Record<ComparisonMetric,EducationCard>={
+ sugarsG:{id:'sugars',title:'Less total sugar is only one comparison',text:'Total sugars are not total carbohydrates or added sugars. A lower-sugar option is not automatically lower-carb or lower-GI. Use the package’s carbohydrate amount and your portion with your care team’s plan.',sources:['cdc','medline']},
+ fiberG:{id:'fiber',title:'Compare fiber, then check the whole label',text:'Fiber-rich foods are part of the eating patterns described by these sources. Our label field is total fiber, not soluble fiber. A higher number does not establish a lower glycemic index or predict your blood sugar.',sources:['mayo','adaMnt']},
+ saturatedFatG:{id:'fat',title:'Compare saturated fat alongside other nutrients',text:'Mayo Clinic discusses unsaturated fats as part of heart-conscious food choices. Less saturated fat alone does not prove that a product contains omega-3 fats, suits diabetes or is the best overall choice.',sources:['mayo']},
+ sodiumMg:{id:'sodium',title:'Compare sodium at the same food weight',text:'ADA guidance includes attention to sodium as part of an overall eating pattern. A lower-sodium comparison does not set your daily limit or establish suitability for kidney disease or diabetes.',sources:['adaMnt']},
+};
+export function comparisonEducation(food:PublicFood,metric:ComparisonMetric):EducationCard[]{
+ const notes=[metricEducation[metric]];
+ // Require curated category evidence; never infer food benefits from a name or ingredient keyword.
+ if(!food.comparisonGroup||!['category-rules-v1','category-rules-v2','category-rules-v3','category-rules-v4'].includes(food.categoryEvidence??''))return notes;
+ const groups:Partial<Record<NonNullable<PublicFood['comparisonGroup']>,string>>={
+  'canned-black-beans':'legumes','canned-kidney-beans':'legumes','canned-chickpeas':'legumes',
+  'plain-oats':'carbohydrates','plain-yogurt':'protein','plain-almonds':'fats',
+  'breakfast-cereal':'grain-label','granola':'grain-label','instant-oatmeal':'grain-label',
+ };
+ const id=groups[food.comparisonGroup];
+ const card=nutritionEducationCards.find(c=>c.id===id);
+ if(card)notes.push(card);
+ return notes;
+}

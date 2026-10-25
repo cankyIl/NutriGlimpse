@@ -1,0 +1,205 @@
+# Smart Shelf Detector
+
+This repository contains high-precision object detection models optimized for retail shelf counting. The models are trained to detect products on shelves with high density.
+
+**Authors:** [ShelfSet LLC](https://shelfset.app) in partnership with [Data Science UA](https://data-science-ua.com/)
+
+---
+
+## Downloading Models
+
+Pre-trained model artifacts and datasets are available in this shared Google Drive folder:
+
+https://drive.google.com/drive/folders/1l-iA7Y6t8sXIwislklIE_2iRVqQ_PCW0?usp=sharing
+
+To download them into `models/downloaded/` automatically (requires [gdown](https://github.com/wkentaro/gdown)):
+
+```bash
+pip install gdown
+node scripts/download-models.js
+```
+
+The downloaded files are ignored by git (see `.gitignore`).
+
+## Project Structure
+
+- `models/`:
+  - `shelf_server.pt` - PyTorch model (Best for Server/Python inference).
+  - `shelf_android.tflite` - Android model (Float16 optimized).
+  - `shelf_ios.mlpackage` - iOS model (CoreML Float16 optimized).
+- `detect.py`: Inference script with optional **NMS filtering**.
+- `requirements.txt`: List of Python dependencies (pinned versions).
+- `input_images/`: Place your test images in this folder.
+- `output/`: Processed images with bounding boxes will be saved here.
+
+---
+
+## Dataset & Benchmarks
+
+The model was trained on a **custom dataset of 6,262 images**, completely independent of the public SKU-110K dataset.
+
+**Dataset Access:** [Download the dataset from Google Drive](https://drive.google.com/drive/folders/1yFsYJikwPfiIFfkD44W9uaA5tAMsv0n5)
+
+### 1. Dataset Composition
+The dataset combines proprietary images with scraped high-density shelf data to ensure maximum robustness in real-world retail environments.
+
+* **Total Training Data:** 6,262 images
+* **Gathered Images:** 2,129 images
+* **Scraped Images:** 4,133 images (High-density shelf data from web sources)
+* **SKU-110K Usage:** **Strictly for Evaluation** (Not used in training to test generalization).
+
+| Split | Images | Objects | Avg Density |
+| :--- | :--- | :--- | :--- |
+| **Train** | 5,009 | 618,758 | 123.5 |
+| **Val** | 626 | 77,015 | 123.0 |
+| **Internal Test Set** | 627 | 77,291 | 123.3 |
+
+### 2. Data Collection Guidelines
+To ensure high-quality training data, proprietary images were collected following strict intake requirements:
+
+* **Technical Specs:** Minimum 5MP resolution (JPG/PNG). Orientation is flexible.
+* **Composition:** Must capture the full vertical context of the shelf. The camera should be held at the vertical center (eye/chest level) to minimize perspective distortion. No single-item macro shots.
+* **Viewpoint & Angles:** Frontal/parallel views are required. Slight deviations (up to ±15°) are acceptable, but extreme oblique angles that cause occlusion are prohibited.
+* **Lighting & Quality:** Product labels must be fully readable. Glare or reflections (e.g., glass fridge doors) are permitted only if they do not obscure the products.
+* **Sequence & Coverage:** Consecutive frames should overlap by no more than 10-20% to maximize unique shelf space and avoid redundant viewpoints.
+
+### 3. Model Performance
+We evaluated the model on two separate test sets. The results on **SKU-110K** prove that the model generalizes well to completely new products it has never seen before.
+
+| Metric | Internal Test Set | SKU-110K (External) |
+| :--- | :--- | :--- |
+| **Precision** | **0.932** | 0.908 |
+| **Recall** | **0.891** | 0.875 |
+| **mAP @50** | **0.949** | 0.934 |
+| **mAP @50-95** | **0.721** | 0.614 |
+
+---
+
+## Training Configuration
+
+The training process was optimized for small object detection using the **YOLO26s** architecture.
+
+**Key Hyperparameters:**
+* **Image Size:** `1280 x 1280` 
+* **Batch Size:** `2` 
+* **Epochs:** `120` (With early stopping patience = 40)
+* **Optimizer:** `AdamW` with Cosine LR Decay (`lr0=0.001`)
+
+**Advanced Augmentations:**
+To prevent overfitting and improve generalization on crowded shelves:
+* **Mosaic:** 50% (Disabled for the last 15 epochs for stabilization)
+* **MixUp:** 10%
+* **Strategy:** High-resolution training ensures the model learns distinct features of products that appear only a few pixels wide.
+
+---
+
+## Mobile Integration Guide
+
+> **Important for App Developers:**
+> The mobile models (`.tflite` and `.mlpackage`) are exported with **End-to-End** settings. You do **not** need to implement NMS (Non-Max Suppression) manually in the mobile app.
+
+| Feature | Specification |
+| :--- | :--- |
+| **Input Resolution** | **1280 x 1280** (RGB) |
+| **Output Shape** | `[1, 300, 6]` |
+| **Output Format** | `[x1, y1, x2, y2, confidence, class_id]` |
+| **Detections** | The model returns the top **300** best boxes directly. |
+
+### Android (TFLite)
+* **File:** `models/shelf_android.tflite`
+* **Integration:** The output is already sorted and filtered.
+* **Logic:** Simply iterate through the 300 rows and draw boxes where `confidence > 0.25` (or your preferred threshold).
+
+### iOS (CoreML)
+* **File:** `models/shelf_ios.mlpackage`
+* **Integration:** Add this folder directly to your Xcode project.
+* **Framework:** Works natively with the Apple **Vision** framework.
+
+---
+
+## Python Usage Guide
+
+Follow these steps to set up the environment and run detections on your PC/Server.
+
+### Prerequisites
+
+**Python Version:** This project requires **Python 3.12** (recommended) or Python 3.9-3.12. TensorFlow does not yet support Python 3.13+.
+
+### 1. Environment Setup (Recommended)
+
+To avoid conflicts, please use a virtual environment.
+
+#### Mac / Linux:
+```bash
+# 1. Create virtual environment with Python 3.12
+python3.12 -m venv venv
+
+# 2. Activate it
+source venv/bin/activate
+```
+
+#### Windows:
+```bash
+# 1. Create virtual environment with Python 3.12
+python3.12 -m venv venv
+
+# 2. Activate it
+venv\Scripts\activate
+```
+
+### 2. Install Dependencies
+
+Once the environment is active (you will see (venv) in your terminal), install the required libraries based on your platform:
+
+**macOS:**
+```bash
+pip install --upgrade pip
+pip install -r requirements-macos.txt
+```
+
+**Linux/Windows (CPU only):**
+```bash
+pip install --upgrade pip
+pip install -r requirements-cpu.txt
+```
+
+**Linux (with CUDA GPU):**
+```bash
+pip install --upgrade pip
+pip install -r requirements-cuda118.txt  # or requirements-cuda121.txt
+```
+
+For other platforms, see the platform-specific `requirements-*.txt` files.
+
+### 3. Running Inference
+
+Place your test images (jpg, png) into the input_images/ folder.
+
+
+#### Standard Detection (PyTorch)
+Use this for the most accurate results on a PC/Server.
+```bash
+python detect.py --model models/shelf_server.pt --source input_images
+```
+
+
+#### Advanced: Filtering Overlaps
+If the model detects multiple boxes for the same product, use the --filter flag. This applies a strict Custom NMS that removes boxes overlapping more than 25%.
+```bash
+python detect.py --model models/shelf_server.pt --source input_images --filter
+```
+
+#### Testing Mobile Models
+You can check how mobile models perform before integrating them into the app.
+
+#### Android (TFLite)
+```bash
+python detect.py --model models/shelf_android.tflite --source input_images
+```
+
+#### iOS (CoreML)
+```bash
+python detect.py --model models/shelf_ios.mlpackage --source input_images
+```
+### 4. Check Results
+The script will process all images and save them to the output/ folder.

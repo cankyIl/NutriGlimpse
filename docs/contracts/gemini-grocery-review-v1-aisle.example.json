@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "gemini-grocery-review-v1",
+  "status": "partial",
+  "original": {
+    "id": "original",
+    "identity": {
+      "kind": "packaged",
+      "status": "identified",
+      "brand": "Fictional Example Brand",
+      "name": "Example pasta sauce",
+      "variant": null,
+      "size": null,
+      "category": "pasta sauce"
+    },
+    "serving": {
+      "text": null,
+      "grams": null,
+      "milliliters": null,
+      "basis": "unknown",
+      "sourceId": null
+    },
+    "nutrition": {
+      "caloriesKcal": null,
+      "totalFatG": null,
+      "saturatedFatG": null,
+      "transFatG": null,
+      "sodiumMg": null,
+      "carbohydrateG": null,
+      "fiberG": null,
+      "sugarsG": null,
+      "addedSugarsG": null,
+      "proteinG": null,
+      "potassiumMg": null,
+      "calciumMg": null,
+      "ironMg": null,
+      "magnesiumMg": null,
+      "phosphorusMg": null,
+      "vitaminDmcg": null
+    },
+    "nutrientEvidence": [],
+    "ingredients": null,
+    "ingredientSourceId": null,
+    "dietaryEvidence": [],
+    "assessment": {
+      "rating": null,
+      "primaryConcern": null,
+      "highlightNutrients": [],
+      "reasons": [],
+      "limitations": [
+        "Fictional display fixture; nutrition unavailable."
+      ]
+    },
+    "image": {
+      "kind": "scan_photo",
+      "url": null,
+      "sourceId": null
+    },
+    "availability": {
+      "status": "branch_listed",
+      "storeName": "Example Grocery",
+      "town": "Example Town",
+      "state": "MA",
+      "branch": "Fictional branch 001",
+      "sourceId": "fixture-store",
+      "aisleNumber": "A12",
+      "section": "Pasta sauces",
+      "aisleSourceId": "fixture-store",
+      "aisleEvidence": "branch_specific"
+    }
+  },
+  "recommendationMode": "none",
+  "recommendations": [],
+  "recommendationShortfall": "Fixture only: no nutritional assessment or recommendations requested.",
+  "sources": [
+    {
+      "id": "fixture-store",
+      "kind": "retailer",
+      "url": "https://example.com/fictional-branch-001/product",
+      "title": "Fictional example for layout testing only"
+    }
+  ],
+  "safetyReminder": "Please double-check store signage, PLU stickers and packaging for the exact product, serving, allergens and sourcing before purchasing."
+}

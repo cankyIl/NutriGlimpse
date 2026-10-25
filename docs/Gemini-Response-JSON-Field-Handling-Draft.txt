@@ -1,0 +1,76 @@
+GEMINI RESPONSE JSON - FIELD HANDLING WORKING DRAFT
+Updated: October 25, 2026
+
+Edit the fallback column or add notes below. We will use your edits to update the implementation.
+
+Applies to the default Gemini single-product scan. The same food fields are used for the original product and every alternative.
+<food> below means product or an item in alternatives[].
+
+MAIN RULES
+- A missing, null, invalid or unverified source_url must not block the answer.
+- Keep usable information; a missing optional field affects that field or product only.
+- Missing nutrients are unknown, never zero.
+- Display a retailer name as a suggestion. Do not request/display stock status.
+- Show an aisle only for the current store when branch evidence supports it.
+- Existing nutrient consistency, dietary restriction and clinical boundaries remain.
+- An unreadable/non-JSON provider response is different from an omitted JSON field: it still needs a clear error rather than fabricated results.
+
+RESPONSE STRUCTURE
+
+| JSON entry | Purpose | If absent or unavailable |
+| --- | --- | --- |
+| product | Original scanned product object | Show that the product could not be identified; keep the user's photo and offer another scan. Do not invent a product or rating. |
+| alternatives | Array of recommended products | Keep the original result. Show only alternatives actually returned and eligible; up to three. Do not invent products to fill slots. use the alternatives through another LLM. Give the same prompt to gemini GPT 6 Luna in parallel to Gemini. It should happen simulataneously|
+| <food>.title | Brand/product name in a concise title | Original: no identifiable product card. Alternative: skip only that unnamed alternative; keep other valid products. |
+| <food>.rating | healthy, neutral or not_healthy | Keep available original food facts without a colored rating. An unrated alternative is not presented as a healthier recommendation. No rating is guessed. |
+| <food>.reasons | Short explanation of rating or recommendation | Omit the explanation. Retain the rating when otherwise supported by the returned nutrients and existing checks. Do not invent reasons. |
+| <food>.uncertainties | Model-reported limitations | Omit this list. Normal AI-estimate and missing-data notices still apply when appropriate. |
+| <food>.nutrition | Object containing nutrient values | Keep the identified original and store information. Show nutrients as unknown; do not apply a health rating or recommend a product as healthier when every nutrient is unknown. But if the known nutrient is amount is unhealthy it is ok to use that information to characterize the product. its possible that its known that sodium is very high, but you dont know dietary fiber. Still it can be unhealthy because of high sodium |
+| <food>.source_url | Nutrition-source link | Retain product, returned nutrients, model rating/reasons and otherwise eligible alternatives as unverified AI estimates. Omit the source link. Never reject the answer solely because this link is missing, invalid or unverified. |
+| <food>.retailer_url | Optional retailer product-page link | Keep the suggested store name. Omit the store-source button when there is no usable link. Do not perform another search solely because this link is missing. |
+| <food>.image_url | Product thumbnail link | Original: use the user's scan photo. Alternative: use the product placeholder. Keep the product information. Existing image-link checks still apply. |
+| <food>.store | Suggested retailer name | If a current store exists, make at most one focused Gemini lookup for all alternatives missing a usable retailer name. If still absent, show Store: Not identified. Keep food facts and alternatives. |
+| <food>.aisle | Optional aisle/section object | Omit the aisle line. Keep the store name and product card. |
+| <food>.aisle.number | Aisle number/code | Show the supported aisle/section name alone if supplied; otherwise omit the aisle line. |
+| <food>.aisle.section | Aisle name or store section | Show the supported aisle number alone if supplied; otherwise omit the aisle line. |
+| <food>.aisle.store | Retailer associated with aisle evidence | Without a match to the current retailer, omit the aisle. Keep the product and suggested store name. |
+| <food>.aisle.town | Town associated with aisle evidence | Without matching current-branch town evidence, omit the aisle. Keep the product and suggested store name. |
+| <food>.aisle.state | State associated with aisle evidence | Without matching current-branch state evidence, omit the aisle. Keep the product and suggested store name. |
+| <food>.aisle.source_url | Source supporting the current-store aisle | Omit the unsupported aisle. This does not block the store name, nutrients, rating or product answer. |
+
+ALL NUTRIENT FIELDS
+Every nutrient below is handled independently. An omitted, null or invalid value becomes unknown. It does not erase other valid nutrients or the entire answer. Conflicting component/total values are checked individually. Missing a particular nutrient may limit the specific comparison that depends on it.
+
+| JSON entry | Meaning/unit | If absent or unavailable |
+| --- | --- | --- |
+| <food>.nutrition.caloriesKcal | Calories, kcal | Unknown; never assume zero. Keep the other information. |
+| <food>.nutrition.totalFatG | Total fat, grams | Unknown; never assume zero. Keep the other information. |
+| <food>.nutrition.saturatedFatG | Saturated fat, grams | Unknown; never assume zero or claim low saturated fat. |
+| <food>.nutrition.transFatG | Trans fat, grams | Unknown; never assume zero or claim trans-fat-free. |
+| <food>.nutrition.sugarsG | Total sugars, grams | Unknown; never assume zero or claim sugar-free. |
+| <food>.nutrition.addedSugarsG | Added sugars, grams | Unknown; never assume zero or claim no added sugar. |
+| <food>.nutrition.carbohydrateG | Total carbohydrate, grams | Unknown; never assume zero. Keep the other information. |
+| <food>.nutrition.sodiumMg | Sodium, milligrams | Unknown; never assume zero or claim low sodium. |
+| <food>.nutrition.fiberG | Dietary fiber, grams | Unknown; never assume zero or claim high fiber. |
+| <food>.nutrition.proteinG | Protein, grams | Unknown; never assume zero or claim high protein. |
+| <food>.nutrition.potassiumMg | Potassium, milligrams | Unknown; never assume zero. Keep the other information. |
+| <food>.nutrition.calciumMg | Calcium, milligrams | Unknown; never assume zero. Keep the other information. |
+| <food>.nutrition.ironMg | Iron, milligrams | Unknown; never assume zero. Keep the other information. |
+| <food>.nutrition.magnesiumMg | Magnesium, milligrams | Unknown; never assume zero. Keep the other information. |
+| <food>.nutrition.phosphorusMg | Phosphorus, milligrams | Unknown; never assume zero. Keep the other information. |
+| <food>.nutrition.vitaminDmcg | Vitamin D, micrograms | Unknown; never assume zero. Keep the other information. |
+
+NOTES FOR YOUR CHANGES
+
+1. I have inlined my changes in the table itself. 
+2.If some nutrient information is unavailable, make assesment based on what is available. There should be Tier1 nutrient list and then Tier2.  We should be able to figure out the healthy unhealthy with Tier1
+    Tier1 - include Sugar, added Sugar, carbohydrate, Protein, transFat, SaturatedFat, Sodium
+    Tier2 - rest.
+3.
+
+Implementation notes:
+- The JSON schema requests consistent keys; unknown values can be null. The backend also tolerates omitted optional fields.
+- Package size and serving size are not required by this current prompt/response contract.
+- Without quantity information, exact equal-portion nutrient comparisons are not established.
+- Store suggestions are independent of confirmed inventory. No stock field is requested.
+- The server records consented returned JSON and processing decisions for diagnosis; editing this draft does not itself deploy code or change the active model prompt.

@@ -1,0 +1,49 @@
+{
+  "modelId": "shelfset",
+  "sha256": "6bd812d08451db54943f5f9792fa689f4bed1b90cae38812db5a856eb374219e",
+  "sourceSha256": "a5f1ca3a021122e89d2fb3fbb5ee93bbc792fbe935a8152de32e6d107ffebf95",
+  "bytes": 38137078,
+  "inputSize": 640,
+  "inputShape": [
+    1,
+    3,
+    640,
+    640
+  ],
+  "output": "N x 5: x1,y1,x2,y2,score in letterboxed pixels",
+  "confidence": 0.25,
+  "iou": 0.5,
+  "maxBoxes": 96,
+  "torch": "2.7.1+cu126",
+  "onnx": "1.19.1",
+  "onnxruntime": "1.23.2",
+  "diagnosticOnly": true,
+  "distributionApproved": false,
+  "deviceVerified": false,
+  "parity": [
+    {
+      "fixture": "cereal-close.jpg",
+      "boxes": 27,
+      "maxCoordinateError": 0.003326416015625,
+      "maxScoreError": 4.746392369270325e-05
+    },
+    {
+      "fixture": "cereal-wide.jpg",
+      "boxes": 84,
+      "maxCoordinateError": 585.6702270507812,
+      "maxScoreError": 2.6702880859375e-05
+    },
+    {
+      "fixture": "cheese-tubs.jpg",
+      "boxes": 2,
+      "maxCoordinateError": 617.5352783203125,
+      "maxScoreError": 1.8790364265441895e-05
+    },
+    {
+      "fixture": "cookies-wide.jpg",
+      "boxes": 96,
+      "maxCoordinateError": 6.103515625e-05,
+      "maxScoreError": 7.730722427368164e-05
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "maximumBilinearOpenCVDifference": 1,
+  "nativeSwiftExecuted": false,
+  "applePixelBufferExecuted": false,
+  "note": "Portable math/reference comparison only. Run Swift fixture executable on Mac; camera/CoreML still need device validation.",
+  "pixelReferenceComparisonPassed": true,
+  "geometryFixturesGenerated": 32,
+  "portablePixelCases": 5
+}

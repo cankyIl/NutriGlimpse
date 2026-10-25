@@ -1,0 +1,45 @@
+{
+  "purpose": "Generic food reference seed, not branded identity or retailer coverage",
+  "selected": [
+    {
+      "id": 2346397,
+      "name": "Oats, whole grain, steel cut",
+      "type": "Foundation"
+    },
+    {
+      "id": 1750340,
+      "name": "Apples, fuji, with skin, raw",
+      "type": "Foundation"
+    },
+    {
+      "id": 1105314,
+      "name": "Bananas, ripe and slightly ripe, raw",
+      "type": "Foundation"
+    },
+    {
+      "id": 747447,
+      "name": "Broccoli, raw",
+      "type": "Foundation"
+    },
+    {
+      "id": 1999632,
+      "name": "Spinach, baby",
+      "type": "Foundation"
+    },
+    {
+      "id": 2646170,
+      "name": "Chicken, breast, boneless, skinless, raw",
+      "type": "Foundation"
+    },
+    {
+      "id": 2644283,
+      "name": "Lentils, dry",
+      "type": "Foundation"
+    },
+    {
+      "id": 2512380,
+      "name": "Rice, brown, long grain, unenriched, raw",
+      "type": "Foundation"
+    }
+  ]
+}

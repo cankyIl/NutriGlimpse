@@ -1,0 +1,1500 @@
+{
+  "schemaVersion": 1,
+  "status": "frozen",
+  "annotationMethod": "Single independent visual annotator; no model predictions, OCR output or candidate detections viewed before defining these boxes. Visible silhouette/front-region rectangles are approximate, not professional ground truth.",
+  "coordinateConvention": "XYXY pixel rectangles around visible package fronts/silhouettes in final EXIF-oriented crop; top-left origin; no amodal completion. Some mostly visible truncated/occluded packages are labeled. These are front-region annotations, not guaranteed full physical-object extents.",
+  "eligibility": "Count individual separable retail package fronts/silhouettes that are mostly visible, including repeated facings and readable or unreadable packages. Clipped boxes allowed for clearly separable mostly visible foreground packages. Heavy occlusion, indistinguishable rear/edge fragments and back-only packages are ignore regions. Price tags, shelf fixtures and display cartons are not eligible products; their detections remain false positives unless a box falls inside an explicitly documented ignore region.",
+  "limitations": [
+    "Three quantified shelf sections containing 51 eligible package fronts, plus one qualitative crowded biscuit image. Convenience sample selected before model outputs; not statistically representative.",
+    "SPAR cereal and chips share photographer/store across different years; not four independent stores.",
+    "Model pretraining overlap is unknown; new to this local evaluation, not proven unseen to pretrained models.",
+    "No temporal video, motion blur experiment or iPhone performance evidence.",
+    "Text labels are partial literal transcriptions where legible; no catalog lookup and no asserted SKU/variant identity.",
+    "Ghana wrapped biscuits have high boundary uncertainty; interpret separately from clearer shelf sections.",
+    "Known original cheese-tub failure is not erased by better performance on a new scene.",
+    "Two AI assistants supplied/reviewed subjective labels; not independent professional human ground truth. IoU is sensitive to visible-front versus full-package extents.",
+    "No newly quantified cookie shelf; Ghana biscuit scene qualitative only. Keep original cookie and cheese-tub failures in the decision."
+  ],
+  "images": [
+    {
+      "id": "spar-cereal",
+      "cropXYXY": [
+        769,
+        1511,
+        4506,
+        3655
+      ],
+      "originalWidth": 5770,
+      "originalHeight": 7694,
+      "width": 1200,
+      "height": 688,
+      "previewCropXYXY": [
+        140,
+        275,
+        820,
+        665
+      ],
+      "path": "/path/to/NutriGlimpse/artifacts/shelf-recovery/validation/spar-cereal.png",
+      "boxes": [
+        [
+          27,
+          75,
+          196,
+          281
+        ],
+        [
+          185,
+          67,
+          348,
+          282
+        ],
+        [
+          343,
+          57,
+          507,
+          282
+        ],
+        [
+          512,
+          47,
+          690,
+          279
+        ],
+        [
+          683,
+          35,
+          853,
+          279
+        ],
+        [
+          841,
+          92,
+          995,
+          279
+        ],
+        [
+          989,
+          68,
+          1171,
+          273
+        ],
+        [
+          43,
+          447,
+          217,
+          654
+        ],
+        [
+          208,
+          441,
+          390,
+          655
+        ],
+        [
+          423,
+          444,
+          544,
+          581
+        ],
+        [
+          535,
+          447,
+          687,
+          654
+        ],
+        [
+          681,
+          445,
+          846,
+          655
+        ],
+        [
+          826,
+          438,
+          1008,
+          654
+        ],
+        [
+          998,
+          449,
+          1168,
+          653
+        ]
+      ],
+      "ignore_boxes": [
+        [
+          0,
+          0,
+          118,
+          79
+        ],
+        [
+          0,
+          343,
+          212,
+          451
+        ],
+        [
+          362,
+          438,
+          423,
+          573
+        ],
+        [
+          1101,
+          343,
+          1200,
+          448
+        ],
+        [
+          0,
+          453,
+          44,
+          598
+        ]
+      ],
+      "annotations": [
+        {
+          "id": "spar-cereal-01",
+          "xyxy": [
+            27,
+            75,
+            196,
+            281
+          ],
+          "visibleText": [
+            "AXA",
+            "MÜSLI",
+            "BLÅBÆR"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "spar-cereal-02",
+          "xyxy": [
+            185,
+            67,
+            348,
+            282
+          ],
+          "visibleText": [
+            "AXA",
+            "MÜSLI",
+            "BLÅBÆR"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "spar-cereal-03",
+          "xyxy": [
+            343,
+            57,
+            507,
+            282
+          ],
+          "visibleText": [
+            "AXA",
+            "MÜSLI",
+            "BLÅBÆR"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "spar-cereal-04",
+          "xyxy": [
+            512,
+            47,
+            690,
+            279
+          ],
+          "visibleText": [
+            "AXA",
+            "Gold",
+            "BERRIES MÜSLI"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "spar-cereal-05",
+          "xyxy": [
+            683,
+            35,
+            853,
+            279
+          ],
+          "visibleText": [
+            "AXA",
+            "Gold",
+            "BERRIES MÜSLI"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "spar-cereal-06",
+          "xyxy": [
+            841,
+            92,
+            995,
+            279
+          ],
+          "visibleText": [
+            "AXA",
+            "MÜSLI",
+            "HASSELNØTT"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "spar-cereal-07",
+          "xyxy": [
+            989,
+            68,
+            1171,
+            273
+          ],
+          "visibleText": [
+            "AXA",
+            "MÜSLI",
+            "HASSELNØTT"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "spar-cereal-08",
+          "xyxy": [
+            43,
+            447,
+            217,
+            654
+          ],
+          "visibleText": [
+            "AXA",
+            "GOLD MÜSLI",
+            "ENERGI"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "spar-cereal-09",
+          "xyxy": [
+            208,
+            441,
+            390,
+            655
+          ],
+          "visibleText": [
+            "AXA",
+            "GOLD MÜSLI",
+            "ENERGI"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "spar-cereal-10",
+          "xyxy": [
+            423,
+            444,
+            544,
+            581
+          ],
+          "visibleText": [
+            "AXA",
+            "GOLD MÜSLI",
+            "ENERGI"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "spar-cereal-11",
+          "xyxy": [
+            535,
+            447,
+            687,
+            654
+          ],
+          "visibleText": [
+            "AXA",
+            "MÜSLI",
+            "FRUKT"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "spar-cereal-12",
+          "xyxy": [
+            681,
+            445,
+            846,
+            655
+          ],
+          "visibleText": [
+            "AXA",
+            "MÜSLI",
+            "FRUKT"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "spar-cereal-13",
+          "xyxy": [
+            826,
+            438,
+            1008,
+            654
+          ],
+          "visibleText": [
+            "AXA",
+            "MÜSLI",
+            "FRUKT"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "spar-cereal-14",
+          "xyxy": [
+            998,
+            449,
+            1168,
+            653
+          ],
+          "visibleText": [
+            "AXA",
+            "MÜSLI",
+            "FRUKT"
+          ],
+          "productName": null,
+          "sku": null
+        }
+      ],
+      "exclusions": [
+        {
+          "xyxy": [
+            0,
+            0,
+            118,
+            79
+          ],
+          "reason": "Back/side of yellow package and image-edge sliver; no separable front"
+        },
+        {
+          "xyxy": [
+            0,
+            343,
+            212,
+            451
+          ],
+          "reason": "Back-facing packages on left lower shelf; no visible package fronts"
+        },
+        {
+          "xyxy": [
+            362,
+            438,
+            423,
+            573
+          ],
+          "reason": "Rear energy packet mostly occluded by foreground packet"
+        },
+        {
+          "xyxy": [
+            1101,
+            343,
+            1200,
+            448
+          ],
+          "reason": "Mostly occluded side/back of packets at crop edge"
+        },
+        {
+          "xyxy": [
+            0,
+            453,
+            44,
+            598
+          ],
+          "reason": "Truncated packet at left image edge"
+        }
+      ],
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:SPAR_kolonial_mat_varehandel_hyller_(Supermarket_interior_GROCERY_store_aisle_shelves)_Frokostblandinger_gryn_gr%C3%B8t_kjeks_m%C3%BCsli_Axa_(cereals_oatmeal_biscuits,_muesli)_etc_Tj%C3%B8me_NORWAY_2023-08-31_IMG_1092.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bb/SPAR_kolonial_mat_varehandel_hyller_%28Supermarket_interior_GROCERY_store_aisle_shelves%29_Frokostblandinger_gryn_gr%C3%B8t_kjeks_m%C3%BCsli_Axa_%28cereals_oatmeal_biscuits%2C_muesli%29_etc_Tj%C3%B8me_NORWAY_2023-08-31_IMG_1092.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "author": "Wolfmann",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "originalPath": "/path/to/NutriGlimpse/artifacts/shelf-recovery/validation/spar-cereal-original.jpg",
+      "sourceSha256": "51fb46c8a33e05e63c7acb494787a1581cc40f78bb409331d5d01ec262d82a89",
+      "sha256": "b3c57c915f98739d11ec2112c2351e559f031f88b2da90a99131fe964d3e6a36",
+      "transformation": "EXIF orientation applied, stated source-pixel crop, Lanczos resize to 1200px width; no synthetic content",
+      "notes": "Two adjacent shelves, mainly flexible muesli packets rather than rigid cartons. Includes one exposed rear energy packet whose front is mostly visible.",
+      "groundTruthAvailable": true,
+      "quantitativeScoringEligible": true
+    },
+    {
+      "id": "spar-chips",
+      "cropXYXY": [
+        835,
+        1215,
+        2794,
+        2031
+      ],
+      "originalWidth": 4032,
+      "originalHeight": 3024,
+      "width": 1200,
+      "height": 500,
+      "previewCropXYXY": [
+        290,
+        300,
+        970,
+        710
+      ],
+      "path": "/path/to/NutriGlimpse/artifacts/shelf-recovery/validation/spar-chips.png",
+      "boxes": [
+        [
+          33,
+          25,
+          134,
+          168
+        ],
+        [
+          95,
+          65,
+          207,
+          172
+        ],
+        [
+          185,
+          25,
+          301,
+          172
+        ],
+        [
+          270,
+          24,
+          409,
+          181
+        ],
+        [
+          390,
+          18,
+          507,
+          186
+        ],
+        [
+          500,
+          0,
+          613,
+          187
+        ],
+        [
+          582,
+          0,
+          717,
+          193
+        ],
+        [
+          747,
+          5,
+          909,
+          198
+        ],
+        [
+          886,
+          3,
+          1045,
+          208
+        ],
+        [
+          1021,
+          5,
+          1200,
+          212
+        ],
+        [
+          59,
+          235,
+          184,
+          369
+        ],
+        [
+          139,
+          262,
+          264,
+          388
+        ],
+        [
+          301,
+          240,
+          425,
+          398
+        ],
+        [
+          385,
+          225,
+          526,
+          407
+        ],
+        [
+          531,
+          238,
+          676,
+          429
+        ],
+        [
+          644,
+          242,
+          808,
+          445
+        ],
+        [
+          785,
+          260,
+          918,
+          457
+        ],
+        [
+          897,
+          277,
+          1048,
+          475
+        ],
+        [
+          1016,
+          250,
+          1200,
+          484
+        ]
+      ],
+      "ignore_boxes": [
+        [
+          0,
+          0,
+          54,
+          169
+        ],
+        [
+          701,
+          0,
+          756,
+          184
+        ],
+        [
+          0,
+          207,
+          66,
+          370
+        ],
+        [
+          260,
+          260,
+          321,
+          368
+        ],
+        [
+          0,
+          404,
+          529,
+          500
+        ]
+      ],
+      "annotations": [
+        {
+          "id": "spar-chips-01",
+          "xyxy": [
+            33,
+            25,
+            134,
+            168
+          ],
+          "visibleText": [
+            "Totenflak"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "spar-chips-02",
+          "xyxy": [
+            95,
+            65,
+            207,
+            172
+          ],
+          "visibleText": [
+            "Totenflak"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "spar-chips-03",
+          "xyxy": [
+            185,
+            25,
+            301,
+            172
+          ],
+          "visibleText": [
+            "Totenflak"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "spar-chips-04",
+          "xyxy": [
+            270,
+            24,
+            409,
+            181
+          ],
+          "visibleText": [
+            "Totenflak"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "spar-chips-05",
+          "xyxy": [
+            390,
+            18,
+            507,
+            186
+          ],
+          "visibleText": [
+            "Totenflak"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "spar-chips-06",
+          "xyxy": [
+            500,
+            0,
+            613,
+            187
+          ],
+          "visibleText": [
+            "TYNN & SPRØ",
+            "PAPRIKA"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "spar-chips-07",
+          "xyxy": [
+            582,
+            0,
+            717,
+            193
+          ],
+          "visibleText": [
+            "TYNN & SPRØ",
+            "PAPRIKA"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "spar-chips-08",
+          "xyxy": [
+            747,
+            5,
+            909,
+            198
+          ],
+          "visibleText": [
+            "TYNN & SPRØ",
+            "PAPRIKA"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "spar-chips-09",
+          "xyxy": [
+            886,
+            3,
+            1045,
+            208
+          ],
+          "visibleText": [
+            "TYNN & SPRØ",
+            "PAPRIKA"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "spar-chips-10",
+          "xyxy": [
+            1021,
+            5,
+            1200,
+            212
+          ],
+          "visibleText": [
+            "TYNN & SPRØ",
+            "PAPRIKA"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "spar-chips-11",
+          "xyxy": [
+            59,
+            235,
+            184,
+            369
+          ],
+          "visibleText": [
+            "Totenflak"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "spar-chips-12",
+          "xyxy": [
+            139,
+            262,
+            264,
+            388
+          ],
+          "visibleText": [
+            "Totenflak"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "spar-chips-13",
+          "xyxy": [
+            301,
+            240,
+            425,
+            398
+          ],
+          "visibleText": [
+            "Totenflak"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "spar-chips-14",
+          "xyxy": [
+            385,
+            225,
+            526,
+            407
+          ],
+          "visibleText": [
+            "Totenflak"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "spar-chips-15",
+          "xyxy": [
+            531,
+            238,
+            676,
+            429
+          ],
+          "visibleText": [
+            "TYNN & SPRØ",
+            "LIME OG PEPPER"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "spar-chips-16",
+          "xyxy": [
+            644,
+            242,
+            808,
+            445
+          ],
+          "visibleText": [
+            "TYNN & SPRØ"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "spar-chips-17",
+          "xyxy": [
+            785,
+            260,
+            918,
+            457
+          ],
+          "visibleText": [
+            "TYNN & SPRØ"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "spar-chips-18",
+          "xyxy": [
+            897,
+            277,
+            1048,
+            475
+          ],
+          "visibleText": [
+            "TYNN & SPRØ"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "spar-chips-19",
+          "xyxy": [
+            1016,
+            250,
+            1200,
+            484
+          ],
+          "visibleText": [
+            "TYNN & SPRØ",
+            "LIME OG PEPPER"
+          ],
+          "productName": null,
+          "sku": null
+        }
+      ],
+      "exclusions": [
+        {
+          "xyxy": [
+            0,
+            0,
+            54,
+            169
+          ],
+          "reason": "Truncated red bag at left crop edge"
+        },
+        {
+          "xyxy": [
+            701,
+            0,
+            756,
+            184
+          ],
+          "reason": "Mostly occluded rear paprika bag; only narrow strip visible"
+        },
+        {
+          "xyxy": [
+            0,
+            207,
+            66,
+            370
+          ],
+          "reason": "Truncated black/white bag at left crop edge"
+        },
+        {
+          "xyxy": [
+            260,
+            260,
+            321,
+            368
+          ],
+          "reason": "Back/side of recessed packet behind foreground bags"
+        },
+        {
+          "xyxy": [
+            0,
+            404,
+            529,
+            500
+          ],
+          "reason": "Bottom-edge truncated packets from next shelf; fronts less than half visible"
+        }
+      ],
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Aisle_for_snack_food_(chips,_pop_corn,_etc.)_in_Spar_Supermarket_in_Tj%C3%B8me,_Norway_2017-12-05_01.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Aisle_for_snack_food_%28chips%2C_pop_corn%2C_etc.%29_in_Spar_Supermarket_in_Tj%C3%B8me%2C_Norway_2017-12-05_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "author": "Wolfmann",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "originalPath": "/path/to/NutriGlimpse/artifacts/shelf-recovery/validation/spar-chips-original.jpg",
+      "sourceSha256": "bcf8832df59faacd507236b5eae5c2f432617b74f7cb227aede4e9d09283ce38",
+      "sha256": "5f19a0664baa2d4eea23bf285ed35fd6a013ce30fae08948884982a5fe770272",
+      "transformation": "EXIF orientation applied, stated source-pixel crop, Lanczos resize to 1200px width; no synthetic content",
+      "notes": "Two shelves of angled flexible chip bags. Same photographer/store as cereal but a distinct photo captured six years earlier. Cropped-edge backs and next shelf fragments excluded.",
+      "groundTruthAvailable": true,
+      "quantitativeScoringEligible": true
+    },
+    {
+      "id": "safeway-cheese",
+      "cropXYXY": [
+        296,
+        313,
+        3077,
+        2139
+      ],
+      "originalWidth": 3456,
+      "originalHeight": 4608,
+      "width": 1200,
+      "height": 788,
+      "previewCropXYXY": [
+        90,
+        95,
+        935,
+        650
+      ],
+      "path": "/path/to/NutriGlimpse/artifacts/shelf-recovery/validation/safeway-cheese.png",
+      "boxes": [
+        [
+          12,
+          18,
+          204,
+          181
+        ],
+        [
+          202,
+          20,
+          375,
+          122
+        ],
+        [
+          207,
+          113,
+          376,
+          202
+        ],
+        [
+          392,
+          116,
+          523,
+          225
+        ],
+        [
+          522,
+          106,
+          700,
+          249
+        ],
+        [
+          667,
+          135,
+          788,
+          264
+        ],
+        [
+          846,
+          239,
+          984,
+          284
+        ],
+        [
+          1004,
+          259,
+          1123,
+          297
+        ],
+        [
+          74,
+          354,
+          273,
+          405
+        ],
+        [
+          837,
+          356,
+          909,
+          402
+        ],
+        [
+          907,
+          349,
+          1037,
+          402
+        ],
+        [
+          1039,
+          362,
+          1165,
+          409
+        ],
+        [
+          834,
+          398,
+          914,
+          435
+        ],
+        [
+          905,
+          401,
+          1037,
+          443
+        ],
+        [
+          1039,
+          405,
+          1161,
+          448
+        ],
+        [
+          709,
+          539,
+          800,
+          579
+        ],
+        [
+          703,
+          709,
+          852,
+          768
+        ],
+        [
+          1107,
+          675,
+          1194,
+          725
+        ]
+      ],
+      "ignore_boxes": [
+        [
+          0,
+          80,
+          40,
+          166
+        ],
+        [
+          0,
+          340,
+          76,
+          404
+        ],
+        [
+          483,
+          354,
+          569,
+          421
+        ],
+        [
+          571,
+          354,
+          743,
+          430
+        ],
+        [
+          748,
+          399,
+          781,
+          429
+        ],
+        [
+          795,
+          373,
+          836,
+          432
+        ],
+        [
+          0,
+          578,
+          136,
+          629
+        ],
+        [
+          1116,
+          274,
+          1200,
+          307
+        ],
+        [
+          810,
+          222,
+          909,
+          244
+        ]
+      ],
+      "annotations": [
+        {
+          "id": "safeway-cheese-01",
+          "xyxy": [
+            12,
+            18,
+            204,
+            181
+          ],
+          "visibleText": [
+            "Frigo",
+            "CRUMBLED",
+            "BLUE CHEESE"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "safeway-cheese-02",
+          "xyxy": [
+            202,
+            20,
+            375,
+            122
+          ],
+          "visibleText": [
+            "Frigo"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "safeway-cheese-03",
+          "xyxy": [
+            207,
+            113,
+            376,
+            202
+          ],
+          "visibleText": [
+            "Frigo",
+            "FETA"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "safeway-cheese-04",
+          "xyxy": [
+            392,
+            116,
+            523,
+            225
+          ],
+          "visibleText": [
+            "Lucerne"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "safeway-cheese-05",
+          "xyxy": [
+            522,
+            106,
+            700,
+            249
+          ],
+          "visibleText": [
+            "Lucerne",
+            "Feta Cheese"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "safeway-cheese-06",
+          "xyxy": [
+            667,
+            135,
+            788,
+            264
+          ],
+          "visibleText": [
+            "Lucerne",
+            "Feta Cheese"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "safeway-cheese-07",
+          "xyxy": [
+            846,
+            239,
+            984,
+            284
+          ],
+          "visibleText": [],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "safeway-cheese-08",
+          "xyxy": [
+            1004,
+            259,
+            1123,
+            297
+          ],
+          "visibleText": [],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "safeway-cheese-09",
+          "xyxy": [
+            74,
+            354,
+            273,
+            405
+          ],
+          "visibleText": [
+            "Cracker Barrel"
+          ],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "safeway-cheese-10",
+          "xyxy": [
+            837,
+            356,
+            909,
+            402
+          ],
+          "visibleText": [],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "safeway-cheese-11",
+          "xyxy": [
+            907,
+            349,
+            1037,
+            402
+          ],
+          "visibleText": [],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "safeway-cheese-12",
+          "xyxy": [
+            1039,
+            362,
+            1165,
+            409
+          ],
+          "visibleText": [],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "safeway-cheese-13",
+          "xyxy": [
+            834,
+            398,
+            914,
+            435
+          ],
+          "visibleText": [],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "safeway-cheese-14",
+          "xyxy": [
+            905,
+            401,
+            1037,
+            443
+          ],
+          "visibleText": [],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "safeway-cheese-15",
+          "xyxy": [
+            1039,
+            405,
+            1161,
+            448
+          ],
+          "visibleText": [],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "safeway-cheese-16",
+          "xyxy": [
+            709,
+            539,
+            800,
+            579
+          ],
+          "visibleText": [],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "safeway-cheese-17",
+          "xyxy": [
+            703,
+            709,
+            852,
+            768
+          ],
+          "visibleText": [],
+          "productName": null,
+          "sku": null
+        },
+        {
+          "id": "safeway-cheese-18",
+          "xyxy": [
+            1107,
+            675,
+            1194,
+            725
+          ],
+          "visibleText": [],
+          "productName": null,
+          "sku": null
+        }
+      ],
+      "exclusions": [
+        {
+          "xyxy": [
+            0,
+            80,
+            40,
+            166
+          ],
+          "reason": "Left crop-edge fragment of another package"
+        },
+        {
+          "xyxy": [
+            0,
+            340,
+            76,
+            404
+          ],
+          "reason": "Truncated/occluded cheese package at left crop edge"
+        },
+        {
+          "xyxy": [
+            483,
+            354,
+            569,
+            421
+          ],
+          "reason": "Cracker Barrel pack largely occluded by hanging price tag"
+        },
+        {
+          "xyxy": [
+            571,
+            354,
+            743,
+            430
+          ],
+          "reason": "Cheese package with mostly occluded/glared front behind hanging price tags"
+        },
+        {
+          "xyxy": [
+            748,
+            399,
+            781,
+            429
+          ],
+          "reason": "Narrow rear package fragment, heavily occluded"
+        },
+        {
+          "xyxy": [
+            795,
+            373,
+            836,
+            432
+          ],
+          "reason": "Small rear package fragments with uncertain boundaries"
+        },
+        {
+          "xyxy": [
+            0,
+            578,
+            136,
+            629
+          ],
+          "reason": "Truncated Cracker Barrel packet at left crop edge"
+        },
+        {
+          "xyxy": [
+            1116,
+            274,
+            1200,
+            307
+          ],
+          "reason": "Partial back/edge packages near upper right crop boundary"
+        },
+        {
+          "xyxy": [
+            810,
+            222,
+            909,
+            244
+          ],
+          "reason": "Rear cheese piece has unlabeled back/top face only, partly obscured by foreground block"
+        }
+      ],
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Cheese_shelves_empty_Safeway_coronavirus_2020.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Cheese_shelves_empty_Safeway_coronavirus_2020.jpg",
+      "author": "Kurt Kaiser",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "originalPath": "/path/to/NutriGlimpse/artifacts/shelf-recovery/validation/safeway-cheese-original.jpg",
+      "sourceSha256": "f9a207fc5445c364fe80e372ff0949315612598fb95fbffef39432a2fedf3a19",
+      "sha256": "c18c6e93aa2c1034f970d99cba9e2bd572fa1385583aa9dccf1c9e6364359b62",
+      "transformation": "EXIF orientation applied, stated source-pixel crop, Lanczos resize to 1200px width; no synthetic content",
+      "notes": "United States source. Oblique refrigerated shelf, tubs, blocks and abundant price tags. Includes clearly separable distant blocks with unreadable text; excludes fronts dominated by price-tag occlusion.",
+      "groundTruthAvailable": true,
+      "quantitativeScoringEligible": true
+    }
+  ],
+  "qualitativeImages": [
+    {
+      "id": "ghana-biscuits",
+      "cropXYXY": [
+        1543,
+        314,
+        4000,
+        1800
+      ],
+      "originalWidth": 4000,
+      "originalHeight": 1800,
+      "width": 1200,
+      "height": 726,
+      "previewCropXYXY": [
+        540,
+        110,
+        1400,
+        630
+      ],
+      "path": "/path/to/NutriGlimpse/artifacts/shelf-recovery/validation/ghana-biscuits.png",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Biscuits_on_display_in_a_Ghanaian_mini-market.jpg",
+      "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/92/Biscuits_on_display_in_a_Ghanaian_mini-market.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "author": "Uprising Man",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "originalPath": "/path/to/NutriGlimpse/artifacts/shelf-recovery/validation/ghana-biscuits-original.jpg",
+      "sourceSha256": "eb73ee79da794a26fb8715195f15f723e588c3715fae675cee24f1448f604a84",
+      "sha256": "7f7dfe74cf134bd3a7b460bb2645b1e6520f09c573732565f0dbd5bb9b8051f4",
+      "transformation": "EXIF orientation applied, stated source-pixel crop, Lanczos resize to 1200px width; no synthetic content",
+      "notes": "Difficult oblique close-up, not an orderly frontal shelf. Wrappers overlap heavily. Labels are visible silhouette estimates with clipped boxes for clearly separable foreground wrappers; text is sparse and not SKU evidence. Highest annotation uncertainty of this pilot.",
+      "groundTruthAvailable": false,
+      "quantitativeScoringEligible": false,
+      "exclusionFromQuantitativeReason": "Oblique overlapping wrapper boundaries cannot be annotated reliably enough for package-level IoU. Retained as qualitative stress test before any candidate outputs were viewed."
+    }
+  ],
+  "frozenAt": "2026-10-15T00:09:55.735253+00:00",
+  "review": "Annotating assistant reviewed all original/crop images and proposed overlays; root assistant reviewed the three quantitative overlays before any model predictions. No clinician/human professional annotator or product-catalog verification."
+}

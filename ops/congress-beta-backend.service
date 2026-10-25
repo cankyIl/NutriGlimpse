@@ -1,0 +1,21 @@
+[Unit]
+Description=Protected Congress beta catalog backend
+After=network.target
+[Service]
+Type=simple
+WorkingDirectory=/path/to/NutriGlimpse
+ExecStart=/bin/bash /path/to/NutriGlimpse/ops/run-beta-backend.sh
+Restart=on-failure
+RestartSec=5
+UMask=0077
+Environment=CI=1
+Environment=GROCERY_PRODUCT_PHOTO_ENABLED=true
+Environment=GROCERY_PRODUCT_PHOTO_CONSENT=product-photo-ai-2026-10-16.1
+Environment=GROCERY_REAL_REPORTS_ENABLED=true
+Environment=GROCERY_REAL_REPORTS_CONSENT_VERSION=beta-report-ai-2026-10-14.1
+NoNewPrivileges=true
+PrivateTmp=true
+MemoryMax=512M
+CPUQuota=100%
+[Install]
+WantedBy=default.target

@@ -1,0 +1,13 @@
+const assert = require('node:assert/strict');
+const { createRequire } = require('node:module');
+const xcode = require('xcode');
+const fromXcode = createRequire(require.resolve('xcode'));
+const uuid = fromXcode('uuid');
+assert.equal(fromXcode('uuid/package.json').version, '11.1.1');
+const project = xcode.project('fictional.pbxproj');
+project.hash = { project: { objects: {} } };
+const ids = Array.from({length: 1000}, () => project.generateUuid());
+assert.equal(new Set(ids).size, 1000);
+assert.ok(ids.every(id => /^[0-9A-F]{24}$/.test(id)));
+assert.throws(() => uuid.v5('fixture', uuid.v5.DNS, new Uint8Array(8), 4), RangeError);
+console.log('Tooling check passed: xcode resolves patched UUID, generates valid project IDs and rejects short output buffers.');

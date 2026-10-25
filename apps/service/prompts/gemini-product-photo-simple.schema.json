@@ -1,0 +1,565 @@
+{
+  "type": "object",
+  "properties": {
+    "product": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "nutrition": {
+          "type": "object",
+          "properties": {
+            "caloriesKcal": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 5000
+            },
+            "totalFatG": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 300
+            },
+            "saturatedFatG": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 150
+            },
+            "transFatG": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 100
+            },
+            "sugarsG": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 300
+            },
+            "addedSugarsG": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 300
+            },
+            "carbohydrateG": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 500
+            },
+            "sodiumMg": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 30000
+            },
+            "fiberG": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 150
+            },
+            "proteinG": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 300
+            },
+            "potassiumMg": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 15000
+            },
+            "calciumMg": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 10000
+            },
+            "ironMg": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 500
+            },
+            "magnesiumMg": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 5000
+            },
+            "phosphorusMg": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 5000
+            },
+            "vitaminDmcg": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 1000
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "caloriesKcal",
+            "totalFatG",
+            "saturatedFatG",
+            "transFatG",
+            "sugarsG",
+            "addedSugarsG",
+            "carbohydrateG",
+            "sodiumMg",
+            "fiberG",
+            "proteinG"
+          ],
+          "description": "Fill all core nutrients from the chosen source, including any amount cited in reasons. Use null only when unavailable; do not omit known facts."
+        },
+        "rating": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "healthy",
+            "neutral",
+            "not_healthy",
+            null
+          ]
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 3
+        },
+        "uncertainties": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 3
+        },
+        "source_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Nutrition source link when available; otherwise null. A missing link must not prevent the product, rating, nutrients or alternatives from being returned."
+        },
+        "image_url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "store": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Suggested retailer name, even if no product-page link is available; null if no retailer is identified. This is not a stock claim."
+        },
+        "aisle": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "number": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "section": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "store": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "town": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "state": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "source_url": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "number",
+            "section",
+            "store",
+            "town",
+            "state",
+            "source_url"
+          ],
+          "additionalProperties": false
+        },
+        "retailer_url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Retailer product-page URL found by Google Search for this exact product. Prefer the current store, otherwise a nearby retailer. Null if not found."
+        }
+      },
+      "required": [
+        "title",
+        "nutrition",
+        "rating",
+        "reasons",
+        "uncertainties",
+        "source_url",
+        "image_url",
+        "store",
+        "aisle",
+        "retailer_url"
+      ],
+      "additionalProperties": false
+    },
+    "alternatives": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "nutrition": {
+            "type": "object",
+            "properties": {
+              "caloriesKcal": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 5000
+              },
+              "totalFatG": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 300
+              },
+              "saturatedFatG": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 150
+              },
+              "transFatG": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 100
+              },
+              "sugarsG": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 300
+              },
+              "addedSugarsG": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 300
+              },
+              "carbohydrateG": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 500
+              },
+              "sodiumMg": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 30000
+              },
+              "fiberG": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 150
+              },
+              "proteinG": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 300
+              },
+              "potassiumMg": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 15000
+              },
+              "calciumMg": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 10000
+              },
+              "ironMg": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 500
+              },
+              "magnesiumMg": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 5000
+              },
+              "phosphorusMg": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 5000
+              },
+              "vitaminDmcg": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 1000
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "caloriesKcal",
+              "totalFatG",
+              "saturatedFatG",
+              "transFatG",
+              "sugarsG",
+              "addedSugarsG",
+              "carbohydrateG",
+              "sodiumMg",
+              "fiberG",
+              "proteinG"
+            ],
+            "description": "Fill all core nutrients from the chosen source, including any amount cited in reasons. Use null only when unavailable; do not omit known facts."
+          },
+          "rating": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "healthy",
+              "neutral",
+              "not_healthy",
+              null
+            ]
+          },
+          "reasons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 3
+          },
+          "uncertainties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 3
+          },
+          "source_url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Nutrition source link when available; otherwise null. A missing link must not prevent the product, rating, nutrients or alternatives from being returned."
+          },
+          "image_url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "store": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Suggested retailer name, even if no product-page link is available; null if no retailer is identified. This is not a stock claim."
+          },
+          "aisle": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "number": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "section": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "store": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "town": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "state": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "source_url": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "number",
+              "section",
+              "store",
+              "town",
+              "state",
+              "source_url"
+            ],
+            "additionalProperties": false
+          },
+          "retailer_url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Retailer product-page URL found by Google Search for this exact product. Prefer the current store, otherwise a nearby retailer. Null if not found."
+          }
+        },
+        "required": [
+          "title",
+          "nutrition",
+          "rating",
+          "reasons",
+          "uncertainties",
+          "source_url",
+          "image_url",
+          "store",
+          "aisle",
+          "retailer_url"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 3
+    }
+  },
+  "required": [
+    "product",
+    "alternatives"
+  ],
+  "additionalProperties": false
+}

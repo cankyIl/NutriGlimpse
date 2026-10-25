@@ -1,0 +1,12 @@
+ShelfSetDiagnostic — research comparison only; distribution clearance unresolved
+
+Source: ShelfSet LLC in partnership with Data Science UA
+https://github.com/ShelfSet/shelf-object-detector
+Pinned commit: b1dfbd2f67e38a0ead05d0b653c675569ef8a02a
+Checkpoint SHA256: a5f1ca3a021122e89d2fb3fbb5ee93bbc792fbe935a8152de32e6d107ffebf95
+
+The repository claims MIT licensing. The underlying YOLO26/Ultralytics code and model provenance, and rights in the disclosed scraped training images, require separate review before distribution. MIT on the repository alone is not asserted to clear all downstream rights. Both the source MIT text and the upstream AGPL-3.0 text accompany this research artifact. No unrestricted commercial or App Store distribution clearance is asserted.
+
+This project performed no training or fine-tuning. The export preserves the pretrained end-to-end head and wraps 300 candidates into a CoreML MLProgram plus class-agnostic NMS at confidence 0.25 / IoU 0.50. Only class 0 product is meaningful. 79 class score columns are exactly zero in PyTorch as the upstream CoreML MLProgram NMS workaround; reject __padding_* labels. https://github.com/ultralytics/ultralytics/issues/22309
+
+Static CoreML structure and PyTorch adapter parity were checked on Linux. Actual CoreML execution, numerical equivalence after conversion, overlay alignment and sustained iPhone 2 Hz remain unverified. Detection is not product identity or health suitability. Model pretraining overlap with public challenge photos cannot be ruled out.

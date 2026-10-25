@@ -1,0 +1,21 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { generateKeyPairSync } from 'node:crypto';
+import { RuleDistribution, stageRuleEnvelope } from '../src/rulePublication.ts';
+test('offline staging proves signing ownership, rejects unapproved evidence, and expiry/revocation stop distribution',()=>{
+ const keys=generateKeyPairSync('ed25519');
+ const privatePem=keys.privateKey.export({format:'pem',type:'pkcs8'}).toString();
+ const publicHex=Buffer.from(keys.publicKey.export({format:'jwk'}).x!,'base64url').toString('hex');
+ const policy={keys:{fixture:publicHex},revokedKeyIds:[],minimumSequence:1,now:Date.parse('2026-10-06T12:00:00Z')};
+ const payload={schemaVersion:1,sequence:1,issuedAt:'2026-10-06T00:00:00Z',expiresAt:'2026-10-07T00:00:00Z',pack:{version:'test-only-empty',sources:[],rules:[]}};
+ const text=stageRuleEnvelope(JSON.stringify(payload),'fixture',privatePem,policy);
+ assert.ok(!text.includes('PRIVATE KEY'));
+ const distributor=new RuleDistribution(text,policy);
+ assert.equal(distributor.current(policy.now),text);
+ assert.equal(distributor.current(Date.parse(payload.expiresAt)),null);
+ distributor.updatePolicy({...policy,revokedKeyIds:['fixture']});
+ assert.equal(distributor.current(policy.now),null);
+ assert.throws(()=>stageRuleEnvelope(JSON.stringify(payload),'unknown',privatePem,policy));
+ const draft={...payload,pack:{version:'draft',sources:[{id:'s',title:'Fictional evidence',url:'https://example.com',version:'1',checkedAt:payload.issuedAt,usage:'pending'}],rules:[]}};
+ assert.throws(()=>stageRuleEnvelope(JSON.stringify(draft),'fixture',privatePem,policy));
+});

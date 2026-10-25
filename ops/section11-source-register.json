@@ -1,0 +1,94 @@
+{
+  "reviewedAt": "2026-10-15",
+  "sources": [
+    {
+      "id": "usda",
+      "status": "enabled",
+      "rights": "CC0-1.0",
+      "reference": "https://fdc.nal.usda.gov/api-guide/",
+      "blockers": [],
+      "next": "Maintain freshness and validate current package variants; no retailer stock inferred."
+    },
+    {
+      "id": "open-food-facts",
+      "status": "enabled",
+      "rights": "ODbL-1.0 combined catalog; DbCL-1.0 contents; images excluded",
+      "reference": "https://support.openfoodfacts.org/help/en-gb/12-donnees-api/94-y-a-t-il-des-conditions-pour-utiliser-l-api",
+      "blockers": [
+        "physical-package-validation"
+      ],
+      "next": "Maintain source-specific freshness; resumable pinned export and category validation implemented. Validate actual retailer packages; never infer stock."
+    },
+    {
+      "id": "manufacturer-package",
+      "status": "evidence-workflow-ready",
+      "rights": "per-source permission pending",
+      "reference": null,
+      "blockers": [
+        "public-exact-product-evidence",
+        "reuse-rights"
+      ],
+      "next": "Import reviewed public manufacturer evidence; never share personal uploads."
+    },
+    {
+      "id": "retailers",
+      "status": "evidence-workflow-ready",
+      "rights": "chain-specific access pending",
+      "reference": null,
+      "blockers": [
+        "authorized-feed-or-reviewed-listings",
+        "branch-product-evidence"
+      ],
+      "next": "Record exact scope, source dates and expiry. No branch stock claims without branch evidence."
+    },
+    {
+      "id": "places",
+      "status": "enabled-ma-only",
+      "rights": "ODbL-1.0 with OSM attribution",
+      "reference": "https://www.openstreetmap.org/copyright",
+      "blockers": [
+        "tester-branches",
+        "physical-gps-checks"
+      ],
+      "next": "Audit address/footprint gaps; do not treat map matches as store inventory."
+    },
+    {
+      "id": "medical-organizations",
+      "status": "education-integrated-personalization-disabled",
+      "rights": "source-specific review pending",
+      "reference": null,
+      "blockers": [
+        "qualified-reviewer",
+        "approved-rules-and-reference-cases"
+      ],
+      "next": "26-entry DASH/NIDDK/DGA library plus ADA/CDC/Mayo/AHA education integrated; optional explicit-reference arithmetic. Mineral/trans-fat ingestion complete where sources report it. Qualified review required for personalization.",
+      "library": "data/guidance/library.json",
+      "details": "docs/31-guidance-source-library.md",
+      "educationDetails": "docs/32-diabetes-nutrition-education.md",
+      "labelChecksDetails": "docs/34-blood-pressure-gluten-label-checks.md"
+    },
+    {
+      "id": "monash-fodmap",
+      "status": "not-connected",
+      "rights": "no data license established",
+      "reference": "https://monashfodmap.com/product-and-recipe-certification-program/certification-faqs/",
+      "blockers": [
+        "written-data-permission",
+        "measured-product-portion-evidence"
+      ],
+      "next": "Confirm licensed data path. General ingredient inference must not be represented as measured content."
+    },
+    {
+      "id": "certifications",
+      "status": "evidence-workflow-ready",
+      "rights": "authority-specific permission pending",
+      "reference": null,
+      "blockers": [
+        "exact-product-market-evidence",
+        "accepted-reviewer-and-authority",
+        "reuse-rights"
+      ],
+      "next": "Gluten-free decision resolved: verified certification OR verified manufacturer claim accepted. Import exact current product evidence and trusted proofs. No production proof currently exists. Halal/kosher authority scope still needs review."
+    }
+  ]
+}

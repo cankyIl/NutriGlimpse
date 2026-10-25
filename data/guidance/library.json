@@ -1,0 +1,701 @@
+{
+  "schemaVersion": 1,
+  "libraryVersion": "2026-10-14.1",
+  "collectedAt": "2026-10-15T00:03:36.770928+00:00",
+  "status": "collected-reference-library",
+  "consumerEducationEnabled": false,
+  "personalizedRecommendationsEnabled": false,
+  "sources": [
+    {
+      "id": "dash",
+      "url": "https://www.nhlbi.nih.gov/health/dash/following-dash",
+      "finalUrl": "https://www.nhlbi.nih.gov/health/dash/following-dash",
+      "file": "data/guidance/sources/2026-10-14/dash.html",
+      "sha256": "a08e2763354382daf5480ef5c06440e01ff5902fad28f7e887391effce024439",
+      "bytes": 73197,
+      "retrievedAt": "2026-10-15T00:01:46.972810+00:00",
+      "lastModified": "Thu, 15 Oct 2026 00:00:44 GMT",
+      "contentType": "text/html; charset=utf-8",
+      "title": "NHLBI: Following DASH",
+      "sourceVersion": "Updated February 25, 2026",
+      "publisher": "NIH/NHLBI",
+      "collectionStatus": "retrieved-and-extracted",
+      "attribution": "Source: National Heart, Lung, and Blood Institute; National Institutes of Health; U.S. Department of Health and Human Services.",
+      "rights": {
+        "policyUrl": "https://www.nhlbi.nih.gov/about/contact/trademark-branding-and-logo",
+        "scope": "Attributed factual extraction and original educational paraphrases; no agency endorsement; no image or logo reuse in app. Original snapshots retained as research evidence.",
+        "medicalUse": "Clinical applicability and product-specific use remain pending review."
+      }
+    },
+    {
+      "id": "diabetes",
+      "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/healthy-living-with-diabetes",
+      "finalUrl": "https://www.niddk.nih.gov/health-information/diabetes/overview/healthy-living-with-diabetes",
+      "file": "data/guidance/sources/2026-10-14/diabetes.html",
+      "sha256": "70c15914917d75085697c29a4d34cf71e1b8f09036b1566a0e752b449900d968",
+      "bytes": 71786,
+      "retrievedAt": "2026-10-15T00:02:03.000036+00:00",
+      "lastModified": null,
+      "contentType": "text/html; charset=utf-8",
+      "title": "NIDDK: Healthy Living with Diabetes",
+      "sourceVersion": "Reviewed October 2023",
+      "publisher": "NIH/NIDDK",
+      "collectionStatus": "retrieved-and-extracted",
+      "attribution": "Based on National Institute of Diabetes and Digestive and Kidney Diseases health information.",
+      "rights": {
+        "policyUrl": "https://www.niddk.nih.gov/copyright",
+        "scope": "Attributed factual extraction and original educational paraphrases; no agency endorsement; no image or logo reuse in app. Original snapshots retained as research evidence.",
+        "medicalUse": "Not an authorization to provide personalized medical advice. NIDDK policy specifically restricts using its content to recommend specific medical advice, treatments or referrals."
+      }
+    },
+    {
+      "id": "ckd",
+      "url": "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
+      "finalUrl": "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/healthy-eating-adults-chronic-kidney-disease",
+      "file": "data/guidance/sources/2026-10-14/ckd.html",
+      "sha256": "e41ffefc3bbce56b2411e2f2615804f409a5875a05fe0d71e8d46a0ab835c8de",
+      "bytes": 64578,
+      "retrievedAt": "2026-10-15T00:02:03.328050+00:00",
+      "lastModified": null,
+      "contentType": "text/html; charset=utf-8",
+      "title": "NIDDK: Healthy Eating for Adults with Chronic Kidney Disease",
+      "sourceVersion": "Reviewed January 2025",
+      "publisher": "NIH/NIDDK",
+      "collectionStatus": "retrieved-and-extracted",
+      "attribution": "Based on National Institute of Diabetes and Digestive and Kidney Diseases health information.",
+      "rights": {
+        "policyUrl": "https://www.niddk.nih.gov/copyright",
+        "scope": "Attributed factual extraction and original educational paraphrases; no agency endorsement; no image or logo reuse in app. Original snapshots retained as research evidence.",
+        "medicalUse": "Not an authorization to provide personalized medical advice. NIDDK policy specifically restricts using its content to recommend specific medical advice, treatments or referrals."
+      }
+    },
+    {
+      "id": "dga",
+      "url": "https://cdn.realfood.gov/DGA.pdf",
+      "finalUrl": "https://cdn.realfood.gov/DGA.pdf",
+      "file": "data/guidance/sources/2026-10-14/dga.pdf",
+      "sha256": "c34f1bec5c9416265670b7fcb24556bb8616ba95e8de2f2890460b6bbca1a472",
+      "bytes": 3422452,
+      "retrievedAt": "2026-10-15T00:02:03.562894+00:00",
+      "lastModified": "Wed, 07 Jan 2026 03:31:51 GMT",
+      "contentType": "application/pdf",
+      "title": "Dietary Guidelines for Americans, 2025–2030",
+      "sourceVersion": "January 2026; 2025–2030 edition",
+      "publisher": "USDA/HHS",
+      "collectionStatus": "retrieved-and-extracted",
+      "attribution": "Source: U.S. Department of Agriculture and U.S. Department of Health and Human Services, Dietary Guidelines for Americans, 2025–2030.",
+      "rights": {
+        "policyUrl": null,
+        "scope": "Attributed factual extraction and original educational paraphrases; no agency endorsement; no image or logo reuse in app. Original snapshots retained as research evidence.",
+        "medicalUse": "Clinical applicability and product-specific use remain pending review."
+      }
+    },
+    {
+      "id": "dga-servings",
+      "url": "https://cdn.realfood.gov/Daily%20Serving%20Sizes.pdf",
+      "finalUrl": "https://cdn.realfood.gov/Daily%20Serving%20Sizes.pdf",
+      "file": "data/guidance/sources/2026-10-14/dga-servings.pdf",
+      "sha256": "dbc315c24735cc7ecb660e303f4636ab7089547194acf58baafc64e24fc78c73",
+      "bytes": 208317,
+      "retrievedAt": "2026-10-15T00:02:03.627383+00:00",
+      "lastModified": "Wed, 07 Jan 2026 03:31:49 GMT",
+      "contentType": "application/pdf",
+      "title": "DGA 2025–2030: Daily Servings by Calorie Level",
+      "sourceVersion": "2025–2030 edition; publication date not stated",
+      "publisher": "USDA/HHS",
+      "collectionStatus": "retrieved-and-extracted",
+      "attribution": "Source: U.S. Department of Agriculture and U.S. Department of Health and Human Services, Dietary Guidelines for Americans, 2025–2030.",
+      "rights": {
+        "policyUrl": null,
+        "scope": "Attributed factual extraction and original educational paraphrases; no agency endorsement; no image or logo reuse in app. Original snapshots retained as research evidence.",
+        "medicalUse": "Clinical applicability and product-specific use remain pending review."
+      }
+    }
+  ],
+  "entries": [
+    {
+      "id": "dash-pattern",
+      "sourceId": "dash",
+      "sourceLocator": "Getting Started; Serving Sizes",
+      "summary": "DASH organizes food groups into an eating pattern whose portions depend on energy needs.",
+      "kind": "education",
+      "population": "Adults; educational context, not a personal prescription",
+      "requiredInputs": [],
+      "publishedValue": null,
+      "exceptions": [],
+      "reviewStatus": "source-checked-clinical-review-pending",
+      "reviewedBy": null,
+      "automaticPersonalization": false,
+      "productRecommendationEnabled": false
+    },
+    {
+      "id": "dash-sodium",
+      "sourceId": "dash",
+      "sourceLocator": "Maximum sodium limit; footnote d",
+      "summary": "The source presents two daily sodium limits; neither is automatically assigned to a user.",
+      "kind": "published-reference",
+      "population": "Adults; educational context, not a personal prescription",
+      "requiredInputs": [
+        "selectedPlan",
+        "clinicianTargetWhenApplicable"
+      ],
+      "publishedValue": {
+        "options": [
+          2300,
+          1500
+        ],
+        "unit": "mg",
+        "period": "day",
+        "relationship": "maximum"
+      },
+      "exceptions": [
+        "Kidney disease or other medical requirements may change the target."
+      ],
+      "reviewStatus": "source-checked-clinical-review-pending",
+      "reviewedBy": null,
+      "automaticPersonalization": false,
+      "productRecommendationEnabled": false
+    },
+    {
+      "id": "dash-grains",
+      "sourceId": "dash",
+      "sourceLocator": "Food servings table; footnote a",
+      "summary": "Favor whole grains for most grain servings.",
+      "kind": "education",
+      "population": "Adults; educational context, not a personal prescription",
+      "requiredInputs": [],
+      "publishedValue": null,
+      "exceptions": [],
+      "reviewStatus": "source-checked-clinical-review-pending",
+      "reviewedBy": null,
+      "automaticPersonalization": false,
+      "productRecommendationEnabled": false
+    },
+    {
+      "id": "dash-dairy",
+      "sourceId": "dash",
+      "sourceLocator": "Food servings table",
+      "summary": "The DASH pattern specifies low-fat or fat-free dairy.",
+      "kind": "education",
+      "population": "Adults; educational context, not a personal prescription",
+      "requiredInputs": [],
+      "publishedValue": null,
+      "exceptions": [
+        "Keep separate from DGA full-fat dairy guidance; do not merge by averaging."
+      ],
+      "reviewStatus": "source-checked-clinical-review-pending",
+      "reviewedBy": null,
+      "automaticPersonalization": false,
+      "productRecommendationEnabled": false
+    },
+    {
+      "id": "dash-portions",
+      "sourceId": "dash",
+      "sourceLocator": "Serving Sizes, Examples, and Significance",
+      "summary": "DASH food-group servings and package-label servings are different measures.",
+      "kind": "implementation-note",
+      "population": "Adults; educational context, not a personal prescription",
+      "requiredInputs": [
+        "foodGroup",
+        "sourceServingDefinition"
+      ],
+      "publishedValue": null,
+      "exceptions": [],
+      "reviewStatus": "source-checked-clinical-review-pending",
+      "reviewedBy": null,
+      "automaticPersonalization": false,
+      "productRecommendationEnabled": false
+    },
+    {
+      "id": "diabetes-plate",
+      "sourceId": "diabetes",
+      "sourceLocator": "Plan how much to eat or drink > Plate method",
+      "summary": "A plate-based meal pattern allocates half to nonstarchy vegetables, one quarter to carbohydrate foods and one quarter to protein.",
+      "kind": "published-reference",
+      "population": "Adults; educational context, not a personal prescription",
+      "requiredInputs": [],
+      "publishedValue": {
+        "plateDiameterInches": 9,
+        "fractions": {
+          "nonstarchyVegetables": 0.5,
+          "carbohydrateFoods": 0.25,
+          "proteinFoods": 0.25
+        }
+      },
+      "exceptions": [
+        "This is a meal-planning illustration, not a product score or carbohydrate prescription."
+      ],
+      "reviewStatus": "source-checked-clinical-review-pending",
+      "reviewedBy": null,
+      "automaticPersonalization": false,
+      "productRecommendationEnabled": false
+    },
+    {
+      "id": "diabetes-carbs",
+      "sourceId": "diabetes",
+      "sourceLocator": "Carb counting",
+      "summary": "Carbohydrate counting considers amounts across meals and snacks. Not everyone with diabetes needs it.",
+      "kind": "education",
+      "population": "Adults; educational context, not a personal prescription",
+      "requiredInputs": [
+        "totalCarbohydrateG",
+        "portionGrams"
+      ],
+      "publishedValue": null,
+      "exceptions": [
+        "Do not replace total carbohydrate with total sugars.",
+        "No insulin-dose calculation."
+      ],
+      "reviewStatus": "source-checked-clinical-review-pending",
+      "reviewedBy": null,
+      "automaticPersonalization": false,
+      "productRecommendationEnabled": false
+    },
+    {
+      "id": "diabetes-foods",
+      "sourceId": "diabetes",
+      "sourceLocator": "Choose healthy foods and drinks",
+      "summary": "Discuss fiber-rich foods, unsweetened drinks and reducing sodium and saturated fat within a meal plan.",
+      "kind": "education",
+      "population": "Adults; educational context, not a personal prescription",
+      "requiredInputs": [],
+      "publishedValue": null,
+      "exceptions": [],
+      "reviewStatus": "source-checked-clinical-review-pending",
+      "reviewedBy": null,
+      "automaticPersonalization": false,
+      "productRecommendationEnabled": false
+    },
+    {
+      "id": "diabetes-timing",
+      "sourceId": "diabetes",
+      "sourceLocator": "Find the best times to eat or drink",
+      "summary": "Meal timing depends on medicines, activity and other conditions.",
+      "kind": "individualized",
+      "population": "Adults; educational context, not a personal prescription",
+      "requiredInputs": [
+        "medications",
+        "activity",
+        "otherConditions"
+      ],
+      "publishedValue": null,
+      "exceptions": [
+        "Skipping or delaying meals may cause low glucose with some medicines; do not generate fasting schedules."
+      ],
+      "reviewStatus": "source-checked-clinical-review-pending",
+      "reviewedBy": null,
+      "automaticPersonalization": false,
+      "productRecommendationEnabled": false
+    },
+    {
+      "id": "diabetes-target",
+      "sourceId": "diabetes",
+      "sourceLocator": "Plan how much to eat or drink",
+      "summary": "A care team can tailor the meal-planning method and portions.",
+      "kind": "individualized",
+      "population": "Adults; educational context, not a personal prescription",
+      "requiredInputs": [
+        "careTeamPlan"
+      ],
+      "publishedValue": null,
+      "exceptions": [
+        "Source does not provide one universal daily carbohydrate target."
+      ],
+      "reviewStatus": "source-checked-clinical-review-pending",
+      "reviewedBy": null,
+      "automaticPersonalization": false,
+      "productRecommendationEnabled": false
+    },
+    {
+      "id": "ckd-scope",
+      "sourceId": "ckd",
+      "sourceLocator": "How can I eat healthy with CKD?",
+      "summary": "CKD has no single diet; requirements change with kidney function and treatment.",
+      "kind": "education",
+      "population": "Adults with CKD; pediatric guidance is separate",
+      "requiredInputs": [],
+      "publishedValue": null,
+      "exceptions": [],
+      "reviewStatus": "source-checked-clinical-review-pending",
+      "reviewedBy": null,
+      "automaticPersonalization": false,
+      "productRecommendationEnabled": false
+    },
+    {
+      "id": "ckd-sodium",
+      "sourceId": "ckd",
+      "sourceLocator": "Sodium; Choose and prepare foods with less salt and sodium",
+      "summary": "Compare sodium amounts, but obtain the individual limit from the care team.",
+      "kind": "individualized",
+      "population": "Adults; educational context, not a personal prescription",
+      "requiredInputs": [
+        "sodiumMg",
+        "portionGrams",
+        "clinicianSodiumTarget"
+      ],
+      "publishedValue": null,
+      "exceptions": [
+        "The page cites the older 2020–2025 DGA; retain that citation context rather than relabel it as 2025–2030."
+      ],
+      "reviewStatus": "source-checked-clinical-review-pending",
+      "reviewedBy": null,
+      "automaticPersonalization": false,
+      "productRecommendationEnabled": false
+    },
+    {
+      "id": "ckd-potassium",
+      "sourceId": "ckd",
+      "sourceLocator": "Potassium; Choose foods that help keep your potassium level in the goal range",
+      "summary": "Potassium needs depend on blood levels; low-sodium substitutes may contain potassium chloride.",
+      "kind": "individualized",
+      "population": "Adults; educational context, not a personal prescription",
+      "requiredInputs": [
+        "potassiumMg",
+        "recentPotassiumResult",
+        "clinicianPlan",
+        "ingredients"
+      ],
+      "publishedValue": null,
+      "exceptions": [
+        "Do not automatically restrict potassium in every person with CKD.",
+        "Unknown potassium is not zero."
+      ],
+      "reviewStatus": "source-checked-clinical-review-pending",
+      "reviewedBy": null,
+      "automaticPersonalization": false,
+      "productRecommendationEnabled": false
+    },
+    {
+      "id": "ckd-phosphorus",
+      "sourceId": "ckd",
+      "sourceLocator": "Choose foods and drinks with less phosphorus",
+      "summary": "Phosphate ingredients can flag added phosphorus, but do not quantify its amount.",
+      "kind": "individualized",
+      "population": "Adults; educational context, not a personal prescription",
+      "requiredInputs": [
+        "ingredients",
+        "phosphorusMg",
+        "clinicianPlan"
+      ],
+      "publishedValue": null,
+      "exceptions": [
+        "Ingredient screening cannot establish total phosphorus or renal suitability."
+      ],
+      "reviewStatus": "source-checked-clinical-review-pending",
+      "reviewedBy": null,
+      "automaticPersonalization": false,
+      "productRecommendationEnabled": false
+    },
+    {
+      "id": "ckd-protein",
+      "sourceId": "ckd",
+      "sourceLocator": "Protein; Choose the amount and types of protein your body needs",
+      "summary": "Protein requirements vary; dialysis can increase needs.",
+      "kind": "individualized",
+      "population": "Adults; educational context, not a personal prescription",
+      "requiredInputs": [
+        "proteinG",
+        "dialysisStatus",
+        "clinicianProteinTarget"
+      ],
+      "publishedValue": null,
+      "exceptions": [
+        "Do not apply general-population protein targets automatically."
+      ],
+      "reviewStatus": "source-checked-clinical-review-pending",
+      "reviewedBy": null,
+      "automaticPersonalization": false,
+      "productRecommendationEnabled": false
+    },
+    {
+      "id": "ckd-fluid",
+      "sourceId": "ckd",
+      "sourceLocator": "Liquids; Track your liquids",
+      "summary": "Fluid limits, when needed, depend on kidney function and clinical guidance.",
+      "kind": "individualized",
+      "population": "Adults; educational context, not a personal prescription",
+      "requiredInputs": [
+        "clinicianFluidTarget",
+        "fluidIntake"
+      ],
+      "publishedValue": null,
+      "exceptions": [
+        "Do not prescribe fluid restriction from a CKD checkbox."
+      ],
+      "reviewStatus": "source-checked-clinical-review-pending",
+      "reviewedBy": null,
+      "automaticPersonalization": false,
+      "productRecommendationEnabled": false
+    },
+    {
+      "id": "dga-food-pattern",
+      "sourceId": "dga",
+      "sourceLocator": "Printed pp. 2–4",
+      "summary": "The edition emphasizes nutrient-dense foods, varied produce, whole grains, water and unsweetened drinks.",
+      "kind": "education",
+      "population": "Adults; educational context, not a personal prescription",
+      "requiredInputs": [],
+      "publishedValue": null,
+      "exceptions": [],
+      "reviewStatus": "source-checked-clinical-review-pending",
+      "reviewedBy": null,
+      "automaticPersonalization": false,
+      "productRecommendationEnabled": false
+    },
+    {
+      "id": "dga-protein",
+      "sourceId": "dga",
+      "sourceLocator": "Printed p. 2: Prioritize Protein Foods",
+      "summary": "The publication gives a body-weight-based protein range.",
+      "kind": "published-reference",
+      "population": "Adults; educational context, not a personal prescription",
+      "requiredInputs": [
+        "weightKg",
+        "clinicalApplicability"
+      ],
+      "publishedValue": {
+        "min": 1.2,
+        "max": 1.6,
+        "unit": "g/kg",
+        "period": "day"
+      },
+      "exceptions": [
+        "Not automatically applicable to CKD, dialysis, pregnancy or children."
+      ],
+      "reviewStatus": "source-checked-clinical-review-pending",
+      "reviewedBy": null,
+      "automaticPersonalization": false,
+      "productRecommendationEnabled": false
+    },
+    {
+      "id": "dga-dairy",
+      "sourceId": "dga",
+      "sourceLocator": "Printed p. 2: Consume Dairy",
+      "summary": "The main publication favors full-fat dairy without added sugars.",
+      "kind": "education",
+      "population": "Adults; educational context, not a personal prescription",
+      "requiredInputs": [],
+      "publishedValue": null,
+      "exceptions": [
+        "DASH differs; the supplementary servings guide also lists lower-fat dairy options. Preserve this distinction."
+      ],
+      "reviewStatus": "source-checked-clinical-review-pending",
+      "reviewedBy": null,
+      "automaticPersonalization": false,
+      "productRecommendationEnabled": false
+    },
+    {
+      "id": "dga-saturated-fat",
+      "sourceId": "dga",
+      "sourceLocator": "Printed p. 3: Incorporate Healthy Fats",
+      "summary": "The general saturated-fat ceiling is expressed as a share of daily energy.",
+      "kind": "published-reference",
+      "population": "Adults; educational context, not a personal prescription",
+      "requiredInputs": [
+        "dailyEnergyKcal",
+        "saturatedFatG"
+      ],
+      "publishedValue": {
+        "max": 10,
+        "unit": "percentEnergy",
+        "period": "day",
+        "relationship": "not-exceed"
+      },
+      "exceptions": [
+        "A percentage of daily energy is not a per-product percentage-by-weight limit."
+      ],
+      "reviewStatus": "source-checked-clinical-review-pending",
+      "reviewedBy": null,
+      "automaticPersonalization": false,
+      "productRecommendationEnabled": false
+    },
+    {
+      "id": "dga-added-sugars",
+      "sourceId": "dga",
+      "sourceLocator": "Printed p. 4: Limit Highly Processed Foods, Added Sugars, & Refined Carbohydrates",
+      "summary": "The edition discourages added sugars and states a per-meal ceiling.",
+      "kind": "published-reference",
+      "population": "Adults; educational context, not a personal prescription",
+      "requiredInputs": [
+        "addedSugarsG",
+        "mealContext"
+      ],
+      "publishedValue": {
+        "max": 10,
+        "unit": "g",
+        "period": "meal",
+        "relationship": "not-exceed"
+      },
+      "exceptions": [
+        "Total sugars cannot substitute for added sugars.",
+        "A ceiling is not a recommended intake."
+      ],
+      "reviewStatus": "source-checked-clinical-review-pending",
+      "reviewedBy": null,
+      "automaticPersonalization": false,
+      "productRecommendationEnabled": false
+    },
+    {
+      "id": "dga-sodium",
+      "sourceId": "dga",
+      "sourceLocator": "Printed p. 5: Sodium",
+      "summary": "Sodium guidance varies with age and notes high-activity exceptions.",
+      "kind": "published-reference",
+      "population": "General population age 1+ as stated in source; automatic pediatric use excluded",
+      "requiredInputs": [
+        "ageYears",
+        "activityContext",
+        "clinicalApplicability"
+      ],
+      "publishedValue": {
+        "unit": "mg",
+        "period": "day",
+        "relationship": "less-than",
+        "ageBands": [
+          {
+            "minAge": 1,
+            "maxAge": 3,
+            "limit": 1200
+          },
+          {
+            "minAge": 4,
+            "maxAge": 8,
+            "limit": 1500
+          },
+          {
+            "minAge": 9,
+            "maxAge": 13,
+            "limit": 1800
+          },
+          {
+            "minAge": 14,
+            "maxAge": null,
+            "limit": 2300
+          }
+        ]
+      },
+      "exceptions": [
+        "High sweat losses and clinical conditions require individual assessment."
+      ],
+      "reviewStatus": "source-checked-clinical-review-pending",
+      "reviewedBy": null,
+      "automaticPersonalization": false,
+      "productRecommendationEnabled": false
+    },
+    {
+      "id": "dga-special-populations",
+      "sourceId": "dga",
+      "sourceLocator": "Printed pp. 6–9: Special Populations & Considerations",
+      "summary": "Separate sections cover children, adolescents, pregnancy, lactation, older adults and chronic disease.",
+      "kind": "reference-only",
+      "population": "Adults; educational context, not a personal prescription",
+      "requiredInputs": [],
+      "publishedValue": null,
+      "exceptions": [
+        "No infant feeding, supplement dosing or pregnancy targets activated."
+      ],
+      "reviewStatus": "source-checked-clinical-review-pending",
+      "reviewedBy": null,
+      "automaticPersonalization": false,
+      "productRecommendationEnabled": false
+    },
+    {
+      "id": "dga-chronic",
+      "sourceId": "dga",
+      "sourceLocator": "Printed p. 9: Individuals with Chronic Disease",
+      "summary": "The source directs people with chronic disease to discuss adaptations with their health professional.",
+      "kind": "individualized",
+      "population": "Adults; educational context, not a personal prescription",
+      "requiredInputs": [
+        "clinicalApplicability"
+      ],
+      "publishedValue": null,
+      "exceptions": [],
+      "reviewStatus": "source-checked-clinical-review-pending",
+      "reviewedBy": null,
+      "automaticPersonalization": false,
+      "productRecommendationEnabled": false
+    },
+    {
+      "id": "dga-serving-reference",
+      "sourceId": "dga-servings",
+      "sourceLocator": "Printed p. 1: Daily Servings by Calorie Level",
+      "summary": "Serving examples and energy-pattern tables use their own definitions; retain those definitions when comparing patterns.",
+      "kind": "published-reference",
+      "population": "Adults; educational context, not a personal prescription",
+      "requiredInputs": [
+        "selectedEnergyPattern",
+        "foodGroup"
+      ],
+      "publishedValue": null,
+      "exceptions": [],
+      "reviewStatus": "source-checked-clinical-review-pending",
+      "reviewedBy": null,
+      "automaticPersonalization": false,
+      "productRecommendationEnabled": false
+    },
+    {
+      "id": "dga-claim-limits",
+      "sourceId": "dga-servings",
+      "sourceLocator": "Printed p. 2: FDA Healthy Claim: Added Sugar Limits",
+      "summary": "The supplement lists food-group-equivalent sugar limits; these alone do not establish eligibility for the full FDA claim.",
+      "kind": "reference-only",
+      "population": "Adults; educational context, not a personal prescription",
+      "requiredInputs": [
+        "addedSugarsG",
+        "foodGroupEquivalent"
+      ],
+      "publishedValue": null,
+      "exceptions": [
+        "No automatic Healthy label; additional criteria and primary FDA rules would need verification."
+      ],
+      "reviewStatus": "source-checked-clinical-review-pending",
+      "reviewedBy": null,
+      "automaticPersonalization": false,
+      "productRecommendationEnabled": false
+    }
+  ],
+  "coverage": "Nutrition guidance and structured reference tables from all four requested source families. Not an exhaustive executable transcription of every recommendation. Full source snapshots preserved.",
+  "conflicts": [
+    {
+      "id": "dairy-patterns",
+      "sourceIds": [
+        "dash",
+        "dga",
+        "dga-servings"
+      ],
+      "resolution": "Unresolved for personalization. Keep plan-specific guidance; daily-serving appendix includes broader dairy options than the DGA main text."
+    },
+    {
+      "id": "protein-ckd",
+      "sourceIds": [
+        "dga",
+        "ckd"
+      ],
+      "resolution": "Clinical CKD/dialysis context required before any general protein target."
+    },
+    {
+      "id": "serving-units",
+      "sourceIds": [
+        "dash",
+        "dga-servings"
+      ],
+      "resolution": "Do not exchange food-group servings between plans or assume package serving equivalence."
+    }
+  ],
+  "currentCatalogGaps": [
+    "totalCarbohydrateG",
+    "addedSugarsG",
+    "proteinG",
+    "potassiumMg",
+    "phosphorusMg",
+    "fluidVolumeMl",
+    "validatedFoodGroupEquivalents"
+  ],
+  "releaseRequirements": [
+    "source-attribution UI and education integration",
+    "clinical review of any personalized rule",
+    "conflict and missing-data handling",
+    "privacy/provider gates before real health-data processing"
+  ]
+}

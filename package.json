@@ -1,0 +1,38 @@
+{
+  "name": "grocery-health-workspace",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "start": "npm run start --workspace @grocery/mobile",
+    "web": "npm run web --workspace @grocery/mobile",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "npm run lint --workspace @grocery/mobile",
+    "test": "node --experimental-strip-types --test packages/core/test/*.test.ts apps/service/test/*.test.ts",
+    "service": "npm run start --workspace @grocery/service",
+    "check": "npm run typecheck && npm run lint && npm test && npm run check:tooling && npm run test:report-input && npm run check:photo-ui && npm run check:needs-ui && npm run check:news",
+    "check:tooling": "node --test ops/decoder.test.cjs ops/scene-lifecycle.test.cjs ops/scan-timing-release.test.cjs",
+    "postinstall": "node ops/apply-decoder-patch.cjs",
+    "test:report-input": "node --test apps/mobile/modules/private-input/tests/reportInput.adapter.test.cjs",
+    "check:photo-ui": "node --experimental-strip-types ops/photo-ui-check.cjs",
+    "check:news": "python3 -B ops/test-food-news.py && node --experimental-strip-types ops/news-ui-check.cjs",
+    "check:needs-ui": "node --experimental-strip-types ops/needs-ui-check.cjs"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "overrides": {
+    "react-native-reanimated": "4.5.1",
+    "react-native-worklets": "0.10.1",
+    "uuid": "11.1.1"
+  },
+  "devDependencies": {
+    "react-native-reanimated": "4.5.1",
+    "react-native-worklets": "0.10.1",
+    "uuid": "11.1.1",
+    "xcode": "3.0.1"
+  }
+}

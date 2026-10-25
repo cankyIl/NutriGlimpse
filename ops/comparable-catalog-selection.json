@@ -1,0 +1,1295 @@
+{
+  "source": "USDA FoodData Central",
+  "license": "CC0-1.0",
+  "selectionVersion": 1,
+  "categories": {
+    "plain-oats": 15,
+    "granola": 42,
+    "breakfast-cereal": 56,
+    "sliced-bread": 24,
+    "plain-yogurt": 12,
+    "peanut-butter": 11
+  },
+  "products": [
+    {
+      "id": "2672931",
+      "name": "ROLLED OATS, ROLLED OATS",
+      "brand": "Post Consumer Brands, LLC",
+      "barcode": "00042400046516",
+      "group": "plain-oats",
+      "date": "11/16/2023"
+    },
+    {
+      "id": "2672932",
+      "name": "ROLLED OATS",
+      "brand": "Post Consumer Brands, LLC",
+      "barcode": "00042400046509",
+      "group": "plain-oats",
+      "date": "11/16/2023"
+    },
+    {
+      "id": "2677390",
+      "name": "ROLLED OATS",
+      "brand": "Grupo Industrial Vida, S.A. De C.V.",
+      "barcode": "00094331121015",
+      "group": "plain-oats",
+      "date": "11/16/2023"
+    },
+    {
+      "id": "2665404",
+      "name": "SPROUTED ROLLED OATS",
+      "brand": "Morgan Wholesale Building Material, Co.",
+      "barcode": "00675625371189",
+      "group": "plain-oats",
+      "date": "11/16/2023"
+    },
+    {
+      "id": "2671854",
+      "name": "EXTRA THICK ROLLED OATS",
+      "brand": "Bob's Red Mill Natural Foods, Inc.",
+      "barcode": "00039978041555",
+      "group": "plain-oats",
+      "date": "11/16/2023"
+    },
+    {
+      "id": "2671882",
+      "name": "QUICK COOKING ROLLED OATS",
+      "brand": "Bob's Red Mill Natural Foods, Inc.",
+      "barcode": "00039978033765",
+      "group": "plain-oats",
+      "date": "11/16/2023"
+    },
+    {
+      "id": "2671849",
+      "name": "QUICK COOKING ROLLED OATS",
+      "brand": "Bob's Red Mill Natural Foods, Inc.",
+      "barcode": "00039978041531",
+      "group": "plain-oats",
+      "date": "11/16/2023"
+    },
+    {
+      "id": "2671855",
+      "name": "OLD FASHIONED ROLLED OATS WHOLE GRAIN, OLD FASHIONED ROLLED OATS",
+      "brand": "Bob's Red Mill Natural Foods, Inc.",
+      "barcode": "00039978039521",
+      "group": "plain-oats",
+      "date": "11/16/2023"
+    },
+    {
+      "id": "2658611",
+      "name": "GRANOLA",
+      "brand": "Safeway, Inc.",
+      "barcode": "00021130120529",
+      "group": "granola",
+      "date": "10/26/2023"
+    },
+    {
+      "id": "2770736",
+      "name": "Bluey Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000227835",
+      "group": "breakfast-cereal",
+      "date": "6/25/2026"
+    },
+    {
+      "id": "2776976",
+      "name": "Cheerios Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000224650",
+      "group": "breakfast-cereal",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2777441",
+      "name": "Cheerios Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000189522",
+      "group": "breakfast-cereal",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2777011",
+      "name": "Total Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000275638",
+      "group": "breakfast-cereal",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2774917",
+      "name": "Boo Berry Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000238558",
+      "group": "breakfast-cereal",
+      "date": "8/20/2026"
+    },
+    {
+      "id": "2716350",
+      "name": "Carmella Creeper Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000206120",
+      "group": "breakfast-cereal",
+      "date": "10/31/2024"
+    },
+    {
+      "id": "2777495",
+      "name": "Cheerios Breakfast Cereal Cup",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000141599",
+      "group": "breakfast-cereal",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2769655",
+      "name": "Cheerios Confetti Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000232488",
+      "group": "breakfast-cereal",
+      "date": "5/21/2026"
+    },
+    {
+      "id": "2769654",
+      "name": "Cheerios Confetti Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000232471",
+      "group": "breakfast-cereal",
+      "date": "5/21/2026"
+    },
+    {
+      "id": "2777033",
+      "name": "Chocolate Cheerios Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000231184",
+      "group": "breakfast-cereal",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2777378",
+      "name": "Chocolate Chex Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000170988",
+      "group": "breakfast-cereal",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2777472",
+      "name": "Cinnamon Chex Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000103719",
+      "group": "breakfast-cereal",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2777379",
+      "name": "Cinnamon Chex Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000170995",
+      "group": "breakfast-cereal",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2774918",
+      "name": "Count Chocula Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000238541",
+      "group": "breakfast-cereal",
+      "date": "8/20/2026"
+    },
+    {
+      "id": "2774916",
+      "name": "Franken Berry Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000238565",
+      "group": "breakfast-cereal",
+      "date": "8/20/2026"
+    },
+    {
+      "id": "2740713",
+      "name": "Lucky Charms Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000224674",
+      "group": "breakfast-cereal",
+      "date": "8/21/2025"
+    },
+    {
+      "id": "2777380",
+      "name": "Rice Chex Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000171022",
+      "group": "breakfast-cereal",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2720715",
+      "name": "Trix Loaded Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000206816",
+      "group": "breakfast-cereal",
+      "date": "12/19/2024"
+    },
+    {
+      "id": "2720722",
+      "name": "Trix Mini Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000197091",
+      "group": "breakfast-cereal",
+      "date": "12/19/2024"
+    },
+    {
+      "id": "2720723",
+      "name": "Trix Mini Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000197367",
+      "group": "breakfast-cereal",
+      "date": "12/19/2024"
+    },
+    {
+      "id": "2770031",
+      "name": "Birthday Cake Cheerios Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000236561",
+      "group": "breakfast-cereal",
+      "date": "6/25/2026"
+    },
+    {
+      "id": "2777009",
+      "name": "Bluey Breakfast Cereal 2 Pack",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000228214",
+      "group": "breakfast-cereal",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2770735",
+      "name": "Bluey Breakfast Cereal Family Size",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000227842",
+      "group": "breakfast-cereal",
+      "date": "6/25/2026"
+    },
+    {
+      "id": "2738640",
+      "name": "Boo Berry Halloween Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000275812",
+      "group": "breakfast-cereal",
+      "date": "7/24/2025"
+    },
+    {
+      "id": "2739285",
+      "name": "Boo Berry Halloween Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000178212",
+      "group": "breakfast-cereal",
+      "date": "7/24/2025"
+    },
+    {
+      "id": "2776979",
+      "name": "Cheerios Breakfast Cereal Mega Size",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000224698",
+      "group": "breakfast-cereal",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2769657",
+      "name": "Cheerios Confetti Breakfast Cereal Cup",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000233799",
+      "group": "breakfast-cereal",
+      "date": "5/21/2026"
+    },
+    {
+      "id": "2777412",
+      "name": "Cheerios Frosted Lemon Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000200074",
+      "group": "breakfast-cereal",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2777047",
+      "name": "Cheerios Protein Cinnamon Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000233188",
+      "group": "breakfast-cereal",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2720085",
+      "name": "Cheerios Strawberry Vanilla Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000221642",
+      "group": "breakfast-cereal",
+      "date": "12/19/2024"
+    },
+    {
+      "id": "2683180",
+      "name": "Chocolate Toast Crunch Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000127951",
+      "group": "breakfast-cereal",
+      "date": "2/1/2024"
+    },
+    {
+      "id": "2776978",
+      "name": "Cinnamon Toast Crunch Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000224681",
+      "group": "breakfast-cereal",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2777422",
+      "name": "Cocoa Puffs Breakfast Cereal Bag",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000202214",
+      "group": "breakfast-cereal",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2720716",
+      "name": "Cocoa Puffs Loaded Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000206823",
+      "group": "breakfast-cereal",
+      "date": "12/19/2024"
+    },
+    {
+      "id": "2738642",
+      "name": "Count Chocula Halloween Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000275836",
+      "group": "breakfast-cereal",
+      "date": "7/24/2025"
+    },
+    {
+      "id": "2739286",
+      "name": "Count Chocula Halloween Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000178229",
+      "group": "breakfast-cereal",
+      "date": "7/24/2025"
+    },
+    {
+      "id": "2739284",
+      "name": "Franken Berry Halloween Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000178199",
+      "group": "breakfast-cereal",
+      "date": "7/24/2025"
+    },
+    {
+      "id": "2738641",
+      "name": "Franken Berry Halloween Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000275829",
+      "group": "breakfast-cereal",
+      "date": "7/24/2025"
+    },
+    {
+      "id": "2777386",
+      "name": "French Toast Crunch Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000151963",
+      "group": "breakfast-cereal",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2746534",
+      "name": "French Toast Crunch Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000169647",
+      "group": "breakfast-cereal",
+      "date": "11/20/2025"
+    },
+    {
+      "id": "2770033",
+      "name": "General Mills Grinch Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000231849",
+      "group": "breakfast-cereal",
+      "date": "6/25/2026"
+    },
+    {
+      "id": "2720708",
+      "name": "Gingerbread Toast Crunch Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000206144",
+      "group": "breakfast-cereal",
+      "date": "12/19/2024"
+    },
+    {
+      "id": "2776977",
+      "name": "Honey Nut Cheerios Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000224667",
+      "group": "breakfast-cereal",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2692432",
+      "name": "Lucky Charms Minis Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000201972",
+      "group": "breakfast-cereal",
+      "date": "5/16/2024"
+    },
+    {
+      "id": "2720690",
+      "name": "Lucky Charms Minis Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000201767",
+      "group": "breakfast-cereal",
+      "date": "12/19/2024"
+    },
+    {
+      "id": "2735850",
+      "name": "Lucky Charms S'mores Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000194571",
+      "group": "breakfast-cereal",
+      "date": "6/19/2025"
+    },
+    {
+      "id": "2657202",
+      "name": "PEANUT BUTTER CEREAL, PEANUT BUTTER",
+      "brand": "Post Consumer Brands, LLC",
+      "barcode": "00070617006245",
+      "group": "breakfast-cereal",
+      "date": "10/26/2023"
+    },
+    {
+      "id": "2656023",
+      "name": "WHOLE WHEAT BREAD",
+      "brand": "Rhodes International Inc.",
+      "barcode": "00070022007158",
+      "group": "sliced-bread",
+      "date": "10/26/2023"
+    },
+    {
+      "id": "2656868",
+      "name": "100% WHOLE WHEAT BREAD",
+      "brand": "C.B. Dumont Co., Inc.",
+      "barcode": "00082391000029",
+      "group": "sliced-bread",
+      "date": "10/26/2023"
+    },
+    {
+      "id": "2769968",
+      "name": "Oikos Pro Plain Yogurt",
+      "brand": "Dannon Company",
+      "barcode": "00036632042590",
+      "group": "plain-yogurt",
+      "date": "5/21/2026"
+    },
+    {
+      "id": "2756623",
+      "name": "Kroger Whole Milk Plain Yogurt",
+      "brand": "",
+      "barcode": "00011110107565",
+      "group": "plain-yogurt",
+      "date": "4/23/2026"
+    },
+    {
+      "id": "2774937",
+      "name": "Yoplait Protein Plain Yogurt Tub",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00070470238074",
+      "group": "plain-yogurt",
+      "date": "8/20/2026"
+    },
+    {
+      "id": "2756766",
+      "name": "Dannon All Natural Plain Yogurt - 32oz",
+      "brand": "",
+      "barcode": "00036632002822",
+      "group": "plain-yogurt",
+      "date": "4/23/2026"
+    },
+    {
+      "id": "2757720",
+      "name": "Dannon Nonfat Plain Yogurt - 32 Oz",
+      "brand": "",
+      "barcode": "00036632002518",
+      "group": "plain-yogurt",
+      "date": "4/23/2026"
+    },
+    {
+      "id": "2740397",
+      "name": "Mountain High Low Fat Plain Yogurt",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00075270001910",
+      "group": "plain-yogurt",
+      "date": "8/21/2025"
+    },
+    {
+      "id": "2740394",
+      "name": "Mountain High Low Fat Plain Yogurt",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00075270410514",
+      "group": "plain-yogurt",
+      "date": "8/21/2025"
+    },
+    {
+      "id": "2740393",
+      "name": "Mountain High Original Style Plain Yogurt",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00075270410521",
+      "group": "plain-yogurt",
+      "date": "8/21/2025"
+    },
+    {
+      "id": "2740379",
+      "name": "Mountain High Original Style Plain Yogurt",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00075270001606",
+      "group": "plain-yogurt",
+      "date": "8/21/2025"
+    },
+    {
+      "id": "2756890",
+      "name": "Siggi's 0% Milkfat Strained Non- Fat Plain Yogurt",
+      "brand": "",
+      "barcode": "00898248001411",
+      "group": "plain-yogurt",
+      "date": "4/23/2026"
+    },
+    {
+      "id": "2756083",
+      "name": "Green Wise Greek Fat- Free Plain Yogurt - 24 oz",
+      "brand": "",
+      "barcode": "00025317005593",
+      "group": "plain-yogurt",
+      "date": "4/23/2026"
+    },
+    {
+      "id": "2755978",
+      "name": "Kalona Super Natural Organic Whole Milk Plain Yogurt, Grass-fed Cows",
+      "brand": "",
+      "barcode": "00750088701053",
+      "group": "plain-yogurt",
+      "date": "4/23/2026"
+    },
+    {
+      "id": "2776518",
+      "name": "RALSTON FOODS 18 OZ QUICK OATS",
+      "brand": "Bay Valley Foods",
+      "barcode": "00791669620196",
+      "group": "plain-oats",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2776475",
+      "name": "RALSTON FOODS 18 OZ QUICK OATS-CASE OF 12",
+      "brand": "Bay Valley Foods",
+      "barcode": "10791669409354",
+      "group": "plain-oats",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2776468",
+      "name": "RALSTON FOODS 42 OZ QUICK OATS-CASE OF 12",
+      "brand": "Bay Valley Foods",
+      "barcode": "10791669620223",
+      "group": "plain-oats",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2776419",
+      "name": "RALSTON FOODS 18 OZ OLD FASHIONED OATS",
+      "brand": "Bay Valley Foods",
+      "barcode": "00791669409364",
+      "group": "plain-oats",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2774950",
+      "name": "RALSTON FOODS 42 OZ QUICK OATS",
+      "brand": "Bay Valley Foods",
+      "barcode": "00791669620226",
+      "group": "plain-oats",
+      "date": "8/20/2026"
+    },
+    {
+      "id": "2774948",
+      "name": "RALSTON  FOODS  42 OZ OLD FASHIONED OATS",
+      "brand": "Bay Valley Foods",
+      "barcode": "00791669670146",
+      "group": "plain-oats",
+      "date": "8/20/2026"
+    },
+    {
+      "id": "2772170",
+      "name": ":ratio Protein Fiber Honey Cashew Granola",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000236325",
+      "group": "granola",
+      "date": "7/23/2026"
+    },
+    {
+      "id": "2772169",
+      "name": ":ratio Protein Fiber Maple Almond Granola",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000236318",
+      "group": "granola",
+      "date": "7/23/2026"
+    },
+    {
+      "id": "2741705",
+      "name": "Quaker Old Fashioned Oats 42 Oz",
+      "brand": "PepsiCo Inc. Brand Owner",
+      "barcode": "00030000432938",
+      "group": "plain-oats",
+      "date": "8/21/2025"
+    },
+    {
+      "id": "2777439",
+      "name": "Nature Valley Oats 'n Honey Protein Granola",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000185876",
+      "group": "granola",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2777042",
+      "name": "Wilde Terra Triple Berry No Added Sugar Granola",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000234222",
+      "group": "granola",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2777041",
+      "name": "Wild Terra Apple Cinnamon No Added Sugar Granola",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000234215",
+      "group": "granola",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2775078",
+      "name": "Nature Valley Oats & Dark Chocolate Protein Granola Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000437784",
+      "group": "granola",
+      "date": "8/20/2026"
+    },
+    {
+      "id": "2774884",
+      "name": "Nature Valley Protein Oats 'N Honey Granola Tub",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000238091",
+      "group": "granola",
+      "date": "8/20/2026"
+    },
+    {
+      "id": "2774883",
+      "name": "Nature Valley Protein Oats Dark and Chocolate Granola Tub",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000238114",
+      "group": "granola",
+      "date": "8/20/2026"
+    },
+    {
+      "id": "2774389",
+      "name": "Nature Valley Granola Cereal Bulk Bag Oats & Fruit 4/50 OZ",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "10016000119878",
+      "group": "granola",
+      "date": "8/20/2026"
+    },
+    {
+      "id": "2772892",
+      "name": "Cheerios Honey Nut Granola",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000233935",
+      "group": "granola",
+      "date": "7/23/2026"
+    },
+    {
+      "id": "2772891",
+      "name": "Cheerios Granola Chocolate Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000233928",
+      "group": "granola",
+      "date": "7/23/2026"
+    },
+    {
+      "id": "2772890",
+      "name": "Nature Valley Protein Cinnamon Roll Granola",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000233195",
+      "group": "granola",
+      "date": "7/23/2026"
+    },
+    {
+      "id": "2772782",
+      "name": "Cascadian Farm Organic No Added Sugar Cinnamon Apple Granola",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00021908133188",
+      "group": "granola",
+      "date": "7/23/2026"
+    },
+    {
+      "id": "2772198",
+      "name": "Cheerios Granola Apple Cinnamon Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000233911",
+      "group": "granola",
+      "date": "7/23/2026"
+    },
+    {
+      "id": "2772197",
+      "name": "Nature Valley Protein Banana Bread Granola",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000233836",
+      "group": "granola",
+      "date": "7/23/2026"
+    },
+    {
+      "id": "2772180",
+      "name": "Morning Summit Granola Mega Pack",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000237360",
+      "group": "granola",
+      "date": "7/23/2026"
+    },
+    {
+      "id": "2770859",
+      "name": "Nature Valley Oats & Honey Protein Granola Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000437791",
+      "group": "granola",
+      "date": "6/25/2026"
+    },
+    {
+      "id": "2769468",
+      "name": "Cascadian Farm Organic No Added Sugar Blueberry Vanilla Granola",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00021908133171",
+      "group": "granola",
+      "date": "5/21/2026"
+    },
+    {
+      "id": "2769467",
+      "name": "Cascadian Farm Organic No Added Sugar Coconut Cashew Granola",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00021908133157",
+      "group": "granola",
+      "date": "5/21/2026"
+    },
+    {
+      "id": "2758489",
+      "name": "Nature Valley Reduced Sugar Vanilla Almond Granola",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000188914",
+      "group": "granola",
+      "date": "4/23/2026"
+    },
+    {
+      "id": "2755121",
+      "name": ":ratio Toasted Almond Granola",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000171626",
+      "group": "granola",
+      "date": "3/12/2026"
+    },
+    {
+      "id": "2755080",
+      "name": "Nature Valley Vanilla Protein Granola",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000219854",
+      "group": "granola",
+      "date": "3/12/2026"
+    },
+    {
+      "id": "2754969",
+      "name": "Cascadian Farm Organic Fruit and Nut Family Size Granola",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00021908139067",
+      "group": "granola",
+      "date": "3/12/2026"
+    },
+    {
+      "id": "2754968",
+      "name": "Cascadian Farm Organic Oats and Honey Family Size Granola",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00021908139050",
+      "group": "granola",
+      "date": "3/12/2026"
+    },
+    {
+      "id": "2754967",
+      "name": "Cascadian Farm Organic Oats and Honey Granola",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00021908133218",
+      "group": "granola",
+      "date": "3/12/2026"
+    },
+    {
+      "id": "2754966",
+      "name": "Cascadian Farm Organic Cinnamon Raisin Granola",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00021908133133",
+      "group": "granola",
+      "date": "3/12/2026"
+    },
+    {
+      "id": "2754965",
+      "name": "Cascadian Farm Organic French Vanilla Almond Granola",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00021908133126",
+      "group": "granola",
+      "date": "3/12/2026"
+    },
+    {
+      "id": "2754964",
+      "name": "Cascadian Farm Organic Fruit and Nut Granola",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00021908133119",
+      "group": "granola",
+      "date": "3/12/2026"
+    },
+    {
+      "id": "2753346",
+      "name": "Cascadian Farm Organic Dark Chocolate Almond Granola",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00021908133140",
+      "group": "granola",
+      "date": "2/19/2026"
+    },
+    {
+      "id": "2752153",
+      "name": "Nature Valley Oats 'n Honey Protein Granola",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000441699",
+      "group": "granola",
+      "date": "1/22/2026"
+    },
+    {
+      "id": "2752129",
+      "name": "Cascadian Farm Organic Honey Cashew Protein Grains Granola",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00021908135748",
+      "group": "granola",
+      "date": "1/22/2026"
+    },
+    {
+      "id": "2751733",
+      "name": "Wilde Terra No Added Sugar Blueberry Vanilla Almond Granola",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000234413",
+      "group": "granola",
+      "date": "1/22/2026"
+    },
+    {
+      "id": "2746634",
+      "name": ":ratio Trio Toasted Coconut Granola",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000186217",
+      "group": "granola",
+      "date": "11/20/2025"
+    },
+    {
+      "id": "2746612",
+      "name": "Nature Valley Oats 'n Honey Granola",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000229648",
+      "group": "granola",
+      "date": "11/20/2025"
+    },
+    {
+      "id": "2746592",
+      "name": "Nature Valley Crunchy Oats 'n Honey Granola Family Size",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000223080",
+      "group": "granola",
+      "date": "11/20/2025"
+    },
+    {
+      "id": "2746528",
+      "name": ":ratio Trio Toasted Almond Granola",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000171558",
+      "group": "granola",
+      "date": "11/20/2025"
+    },
+    {
+      "id": "2746514",
+      "name": "Nature Valley Crunchy Oats & Dark Chocolate Granola",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000150874",
+      "group": "granola",
+      "date": "11/20/2025"
+    },
+    {
+      "id": "2746398",
+      "name": "Nature Valley Crunchy Oats 'n Honey Granola",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000432680",
+      "group": "granola",
+      "date": "11/20/2025"
+    },
+    {
+      "id": "2746397",
+      "name": "Nature Valley Crunchy Cinnamon Granola",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000432697",
+      "group": "granola",
+      "date": "11/20/2025"
+    },
+    {
+      "id": "2745823",
+      "name": "Nature Valley Granola Cereal Bulk Bag Oats 'n Honey 4/50 OZ",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "10016000271118",
+      "group": "granola",
+      "date": "11/20/2025"
+    },
+    {
+      "id": "2745143",
+      "name": "Autumn's Gold Toasted Coconut Almond Grain Free Granola",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000469655",
+      "group": "granola",
+      "date": "11/20/2025"
+    },
+    {
+      "id": "2777514",
+      "name": "Reese's Puffs Peanut Butter and Chocolate Whole Grain Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000122222",
+      "group": "breakfast-cereal",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2777513",
+      "name": "Reese's Puffs Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000121256",
+      "group": "breakfast-cereal",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2777411",
+      "name": "Reese's Mini Puffs Breakfast Cereal Bag",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000199750",
+      "group": "breakfast-cereal",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2777410",
+      "name": "Reese's Mini Puffs Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000197466",
+      "group": "breakfast-cereal",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2777398",
+      "name": "Reese's Puffs Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000163713",
+      "group": "breakfast-cereal",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2777387",
+      "name": "Peanut Butter Chex Gluten Free Breakfast Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000152335",
+      "group": "breakfast-cereal",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2776995",
+      "name": "Reese's Puffs Cereal 2 Count",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000207820",
+      "group": "breakfast-cereal",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2776590",
+      "name": "Reese's Puffs Peanut Butter And Jam Gameday Cereal",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "00016000239913",
+      "group": "breakfast-cereal",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2776022",
+      "name": "JIF 80 OUNCE NATURAL CREAMY PEANUT BUTTER TWIN PACK 2 Pack",
+      "brand": "The J.M. Smucker Company",
+      "barcode": "00051500255421",
+      "group": "peanut-butter",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2776014",
+      "name": "JIF 40 OUNCE NATURAL CREAMY PEANUT BUTTER Each",
+      "brand": "The J.M. Smucker Company",
+      "barcode": "00051500255247",
+      "group": "peanut-butter",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2776012",
+      "name": "JIF 80 OUNCE CRUNCHY PEANUT BUTTER TWIN PACK 2 Pack",
+      "brand": "The J.M. Smucker Company",
+      "barcode": "00051500247761",
+      "group": "peanut-butter",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2776011",
+      "name": "JIF 12 OUNCE CREAMY PEANUT BUTTER Each",
+      "brand": "The J.M. Smucker Company",
+      "barcode": "00051500241912",
+      "group": "peanut-butter",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2776006",
+      "name": "JIF 40 OUNCE CRUNCHY PEANUT BUTTER TWIN JAR - EACH Each",
+      "brand": "The J.M. Smucker Company",
+      "barcode": "00051500240915",
+      "group": "peanut-butter",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2775888",
+      "name": "Reese's Puffs Cereal Bulk Bag 4/35 OZ",
+      "brand": "GENERAL MILLS SALES INC.",
+      "barcode": "10016000132556",
+      "group": "breakfast-cereal",
+      "date": "9/24/2026"
+    },
+    {
+      "id": "2774556",
+      "name": "Jif 16 Ounce Creamy Peanut Butter eComm 6 Count Case",
+      "brand": "The J.M. Smucker Company",
+      "barcode": "00051500060438",
+      "group": "peanut-butter",
+      "date": "8/20/2026"
+    },
+    {
+      "id": "2774547",
+      "name": "Laura Scudder's 26 Ounce Smooth Peanut Butter Twin Pack",
+      "brand": "The J.M. Smucker Company",
+      "barcode": "00051500825860",
+      "group": "peanut-butter",
+      "date": "8/20/2026"
+    },
+    {
+      "id": "2771945",
+      "name": "JIF 16 OUNCE NATURAL CREAMY PEANUT BUTTER HONEY Each",
+      "brand": "The J.M. Smucker Company",
+      "barcode": "00051500255780",
+      "group": "peanut-butter",
+      "date": "7/23/2026"
+    },
+    {
+      "id": "2771944",
+      "name": "JIF 12 OUNCE NATURAL CREAMY PEANUT BUTTER TO GO",
+      "brand": "The J.M. Smucker Company",
+      "barcode": "00051500243077",
+      "group": "peanut-butter",
+      "date": "7/23/2026"
+    },
+    {
+      "id": "2771943",
+      "name": "JIF 54 OUNCE CREAMY PEANUT BUTTER TO GO 36 PACK 36 Count Case",
+      "brand": "The J.M. Smucker Company",
+      "barcode": "00051500241431",
+      "group": "peanut-butter",
+      "date": "7/23/2026"
+    },
+    {
+      "id": "2771942",
+      "name": "JIF 12 OUNCE CRUNCHY PEANUT BUTTER TO GO",
+      "brand": "The J.M. Smucker Company",
+      "barcode": "00051500241301",
+      "group": "peanut-butter",
+      "date": "7/23/2026"
+    },
+    {
+      "id": "2773523",
+      "name": "Pepperidge Farm Farmhouse 100% Whole Wheat Bread, 24 Oz Loaf",
+      "brand": "PEPPERIDGE FARM INC",
+      "barcode": "00014100082774",
+      "group": "sliced-bread",
+      "date": "7/23/2026"
+    },
+    {
+      "id": "2773493",
+      "name": "Pepperidge Farm Whole Grain Thin-Sliced 100% Whole Wheat Bread, 14 Oz Loaf",
+      "brand": "PEPPERIDGE FARM INC",
+      "barcode": "00014100055969",
+      "group": "sliced-bread",
+      "date": "7/23/2026"
+    },
+    {
+      "id": "2773478",
+      "name": "Pepperidge Farm Very Thin 100% Whole Wheat Bread, 16 oz.",
+      "brand": "PEPPERIDGE FARM INC",
+      "barcode": "00014100071327",
+      "group": "sliced-bread",
+      "date": "7/23/2026"
+    },
+    {
+      "id": "2773466",
+      "name": "Pepperidge Farm Whole Grain 100% Whole Wheat Bread, 24 Oz Loaf",
+      "brand": "PEPPERIDGE FARM INC",
+      "barcode": "00014100085997",
+      "group": "sliced-bread",
+      "date": "7/23/2026"
+    },
+    {
+      "id": "2773268",
+      "name": "Pepperidge Farm Light Style Whole Wheat Bread, 16 Oz Loaf",
+      "brand": "PEPPERIDGE FARM INC",
+      "barcode": "00014100041931",
+      "group": "sliced-bread",
+      "date": "7/23/2026"
+    },
+    {
+      "id": "2773198",
+      "name": "Pepperidge Farm Whole Grain Thin-Sliced 100% Whole Wheat Bread, 22 Oz Loaf",
+      "brand": "PEPPERIDGE FARM INC",
+      "barcode": "00014100049906",
+      "group": "sliced-bread",
+      "date": "7/23/2026"
+    },
+    {
+      "id": "2698111",
+      "name": "Pepperidge Farm Stone Ground 100% Whole Wheat Bread, 16 oz. Loaf",
+      "brand": "Pepperidge Farm Inc.",
+      "barcode": "00014100071013",
+      "group": "sliced-bread",
+      "date": "7/11/2024"
+    },
+    {
+      "id": "2679979",
+      "name": "100% WHOLE WHEAT BREAD, 100% WHOLE WHEAT",
+      "brand": "Bimbo Bakeries USA, Inc.",
+      "barcode": "00072945601345",
+      "group": "sliced-bread",
+      "date": "11/16/2023"
+    },
+    {
+      "id": "2679948",
+      "name": "HONEY WHOLE WHEAT BREAD, HONEY WHOLE WHEAT",
+      "brand": "Bimbo Bakeries USA, Inc.",
+      "barcode": "00072945715899",
+      "group": "sliced-bread",
+      "date": "11/16/2023"
+    },
+    {
+      "id": "2675941",
+      "name": "100% WHOLE WHEAT BREAD, 100% WHOLE WHEAT",
+      "brand": "Safeway, Inc.",
+      "barcode": "00021130182121",
+      "group": "sliced-bread",
+      "date": "11/16/2023"
+    },
+    {
+      "id": "2675939",
+      "name": "100% WHOLE WHEAT BREAD, 100% WHOLE WHEAT",
+      "brand": "Safeway, Inc.",
+      "barcode": "00021130182305",
+      "group": "sliced-bread",
+      "date": "11/16/2023"
+    },
+    {
+      "id": "2675893",
+      "name": "100% WHOLE WHEAT BREAD, 100% WHOLE WHEAT",
+      "brand": "Safeway, Inc.",
+      "barcode": "00021130183418",
+      "group": "sliced-bread",
+      "date": "11/16/2023"
+    },
+    {
+      "id": "2675883",
+      "name": "100% WHOLE WHEAT BREAD, 100% WHOLE WHEAT",
+      "brand": "Safeway, Inc.",
+      "barcode": "00021130184309",
+      "group": "sliced-bread",
+      "date": "11/16/2023"
+    },
+    {
+      "id": "2675821",
+      "name": "100% WHOLE WHEAT BREAD, 100% WHOLE WHEAT",
+      "brand": "Safeway, Inc.",
+      "barcode": "00021130119677",
+      "group": "sliced-bread",
+      "date": "11/16/2023"
+    },
+    {
+      "id": "2672491",
+      "name": "ORGANIC HONEY SWEET WHOLE WHEAT BREAD, HONEY SWEET WHOLE WHEAT",
+      "brand": "The Hain Celestial Group, Inc.",
+      "barcode": "00031493242424",
+      "group": "sliced-bread",
+      "date": "11/16/2023"
+    },
+    {
+      "id": "2672466",
+      "name": "ORGANIC 100% WHOLE WHEAT BREAD, WHOLE WHEAT",
+      "brand": "The Hain Celestial Group, Inc.",
+      "barcode": "00031493021609",
+      "group": "sliced-bread",
+      "date": "11/16/2023"
+    },
+    {
+      "id": "2667104",
+      "name": "HONEY WHOLE WHEAT BREAD",
+      "brand": "Breadsmith Franchising, Inc.",
+      "barcode": "00714373000313",
+      "group": "sliced-bread",
+      "date": "11/16/2023"
+    },
+    {
+      "id": "2662202",
+      "name": "100% WHOLE WHEAT BREAD, 100% WHOLE WHEAT",
+      "brand": "Target Stores",
+      "barcode": "00085239104699",
+      "group": "sliced-bread",
+      "date": "10/26/2023"
+    },
+    {
+      "id": "2658869",
+      "name": "100% WHOLE WHEAT BREAD, 100% WHOLE WHEAT",
+      "brand": "Target Stores",
+      "barcode": "00085239718308",
+      "group": "sliced-bread",
+      "date": "10/26/2023"
+    },
+    {
+      "id": "2658745",
+      "name": "100% WHOLE WHEAT BREAD, 100% WHOLE WHEAT",
+      "brand": "Safeway, Inc.",
+      "barcode": "00021130182138",
+      "group": "sliced-bread",
+      "date": "10/26/2023"
+    },
+    {
+      "id": "2656381",
+      "name": "100% WHOLE WHEAT BREAD, 100% WHOLE WHEAT",
+      "brand": "Wakefern Food Corporation",
+      "barcode": "00041190570096",
+      "group": "sliced-bread",
+      "date": "10/26/2023"
+    },
+    {
+      "id": "2652537",
+      "name": "FIBER ONE, 100% WHOLE WHEAT BREAD",
+      "brand": "Gold Medal Bakery Inc.",
+      "barcode": "00835841005200",
+      "group": "sliced-bread",
+      "date": "10/26/2023"
+    }
+  ]
+}

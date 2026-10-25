@@ -1,0 +1,32 @@
+{
+  "version": 2,
+  "date": "2026-10-14 America/New_York",
+  "purpose": "Bounded detector recovery and replacement decision before October 23; not production accuracy certification.",
+  "developmentImages": "Original four fixtures in ops/shelf-eval/fixtures.json; recovery rules and model thresholds chosen here only.",
+  "validationImages": "Three newly annotated licensed shelf sections (cereal, chip bags, US cheese), plus one new qualitative Ghana biscuit stress scene with ambiguous wrapper boundaries. Label all eligible visible fronts before model outputs. Freeze hashes; no tuning after scores.",
+  "eligibility": "Visible individual package fronts sufficiently delineated to label; exclude shelf price tags, display trays/cartons and explicitly ambiguous boundary/occluded packages. Exhaustive within each defined crop; report exclusions.",
+  "independence": "New relative to our development experiments. Original model training overlap cannot be ruled out. Labels made by an automated assistant and manually inspected, not independent human-reviewed benchmark ground truth.",
+  "matching": {
+    "iouThreshold": 0.5,
+    "policy": "One-to-one maximum-cardinality matching. Predictions unmatched to eligible GT are false positives unless at least half their area overlaps an explicit ignored region. Report raw counts and denominators.",
+    "mergeHeuristic": "A prediction covering at least 70% of two eligible package boxes and >1.5x the larger package area is a suspected merge; this is a geometric diagnostic, not a human-certified error."
+  },
+  "advanceGate": {
+    "recall": 0.85,
+    "precision": 0.85,
+    "minimumPerImageRecall": 0.75,
+    "minimumPerImagePrecision": 0.75,
+    "status": "Provisional engineering screen for further integration only; not a promise of all-store quality. Failures must be reported, including unsupported categories."
+  },
+  "configurations": [
+    "YOLOE fixed prompts full frame 640 confidence 0.10 IoU 0.50",
+    "YOLOE independent OCR/selective crop recovery with fixed development rules",
+    "ShelfSet YOLO26s full frame 640 confidence 0.25 IoU 0.50",
+    "One compact pretrained SKU110K model if provenance/download is feasible; fixed 640 confidence 0.25 IoU 0.50"
+  ],
+  "productIdentity": "Package proposals/text observations are not confirmed SKUs, variants, ingredients or nutrition. Report correct legible text separately; no exact identity/health ranking claim without catalog/label corroboration.",
+  "performance": "Record hardware, preprocessing/CPU OCR/GPU detection timing separately. Existing GPU runs sequential to avoid contention. Apple Vision OCR, Core ML parity and 2 Hz sustained physical iPhone performance remain untested.",
+  "privacy": "Public fixtures only. No user photos/health data. No paid API calls or training. No change to production gates.",
+  "decision": "Choose better evidenced feasible detector for next device evaluation if one passes. If none pass, report that and continue targeted investigation rather than claiming a replacement is shelf-ready.",
+  "amendmentBeforeValidationPredictions": "Changed 4 quantitative images to 3 quantitative +1 qualitative before any validation predictions because overlapping Ghana wrappers cannot be labeled reliably. No score-driven selection; qualitative stress remains in report. Original four development photos remain separate."
+}

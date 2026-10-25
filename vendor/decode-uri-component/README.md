@@ -1,0 +1,8 @@
+# Decoder compatibility patch
+Upstream decode-uri-component 0.5.0 is copied without modification in upstream-0.5.0.js under its included MIT license. The npm tarball SHA-512 was checked against the pinned provenance record. Source: https://github.com/SamVerschueren/decode-uri-component/releases/tag/v0.5.0 ; advisory: https://github.com/advisories/GHSA-vcc3-ghjq-m6fr .
+
+ops/apply-decoder-patch.cjs runs on postinstall, verifies the source SHA-256, converts only the default export to CommonJS, and wraps it to preserve the installed 0.2.2 API's literal-plus-to-space behavior. query-string still receives a callable synchronous export. No package version/advisory is hidden or rewritten. npm audit will continue to report the installed 0.2.2 metadata.
+
+The patch accepts only the exact original 0.2.2 source hash or its own output and handles each lockfile-listed install. Unknown versions/content fail closed for review. check:tooling detects installs made with scripts disabled. Remove this patch when the router dependency chain accepts a patched upstream decoder directly; revalidate link parsing, query behavior and mobile bundling. This is a maintained local compatibility patch, not an upstream 0.2.2 release.
+
+The compatibility wrapper also bypasses the fallback above 8,192 characters: native decodeURIComponent handles valid input; malformed input is returned still encoded after legacy plus normalization. This avoids oversized dynamic regular expressions in upstream's replacement map. Short-component behavior follows upstream, including invalid UTF-8 preservation. Long malformed components deliberately lose best-effort partial decoding. This is not a global HTTP/request-size limit.

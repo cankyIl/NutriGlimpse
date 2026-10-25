@@ -1,0 +1,13 @@
+{
+  "repository": "https://huggingface.co/chistopat/sku110k-yolo11-object-detector",
+  "revision": "ee1b8ac34eb3b68969ffa8165e50c43457fe4e35",
+  "filename": "weights/sku110k-yolo11-s640.pt",
+  "sha256": "b7e86554a746c2f02ee0626bcde5b77038b84692c225a642a5a5ebc150f6718a",
+  "bytes": 56945761,
+  "sourceAuthor": "chistopat",
+  "model": "YOLO11s",
+  "trainingData": "SKU-110K per author; academic/non-commercial dataset terms apply; not independently verified",
+  "license": "other in model card; upstream Ultralytics AGPL-3.0/enterprise and SKU-110K dataset restrictions need review",
+  "purpose": "local research evaluation only; not incorporated into app",
+  "checkpointChecksumMatchedPublishedManifest": true
+}

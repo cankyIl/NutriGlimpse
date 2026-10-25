@@ -1,0 +1,44 @@
+import {PrivateResponseJournal} from './responseJournal.ts';
+import {loadGroceryProvider} from './groceryReviewProvider.ts';
+import {loadWebPhotoProvider} from './webPhotoProvider.ts';
+import {loadShelfGridProvider} from './shelfGridProvider.ts';
+import {loadDualPhotoProvider} from './dualPhotoProvider.ts';
+import {loadNearbyAvailability} from './nearbyAvailability.ts';
+import {BetaDiagnosticStore} from './betaDiagnostics.ts';
+import {readFoodNews,readNewsPool} from './foodNews.ts';
+import {loadAiReviewProvider} from './aiFoodReviewProvider.ts';
+import {createProductCardSources} from './productCardSources.ts';
+import {createPhotoNutritionResolver,createAssessmentNutritionResolver} from './photoNutrition.ts';
+import {loadPhotoAssessmentProvider} from './photoAssessmentProvider.ts';
+import {loadProductPhotoProvider} from './productPhotoProvider.ts';
+import {createLabelEvidenceProvider} from './productLabelEvidence.ts';
+import {loadRealReportProvider} from './realReportProvider.ts';
+import {loadOffConfig,createOffLookup} from './offProvider.ts';
+import {loadStoreDirectory} from './storeDirectory.ts';
+import {createFictionalProvider} from './fictionalProvider.ts';
+import {mkdirSync} from 'node:fs';
+import {PublicDatabase} from './publicDatabase.ts';
+import {createAppServer} from './server.ts';
+process.umask(0o077);
+const root='/path/to/NutriGlimpse';
+mkdirSync(root+'/.tools/catalog',{recursive:true,mode:0o700});
+let diagnostics:BetaDiagnosticStore|undefined;
+if(process.env.GROCERY_BETA_DIAGNOSTICS==='true'){try{diagnostics=new BetaDiagnosticStore(root+'/.tools/beta-diagnostics/events.sqlite');console.info('Private beta diagnostics enabled: seven-day retention');}catch{console.warn('beta-diagnostics unavailable');}}
+let responseJournal:PrivateResponseJournal|undefined;
+if(process.env.GROCERY_BETA_DIAGNOSTICS==='true'){try{responseJournal=new PrivateResponseJournal(root+'/.tools/beta-response-journal');}catch{console.warn('response-journal unavailable');}}
+const off=loadOffConfig(root+'/.tools/off/config.json');
+const catalog=new PublicDatabase(root+'/.tools/catalog/public.sqlite',!!off&&!off.staging);
+// Public facts and cached fixtures remain available. Real lipid requests require explicit server configuration and versioned in-app consent; all other personal routes stay disabled.
+const realReports=loadRealReportProvider(root);
+const labelEvidence=createLabelEvidenceProvider(root);
+const offLookup=off?createOffLookup(catalog,off):undefined;
+const productPhotos=loadProductPhotoProvider(root,()=>catalog.exportFoods(),process.env,createPhotoNutritionResolver(root,catalog,labelEvidence));
+const photoAssessments=loadPhotoAssessmentProvider(root,createAssessmentNutritionResolver(root,catalog,labelEvidence,fetch,offLookup));
+const scanTimingEnabled=process.env.GROCERY_BUILD_STAGE==='beta0'&&process.env.GROCERY_BETA_SCAN_TIMING==='true';
+const directory=loadStoreDirectory(root+'/.tools/stores/osm-ma.json');
+const availability=loadNearbyAvailability(root,directory);
+const server=createAppServer({groceryReviews:loadGroceryProvider(root,diagnostics,responseJournal,directory),webReviews:loadWebPhotoProvider(root,diagnostics),shelfGrids:loadShelfGridProvider(root,diagnostics),dualReviews:loadDualPhotoProvider(root,process.env,diagnostics),availability,scanTimingEnabled,accessMode:'open-beta',diagnostics,news:()=>readFoodNews(root+'/.tools/news/daily.json'),newsPool:()=>readNewsPool(root+'/.tools/news/pool.json'),aiReviews:loadAiReviewProvider(root,process.env,diagnostics),cardSources:createProductCardSources(catalog,createAssessmentNutritionResolver(root,catalog,labelEvidence,fetch,offLookup),'maintainer@example.invalid',fetch,diagnostics),photoAssessments,productPhotos,labelEvidence,realReports,directory,catalog,offLookup,fictional:createFictionalProvider(root,false)});
+server.listen(3002,'127.0.0.1',()=>console.info('Key-free beta backend listening on loopback port 3002'));
+server.once('close',()=>{catalog.close();diagnostics?.close();responseJournal?.close();availability?.close();});
+process.once('SIGINT',()=>server.close());
+process.once('SIGTERM',()=>server.close());

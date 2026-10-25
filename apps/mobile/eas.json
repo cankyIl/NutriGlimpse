@@ -1,0 +1,64 @@
+{
+  "cli": {
+    "version": ">= 18.0.0",
+    "appVersionSource": "local"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "beta0": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_BUILD_STAGE": "beta0"
+      }
+    },
+    "ios-simulator": {
+      "extends": "beta0",
+      "ios": {
+        "simulator": true
+      }
+    },
+    "testflight": {
+      "distribution": "store",
+      "developmentClient": false,
+      "environment": "production",
+      "node": "24.15.0",
+      "env": {
+        "EXPO_PUBLIC_BUILD_STAGE": "beta0"
+      },
+      "ios": {
+        "simulator": false,
+        "buildConfiguration": "Release",
+        "image": "macos-tahoe-26.6-xcode-27.0"
+      }
+    },
+    "shelf-benchmark": {
+      "extends": "beta0",
+      "developmentClient": false,
+      "distribution": "internal",
+      "node": "24.15.0",
+      "env": {
+        "EXPO_PUBLIC_BUILD_STAGE": "beta0"
+      },
+      "ios": {
+        "simulator": false,
+        "buildConfiguration": "Release"
+      }
+    }
+  },
+  "submit": {
+    "testflight": {
+      "ios": {
+        "ascAppId": "6823645787",
+        "ascApiKeyPath": "/path/to/NutriGlimpse/.secrets/apple/AuthKey_9ST9HA8S3F.p8",
+        "ascApiKeyId": "9ST9HA8S3F",
+        "ascApiKeyIssuerId": "0bfa7266-5f49-4838-93ff-a530ab5c03f4"
+      }
+    }
+  }
+}
