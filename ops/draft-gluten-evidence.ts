@@ -1,9 +1,10 @@
+import {projectRoot} from '../apps/service/src/projectPaths.ts';
 import {PublicDatabase} from '../apps/service/src/publicDatabase.ts';
 import {productLabelFingerprint} from '../packages/core/src/productLabelEvidence.ts';
 import {productEvidenceSchema} from '../apps/service/src/sourceEvidence.ts';
 const [provider,id,url,kind='manufacturer-label']=process.argv.slice(2);
 if(!['usda','off'].includes(provider)||!id||!url||!['manufacturer-label','certification'].includes(kind)||process.argv.length>6)throw Error('Usage: draft-gluten-evidence.ts usda|off ID public-source-url manufacturer-label|certification');
-const db=new PublicDatabase('/path/to/NutriGlimpse/.tools/catalog/public.sqlite');
+const db=new PublicDatabase(projectRoot+'/.tools/catalog/public.sqlite');
 try{
  const food=db.byId(provider,id);if(!food?.barcode)throw Error('Exact cached barcode required');
  const now=Date.now();

@@ -1,3 +1,4 @@
+import {projectRoot} from '../src/projectPaths.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {mkdtempSync,readFileSync,statSync,rmSync} from 'node:fs';
@@ -10,7 +11,7 @@ import {adaptSimpleGroceryAnswer} from '../src/geminiSimpleReview.ts';
 import {createGroceryProvider,parseGroceryResponse} from '../src/groceryReviewProvider.ts';
 import {GROCERY_CONSENT,GROCERY_RESPONSE_CONSENT,type GroceryContext,groceryWireSchema} from '../../../packages/core/src/groceryReview.ts';
 import type {StoreDirectory} from '../../../packages/core/src/storeDetection.ts';
-const root='/path/to/NutriGlimpse';
+const root=projectRoot;
 const context:GroceryContext={healthConditions:['noConcern'],dietaryRestrictions:[],store:{name:'Wegmans',town:'Northborough',state:'MA',branch:'9102 Shops Way'}};
 const product=(n:number)=>({title:'Fixture sauce '+n,nutrition:{sodiumMg:n?100:620},rating:n?'healthy':'not_healthy',reasons:[n?'Less sodium':'High sodium'],source_url:'https://maker.example.com/product-'+n});
 const value={product:product(0),alternatives:[1,2,3].map(product)};

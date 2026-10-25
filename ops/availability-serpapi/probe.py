@@ -15,7 +15,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-ROOT = Path("/path/to/NutriGlimpse")
+ROOT = Path(__file__).resolve().parents[2]
 KEY_PATH = ROOT / ".secrets" / "serpapi-availability-test.key"
 SECTIONS = (
     "shopping_results", "inline_shopping_results", "ads", "local_ads",
@@ -136,8 +136,8 @@ def main():
         parser.error("Each product must be nonempty and at most 250 characters.")
     if not args.address.strip() or not args.city.strip():
         parser.error("Address and city must be nonempty.")
-    if socket.gethostname().split(".")[0] != "project-server":
-        raise SystemExit("Run on project-server.")
+    if not (ROOT / "package.json").is_file():
+        raise SystemExit("Run on the project server.")
     key = read_key()
     engines = ["google", "google_ai_mode"]
     if args.include_shopping:

@@ -34,7 +34,7 @@
         820,
         665
       ],
-      "path": "/path/to/NutriGlimpse/artifacts/shelf-recovery/validation/spar-cereal.png",
+      "path": "artifacts/shelf-recovery/validation/spar-cereal.png",
       "boxes": [
         [
           27,
@@ -431,7 +431,7 @@
       "author": "Wolfmann",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-      "originalPath": "/path/to/NutriGlimpse/artifacts/shelf-recovery/validation/spar-cereal-original.jpg",
+      "originalPath": "artifacts/shelf-recovery/validation/spar-cereal-original.jpg",
       "sourceSha256": "51fb46c8a33e05e63c7acb494787a1581cc40f78bb409331d5d01ec262d82a89",
       "sha256": "b3c57c915f98739d11ec2112c2351e559f031f88b2da90a99131fe964d3e6a36",
       "transformation": "EXIF orientation applied, stated source-pixel crop, Lanczos resize to 1200px width; no synthetic content",
@@ -457,7 +457,7 @@
         970,
         710
       ],
-      "path": "/path/to/NutriGlimpse/artifacts/shelf-recovery/validation/spar-chips.png",
+      "path": "artifacts/shelf-recovery/validation/spar-chips.png",
       "boxes": [
         [
           33,
@@ -933,7 +933,7 @@
       "author": "Wolfmann",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-      "originalPath": "/path/to/NutriGlimpse/artifacts/shelf-recovery/validation/spar-chips-original.jpg",
+      "originalPath": "artifacts/shelf-recovery/validation/spar-chips-original.jpg",
       "sourceSha256": "bcf8832df59faacd507236b5eae5c2f432617b74f7cb227aede4e9d09283ce38",
       "sha256": "5f19a0664baa2d4eea23bf285ed35fd6a013ce30fae08948884982a5fe770272",
       "transformation": "EXIF orientation applied, stated source-pixel crop, Lanczos resize to 1200px width; no synthetic content",
@@ -959,7 +959,7 @@
         935,
         650
       ],
-      "path": "/path/to/NutriGlimpse/artifacts/shelf-recovery/validation/safeway-cheese.png",
+      "path": "artifacts/shelf-recovery/validation/safeway-cheese.png",
       "boxes": [
         [
           12,
@@ -1451,7 +1451,7 @@
       "author": "Kurt Kaiser",
       "license": "CC0 1.0",
       "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
-      "originalPath": "/path/to/NutriGlimpse/artifacts/shelf-recovery/validation/safeway-cheese-original.jpg",
+      "originalPath": "artifacts/shelf-recovery/validation/safeway-cheese-original.jpg",
       "sourceSha256": "f9a207fc5445c364fe80e372ff0949315612598fb95fbffef39432a2fedf3a19",
       "sha256": "c18c6e93aa2c1034f970d99cba9e2bd572fa1385583aa9dccf1c9e6364359b62",
       "transformation": "EXIF orientation applied, stated source-pixel crop, Lanczos resize to 1200px width; no synthetic content",
@@ -1479,13 +1479,13 @@
         1400,
         630
       ],
-      "path": "/path/to/NutriGlimpse/artifacts/shelf-recovery/validation/ghana-biscuits.png",
+      "path": "artifacts/shelf-recovery/validation/ghana-biscuits.png",
       "sourcePage": "https://commons.wikimedia.org/wiki/File:Biscuits_on_display_in_a_Ghanaian_mini-market.jpg",
       "sourceUrl": "https://upload.wikimedia.org/wikipedia/commons/9/92/Biscuits_on_display_in_a_Ghanaian_mini-market.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
       "author": "Uprising Man",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-      "originalPath": "/path/to/NutriGlimpse/artifacts/shelf-recovery/validation/ghana-biscuits-original.jpg",
+      "originalPath": "artifacts/shelf-recovery/validation/ghana-biscuits-original.jpg",
       "sourceSha256": "eb73ee79da794a26fb8715195f15f723e588c3715fae675cee24f1448f604a84",
       "sha256": "7f7dfe74cf134bd3a7b460bb2645b1e6520f09c573732565f0dbd5bb9b8051f4",
       "transformation": "EXIF orientation applied, stated source-pixel crop, Lanczos resize to 1200px width; no synthetic content",

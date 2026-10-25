@@ -3,7 +3,7 @@
 **Repository:** cankyIl/NutriGlimpse  
 **Reviewed source:** `bb2c9d7da640d1f93effb733de430af68f454f63`  
 **Scope:** 694 tracked files, both uploaded commits reachable from main, remote refs, tracked data/media and existing backend controls.  
-**Conclusion:** Keep private until the owner chooses the disclosure/history and licensing approach. No credential emergency was found. This review does not change visibility, rewrite history or establish complete legal/security clearance.
+**Historical review:** The owner subsequently authorized privacy/history cleanup and MIT licensing; see [completed treatment](Publication-Cleanup-2026-10-25.md). Backend access protection is deferred by the owner. The findings and recommendations below describe the pre-cleanup snapshot. No credential emergency was found. This review does not change visibility, rewrite history or establish complete legal/security clearance.
 
 ## Verified findings
 

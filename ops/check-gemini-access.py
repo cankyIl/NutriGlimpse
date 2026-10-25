@@ -2,7 +2,7 @@
 """Read-only model metadata check. No prompt, image, profile, or generation request."""
 from pathlib import Path
 import datetime,json,os,stat,sys,urllib.error,urllib.request
-root=Path("/path/to/NutriGlimpse")
+root=Path(__file__).resolve().parents[1]
 key_path=root/".tools/gemini/api-key"
 model="gemini-3.5-flash-lite"
 if key_path.is_symlink() or not key_path.is_file():

@@ -2,7 +2,7 @@
 """Fictional-only validation. User-managed spending; attempts are not billed usage. No retries."""
 import fcntl, json, os, pathlib, sys, urllib.request, urllib.error
 from datetime import datetime, timezone
-ROOT=pathlib.Path('/path/to/NutriGlimpse')
+ROOT=pathlib.Path(__file__).resolve().parents[1]
 # Legacy fields are accepted for history only; no dollar amount gates requests.
 def valid_attempt(row):
     if not isinstance(row,dict):return False

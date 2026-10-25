@@ -1,7 +1,8 @@
+import {projectRoot} from '../apps/service/src/projectPaths.ts';
 import {writeFileSync} from 'node:fs';
 import {PublicDatabase} from '../apps/service/src/publicDatabase.ts';
 import {loadOffConfig,fetchOffFood} from '../apps/service/src/offProvider.ts';
-const root='/path/to/NutriGlimpse',db=new PublicDatabase(root+'/.tools/catalog/public.sqlite'),config=loadOffConfig(root+'/.tools/off/config.json');
+const root=projectRoot,db=new PublicDatabase(root+'/.tools/catalog/public.sqlite'),config=loadOffConfig(root+'/.tools/off/config.json');
 if(!config||config.staging)throw Error('Production OFF configuration required');
 const foods=db.exportFoods().filter(f=>f.provider==='off'&&!f.reportedLabel&&(!process.argv.includes('--missing-nutrients')||!f.additionalNutrients)).sort((a,b)=>Number(!b.additionalNutrients)-Number(!a.additionalNutrients)||Number(b.comparisonGroup==='breakfast-cereal')-Number(a.comparisonGroup==='breakfast-cereal')||a.id.localeCompare(b.id)).slice(0,24);
 const report={attempted:0,updated:0,notQualified:0,failed:false};

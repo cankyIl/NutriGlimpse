@@ -1,5 +1,5 @@
 import pathlib,json,sqlite3,urllib.request
-root=pathlib.Path('/path/to/NutriGlimpse')
+root=pathlib.Path(__file__).resolve().parents[1]
 db=sqlite3.connect(root/'.tools/catalog/public.sqlite')
 row=db.execute("SELECT id FROM foods WHERE provider='usda' AND json_extract(payload,'$.additionalNutrients.transFatG') IS NOT NULL LIMIT 1").fetchone()
 key=(root/'.tools/usda/api-key').read_text().strip()

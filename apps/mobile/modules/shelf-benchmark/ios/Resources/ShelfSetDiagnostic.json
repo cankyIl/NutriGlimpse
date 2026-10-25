@@ -2,7 +2,7 @@
   "modelName": "ShelfSetDiagnostic",
   "modelFingerprint": "a5f1ca3a021122e89d2fb3fbb5ee93bbc792fbe935a8152de32e6d107ffebf95",
   "sourceCheckpointSha256": "a5f1ca3a021122e89d2fb3fbb5ee93bbc792fbe935a8152de32e6d107ffebf95",
-  "sourceCheckpoint": "/path/to/NutriGlimpse/artifacts/shelf-eval/models/shelfset/shelf_server.pt",
+  "sourceCheckpoint": "artifacts/shelf-eval/models/shelfset/shelf_server.pt",
   "sourceRepository": "https://github.com/ShelfSet/shelf-object-detector",
   "sourceRevision": "b1dfbd2f67e38a0ead05d0b653c675569ef8a02a",
   "inputSize": 640,

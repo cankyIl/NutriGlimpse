@@ -1,7 +1,7 @@
 """Operator-only USDA discovery; outputs staging data, never imports automatically. No personal queries or AI calls."""
 from pathlib import Path
 import json,urllib.request,time,os,sys
-r=Path('/path/to/NutriGlimpse')
+r=Path(__file__).resolve().parents[1]
 keypath=r/'.tools/usda/api-key'
 assert keypath.stat().st_mode&0o077==0
 key=keypath.read_text().strip()

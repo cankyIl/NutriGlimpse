@@ -1,4 +1,4 @@
-export CONGRESS_ROOT=/path/to/NutriGlimpse
+export CONGRESS_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 export JAVA_HOME="$CONGRESS_ROOT/.tools/jdk-17.0.20.1+1"
 export ANDROID_HOME="$CONGRESS_ROOT/.tools/android-sdk"
 export ANDROID_SDK_ROOT="$ANDROID_HOME"

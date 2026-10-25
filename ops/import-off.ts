@@ -1,10 +1,11 @@
+import {projectRoot} from '../apps/service/src/projectPaths.ts';
 import {mkdirSync,writeFileSync} from 'node:fs';
 import {setTimeout} from 'node:timers/promises';
 import {normalizeBarcode} from '../packages/core/src/barcode.ts';
 import {PublicDatabase} from '../apps/service/src/publicDatabase.ts';
 import {loadOffConfig,fetchOffFood} from '../apps/service/src/offProvider.ts';
 process.umask(0o077);
-const root='/path/to/NutriGlimpse',codes=process.argv.slice(2);
+const root=projectRoot,codes=process.argv.slice(2);
 if(!codes.length||codes.length>100||codes.some(c=>!normalizeBarcode(c)))throw Error('Supply 1–100 valid public product barcodes. Use OFF exports for larger imports.');
 const config=loadOffConfig(root+'/.tools/off/config.json');if(!config)throw Error('OFF configuration missing');
 const db=new PublicDatabase(root+'/.tools/catalog/public.sqlite',!config.staging);

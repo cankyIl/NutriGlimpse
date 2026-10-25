@@ -1,7 +1,8 @@
+import {projectRoot} from '../apps/service/src/projectPaths.ts';
 import {readFileSync,writeFileSync} from 'node:fs';
 import {PublicDatabase} from '../apps/service/src/publicDatabase.ts';
 import {comparisonReady} from '../packages/core/src/catalogAlternatives.ts';
-const root='/path/to/NutriGlimpse';
+const root=projectRoot;
 const db=new PublicDatabase(root+'/.tools/catalog/public.sqlite');
 const raw=new Map(readFileSync(root+'/.tools/off/bulk/candidates.jsonl','utf8').trim().split('\n').map(line=>{const p=JSON.parse(line);return [String(p.code).padStart(14,'0'),p] as const;}));
 const counts:Record<string,number>={},products=[];

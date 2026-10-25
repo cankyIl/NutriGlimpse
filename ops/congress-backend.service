@@ -3,8 +3,8 @@ Description=Congress App Challenge backend
 After=network.target
 [Service]
 Type=simple
-WorkingDirectory=/path/to/NutriGlimpse
-ExecStart=/bin/bash /path/to/NutriGlimpse/ops/run-backend.sh
+WorkingDirectory=%h/NutriGlimpse
+ExecStart=/bin/bash %h/NutriGlimpse/ops/run-backend.sh
 Restart=on-failure
 RestartSec=5
 UMask=0077

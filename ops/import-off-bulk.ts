@@ -1,3 +1,4 @@
+import {projectRoot} from '../apps/service/src/projectPaths.ts';
 import {createReadStream,readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {createInterface} from 'node:readline';
 import {createHash} from 'node:crypto';
@@ -5,7 +6,7 @@ import {normalizeOffBulk,retailerBrandHints} from '../apps/service/src/offBulk.t
 import {comparisonReady} from '../packages/core/src/catalogAlternatives.ts';
 import {PublicDatabase,type PublicFood} from '../apps/service/src/publicDatabase.ts';
 import {loadOffConfig} from '../apps/service/src/offProvider.ts';
-const root='/path/to/NutriGlimpse',apply=process.argv.includes('--apply');
+const root=projectRoot,apply=process.argv.includes('--apply');
 const resumable=process.argv.includes('--resumable');
 if(process.argv.slice(2).some(x=>!['--apply','--resumable'].includes(x)))throw Error('Use --apply and/or --resumable; default dry run');
 if(!loadOffConfig(root+'/.tools/off/config.json')?.enabled)throw Error('OFF adoption required');

@@ -21,7 +21,7 @@ def save_key(directory: Path, key: str) -> None:
 def main():
     if not sys.stdin.isatty():
         raise ValueError("Use an interactive SSH terminal (ssh -t).")
-    root = Path("/path/to/NutriGlimpse")
+    root = Path(__file__).resolve().parents[1]
     if not root.is_dir():
         raise ValueError("Project directory unavailable.")
     destination = root / ".tools/openai"
@@ -29,7 +29,7 @@ def main():
         raise ValueError("A key already exists; preserving it.")
     key = getpass.getpass("Paste the OpenAI project API key (hidden), then press Enter: ")
     save_key(destination, key)
-    print("Key saved privately on project-server. No API calls made; personal processing remains disabled.")
+    print("Key saved privately on the project server. No API calls made; personal processing remains disabled.")
 
 if __name__ == "__main__":
     try:

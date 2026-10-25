@@ -1,8 +1,9 @@
+import {projectRoot} from '../apps/service/src/projectPaths.ts';
 import {readFileSync,writeFileSync,renameSync,mkdirSync,existsSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {parseEvidenceRegistry} from '../apps/service/src/sourceEvidence.ts';
 process.umask(0o077);
-const root='/path/to/NutriGlimpse',input=process.argv[2],apply=process.argv[3]==='--apply';
+const root=projectRoot,input=process.argv[2],apply=process.argv[3]==='--apply';
 if(!input||process.argv.length>4||process.argv[3]&&!apply)throw Error('Usage: import-product-evidence.ts complete-reviewed-registry.json [--apply]');
 const raw=readFileSync(input,'utf8');if(Buffer.byteLength(raw)>32_000_000)throw Error('Evidence registry too large');
 const records=parseEvidenceRegistry(JSON.parse(raw)),serialized=JSON.stringify(records,null,2);

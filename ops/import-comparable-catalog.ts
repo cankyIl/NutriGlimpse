@@ -1,8 +1,9 @@
+import {projectRoot} from '../apps/service/src/projectPaths.ts';
 import {readFileSync,writeFileSync} from 'node:fs';
 import {mapUsda} from '../apps/service/src/usda.ts';
 import {PublicDatabase} from '../apps/service/src/publicDatabase.ts';
 import {comparisonReady,type PublicFood} from '../packages/core/src/index.ts';
-const root='/path/to/NutriGlimpse';
+const root=projectRoot;
 const input=process.argv[2];const apply=process.argv[3]==='--apply';
 if(!input||process.argv.length>4)throw Error('Usage: import-comparable-catalog.ts reviewed-raw.json [--apply]');
 const text=readFileSync(input,'utf8');if(text.length>15000000)throw Error('Input too large');

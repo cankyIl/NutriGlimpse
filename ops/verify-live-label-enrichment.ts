@@ -1,8 +1,9 @@
+import {projectRoot} from '../apps/service/src/projectPaths.ts';
 import {readFileSync,writeFileSync} from 'node:fs';
 import assert from 'node:assert/strict';
 import {foodSchema} from '../packages/core/src/publicFood.ts';
 import {PublicDatabase} from '../apps/service/src/publicDatabase.ts';
-const root='/path/to/NutriGlimpse';
+const root=projectRoot;
 const key=JSON.parse(readFileSync(root+'/.tools/beta/tester-invitations.json','utf8')).testers[0].key;
 const headers={Authorization:'Bearer '+key},base='https://grocery.serveforwad.com';
 const db=new PublicDatabase(root+'/.tools/catalog/public.sqlite');

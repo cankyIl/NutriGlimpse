@@ -2,7 +2,7 @@
   "modelName": "ShelfSKU11Diagnostic",
   "modelFingerprint": "b7e86554a746c2f02ee0626bcde5b77038b84692c225a642a5a5ebc150f6718a",
   "sourceCheckpointSha256": "b7e86554a746c2f02ee0626bcde5b77038b84692c225a642a5a5ebc150f6718a",
-  "sourceCheckpoint": "/path/to/NutriGlimpse/artifacts/shelf-recovery/replacements/models/sku110k-yolo11s/sku110k-yolo11-s640.pt",
+  "sourceCheckpoint": "artifacts/shelf-recovery/replacements/models/sku110k-yolo11s/sku110k-yolo11-s640.pt",
   "sourceRepository": "https://huggingface.co/chistopat/sku110k-yolo11-object-detector",
   "sourceRevision": "ee1b8ac34eb3b68969ffa8165e50c43457fe4e35",
   "inputSize": 640,

@@ -1,9 +1,10 @@
+import {projectRoot} from '../apps/service/src/projectPaths.ts';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import assert from 'node:assert/strict';
 import {PublicDatabase} from '../apps/service/src/publicDatabase.ts';
 import {classifyOffGrocery} from '../apps/service/src/catalogCuration.ts';
 import {comparisonReady,comparableAlternatives,comparisonMetrics} from '../packages/core/src/catalogAlternatives.ts';
-const root='/path/to/NutriGlimpse',apply=process.argv.includes('--apply');
+const root=projectRoot,apply=process.argv.includes('--apply');
 if(process.argv.slice(2).some(x=>x!=='--apply'))throw Error('Only --apply supported');
 const raw=new Map(readFileSync(root+'/.tools/off/bulk/candidates.jsonl','utf8').trim().split('\n').map(line=>{const p=JSON.parse(line);return [String(p.code).padStart(14,'0'),p] as const;}));
 const db=new PublicDatabase(root+'/.tools/catalog/public.sqlite');

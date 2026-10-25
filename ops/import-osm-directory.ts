@@ -1,8 +1,9 @@
+import {projectRoot} from '../apps/service/src/projectPaths.ts';
 import {supportedStoreTags} from '../apps/service/src/storeCategory.ts';
 import {readFileSync,mkdirSync,writeFileSync,renameSync} from 'node:fs';
 import {storeDirectorySchema} from '../packages/core/src/storeDetection.ts';
 import {z} from 'zod';
-const root='/path/to/NutriGlimpse';
+const root=projectRoot;
 const input=process.argv[2];if(!input)throw Error('Usage: import-osm-directory.ts path-to-reviewed-OSM-JSON');
 const raw=readFileSync(input,'utf8');if(raw.length>12000000)throw Error('Input exceeds limit');
 const point=z.object({lat:z.number().min(-90).max(90),lon:z.number().min(-180).max(180)});

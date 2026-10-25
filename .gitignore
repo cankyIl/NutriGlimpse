@@ -49,7 +49,6 @@ __pycache__/
 .DS_Store
 /apps/mobile/modules/shelf-benchmark/**/*.onnx
 /apps/mobile/modules/shelf-benchmark/**/*.mlpackage/
-/apps/mobile/modules/shelf-benchmark/android/src/androidTest/assets/*.jpg
 
 # Machine-specific settings and authentication caches.
 /.work/
@@ -70,3 +69,11 @@ CLAUDE.md
 GEMINI.md
 .cursorrules
 .github/copilot-instructions.md
+
+# Locally retrieved reference archives; provenance manifests remain versioned.
+/data/serpapi-us-cities.json
+/data/guidance/sources/**/*.html
+/data/guidance/sources/**/*.pdf
+
+# Dependency-directory symlinks used by local validation are also private.
+node_modules

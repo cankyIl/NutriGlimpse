@@ -1,3 +1,4 @@
+import {projectRoot} from '../apps/service/src/projectPaths.ts';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {DatabaseSync} from 'node:sqlite';
 import {z} from 'zod';
@@ -6,7 +7,7 @@ import {comparisonReady} from '../packages/core/src/catalogAlternatives.ts';
 import {storeDirectorySchema} from '../packages/core/src/storeDetection.ts';
 import {parseEvidenceRegistry,publicUrl,retailers} from '../apps/service/src/sourceEvidence.ts';
 import {evaluateCoverage} from '../apps/service/src/coverageAudit.ts';
-const root='/path/to/NutriGlimpse';
+const root=projectRoot;
 const read=(path:string)=>{const s=readFileSync(path,'utf8');if(Buffer.byteLength(s)>32_000_000)throw Error('Audit input too large');return JSON.parse(s);};
 if(process.argv.length>3)throw Error('Usage: audit-section11.ts [basket.json]');
 const basket=read(process.argv[2]??root+'/ops/retailer-acceptance-template.json');

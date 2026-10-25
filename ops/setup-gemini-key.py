@@ -9,9 +9,9 @@ import tempfile
 from pathlib import Path
 
 root = Path(__file__).resolve().parents[1]
-expected = Path('/path/to/NutriGlimpse')
-if root != expected or not sys.stdin.isatty():
-    sys.exit('Run this helper interactively on project-server using ssh -t.')
+expected = Path(__file__).resolve().parents[1]
+if not (root/'package.json').is_file() or not sys.stdin.isatty():
+    sys.exit('Run this helper interactively on the project server using ssh -t.')
 directory = root / '.tools' / 'gemini'
 if directory.is_symlink():
     sys.exit('Refusing a linked credential directory.')

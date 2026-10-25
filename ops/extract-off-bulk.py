@@ -3,7 +3,7 @@ Run with .tools/off/bulk-venv/bin/python; no live product API crawling.
 """
 import duckdb,json,pathlib,time
 from datetime import datetime,timezone
-root=pathlib.Path('/path/to/NutriGlimpse')
+root=pathlib.Path(__file__).resolve().parents[1]
 out=root/'.tools/off/bulk';out.mkdir(exist_ok=True)
 source=json.loads((root/'.tools/off/bulk-source.json').read_text())
 db=duckdb.connect()

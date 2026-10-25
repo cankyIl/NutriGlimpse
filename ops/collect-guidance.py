@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import urllib.request,hashlib,json,datetime
 from pathlib import Path
-ROOT=Path('/path/to/NutriGlimpse')
+ROOT=Path(__file__).resolve().parents[1]
 DEST=ROOT/'data/guidance/sources/2026-10-14'
 SOURCES={
  'dash':('https://www.nhlbi.nih.gov/health/dash/following-dash','html'),

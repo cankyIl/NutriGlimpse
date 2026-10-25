@@ -1,3 +1,4 @@
+import {projectRoot} from './projectPaths.ts';
 import {approvedGroceryPrompt} from './groceryPromptTemplate.ts';
 export {approvedGroceryPrompt} from './groceryPromptTemplate.ts';
 import {buildAlternativeRequest,supplementContext,startAlternativeRequest,mergeAlternativeSupplement} from './groceryAlternativeSupplement.ts';
@@ -22,7 +23,7 @@ import {recordDiagnostic,newTrace,diagnosticHash,diagnosticFood,type BetaDiagnos
 export class GroceryProviderError extends Error {readonly code:string;constructor(code:string){super(code);this.code=code;}}
 export type GroceryTransportHooks={onText?:(text:string)=>void;onIdentity?:(identity:AiPhotoPreview)=>void;onStage?:(stage:"model_dispatch"|"model_first_text"|"model_complete")=>void};
 export type GroceryTransport=(request:Record<string,unknown>,signal:AbortSignal,hooks?:GroceryTransportHooks)=>Promise<unknown>;
-const root='/path/to/NutriGlimpse';
+const root=projectRoot;
 export function groceryPrompt(projectRoot=root){
  const doc=readFileSync(join(projectRoot,'docs/74-gemini-grocery-prompt-and-latency.md'),'utf8');
  return doc.split('## Reusable system prompt\n')[1].split('\n## Response and phone presentation')[0].trim()+

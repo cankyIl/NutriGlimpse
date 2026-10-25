@@ -1,8 +1,9 @@
+import {projectRoot} from '../apps/service/src/projectPaths.ts';
 import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync} from 'node:fs';
 import {foodSchema} from '../packages/core/src/publicFood.ts';
 import {normalizeBarcode} from '../packages/core/src/barcode.ts';
-const root='/path/to/NutriGlimpse',base='https://grocery.serveforwad.com';
+const root=projectRoot,base='https://grocery.serveforwad.com';
 const key=JSON.parse(readFileSync(root+'/.tools/beta/tester-invitations.json','utf8')).testers[0].key;
 const headers={Authorization:'Bearer '+key};
 const initial=await(await fetch(base+'/v1/catalog/export')).json();assert.equal(initial.license,'ODbL-1.0');initial.foods.forEach((f:unknown)=>foodSchema.parse(f));

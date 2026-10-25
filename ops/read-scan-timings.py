@@ -36,7 +36,7 @@ def summarize(client,server):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--limit',type=int,default=2)
-    parser.add_argument('--database',default='/path/to/NutriGlimpse/.tools/beta-diagnostics/events.sqlite')
+    parser.add_argument('--database',default=str(Path(__file__).resolve().parents[1]/'.tools/beta-diagnostics/events.sqlite'))
     args=parser.parse_args()
     if not 1<=args.limit<=20:parser.error('limit must be 1-20')
     path=Path(args.database).resolve()

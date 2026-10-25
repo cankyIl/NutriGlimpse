@@ -4,7 +4,7 @@
 
 The user has chosen local Mac builds after exhausting the free Expo cloud iOS allowance. Development/source and backend remain on project-server; use the Mac only for native compilation/signing, and retain TestFlight for installation. Do not purchase an Expo plan or retry the cloud build automatically.
 
-The Mac is now reachable at developer@192.168.50.10 using the laptop's existing congress_iphone_mac SSH identity. macOS 27.0.1 and Xcode 27.1 are verified. Build 17's credential-free source is transferred into /Users/developer/CongressAppChallenge/releases/build17/HealthGroceryBuild17; all 326 hashes match the server and mobile/core typechecks plus mobile lint pass. Node 24.15.0, Ruby 3.4.11 and CocoaPods 1.17.0 are available, with Fastlane 2.241.1 installed in this release's isolated tool folder.
+The Mac is now reachable at developer@192.0.2.10 using the laptop's existing congress_iphone_mac SSH identity. macOS 27.0.1 and Xcode 27.1 are verified. Build 17's credential-free source is transferred into /Users/developer/CongressAppChallenge/releases/build17/HealthGroceryBuild17; all 326 hashes match the server and mobile/core typechecks plus mobile lint pass. Node 24.15.0, Ruby 3.4.11 and CocoaPods 1.17.0 are available, with Fastlane 2.241.1 installed in this release's isolated tool folder.
 
 The Mac's fresh Expo device login completed as buldygaur, existing distribution credentials were retrieved, and build 17 compiled locally. Signature and release-content verification passed; EAS submission finished, and Apple VALID / IN_BETA_TESTING with existing owner-group access is verified for 0.1.0 (17). No cloud compilation allowance or subscription purchase was needed. Existing Personal Team device signing is historical and must not be reused for TestFlight. See [current build status](73-gpt-only-reviews-build17.md) and [project plan](ImplementationProjectPlanDocument.md).
 
@@ -18,7 +18,7 @@ The local Mac setup below remains a working fallback and historical evidence. Me
 
 The app is signed, installed and running on the first physical iPhone. The user confirmed its “Before we begin” screen.
 
-- Mac: M2 MacBook Air, macOS 27.0.1, Xcode 27.0; current SSH address developer@192.168.50.10.
+- Mac: M2 MacBook Air, macOS 27.0.1, Xcode 27.0; current SSH address developer@192.0.2.10.
 - Build workspace: /Users/developer/CongressAppChallenge. Authoritative source remains on project-server.
 - Phone actually connected: iPhone 16, iOS 27.0.1.
 - USB pairing, Developer Mode, development certificate, phone-specific provisioning and developer trust are complete.

@@ -7,7 +7,7 @@ The corrected Release simulator app launches, renders the “Before we begin” 
 ## Environment and source
 
 - MacBook Air M2, 16 GiB RAM; macOS 27.0.1 (26A434); Xcode 27.0 (27A266a); iOS 27 simulator.
-- SSH: developer@192.168.50.10. Build root: /Users/developer/CongressAppChallenge.
+- SSH: developer@192.0.2.10. Build root: /Users/developer/CongressAppChallenge.
 - Authoritative source: /path/to/NutriGlimpse on project-server.
 - Initial source archive SHA-256: 0274b6d8cf16d91128461315e0e1bee33ddd2f19b3ce56329ef70eaf87a30239. All 451 original files were verified before subsequent source fixes were copied.
 - Current server, simulator and unsigned device source SHA-256: 3e7a952bf6953a9e4ab2a09d3df801be211742a823f34e5b653ee69a7c52dae5.
@@ -67,7 +67,7 @@ Relevant files: simulator-build.json, device-build.json, scene-startup.json, sce
 
 ## October 15 physical iPhone installation checkpoint
 
-The Mac is reachable at developer@192.168.50.10 with the same verified SSH host key. The connected phone is an iPhone 16 running iOS 27.0.1. USB pairing, Developer Mode and the on-phone developer trust confirmation are complete.
+The Mac is reachable at developer@192.0.2.10 with the same verified SSH host key. The connected phone is an iPhone 16 running iOS 27.0.1. USB pairing, Developer Mode and the on-phone developer trust confirmation are complete.
 
 The Release app was signed using the existing Personal Team, installed successfully and launched. Its signature, artifact hashes, exact bundle identifier and provisioning coverage for this phone were verified. The same process remained running after 15 seconds, and the user confirmed the “Before we begin” screen. No app agreement was accepted by the agent, and no full physical-feature acceptance is claimed.
 

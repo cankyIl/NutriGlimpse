@@ -1,9 +1,10 @@
+import {projectRoot} from '../apps/service/src/projectPaths.ts';
 import {readFileSync,writeFileSync,statSync} from 'node:fs';
 import {mapUsda} from '../apps/service/src/usda.ts';
 import {PublicDatabase} from '../apps/service/src/publicDatabase.ts';
 import {comparisonReady,type PublicFood} from '../packages/core/src/index.ts';
 import {foodSourceTime} from '../packages/core/src/publicFood.ts';
-const root='/path/to/NutriGlimpse';
+const root=projectRoot;
 const input=process.argv[2],apply=process.argv[3]==='--apply';
 if(!input||process.argv.length>4||process.argv[3]&&!apply)throw Error('Usage: import-broad-catalog.ts staged-raw.json [--apply]');
 const rawText=readFileSync(input,'utf8');if(rawText.length>100_000_000)throw Error('Input too large');

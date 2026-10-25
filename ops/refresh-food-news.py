@@ -233,6 +233,6 @@ def refresh(directory, now=None, force=False, fetcher=None):
         return status
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('--force',action='store_true');parser.add_argument('--directory',default='/path/to/NutriGlimpse/.tools/news');args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('--force',action='store_true');parser.add_argument('--directory',default=str(Path(__file__).resolve().parents[1]/'.tools/news'));args=parser.parse_args()
     result=refresh(Path(args.directory),force=args.force);print(json.dumps(result))
     if result['status']=='failed-preserved':sys.exit(1)

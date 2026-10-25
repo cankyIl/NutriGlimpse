@@ -1,7 +1,8 @@
+import {projectRoot} from '../apps/service/src/projectPaths.ts';
 import {readFileSync,writeFileSync} from 'node:fs';
 import {PublicDatabase} from '../apps/service/src/publicDatabase.ts';
 import {normalizeOffBulk} from '../apps/service/src/offBulk.ts';
-const root='/path/to/NutriGlimpse',db=new PublicDatabase(root+'/.tools/catalog/public.sqlite');
+const root=projectRoot,db=new PublicDatabase(root+'/.tools/catalog/public.sqlite');
 const report={imported:0,alreadyPresent:0,sourceMismatch:0,invalid:0};
 const raw=new Map<string,Record<string,unknown>>();
 for(const line of readFileSync(root+'/.tools/off/bulk/candidates.jsonl','utf8').split('\n').filter(Boolean)){const row=JSON.parse(line);raw.set(String(row.code).padStart(14,'0'),row);}

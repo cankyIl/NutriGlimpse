@@ -4,7 +4,7 @@ import json, urllib.request, time, sys
 from datetime import datetime, timezone
 refresh=sys.argv[1:]==["--refresh"]
 if sys.argv[1:] and not refresh:raise SystemExit("Usage: discover-broad-catalog.py [--refresh]")
-r=Path('/path/to/NutriGlimpse')
+r=Path(__file__).resolve().parents[1]
 out=r/'artifacts/remote/catalog-broadening-supplement';out.mkdir(exist_ok=True)
 k=r/'.tools/usda/api-key';assert k.stat().st_mode&0o077==0
 key=k.read_text().strip()

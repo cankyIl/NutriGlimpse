@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
-project_root=/path/to/NutriGlimpse
-if [[ "$(hostname)" != project-server || "$(id -un)" != developer ]]; then
-  printf '%s\n' 'Run this helper as developer on project-server.' >&2
+project_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+if [[ ! -f "$project_root/package.json" ]]; then
+  printf '%s\n' 'Run this helper from its checked-out project directory.' >&2
   exit 1
 fi
 if [[ ! -t 0 || ! -t 1 ]]; then

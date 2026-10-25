@@ -1,9 +1,10 @@
+import {projectRoot} from '../apps/service/src/projectPaths.ts';
 import {DatabaseSync} from 'node:sqlite';
 import {readFileSync,statSync,mkdirSync,writeFileSync} from 'node:fs';
 import {PublicDatabase} from '../apps/service/src/publicDatabase.ts';
 import {fetchUsdaBatch} from '../apps/service/src/catalogRefresh.ts';
 process.umask(0o077);
-const root='/path/to/NutriGlimpse',args=process.argv.slice(2);
+const root=projectRoot,args=process.argv.slice(2);
 const limit=Number(args.find(a=>a.startsWith('--limit='))?.slice(8)??200),apply=args.includes('--apply');
 if(!Number.isInteger(limit)||limit<1||limit>500||args.some(a=>a!=='--apply'&&!/^--limit=\d+$/.test(a)))throw Error('Usage: refresh-catalog-batch.ts [--limit=1..500] [--apply]');
 const sql=new DatabaseSync(root+'/.tools/catalog/public.sqlite',{readOnly:true});

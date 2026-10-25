@@ -1,3 +1,4 @@
+import {projectRoot} from '../src/projectPaths.ts';
 import {GROCERY_SHOPPER_CONSENT,GROCERY_SHOPPER_LEGACY_CONSENT} from '../../../packages/core/src/groceryShopper.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -7,7 +8,7 @@ import {adaptSimpleGroceryAnswer} from '../src/geminiSimpleReview.ts';
 import {journalRecordSchema,type JournalRecord} from '../src/responseJournal.ts';
 import {betaEventSchema} from '../src/betaDiagnostics.ts';
 import {GROCERY_CONSENT,GROCERY_RESPONSE_CONSENT,GROCERY_PARALLEL_CONSENT,type GroceryContext,groceryResultSchema} from '../../../packages/core/src/groceryReview.ts';
-const root='/path/to/NutriGlimpse';
+const root=projectRoot;
 const context:GroceryContext={healthConditions:['noConcern'],dietaryRestrictions:[],store:{name:'Wegmans',town:'Northborough',state:'MA',branch:null}};
 const imageBase64=Buffer.from('ffd8ffc00011080020002003011100021100031100ffda000c03010002110311003f0000ffd9','hex').toString('base64');
 const food=(title:string,rating='healthy',sodium=100)=>({title,rating,nutrition:{sodiumMg:sodium,proteinG:2,totalFatG:1,transFatG:0},reasons:['Less sodium'],store:'Wegmans'});

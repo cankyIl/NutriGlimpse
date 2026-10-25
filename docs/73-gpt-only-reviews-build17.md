@@ -43,7 +43,7 @@ Remaining independent latency work: separate original-product facts from alterna
 
 The user chose to use the existing Mac for now. No paid Expo plan is needed for that route. Authoritative development and the backend stay on project-server; the Mac is the iPhone build/signing machine. We will retain TestFlight distribution.
 
-The initial .67 and .70 connection attempts failed. Connectivity is now verified at developer@192.168.50.10 using the existing congress_iphone_mac SSH identity; the first successful-network attempt had omitted this non-default identity. The host is MacBook-Air-8.local, user developer, macOS 27.0.1, Xcode 27.1, with about 52 GiB free.
+The initial .67 and .70 connection attempts failed. Connectivity is now verified at developer@192.0.2.10 using the existing congress_iphone_mac SSH identity; the first successful-network attempt had omitted this non-default identity. The host is MacBook-Air-8.local, user developer, macOS 27.0.1, Xcode 27.1, with about 52 GiB free.
 
 Source was transferred and extracted into /Users/developer/CongressAppChallenge/releases/build17/HealthGroceryBuild17. All 326 file hashes match the frozen/current server source. The existing Mac workspace was preserved. Node 24.15.0, Ruby 3.4.11 and CocoaPods 1.17.0 were reused; Fastlane 2.241.1 was installed in the separate release tool directory. Locked npm dependencies are installed. Mobile/core typechecks and mobile lint passed on the Mac. A whole-workspace typecheck initially stopped because the phone release package intentionally excludes backend tsconfig/source; targeted phone/shared checks passed, and the earlier authoritative server full check remains valid.
 

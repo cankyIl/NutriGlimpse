@@ -1,3 +1,4 @@
+import {projectRoot} from '../apps/service/src/projectPaths.ts';
 import {readFileSync,writeFileSync} from 'node:fs';
 import {PublicDatabase} from '../apps/service/src/publicDatabase.ts';
 import {comparisonReady,comparableAlternatives} from '../packages/core/src/catalogAlternatives.ts';
@@ -5,7 +6,7 @@ import {retailerBrandHints} from '../apps/service/src/offBulk.ts';
 import {foodSchema} from '../packages/core/src/publicFood.ts';
 import {searchCatalog} from '../packages/core/src/catalogClient.ts';
 import assert from 'node:assert/strict';
-const root='/path/to/NutriGlimpse',db=new PublicDatabase(root+'/.tools/catalog/public.sqlite');
+const root=projectRoot,db=new PublicDatabase(root+'/.tools/catalog/public.sqlite');
 const foods=db.exportFoods(),off=foods.filter(f=>f.provider==='off');
 const report={checkedAt:new Date().toISOString(),totalRecords:foods.length,uniqueBarcodes:new Set(foods.flatMap(f=>f.barcode?[f.barcode]:[])).size,offRecords:off.length,offNewBarcodes:new Set(off.filter(f=>!foods.some(u=>u.provider==='usda'&&u.barcode===f.barcode)).map(f=>f.barcode)).size,offComparable:off.filter(f=>comparisonReady(f)).length,groups:{} as Record<string,number>,chains:{} as Record<string,{offBrandMatches:number;allSourceBrandMatches:number;offComparable:number;samples:string[]}>,liveSearch:{} as Record<string,number>,sampleComparisons:[] as {name:string;options:number}[],exportBytes:0};
 for(const f of off.filter(f=>comparisonReady(f)))report.groups[f.comparisonGroup!]=(report.groups[f.comparisonGroup!]??0)+1;

@@ -6,12 +6,12 @@ from pathlib import Path
 import socket
 import sys
 
-ROOT = Path("/path/to/NutriGlimpse")
+ROOT = Path(__file__).resolve().parents[2]
 TARGET = ROOT / ".secrets" / "serpapi-availability-test.key"
 
 def main():
-    if socket.gethostname().split(".")[0] != "project-server":
-        raise SystemExit("Run this helper on project-server.")
+    if not (ROOT / "package.json").is_file():
+        raise SystemExit("Run this helper on the project server.")
     if not sys.stdin.isatty():
         raise SystemExit("Use ssh -t so key entry stays hidden.")
     if TARGET.parent.resolve() != ROOT / ".secrets":

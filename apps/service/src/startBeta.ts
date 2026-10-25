@@ -1,3 +1,4 @@
+import {projectRoot} from './projectPaths.ts';
 import {PrivateResponseJournal} from './responseJournal.ts';
 import {loadGroceryProvider} from './groceryReviewProvider.ts';
 import {loadWebPhotoProvider} from './webPhotoProvider.ts';
@@ -20,7 +21,7 @@ import {mkdirSync} from 'node:fs';
 import {PublicDatabase} from './publicDatabase.ts';
 import {createAppServer} from './server.ts';
 process.umask(0o077);
-const root='/path/to/NutriGlimpse';
+const root=projectRoot;
 mkdirSync(root+'/.tools/catalog',{recursive:true,mode:0o700});
 let diagnostics:BetaDiagnosticStore|undefined;
 if(process.env.GROCERY_BETA_DIAGNOSTICS==='true'){try{diagnostics=new BetaDiagnosticStore(root+'/.tools/beta-diagnostics/events.sqlite');console.info('Private beta diagnostics enabled: seven-day retention');}catch{console.warn('beta-diagnostics unavailable');}}
@@ -37,7 +38,7 @@ const photoAssessments=loadPhotoAssessmentProvider(root,createAssessmentNutritio
 const scanTimingEnabled=process.env.GROCERY_BUILD_STAGE==='beta0'&&process.env.GROCERY_BETA_SCAN_TIMING==='true';
 const directory=loadStoreDirectory(root+'/.tools/stores/osm-ma.json');
 const availability=loadNearbyAvailability(root,directory);
-const server=createAppServer({groceryReviews:loadGroceryProvider(root,diagnostics,responseJournal,directory),webReviews:loadWebPhotoProvider(root,diagnostics),shelfGrids:loadShelfGridProvider(root,diagnostics),dualReviews:loadDualPhotoProvider(root,process.env,diagnostics),availability,scanTimingEnabled,accessMode:'open-beta',diagnostics,news:()=>readFoodNews(root+'/.tools/news/daily.json'),newsPool:()=>readNewsPool(root+'/.tools/news/pool.json'),aiReviews:loadAiReviewProvider(root,process.env,diagnostics),cardSources:createProductCardSources(catalog,createAssessmentNutritionResolver(root,catalog,labelEvidence,fetch,offLookup),'maintainer@example.invalid',fetch,diagnostics),photoAssessments,productPhotos,labelEvidence,realReports,directory,catalog,offLookup,fictional:createFictionalProvider(root,false)});
+const server=createAppServer({groceryReviews:loadGroceryProvider(root,diagnostics,responseJournal,directory),webReviews:loadWebPhotoProvider(root,diagnostics),shelfGrids:loadShelfGridProvider(root,diagnostics),dualReviews:loadDualPhotoProvider(root,process.env,diagnostics),availability,scanTimingEnabled,accessMode:'open-beta',diagnostics,news:()=>readFoodNews(root+'/.tools/news/daily.json'),newsPool:()=>readNewsPool(root+'/.tools/news/pool.json'),aiReviews:loadAiReviewProvider(root,process.env,diagnostics),cardSources:createProductCardSources(catalog,createAssessmentNutritionResolver(root,catalog,labelEvidence,fetch,offLookup),off?.contactEmail??process.env.GROCERY_PROVIDER_CONTACT??'maintainer@example.invalid',fetch,diagnostics),photoAssessments,productPhotos,labelEvidence,realReports,directory,catalog,offLookup,fictional:createFictionalProvider(root,false)});
 server.listen(3002,'127.0.0.1',()=>console.info('Key-free beta backend listening on loopback port 3002'));
 server.once('close',()=>{catalog.close();diagnostics?.close();responseJournal?.close();availability?.close();});
 process.once('SIGINT',()=>server.close());

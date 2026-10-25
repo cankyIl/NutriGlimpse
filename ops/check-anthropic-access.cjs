@@ -4,7 +4,7 @@ const {openSync,closeSync,fstatSync,readFileSync,constants}=require('node:fs');
 const {resolve,join}=require('node:path');
 async function main(){
  const root=resolve(__dirname,'..');
- if(root!=='/path/to/NutriGlimpse')throw Error('wrong_host');
+ if(!require('node:fs').existsSync(join(root,'package.json')))throw Error('project_root_required');
  const path=join(root,'.tools/anthropic/api-key');
  const descriptor=openSync(path,constants.O_RDONLY|constants.O_NOFOLLOW);
  let key;

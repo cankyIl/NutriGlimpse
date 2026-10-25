@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import json,hashlib
 from pathlib import Path
-ROOT=Path('/path/to/NutriGlimpse')
+ROOT=Path(__file__).resolve().parents[1]
 def validate(root=ROOT):
  library=json.loads((root/'data/guidance/library.json').read_text())
  tables=json.loads((root/'data/guidance/serving-tables.json').read_text())

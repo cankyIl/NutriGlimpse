@@ -5,7 +5,7 @@ import json, os, pathlib, secrets, subprocess, shutil, hashlib, zipfile, tempfil
 from datetime import datetime, timezone
 from build_provenance import snapshot_inputs
 import xml.etree.ElementTree as ET
-root = pathlib.Path('/path/to/NutriGlimpse')
+root = pathlib.Path(__file__).resolve().parents[1]
 os.chdir(root)
 parser=argparse.ArgumentParser();parser.add_argument('--architecture',choices=['arm64-v8a','x86_64'],default='arm64-v8a');args=parser.parse_args()
 architecture=args.architecture

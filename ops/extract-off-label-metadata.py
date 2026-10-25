@@ -1,6 +1,6 @@
 """Bounded read from the already pinned OFF export; no crawling or automatic retries."""
 import duckdb,json,pathlib,time,threading,sqlite3
-root=pathlib.Path('/path/to/NutriGlimpse')
+root=pathlib.Path(__file__).resolve().parents[1]
 out=root/'artifacts/remote/label-enrichment'
 source=json.loads((root/'.tools/off/bulk-source.json').read_text())
 sql=sqlite3.connect(root/'.tools/catalog/public.sqlite')

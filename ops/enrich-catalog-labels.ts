@@ -1,8 +1,9 @@
+import {projectRoot} from '../apps/service/src/projectPaths.ts';
 import {readFileSync,writeFileSync,mkdirSync,statSync} from 'node:fs';
 import {PublicDatabase} from '../apps/service/src/publicDatabase.ts';
 import {normalizeOffBulk} from '../apps/service/src/offBulk.ts';
 import {fetchUsdaBatch} from '../apps/service/src/catalogRefresh.ts';
-const root='/path/to/NutriGlimpse',apply=process.argv.includes('--apply');
+const root=projectRoot,apply=process.argv.includes('--apply');
 if(process.argv.slice(2).some(x=>x!=='--apply'))throw Error('Use --apply to backfill validated source facts');
 process.umask(0o077);
 const db=new PublicDatabase(root+'/.tools/catalog/public.sqlite');

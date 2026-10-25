@@ -3,8 +3,8 @@ Description=Protected Congress beta catalog backend
 After=network.target
 [Service]
 Type=simple
-WorkingDirectory=/path/to/NutriGlimpse
-ExecStart=/bin/bash /path/to/NutriGlimpse/ops/run-beta-backend.sh
+WorkingDirectory=%h/NutriGlimpse
+ExecStart=/bin/bash %h/NutriGlimpse/ops/run-beta-backend.sh
 Restart=on-failure
 RestartSec=5
 UMask=0077

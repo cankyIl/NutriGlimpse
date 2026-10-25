@@ -23,7 +23,7 @@ def save_key(directory: Path, key: str) -> None:
 def main():
     if not sys.stdin.isatty():
         raise ValueError("Interactive terminal required.")
-    root = Path("/path/to/NutriGlimpse")
+    root = Path(__file__).resolve().parents[1]
     if not root.is_dir() or (root / ".tools").is_symlink():
         raise ValueError("Project credential location unavailable.")
     destination = root / ".tools/usda"
@@ -33,7 +33,7 @@ def main():
         warnings.simplefilter("error", getpass.GetPassWarning)
         key = getpass.getpass("Paste USDA/data.gov API key (hidden), then press Enter: ")
     save_key(destination, key)
-    print("USDA key saved privately on project-server. No API request made.")
+    print("USDA key saved privately on the project server. No API request made.")
 
 if __name__ == "__main__":
     try:

@@ -16,7 +16,7 @@ The feature checkpoint passed full workspace checks: 697 core/service tests, too
 
 An inherited package-check assertion referred to superseded privacy wording, 'up to seven days'. It was updated to assert the actual reviewed wording, 'Only bounded timing, usage and outcome codes'; the full inspection then passed. This changed the verification helper only, not the compiled source or retention behavior.
 
-All 336 frozen release paths match the authoritative server and the Mac after compilation. No earlier source files were removed. The Mac host key matched its previously trusted identity; the existing project SSH key worked at 192.168.50.10. No credentials were changed or requested. No additional model call, paid cloud compilation, OTA or new tester invitation was made for this release.
+All 336 frozen release paths match the authoritative server and the Mac after compilation. No earlier source files were removed. The Mac host key matched its previously trusted identity; the existing project SSH key worked at 192.0.2.10. No credentials were changed or requested. No additional model call, paid cloud compilation, OTA or new tester invitation was made for this release.
 
 ## Release identifiers
 

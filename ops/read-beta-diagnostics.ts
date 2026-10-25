@@ -1,10 +1,11 @@
+import {projectRoot} from '../apps/service/src/projectPaths.ts';
 // Private SSH-only operator view. There is intentionally no HTTP diagnostics route.
 import {DatabaseSync} from 'node:sqlite';
 const args=process.argv.slice(2);
 const option=(key:string)=>{const i=args.indexOf(key);return i<0?undefined:args[i+1];};
 const limit=Math.max(1,Math.min(2000,Number(option('--limit')??100)||100));
 const trace=option('--trace'),product=option('--product')?.toLowerCase();
-const db=new DatabaseSync('/path/to/NutriGlimpse/.tools/beta-diagnostics/events.sqlite',{readOnly:true});
+const db=new DatabaseSync(projectRoot+'/.tools/beta-diagnostics/events.sqlite',{readOnly:true});
 try{
  const rows=db.prepare('SELECT at,trace,payload FROM events WHERE at >= ? ORDER BY id DESC LIMIT 2000').all(Date.now()-7*86400000).map(r=>({at:new Date(Number(r.at)).toISOString(),trace:String(r.trace),event:JSON.parse(String(r.payload))}));
  const selected=new Set(rows.filter(r=>(!trace||r.trace===trace)&&(!product||JSON.stringify(r.event).toLowerCase().includes(product))).map(r=>r.trace));

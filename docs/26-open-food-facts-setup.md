@@ -28,7 +28,7 @@ Open https://docs.google.com/forms/d/e/1FAIpQLSdIE3D8qvjC_zRJw1W8OmuHhsWJ_NSckii
 | Help translating | No (for the current English-only beta). |
 | First launch date | Leave blank; no public launch yet. |
 | Are you using the | Live JSON/XML api |
-| Server IP | Leave blank (optional). Our server uses residential outbound networking. Do not enter 192.168.50.10 or a Cloudflare tunnel/DNS address; neither identifies the public outbound API client. |
+| Server IP | Leave blank (optional). Our server uses residential outbound networking. Do not enter 192.0.2.10 or a Cloudflare tunnel/DNS address; neither identifies the public outbound API client. |
 | Backend technologies | NodeJS |
 | Mobile technologies | ReactNative |
 | Relationships with food producers | No |

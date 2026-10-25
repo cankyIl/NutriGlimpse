@@ -36,7 +36,7 @@ Status: October 24, 2026, 03:17 PM Eastern. **Version 0.1.0 (18) is Apple VALID 
 | Source archive SHA-256 | 2e85429a8fc9a0cb976706ae9ee63340b419007a4eb94859ef8d0aad7cad61d0 |
 | Phone installation | Not yet confirmed |
 
-The local Mac build ran in /Users/developer/CongressAppChallenge/releases/build18/HealthGroceryBuild18. Its previously trusted host identity was verified at 192.168.50.10. Existing Expo submission and Apple signing credentials were reused; no cloud build or plan purchase was made. Source/artifact transfers were hash-verified. Authoritative evidence is in /path/to/NutriGlimpse/artifacts/iphone-build18-2026-10-24/.
+The local Mac build ran in /Users/developer/CongressAppChallenge/releases/build18/HealthGroceryBuild18. Its previously trusted host identity was verified at 192.0.2.10. Existing Expo submission and Apple signing credentials were reused; no cloud build or plan purchase was made. Source/artifact transfers were hash-verified. Authoritative evidence is in /path/to/NutriGlimpse/artifacts/iphone-build18-2026-10-24/.
 
 ## Try this build
 

@@ -1,5 +1,6 @@
+import {projectRoot} from '../apps/service/src/projectPaths.ts';
 import {PrivateResponseJournal} from '../apps/service/src/responseJournal.ts';
-const root='/path/to/NutriGlimpse';
+const root=projectRoot;
 const journal=new PrivateResponseJournal(root+'/.tools/beta-response-journal');
 try{
  const [trace,...flags]=process.argv.slice(2);

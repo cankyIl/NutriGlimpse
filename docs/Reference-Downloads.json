@@ -1,0 +1,47 @@
+[
+  {
+    "path": "data/guidance/sources/2026-10-14/ckd.html",
+    "sha256": "e41ffefc3bbce56b2411e2f2615804f409a5875a05fe0d71e8d46a0ab835c8de",
+    "bytes": 64578
+  },
+  {
+    "path": "data/guidance/sources/2026-10-14/dash.html",
+    "sha256": "a08e2763354382daf5480ef5c06440e01ff5902fad28f7e887391effce024439",
+    "bytes": 73197
+  },
+  {
+    "path": "data/guidance/sources/2026-10-14/dga-index.html",
+    "sha256": "94e69f5d9607b18fdf5bdde3a518f71991ba868869c2694a273886f745c1eccf",
+    "bytes": 22322
+  },
+  {
+    "path": "data/guidance/sources/2026-10-14/dga-servings.pdf",
+    "sha256": "dbc315c24735cc7ecb660e303f4636ab7089547194acf58baafc64e24fc78c73",
+    "bytes": 208317
+  },
+  {
+    "path": "data/guidance/sources/2026-10-14/dga.pdf",
+    "sha256": "c34f1bec5c9416265670b7fcb24556bb8616ba95e8de2f2890460b6bbca1a472",
+    "bytes": 3422452
+  },
+  {
+    "path": "data/guidance/sources/2026-10-14/diabetes.html",
+    "sha256": "70c15914917d75085697c29a4d34cf71e1b8f09036b1566a0e752b449900d968",
+    "bytes": 71786
+  },
+  {
+    "path": "data/guidance/sources/2026-10-14/nhlbi-rights.html",
+    "sha256": "71c2c6a9e838a4ae9615f7c6896289c0fc382926857abcd804f99bbadeb43a66",
+    "bytes": 63211
+  },
+  {
+    "path": "data/guidance/sources/2026-10-14/niddk-rights.html",
+    "sha256": "c11dd24f95f04af9eaf3c54513f61d8c2b995b682b7550750e8f5e82127bf1b5",
+    "bytes": 31550
+  },
+  {
+    "path": "data/serpapi-us-cities.json",
+    "sha256": "f0d483c62c31c73e87fab936a2c027557dce935f3b307a1161a747d25314a974",
+    "bytes": 1665350
+  }
+]

@@ -2,7 +2,7 @@
 """Create private tester invitation keys once; never print secrets."""
 import os, json, secrets, hashlib
 from pathlib import Path
-root=Path('/path/to/NutriGlimpse/.tools/beta')
+root=Path(__file__).resolve().parents[1]/'.tools/beta'
 os.umask(0o077)
 root.mkdir(mode=0o700,parents=True,exist_ok=True)
 if root.is_symlink() or root.stat().st_mode & 0o077:

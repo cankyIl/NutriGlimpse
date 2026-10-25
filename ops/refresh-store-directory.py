@@ -1,7 +1,7 @@
 """Operator-only refresh. Source ops/remote-env.sh first; restart backend after successful import. Never called by a phone request."""
 from pathlib import Path
 import urllib.request,urllib.parse,json,subprocess,os
-r=Path('/path/to/NutriGlimpse')
+r=Path(__file__).resolve().parents[1]
 query='[out:json][timeout:40][maxsize:67108864];area["ISO3166-2"="US-MA"]["admin_level"="4"]->.a;(node["shop"~"^(supermarket|grocery|convenience)$"](area.a);way["shop"~"^(supermarket|grocery|convenience)$"](area.a);node["shop"="department_store"]["name"~"^(Target|Walmart|Wal-Mart)",i](area.a);way["shop"="department_store"]["name"~"^(Target|Walmart|Wal-Mart)",i](area.a););out tags center geom;'
 request=urllib.request.Request('https://overpass-api.de/api/interpreter',data=urllib.parse.urlencode({'data':query}).encode(),headers={'User-Agent':'CongressGroceryBeta/0.1 (operator directory import; grocery.serveforwad.com)','Content-Type':'application/x-www-form-urlencoded'})
 try:

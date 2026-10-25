@@ -1,10 +1,10 @@
-# NutriGlimpse private GitHub repository
+# NutriGlimpse GitHub repository
 
 **Prepared:** October 25, 2026, America/New_York  
 **Owner:** `cankyIl`  
 **Target:** `https://github.com/cankyIl/NutriGlimpse`  
-**Visibility authorized by owner:** Private  
-**Status:** Connected and initial source pushed to private GitHub on `main`. Authenticated read/write and matching remote commit verified.
+**Initial visibility:** Private; owner now intends public publication after cleanup  
+**Status:** Connected on `main`. The initial private setup is historical; [publication cleanup](Publication-Cleanup-2026-10-25.md) records the current MIT/privacy/history treatment.
 
 ## Project-specific connection
 
@@ -33,13 +33,13 @@ The public key is shareable. Never paste a private key, Google password, GitHub 
 
 Included: mobile/backend/shared source, tests, approved prompt templates, setup scripts, current documentation, versioned catalog/reference data, app artwork and existing third-party notices.
 
-Excluded and preserved on the server: `.secrets`, `.env` files, `docs/AppleCredentials`, signing keys/certificates/profiles, machine tooling/caches, generated native projects, databases, retained diagnostics, artifacts/installers and separately managed shelf model/test-image binaries. Git/source-package/cloud-archive exclusions now also omit development-assistant metadata. Native model asset provisioning and application behavior are unchanged.
+Excluded and preserved on the server: `.secrets`, `.env` files, `docs/AppleCredentials`, signing keys/certificates/profiles, machine tooling/caches, generated native projects, databases, retained diagnostics, artifacts/installers and separately managed shelf model binaries and raw reference downloads. Git/source-package/cloud-archive exclusions now also omit development-assistant metadata. Native model asset provisioning and application behavior are unchanged.
 
 The initial source snapshot was scanned with **Gitleaks 8.30.1**, obtained from its official GitHub release and checked against the published SHA-256 manifest. Its only initial finding was the non-secret Apple App Store Connect Issuer ID in `apps/mobile/eas.json`; reviewed supplemental matches were deliberately fake test credentials/URLs. Final index scan and commit evidence are stored in the ignored `artifacts/github-private-setup-2026-10-25` directory. This is a bounded source review, not a guarantee that every possible secret format can be detected.
 
 ## Reproducing native shelf resources
 
-Detector integration code, metadata and existing license notices are versioned. Binary weights and diagnostic input photographs are separately provisioned because their redistribution/permission decisions remain unresolved. An absent model fails closed in the native module; cloning alone is not a complete shelf-camera installation.
+Detector integration code, metadata and existing license notices are versioned. Binary weights remain separately provisioned because their redistribution/permission decisions remain unresolved. The four documented Creative Commons diagnostic photographs are now included unchanged with attribution and metadata. An absent model fails closed in the native module; cloning alone is not a complete shelf-camera installation.
 
 The exact currently provisioned asset paths and SHA-256 values are in `Repository-External-Assets.sha256`. Obtain authorized copies from the existing controlled project workspace, restore them at those relative paths, then run from the repository root:
 
@@ -51,7 +51,7 @@ Do not fetch an arbitrary similarly named model or silently substitute weights. 
 
 ## Public release remains separate
 
-The user selected private hosting initially. No broad source-code license is added, no third-party notice is removed and model permissions are not declared resolved. Before changing visibility, review operator/account details in historical documents, dataset and image terms, and the intended first-party license.
+The owner selected MIT licensing for original project code and authorized publication cleanup. Existing third-party notices remain intact; model permissions are not declared resolved. The history/contact cleanup and data treatment are documented in Publication-Cleanup-2026-10-25.md. Git visibility itself requires a repository administrator; the deploy key only grants Git read/write access.
 
 ## Normal updates
 
@@ -67,4 +67,4 @@ The initial upload contained no `codex` or `.codex` directory. On the user's fol
 
 Source packaging no longer explicitly includes the assistant instruction file; source-package discovery and build provenance ignore development metadata. The archive helper also excludes the existing `docs/AppleCredentials` operator file. Five focused packaging/provenance tests pass, and a real-tree package-input audit found no development metadata or that credential document. These changes do not alter mobile/backend runtime code, app prompts or deployed builds.
 
-The app's intentional Gemini/OpenAI integrations remain application features. Historical design/release records can still mention tools used during development; those mentions do not create a runtime dependency. Git history is retained, including the first snapshot's assistant instruction file; there was no Codex directory in that snapshot.
+The app's intentional Gemini/OpenAI integrations remain application features. Historical design/release records can still mention tools used during development; those mentions do not create a runtime dependency. The original history was privately backed up; the publication history removes the first snapshot's assistant instruction file. There was no Codex directory in that snapshot.

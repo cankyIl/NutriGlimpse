@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-cd /path/to/NutriGlimpse
+cd "$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 source ops/remote-env.sh
 export GROCERY_PHOTO_ASSESSMENT_ENABLED=true
 export GROCERY_PHOTO_ASSESSMENT_CONSENT=product-photo-assessment-2026-10-16.1
