@@ -2,11 +2,11 @@
 from pathlib import Path
 import hashlib,json,os,re,zipfile
 from datetime import datetime,timezone
-from build_provenance import snapshot_inputs
+from build_provenance import snapshot_inputs, DEVELOPMENT_DIRS, DEVELOPMENT_FILES
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'artifacts/independent-development/delivery'
 SKIP={'node_modules','build','.cxx','.gradle','.expo','.git','.tools','dist','__pycache__','Pods'}
-FILES=['package.json','package-lock.json','.gitignore','README.md','apps/mobile/AGENTS.md']
+FILES=['package.json','package-lock.json','.gitignore','README.md']
 FOLDERS=['apps/mobile/src','apps/mobile/modules','apps/mobile/plugins','apps/mobile/assets','apps/service/src','apps/service/test','packages','vendor','data/guidance','docs','ops']
 def paths():
  found={ROOT/x for x in FILES if (ROOT/x).is_file()}
@@ -15,9 +15,11 @@ def paths():
    if p.is_file() and p.suffix in {'.json','.js','.cjs','.mjs'}:found.add(p)
  for folder in FOLDERS:
   for base,dirs,files in os.walk(ROOT/folder):
-   dirs[:]=sorted(x for x in dirs if x not in SKIP)
+   dirs[:]=sorted(x for x in dirs if x not in SKIP and x.casefold() not in DEVELOPMENT_DIRS)
    for name in files:
+    if name.casefold() in DEVELOPMENT_FILES:continue
     p=Path(base)/name
+    if p.relative_to(ROOT).as_posix()=='docs/AppleCredentials':continue
     if p.is_symlink():raise ValueError('Review symlink before packaging')
     if p.suffix in {'.p8','.p12','.pem','.key','.mobileprovision'} or name=='credentials.json' or name.startswith('.env'):raise ValueError('Credential-like file in source')
     found.add(p)

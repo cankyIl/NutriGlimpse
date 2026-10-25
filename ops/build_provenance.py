@@ -7,6 +7,9 @@ FILES = ('package.json', 'package-lock.json', 'apps/mobile/package.json', 'apps/
          'packages/core/package.json', 'packages/core/tsconfig.json', 'ops/build-preview.py',
          'ops/build_provenance.py', 'ops/internal-signing.gradle', 'ops/apply-decoder-patch.cjs',
          'ops/remote-env.sh')
+# Editor/assistant instructions and local state are not application build inputs.
+DEVELOPMENT_DIRS = {'codex', '.codex', '.agents', '.claude', '.cursor', '.gemini'}
+DEVELOPMENT_FILES = {'agents.md', 'claude.md', 'gemini.md', '.cursorrules', 'copilot-instructions.md'}
 IGNORED = {'node_modules', 'build', '.gradle', '.expo', '__pycache__'}
 def sha256(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -18,8 +21,10 @@ def snapshot_inputs(root):
         if not directory.is_dir():
             continue
         for base, dirs, files in os.walk(directory):
-            dirs[:] = sorted(d for d in dirs if d not in IGNORED)
+            dirs[:] = sorted(d for d in dirs if d not in IGNORED and d.casefold() not in DEVELOPMENT_DIRS)
             for filename in files:
+                if filename.casefold() in DEVELOPMENT_FILES:
+                    continue
                 path = pathlib.Path(base) / filename
                 if path.is_symlink():
                     raise ValueError('Build input symlinks require explicit review.')

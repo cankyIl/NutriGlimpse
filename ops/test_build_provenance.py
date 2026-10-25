@@ -25,6 +25,15 @@ class ProvenanceTests(unittest.TestCase):
         native = self.root / 'apps/mobile/modules/example/android/source.kt'
         native.write_text('native source')
         self.assertNotEqual(before, snapshot_inputs(self.root))
+    def test_development_metadata_does_not_change_build_digest(self):
+        before = snapshot_inputs(self.root)
+        for name in ['apps/mobile/src/.codex/state.json', 'apps/mobile/src/codex/private.txt',
+                     'apps/mobile/modules/test/.agents/settings.json', 'packages/core/src/AGENTS.md',
+                     'apps/mobile/src/CLAUDE.md', 'apps/mobile/src/.cursor/rules.txt']:
+            path = self.root / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text('local development instructions')
+        self.assertEqual(before, snapshot_inputs(self.root))
     def test_verifier_rejects_changed_apk_or_sources(self):
         output = self.root / 'artifacts/android'
         output.mkdir(parents=True)

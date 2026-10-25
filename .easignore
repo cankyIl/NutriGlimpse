@@ -60,3 +60,16 @@ DerivedData/
 
 # Private credentials and operator metadata stay on this server.
 /.secrets/
+
+# Development-assistant metadata stays local; source is tool-neutral.
+[Cc][Oo][Dd][Ee][Xx]/
+.codex/
+.agents/
+.claude/
+.cursor/
+.gemini/
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+.cursorrules
+.github/copilot-instructions.md
