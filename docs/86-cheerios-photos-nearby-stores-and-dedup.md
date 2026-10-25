@@ -1,6 +1,6 @@
 # Cheerios photos, nearby stores and duplicate alternatives
 
-October 25, 2026. Backend deployed; iPhone build 25 compiled, signed and submitted to Apple. Build 23 remains the released version until Apple verification completes.
+October 25, 2026. Backend deployed; iPhone **0.1.0 (25)** is Apple **VALID / IN_BETA_TESTING**, available to the existing owner TestFlight group. Installation and physical acceptance are not yet confirmed.
 
 ## Changes
 
@@ -29,9 +29,9 @@ The beta backend restarted at 19:52 UTC. Public health and title-only photo look
 
 ## Release and limits
 
-All 344 frozen build-24 source files matched before transfer and again on the Mac. Build 24 compiled and passed signing checks, but is not uploaded because the owner requested the additional automatic-store fix. Build 25 is the combined release. Existing news, report/lipid, artwork, shelf models and streaming changes are retained. The Expo cloud build allowance is exhausted until November 1, 2026; the Mac build proceeds independently of that cloud allowance. No plan was purchased.
+All 344 frozen build-24 source files matched before transfer and again on the Mac. Build 24 compiled and passed signing checks, but is not uploaded because the owner requested the additional automatic-store fix. All 344 combined build-25 frozen source files matched on the Mac after compilation and still match the archived release inputs. Later concurrent shelf reliability edits are not in build 25 and were left untouched. Existing news, report/lipid, artwork, shelf models and streaming changes are retained. The Expo cloud build allowance is exhausted until November 1, 2026; the Mac build proceeds independently of that cloud allowance. No plan was purchased.
 
-Native compilation, full Mac code-signature verification, signed-IPA inspection, source checks, icon pixels and submission pass. Apple received build 25 at 20:23:07 UTC and its detailed upload record reports PROCESSING with empty error/warning lists. Physical acceptance is pending. Remaining acceptance: test current-location permission/notice, no selected store, a selected store override, failed photos, repeated scans, and shelf/news/report regressions on the trial phones. This recorded scan supports only one distinct qualifying alternative; it does not justify displaying three by duplicating products or accepting missing nutrition.
+Native Mac compilation, full code-signature verification, signed-IPA inspection, approved native icon pixels, both shelf models and required app features pass. Minimum iOS remains 16.4, arm64. Apple processing, owner-group availability, encryption=false and release notes are verified. External state is **READY_FOR_BETA_SUBMISSION**; additional testers were not invited. Expo Doctor remains **20/21** with existing patch-alignment warnings; no dependency upgrade was mixed into this fix. Physical acceptance remains pending. Remaining acceptance: test current-location permission/notice, no selected store, a selected store override, failed photos, repeated scans, and shelf/news/report regressions on the trial phones. This recorded scan supports only one distinct qualifying alternative; it does not justify displaying three by duplicating products or accepting missing nutrition.
 
 Private replay/deployment evidence: `artifacts/cheerios-home-fixes-2026-10-25/`. Private release evidence: `artifacts/nutriglimpse-build24-2026-10-25/`. Raw answers and operator/access details remain outside public source.
 
@@ -42,3 +42,5 @@ The owner reported Wegmans displayed at 0.0 miles with the status No clear in-st
 Build 25 therefore selects the **nearest mapped grocery store within 100 metres** of the location. Distance is to the mapped footprint when available (zero inside), or the mapped point otherwise; nearest point breaks equal footprint distances. The screen retains Likely store and manual correction. No prior 150-metre competing-store veto or interior-edge margin remains. A location older than 60 seconds, more than 10 seconds in the future, missing/invalid accuracy, accuracy worse than 100 metres, or a directory older than 30 days is still unsuitable for automatic selection. Outside the 100-metre radius, no store is assumed. Selection is a location estimate, not an inventory claim.
 
 Regression checks cover the 99/101-metre boundary, a closer neighboring shop, inside and outside building edges, a large store, stale fixes, unusable accuracy and distant stores. Simulated fixes using the existing public Wegmans map validate the policy, but no exact owner GPS fix was captured. Phone acceptance remains pending. Nutrition checks and the approved main prompt are unchanged.
+
+Release identifiers: submission `9d30ef96-5174-4f78-9cd0-ea87fdbf45a7`; Apple build `f527c411-0de1-46f1-9781-08f220831351`. IPA SHA-256: `7611a31a6b9fe1c41c81406b763ab40914639a2dd78f1ccda8fd69ef302125b4`.
