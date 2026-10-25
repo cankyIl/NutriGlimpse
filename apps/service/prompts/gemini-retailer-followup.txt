@@ -1,5 +1,5 @@
 Find retailer product listings for these products:
 {{PRODUCTS}}
 
-I am shopping at {{STORE}}.
+{{SHOPPING_CONTEXT}}
 Give me the store name for each product. Prefer my current store; otherwise suggest a nearby store. For my current store, include the aisle name or number if available. Use Google Search and include the retailer product-page link in the structured response. If you cannot identify a retailer, return no listing for that product.

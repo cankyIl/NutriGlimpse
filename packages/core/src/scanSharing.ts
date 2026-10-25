@@ -1,6 +1,6 @@
 import {GROCERY_CONSENT,GROCERY_RESPONSE_CONSENT,GROCERY_PARALLEL_CONSENT} from './groceryReview.ts';
 import {GROCERY_SHOPPER_CONSENT} from './groceryShopper.ts';
-export const CURRENT_PHOTO_NOTICE=GROCERY_CONSENT+':'+GROCERY_RESPONSE_CONSENT+':'+GROCERY_PARALLEL_CONSENT;
+export const CURRENT_PHOTO_NOTICE=GROCERY_CONSENT+':'+GROCERY_RESPONSE_CONSENT+':'+GROCERY_PARALLEL_CONSENT+':approximate-location-2026-10-25.1';
 /** Both persisted choices must match this notice. Legacy, absent or revoked choices fail closed. */
 export function verifiedScanSharing(photoChoice:string|null,shopperChoice:string|null){
  if(photoChoice!==CURRENT_PHOTO_NOTICE)return null;

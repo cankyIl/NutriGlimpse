@@ -8,13 +8,21 @@ import type {PublicFood} from '../../../packages/core/src/publicFood.ts';
 import type {PublicDatabase} from './publicDatabase.ts';
 const candidate=z.object({code:z.string().regex(/^\d{8,14}$/),product_name:z.string().min(1).max(500),brands:z.union([z.string().min(1).max(500),z.array(z.string().max(100)).min(1).max(20)]).transform(v=>Array.isArray(v)?v.join(', '):v),image_front_small_url:z.string().max(500),countries_tags:z.array(z.string()).max(200).optional()});
 const empty={image:null,reference:true as const};
+const mediaName=(s:string)=>s.replace(/\b\d+(?:\.\d+)?\s*(?:oz|ounces?|g|grams?|lb)\b/gi,' ').replace(/\b(?:family|mega|giant|large) size\b/gi,' ').replace(/\bsized\b/gi,'size').replace(/\b(original|classic|regular|breakfast|cereal)\b/gi,' ').replace(/\s+/g,' ').trim();
+export function namedMediaIdentity(identity:PhotoIdentity,brands:readonly string[]):PhotoIdentity{
+ if(identity.brand||!identity.name)return identity;
+ const norm=(s:string)=>s.toLowerCase().replace(/[’']/g,'').replace(/[^a-z0-9]+/g,' ').trim();
+ const title=' '+norm(identity.name)+' ';
+ const named=[...new Set(brands.flatMap(b=>b.split(',')).map(s=>s.trim()).filter(b=>norm(b).length>=3&&title.includes(' '+norm(b)+' ')))].sort((a,b)=>b.length-a.length);
+ return named[0]?{...identity,brand:named[0]}:identity;
+}
 // A reference image must match the variant as well as the brand and name.
 // Media records stay separate from nutritional facts and never establish dietary safety.
 export function mediaDecision(identity:PhotoIdentity,raw:unknown){
  const rejected=(reason:string)=>({media:null,reason});
  const parsed=candidate.safeParse(raw);if(!parsed.success)return rejected('missing_or_invalid_media_fields');const p=parsed.data;
+ identity=namedMediaIdentity(identity,[p.brands]);if(!identity.brand)return rejected('brand_not_established');
  if(!normalizeBarcode(p.code))return rejected('invalid_barcode');if(!p.countries_tags?.includes('en:united-states'))return rejected('not_us_product');
- const mediaName=(s:string)=>s.replace(/\bsized\b/gi,'size').replace(/\b(original|classic|regular)\b/gi,'').replace(/\s+/g,' ').trim();
  if(!matchPhotoIdentity({...identity,name:mediaName(identity.name??''),variant:identity.variant?mediaName(identity.variant)||null:null},[{provider:'off' as const,id:p.code,sourceDate:null,name:mediaName(p.product_name),brand:p.brands}]).length)return rejected('identity_or_variant_mismatch');
  const words=(s:string)=>new Set(s.toLowerCase().replace(/[^a-z0-9]+/g,' ').split(' '));
  const wanted=words([identity.name,identity.variant].filter(Boolean).join(' ')),found=words(p.product_name);
@@ -32,7 +40,7 @@ export function createProductCardSources(catalog:PublicDatabase,resolve:(identit
   signal.throwIfAborted();
   const quote=(s:string)=>JSON.stringify(s.replace(/[\u0000-\u001f]/g,' ').slice(0,160));
   const words=(identity.name??'').replace(/[^a-zA-Z0-9 ]/g,' ').trim();
-  const query='brands:'+quote(identity.brand??'')+' countries_tags:"en:united-states" '+words;
+  const query=(identity.brand?'brands:'+quote(identity.brand)+' ':'')+'countries_tags:"en:united-states" '+words;
   log({outcome:'search_started',query:diagnosticText(query)!});
   const response=await fetcher('https://search.openfoodfacts.org/search',{method:'POST',redirect:'error',signal:AbortSignal.any([signal,AbortSignal.timeout(7000)]),headers:{'User-Agent':'CongressGroceryBeta/0.1 ('+contact+')','Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify({q:query,page_size:20,fields:['code','product_name','brands','countries_tags','image_front_small_url'],langs:['en']})});
   if(!response.ok||!response.body){if(response.status===429||response.status>=500)catalog.coolOffSearch();void response.body?.cancel().catch(()=>{});throw new MediaLookupFailure(response.status===429?'upstream_rate_limited':'upstream_http_error',response.status);}
@@ -46,7 +54,7 @@ export function createProductCardSources(catalog:PublicDatabase,resolve:(identit
  }
  function cached(identity:PhotoIdentity){
   for(const row of catalog.mediaProducts()){const found=mediaFor(identity,row);if(found)return found;}
-  const matches=matchPhotoIdentity(identity,catalog.exportFoods());
+  const matches=matchPhotoIdentity({...identity,name:mediaName(identity.name??'')},catalog.exportFoods().map(f=>({...f,name:mediaName(f.name)})));
   const found=matches.find(f=>f.image);return found?.image?productMediaSchema.parse({image:found.image,reference:true}):null;
  }
  return {async sources(input:unknown,signal:AbortSignal,trace=newTrace()){
@@ -60,9 +68,10 @@ export function createProductCardSources(catalog:PublicDatabase,resolve:(identit
    log(result.foods.length?'possible_source_matches':'no_matching_source_record',result.foods.length,result.foods.map(f=>f.provider+':'+f.id));return result;
   }catch(error){log(signal.aborted?'cancelled':'source_lookup_failed');throw error;}
  },async media(input:unknown,signal:AbortSignal,trace=newTrace()){
-  const identity=photoIdentitySchema.parse(input),started=Date.now();signal.throwIfAborted();
+  let identity=photoIdentitySchema.parse(input);const started=Date.now();signal.throwIfAborted();
+   if(!identity.brand)identity=namedMediaIdentity(identity,[...catalog.exportFoods().flatMap(f=>f.brand?[f.brand]:[]),...catalog.mediaProducts().flatMap(r=>{const p=candidate.safeParse(r);return p.success?[p.data.brands]:[];})]);
   const log=(event:Omit<Extract<BetaEvent,{kind:'lookup'}>,'kind'|'operation'|'product'>)=>recordDiagnostic(audit,trace,{kind:'lookup',operation:'media',product:diagnosticIdentity(identity),elapsedMs:Date.now()-started,...event});
-  if(identity.status!=='identified'||!identity.brand||!identity.name){log({outcome:'identity_incomplete'});return empty;}
+  if(identity.status!=='identified'||!identity.name){log({outcome:'identity_incomplete'});return empty;}
   const hit=cached(identity);if(hit){log({outcome:'cache_hit'});return hit;}
   const key=JSON.stringify([identity.brand,identity.name,identity.variant]);if((misses.get(key)??0)>Date.now()){log({outcome:'negative_cache_hit'});return empty;}
   log({outcome:'search_queued'});

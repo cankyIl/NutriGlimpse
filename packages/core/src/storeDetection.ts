@@ -36,17 +36,19 @@ function edgeDistance(p:Coordinates,polygon:Coordinates[]){
   distance=Math.min(distance,Math.hypot(a.x+t*dx,a.y+t*dy));
  }return distance;
 }
+export const AUTO_STORE_RADIUS_METRES=100;
+const AUTO_STORE_MAX_ACCURACY_METRES=100;
 export function detectStore(fix:LocationFix,directory:StoreDirectory,now=Date.now()):Detection{
  coordinatesSchema.parse({latitude:fix.latitude,longitude:fix.longitude});
- const matches=directory.stores.map(store=>({store,distanceMetres:insideStore(fix,store.polygon)?0:metres(fix,store.coordinates)})).filter(s=>s.distanceMetres<=5000).sort((a,b)=>a.distanceMetres-b.distanceMetres||a.store.id.localeCompare(b.store.id)).slice(0,20);
+ const matches=directory.stores.map(store=>({store,distanceMetres:store.polygon?(insideStore(fix,store.polygon)?0:edgeDistance(fix,store.polygon)):metres(fix,store.coordinates)})).filter(s=>s.distanceMetres<=5000).sort((a,b)=>a.distanceMetres-b.distanceMetres||metres(fix,a.store.coordinates)-metres(fix,b.store.coordinates)||a.store.id.localeCompare(b.store.id)).slice(0,20);
  const result=(state:Detection['state'],selected:MappedStore|null=null)=>({state,selected,matches});
  if(now-Math.min(Date.parse(directory.retrievedAt),Date.parse(directory.sourceTimestamp))>30*86400000)return result('stale-directory');
- if(fix.accuracy===null||!Number.isFinite(fix.accuracy)||fix.accuracy<0||fix.accuracy>35||!Number.isFinite(fix.timestamp)||now-fix.timestamp>60000||fix.timestamp>now+10000)return result('inaccurate');
- const candidates=matches.filter(({store,distanceMetres})=>store.polygon?insideStore(fix,store.polygon)&&edgeDistance(fix,store.polygon)>fix.accuracy!+5:distanceMetres+fix.accuracy!<=60);
- if(candidates.length!==1)return result(candidates.length>1?'ambiguous':'nearby');
- const chosen=candidates[0];
- if(matches.some(m=>m.store.id!==chosen.store.id&&m.distanceMetres<150))return result('ambiguous');
- return result('detected',chosen.store);
+ if(fix.accuracy===null||!Number.isFinite(fix.accuracy)||fix.accuracy<0||fix.accuracy>AUTO_STORE_MAX_ACCURACY_METRES||!Number.isFinite(fix.timestamp)||now-fix.timestamp>60000||fix.timestamp>now+10000)return result('inaccurate');
+ // Choose the nearest mapped store within the user-approved radius. A footprint
+ // measures distance to the building, including zero while inside it. The UI
+ // labels this a likely store and allows manual correction.
+ const chosen=matches[0];
+ return chosen&&chosen.distanceMetres<=AUTO_STORE_RADIUS_METRES?result('detected',chosen.store):result('nearby');
 }
 export function searchStoreDirectory(directory:StoreDirectory,query:string){
  const term=query.trim().toLowerCase();

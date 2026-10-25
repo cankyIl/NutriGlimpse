@@ -44,6 +44,7 @@ export const groceryWireSchema=z.object({
 export type GroceryWire=z.infer<typeof groceryWireSchema>;
 export const groceryContextSchema=z.object({
  shopper:groceryShopperSchema.optional(),
+ location:z.object({latitude:z.number().finite().min(-90).max(90),longitude:z.number().finite().min(-180).max(180),observedAt:z.number().int().nonnegative()}).strict().optional(),
  healthConditions:z.array(z.enum(['generalFitness','noConcern','cardiovascular','diabetes','hypertension','celiac','ckd','masld','weight','sibo'])).max(8),
  dietaryRestrictions:z.array(z.enum(['vegetarian','eggFree','dairyFree','halal','kosher','glutenFree'])).max(6),
  store:z.object({name:text(160),town:nullableText(100),state:nullableText(40),branch:nullableText(200)}).strict().nullable()

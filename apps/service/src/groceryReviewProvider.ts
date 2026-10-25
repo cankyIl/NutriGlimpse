@@ -1,3 +1,4 @@
+import {normalizeGroceryLocation} from './groceryLocation.ts';
 import {projectRoot} from './projectPaths.ts';
 import {approvedGroceryPrompt} from './groceryPromptTemplate.ts';
 export {approvedGroceryPrompt} from './groceryPromptTemplate.ts';
@@ -33,9 +34,9 @@ export function groceryJsonSchema(projectRoot=root){
  const schema=JSON.parse(readFileSync(join(projectRoot,'docs/contracts/gemini-grocery-review-v1.schema.json'),'utf8'));
  delete schema.$schema;delete schema.title;return schema;
 }
-export function buildGroceryRequest(image:string,context:GroceryContext,model:GroceryModel,projectRoot=root):Record<string,unknown>{
+export function buildGroceryRequest(image:string,context:GroceryContext,model:GroceryModel,projectRoot=root,directory?:StoreDirectory):Record<string,unknown>{
  if(model==='gemini-3.5-flash-lite')return {
-  model,store:false,...(context.shopper?{system_instruction:SHOPPER_BOUNDARY}:{}),response_format:{type:'text',mime_type:'application/json',schema:JSON.parse(readFileSync(join(projectRoot,'apps/service/prompts/gemini-product-photo-simple.schema.json'),'utf8'))},input:[{type:'text',text:approvedGroceryPrompt(context,projectRoot)},{type:'image',mime_type:'image/jpeg',data:image}],
+  model,store:false,...(context.shopper?{system_instruction:SHOPPER_BOUNDARY}:{}),response_format:{type:'text',mime_type:'application/json',schema:JSON.parse(readFileSync(join(projectRoot,'apps/service/prompts/gemini-product-photo-simple.schema.json'),'utf8'))},input:[{type:'text',text:approvedGroceryPrompt(context,projectRoot,directory)},{type:'image',mime_type:'image/jpeg',data:image}],
   tools:[{type:'google_search'}],generation_config:{max_output_tokens:10000}
  };
  const prompt=groceryPrompt(projectRoot),schema=groceryJsonSchema(projectRoot);
@@ -127,10 +128,10 @@ export function parseGroceryResponse(raw:unknown,model:GroceryModel):ProviderEvi
  return {value:JSON.parse(text.trim().replace(/^```(?:json)?\s*([\s\S]*?)\s*```$/,'$1')),urls,html,queries:queries.map(q=>q.replace(/[\u0000-\u001f\u007f]/g,' ').slice(0,300)).slice(0,20),searches,inputTokens,outputTokens,cachedTokens,thinkingTokens};
 }
 export interface GroceryProvider{available():boolean;recognize(input:unknown,signal:AbortSignal,onProgress?:(result:GroceryResult)=>void,trace?:string,onIdentity?:(identity:AiPhotoPreview)=>void):Promise<GroceryResult>}
-export function createGroceryProvider(options:{model:GroceryModel;transport:GroceryTransport;audit?:BetaDiagnostics;projectRoot?:string;responseJournal?:ResponseJournal;retailerLookup?:RetailerLookup;supplementTransport?:GroceryTransport;supplementTimeoutMs?:number;supplementWaitMs?:number}):GroceryProvider{
+export function createGroceryProvider(options:{model:GroceryModel;transport:GroceryTransport;audit?:BetaDiagnostics;projectRoot?:string;directory?:StoreDirectory;responseJournal?:ResponseJournal;retailerLookup?:RetailerLookup;supplementTransport?:GroceryTransport;supplementTimeoutMs?:number;supplementWaitMs?:number}):GroceryProvider{
  let active=false;
  return {available:()=>true,async recognize(input,parent,onProgress,trace=newTrace(),onIdentity){
-  const request=groceryRequestSchema.parse(input);parent.throwIfAborted();
+  const request=groceryRequestSchema.parse(input);request.context=normalizeGroceryLocation(request.context);parent.throwIfAborted();
   if(active)throw new ProductPhotoError('PHOTO_BUSY');
   let image:string;try{image=cleanProductJpeg(request.imageBase64);}catch{throw new ProductPhotoError('INVALID_PRODUCT_IMAGE');}
   active=true;const start=performance.now();
@@ -155,7 +156,7 @@ export function createGroceryProvider(options:{model:GroceryModel;transport:Groc
   };
   try{
    const signal=AbortSignal.any([parent,AbortSignal.timeout(95000)]);
-   const body=buildGroceryRequest(image,request.context,options.model,options.projectRoot);
+   const body=buildGroceryRequest(image,request.context,options.model,options.projectRoot,options.directory);
    const timer=createServerScanTimer(true,options.audit,trace,'provider');
     let previewSent=false,progressCount=0,lastAlternatives=-1;
     const emitPartial=(text:string)=>{
@@ -180,7 +181,7 @@ export function createGroceryProvider(options:{model:GroceryModel;transport:Groc
     };
     timer('model_dispatch');
     if(options.model==='gemini-3.5-flash-lite'&&options.supplementTransport){
-     try{supplement=startAlternativeRequest(options.supplementTransport,buildAlternativeRequest(image,options.projectRoot??root,supplementContext(request.context,request.parallelContextConsentVersion)),signal,options.supplementTimeoutMs);supplementDisposition='pending';}
+     try{supplement=startAlternativeRequest(options.supplementTransport,buildAlternativeRequest(image,options.projectRoot??root,supplementContext(request.context,request.parallelContextConsentVersion),options.directory),signal,options.supplementTimeoutMs);supplementDisposition='pending';}
      catch{supplementDisposition='configuration_failed';}
     }
     const response=await options.transport(body,signal,{onText:emitPartial,onStage:timer,onIdentity:value=>{
@@ -275,5 +276,5 @@ export function loadGroceryProvider(projectRoot:string,audit?:BetaDiagnostics,re
  if(process.env.GROCERY_GEMINI_ENABLED!=='true')return undefined;
  try{const transport=createGroceryTransport('gemini-3.5-flash-lite',readGeminiKey(join(projectRoot,'.tools/gemini/api-key')));let supplementTransport:GroceryTransport|undefined;
   if(process.env.GROCERY_GPT_ALTERNATIVES_ENABLED!=='false')try{supplementTransport=createGroceryTransport('gpt-6-luna',readPrivateKey(join(projectRoot,'.tools/openai/api-key')));}catch{console.warn('grocery-alternatives: OpenAI configuration unavailable');}
-  return createGroceryProvider({model:'gemini-3.5-flash-lite',projectRoot,audit,responseJournal,transport,supplementTransport,retailerLookup:createRetailerLookup(transport,r=>parseGroceryResponse(r,'gemini-3.5-flash-lite'),projectRoot,directory)});}catch{return undefined;}
+  return createGroceryProvider({model:'gemini-3.5-flash-lite',projectRoot,directory,audit,responseJournal,transport,supplementTransport,retailerLookup:createRetailerLookup(transport,r=>parseGroceryResponse(r,'gemini-3.5-flash-lite'),projectRoot,directory)});}catch{return undefined;}
 }

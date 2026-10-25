@@ -1,4 +1,5 @@
 import {z} from 'zod';
+import {productTitleKey} from '../../../packages/core/src/productTitleKey.ts';
 import {groceryWireSchema,groceryNutrients,groceryUrl,type GroceryFood,type GroceryWire,type GroceryContext} from '../../../packages/core/src/groceryReview.ts';
 import {exactSourceUrl} from './geminiPhotoAdapter.ts';
 
@@ -59,7 +60,10 @@ export function adaptSimpleGroceryAnswer(value:unknown,context:GroceryContext,gr
   const required=[...context.dietaryRestrictions,...(context.healthConditions.includes('celiac')?['glutenFree']:[])];
   if(required.length){rating=null;issue('dietary_evidence_missing');limitations.unshift('Dietary requirements are not verified for this package. Check its label.');}
   if(context.healthConditions.includes('ckd')){rating=null;issue('kidney_targets_require_review');limitations.unshift('Kidney-related nutrient targets require your care plan.');}
-  const image=validUrl(raw.image_url);
+  const image=validUrl(raw.image_url),imagePage=validUrl(raw.retailer_url)||validUrl(raw.source_url);
+   // A package photo is display metadata, not proof of the nutrition. Keep its source separate.
+   const imageSourceId=id!=='original'&&image&&imagePage?id+'-image':null;
+   if(imageSourceId)sources.push({id:imageSourceId,kind:raw.retailer_url?'retailer':'manufacturer',url:imagePage,title:clean(raw.title+' reference package photo',250)});
   // Retailer discovery is separate from the nutrition source (often a manufacturer).
   const storeName=raw.store||null;
   const listingUrl=raw.retailer_url||raw.source_url;
@@ -98,14 +102,14 @@ export function adaptSimpleGroceryAnswer(value:unknown,context:GroceryContext,gr
    serving:{text:null,grams:null,milliliters:null,basis:'unknown',sourceId:null},nutrition,
    nutrientEvidence:sourceId?Object.entries(nutrition).filter(([,v])=>v!==null).map(([nutrient])=>({nutrient:nutrient as keyof typeof nutrition,sourceId})):[],
    ingredients:null,ingredientSourceId:null,dietaryEvidence:[],assessment:{rating,primaryConcern:reasons[0]?.nutrientKeys[0]??null,highlightNutrients:reasons.flatMap(r=>r.nutrientKeys).slice(0,4),reasons:canShowAssessment?reasons.slice(0,3):[],limitations:[...new Set(limitations)].slice(0,4)},
-   image:id==='original'?{kind:'scan_photo',url:null,sourceId:null}:image&&sourceId?{kind:'reference',url:image,sourceId}:{kind:'none',url:null,sourceId:null},availability};
+   image:id==='original'?{kind:'scan_photo',url:null,sourceId:null}:image&&imageSourceId?{kind:'reference',url:image,sourceId:imageSourceId}:{kind:'none',url:null,sourceId:null},availability};
  }
  const original=options.primaryOriginal??(input.product?food(input.product,'original'):null);
  const mode=original?.assessment.rating&&['neutral','not_healthy'].includes(original.assessment.rating)?'alternatives':'none';
- const seen=new Set([norm(original?.identity.name)]),recommendations:GroceryWire['recommendations']=[];
+ const seen=new Set([productTitleKey(original?.identity.name??'')]),recommendations:GroceryWire['recommendations']=[];
  for(const [i,raw] of input.alternatives.entries()){
   if(mode==='none')break;
-  const id=(options.idPrefix??'')+'alternative'+i,key=norm(raw.title);
+  const id=(options.idPrefix??'')+'alternative'+i,key=productTitleKey(raw.title);
   if(seen.has(key)){audit.push({foodId:id,code:'duplicate_food'});continue;}seen.add(key);
   const f=food(raw,id);candidates.push(f);
   if(!f.assessment.rating){audit.push({foodId:id,code:'recommendation_not_supported'});continue;}
