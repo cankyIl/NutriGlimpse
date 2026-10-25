@@ -1,6 +1,6 @@
 # Cheerios photos, nearby stores and duplicate alternatives
 
-October 25, 2026. Backend deployed; iPhone build 25 preparing locally. Build 23 remains the released version until Apple verification completes.
+October 25, 2026. Backend deployed; iPhone build 25 compiled, signed and submitted to Apple. Build 23 remains the released version until Apple verification completes.
 
 ## Changes
 
@@ -31,7 +31,7 @@ The beta backend restarted at 19:52 UTC. Public health and title-only photo look
 
 All 344 frozen build-24 source files matched before transfer and again on the Mac. Build 24 compiled and passed signing checks, but is not uploaded because the owner requested the additional automatic-store fix. Build 25 is the combined release. Existing news, report/lipid, artwork, shelf models and streaming changes are retained. The Expo cloud build allowance is exhausted until November 1, 2026; the Mac build proceeds independently of that cloud allowance. No plan was purchased.
 
-Native compilation, signed-IPA inspection, TestFlight submission/processing and physical acceptance are pending at this checkpoint. Remaining acceptance: test current-location permission/notice, no selected store, a selected store override, failed photos, repeated scans, and shelf/news/report regressions on the trial phones. This recorded scan supports only one distinct qualifying alternative; it does not justify displaying three by duplicating products or accepting missing nutrition.
+Native compilation, full Mac code-signature verification, signed-IPA inspection, source checks, icon pixels and submission pass. Apple received build 25 at 20:23:07 UTC and its detailed upload record reports PROCESSING with empty error/warning lists. Physical acceptance is pending. Remaining acceptance: test current-location permission/notice, no selected store, a selected store override, failed photos, repeated scans, and shelf/news/report regressions on the trial phones. This recorded scan supports only one distinct qualifying alternative; it does not justify displaying three by duplicating products or accepting missing nutrition.
 
 Private replay/deployment evidence: `artifacts/cheerios-home-fixes-2026-10-25/`. Private release evidence: `artifacts/nutriglimpse-build24-2026-10-25/`. Raw answers and operator/access details remain outside public source.
 
