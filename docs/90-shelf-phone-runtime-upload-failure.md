@@ -38,3 +38,7 @@ Private evidence: `artifacts/shelf-phone-runtime-2026-10-25/`, including the bef
 2. Install that new build and verify live capture, streaming results, Finish with a partial batch and background cancellation. Build 26 cannot be repaired by a backend-only deployment.
 3. Add bounded request-entry and phone capture/upload diagnostics so a future pre-model failure can be diagnosed directly from logs. Do not log raw photos or health profiles for that instrumentation.
 4. Cross-batch duplicate normalization and model nutrition accuracy remain separate open items from the side-chat report.
+
+## Build 27 release follow-up
+
+The correction and accurate processing-failure messages are included in build 27. Native compilation/signing, the actual mobile cancellation-dependency tests and a live 16-package HTTPS replay passed. Upload is complete; see the [current release record](91-build27-shelf-upload-and-error-recovery.md) for Apple availability and the remaining physical acceptance boundary.

@@ -62,7 +62,7 @@ test('interrupted stream retains partial unrated facts and later batches still r
  },()=>{},()=>{});
  s.accept(native(0,1));s.accept(native(1,1));s.finish();await tick();
  assert.equal(s.phase,'complete');assert.equal(s.products.length,1);assert.equal(s.products[0].complete,true);
- assert.equal(s.products[0].model,'gpt-6-luna');assert.match(s.error,/interrupted/);
+ assert.equal(s.products[0].model,'gpt-6-luna');assert.match(s.error,/interrupted/);assert.equal(s.failedPackages,1);assert.equal(s.unresolved,0);
  s.cancel();assert.equal(s.products.length,0);assert.equal(s.batchResults.length,0);
 });
 test('HTTP client delivers progress before completion and rejects incorrect association',async()=>{
@@ -87,4 +87,15 @@ test('pipeline starts two batches, queues the third and updates completed primar
  s.finish();finish.get(1)!(nineResult(nineInput(1,1)));await tick();assert.deepEqual(starts,[0,1,2]);
  finish.get(0)!(nineResult(nineInput(1,0)));finish.get(2)!(nineResult(nineInput(1,2)));await tick();
  assert.equal(s.phase,'complete');assert.equal(s.processed,3);assert.equal(s.batchResults.length,3);
+});
+
+test('a failed upload is counted separately from returned incomplete product information',async()=>{
+ const s=new ShelfNineSession('scan-1',nineInput().context,false,async i=>{
+  if(i.batchIndex===0)throw new TypeError('undefined is not a function');
+  const r=nineResult(i);return {...r,products:[],unresolvedCells:i.cells.map(c=>c.cell)};
+ },()=>{},()=>{});
+ s.accept(native(0,9));s.accept(native(1,4));s.finish();await tick();
+ assert.equal(s.phase,'complete');assert.equal(s.failedPackages,9);assert.equal(s.unresolved,4);assert.equal(s.processed,4);
+ assert.equal(s.error,'This shelf batch could not be processed. Start a new scan.');
+ assert.ok(!s.error.includes('undefined'));assert.ok(!s.error.includes('closer'));
 });

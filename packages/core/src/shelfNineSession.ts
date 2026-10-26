@@ -2,9 +2,15 @@ import type {NativeShelfGrid} from './shelfGridSession.ts';
 import type {GroceryContext} from './groceryReview.ts';
 import {SHELF_NINE_CONSENT,shelfNineRequestSchema,assertNineAssociation,mergeNineProducts,isShelfHealthy,type ShelfNineRequest,type ShelfNineResult,type ShelfNineObservation,type ShelfNineAlternative} from './shelfNine.ts';
 type Send=(input:ShelfNineRequest,signal:AbortSignal,progress:(r:ShelfNineResult)=>void)=>Promise<ShelfNineResult>;
+function failureMessage(error:unknown):string{
+ const message=error instanceof Error?error.message:'';
+ if(/busy/i.test(message))return 'Shelf reviews are busy. Try again shortly.';
+ if(/interrupt|network|fetch|timed? ?out/i.test(message))return 'Connection interrupted. Start a new scan.';
+ return 'This shelf batch could not be processed. Start a new scan.';
+}
 export class ShelfNineSession{
  readonly id:string;phase:'capturing'|'finishing'|'complete'|'cancelled'='capturing';
- error='';processed=0;unresolved=0;products:ShelfNineObservation[]=[];batchResults:ShelfNineResult[]=[];
+ error='';processed=0;unresolved=0;failedPackages=0;products:ShelfNineObservation[]=[];batchResults:ShelfNineResult[]=[];
  private observations=new Map<string,ShelfNineObservation[]>();private controller=new AbortController();
  private waiting:{grid:NativeShelfGrid;index:number}[]=[];private seen=new Set<string>();private active=0;private next=0;private counted=new Set<string>();
  private context:GroceryContext;private shareHealth:boolean;private send:Send;private changed:()=>void;private acknowledge:(batch:string)=>void;
@@ -56,7 +62,7 @@ export class ShelfNineSession{
    if(this.controller.signal.aborted)return;assertNineAssociation(input,result);
    this.acceptResult(grid,result);
    this.unresolved+=result.unresolvedCells.length;
-  }catch(error){if(!this.controller.signal.aborted){if(!this.counted.has(grid.batchId))this.unresolved+=grid.cells.length;this.error=error instanceof Error?error.message:'This shelf batch could not finish.';}}
+  }catch(error){if(!this.controller.signal.aborted){if(!this.counted.has(grid.batchId))this.failedPackages+=grid.cells.length;this.error=failureMessage(error);}}
   finally{input.imageBase64='';grid.imageBase64='';grid.cells=[];this.active--;
    if(!this.controller.signal.aborted){this.acknowledge(grid.batchId);this.changed();void this.drain();}
   }

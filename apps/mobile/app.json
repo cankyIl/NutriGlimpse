@@ -10,7 +10,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "org.cac.healthgrocery.beta0",
-      "buildNumber": "26",
+      "buildNumber": "27",
       "config": {
         "usesNonExemptEncryption": false
       }

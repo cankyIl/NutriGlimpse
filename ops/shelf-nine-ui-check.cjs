@@ -132,6 +132,16 @@ function reset(){for(const s of slots.values())s.clean?.();slots=new Map();effec
  shelfResponse=async input=>{const r=result(input);if(input.batchIndex===0){r.products[0].food.rating='not_healthy';r.alternatives=[{food:fixtures.food('Alternative'),comparedCell:1,reasons:['Less sodium'],sourceUrls:[],nutritionStatus:'estimated',storeName:'Wegmans',aisle:'4',retailerUrl:null}];}return r;};
  camera.props.onGrid({nativeEvent:make(1,'red',0)});await flush(Screen);assert.ok(text().includes('Healthier alternatives'));assert.ok(text().includes('Wegmans'));
  camera.props.onGrid({nativeEvent:make(1,'green',1)});await flush(Screen);assert.ok(!text().includes('Healthier alternatives'));
+ reset();params={auto:'1'};gridRequests=[];await flush(Screen);button('Continue without health details').onPress();await flush(Screen);camera=nodes().find(n=>n.type==='NativeShelf');
+ shelfResponse=async()=>{throw new TypeError('undefined is not a function');};
+ camera.props.onGrid({nativeEvent:make(9,'failed-full',0)});await flush(Screen);
+ camera.props.onGrid({nativeEvent:make(4,'failed-tail',9)});camera.props.onScanState({nativeEvent:{runId:camera.props.runId,state:'stopped',reason:'stopped'}});await flush(Screen);
+ assert.ok(/13\s+packages could not be processed/.test(text()));assert.ok(/0\s+checked/.test(text()));
+ assert.ok(!text().includes('undefined is not a function'));assert.ok(!text().includes('Try a closer view'));assert.ok(!text().includes('incomplete product information'));
+ button('Scan another shelf').onPress();await flush(Screen);camera=nodes().find(n=>n.type==='NativeShelf');
+ shelfResponse=async input=>({...result(input),products:[],unresolvedCells:input.cells.map(c=>c.cell)});
+ camera.props.onGrid({nativeEvent:make(2,'unreadable',0)});camera.props.onScanState({nativeEvent:{runId:camera.props.runId,state:'stopped',reason:'stopped'}});await flush(Screen);
+ assert.ok(/2\s+packages have incomplete product information/.test(text()));assert.ok(!text().includes('could not be processed'));
  reset();global.fetch=savedFetch;
- console.log('Shelf nine UI: consent/no-sharing, 3x3 native capacity, partial streamed cards, duplicate batch callback, Gemini-first batch numbering, Finish flush, Show more, restart, background cancellation, multi-condition context, batch alternatives and later-green suppression passed (native/network mocked).');
+ console.log('Shelf nine UI: consent/no-sharing, 3x3 native capacity, partial streamed cards, duplicate batch callback, Gemini-first batch numbering, Finish flush, Show more, restart, background cancellation, multi-condition context, batch alternatives later-green suppression, upload failure versus incomplete information, and safe error copy passed (native/network mocked).');
 })().catch(error=>{reset();global.fetch=savedFetch;console.error(error);process.exitCode=1;});

@@ -16,10 +16,10 @@ import {colors} from './theme';
 export default function ShelfNineScreen(){
  const {auto}=useLocalSearchParams<{auto?:string}>(),health=useAppState(),shopping=useShoppingStore();
  const session=useRef<ShelfNineSession|null>(null),alive=useRef(false),autoStarted=useRef(false);
- const [snapshot,setSnapshot]=useState<Pick<ShelfNineSession,'id'|'phase'|'products'|'processed'|'unresolved'|'queued'|'error'|'duplicateCount'|'alternatives'|'batchResults'>|null>(null),[availability,setAvailability]=useState<ShelfBenchmarkAvailability|null>(null);
+ const [snapshot,setSnapshot]=useState<Pick<ShelfNineSession,'id'|'phase'|'products'|'processed'|'unresolved'|'failedPackages'|'queued'|'error'|'duplicateCount'|'alternatives'|'batchResults'>|null>(null),[availability,setAvailability]=useState<ShelfBenchmarkAvailability|null>(null);
  const [shareHealth,setShareHealth]=useState<boolean|null>(null),[focused,setFocused]=useState(false),[camera,setCamera]=useState(false),[finish,setFinish]=useState(false),[ack,setAck]=useState('');
  const [pending,setPending]=useState(0),[total,setTotal]=useState(0),[blocked,setBlocked]=useState(false),[message,setMessage]=useState(''),[limit,setLimit]=useState(10);
- const update=useCallback(()=>{const current=session.current;if(alive.current)setSnapshot(current?{id:current.id,phase:current.phase,products:current.products,processed:current.processed,unresolved:current.unresolved,queued:current.queued,error:current.error,duplicateCount:current.duplicateCount,alternatives:current.alternatives,batchResults:[...current.batchResults]}:null);},[]);
+ const update=useCallback(()=>{const current=session.current;if(alive.current)setSnapshot(current?{id:current.id,phase:current.phase,products:current.products,processed:current.processed,unresolved:current.unresolved,failedPackages:current.failedPackages,queued:current.queued,error:current.error,duplicateCount:current.duplicateCount,alternatives:current.alternatives,batchResults:[...current.batchResults]}:null);},[]);
  const cancel=useCallback(()=>{session.current?.cancel();setCamera(false);setFinish(false);},[]);
  useFocusEffect(useCallback(()=>{
   alive.current=true;setFocused(true);
@@ -57,7 +57,8 @@ export default function ShelfNineScreen(){
  <Body muted>{run.duplicateCount} duplicate appearances combined</Body>
  {!finished&&<Body muted>{pending} waiting for the next grid · {run.queued} batches processing or queued</Body>}
  {blocked&&camera&&<Status>Pause panning while processing catches up.</Status>}
- {run.unresolved>0&&<Body muted>{run.unresolved} packages could not be fully checked. Try a closer view.</Body>}
+ {run.unresolved>0&&<Body muted>{run.unresolved} packages have incomplete product information. Scan those products individually.</Body>}
+ {run.failedPackages>0&&<Body muted>{run.failedPackages} packages could not be processed. Start a new scan.</Body>}
  {!!run.error&&<Status>{run.error}</Status>}{!finished&&<Button secondary label="Cancel scan" onPress={cancel}/>}</Card>}
  {!!message&&<Status>{message}</Status>}
  {!!products.length&&<><Heading>{finished?'Products on this shelf':'Products checked so far'}</Heading>
