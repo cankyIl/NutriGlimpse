@@ -42,7 +42,7 @@ test('fast GPT is held until Gemini, then only fills unresolved cells',async()=>
 });
 test('GPT gets its full provider deadline after Gemini; checked Gemini alternatives are already visible',async()=>{
  let aborted=false;const progress:ShelfNineResult[]=[];
- const original=row(1,'Salty oats');original.food.n.na=620;
+ const original=row(1,'Salty oats');original.food.n.na=620;original.food.r='not_healthy';
  const alt={...row(1,'Better oats'),compared_cell:1,store_name:'Wegmans',aisle:'4',retailer_product_url:null};
  const p=createShelfNineProvider({root:projectRoot,providerTimeoutMs:35,gemini:async()=>gemini({...wire([original]),alternatives:[alt]}),gpt:async(_r,s)=>new Promise((_resolve,reject)=>{
   s.addEventListener('abort',()=>{aborted=true;reject(s.reason);},{once:true});
@@ -73,7 +73,7 @@ test('filled nutrients are revalidated and cannot produce an incoherent table',(
  const a=result('gemini-3.5-flash-lite'),b=result('gpt-6-luna');
  a.products[0].food.nutrition.addedSugarsG=null;a.products[0].food.rating=null;b.products[0].food.nutrition.addedSugarsG=20;
  assert.equal(mergeParallelShelf(a,b).products[0].food.nutrition.addedSugarsG,null);
- b.products[0].food.nutrition.addedSugarsG=1;assert.equal(mergeParallelShelf(a,b).products[0].food.rating,'healthy');
+ b.products[0].food.nutrition.addedSugarsG=1;assert.equal(mergeParallelShelf(a,b).products[0].food.rating,null);
 });
 test('GPT alternatives fill slots and retailer gaps, never cross-store aisle or Gemini healthy decision',()=>{
  const a=result('gemini-3.5-flash-lite'),b=result('gpt-6-luna');
@@ -92,4 +92,11 @@ test('two batches can dispatch to both providers concurrently; third is bounded 
  assert.deepEqual(calls,['gemini','gpt','gemini','gpt']);
  await assert.rejects(p.recognize(input(1,2),new AbortController().signal),/BUSY/);
  release.forEach(f=>f());await Promise.all([a,b]);
+});
+
+test('the actual GPT fallback delivery is journaled with its unmodified rating and missing serving weight',async()=>{
+ const records:any[]=[],r=row();r.food.r='not_healthy';r.food.g=null;
+ const p=createShelfNineProvider({root:projectRoot,responseJournal:{record:(_id,value)=>records.push(value)},gemini:async()=>{throw Error('unavailable');},gpt:async()=>gpt(wire([r]))});
+ const delivered=await p.recognize(input(),new AbortController().signal);assert.equal(delivered.products[0].food.rating,'not_healthy');
+ const final=records.find(r=>r.shelf?.stage==='merge');assert.ok(final);assert.equal(final.model,'gpt-6-luna');assert.deepEqual(final.shelf.result,delivered);
 });

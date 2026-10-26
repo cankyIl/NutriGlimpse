@@ -43,3 +43,7 @@ Physical acceptance on iPhone X / iOS 16.7.16 and iPhone 17 remains pending afte
 ## Evidence
 
 Private release evidence: `artifacts/nutriglimpse-build27-2026-10-25/` includes full check/export logs, live replay results/timeline, source manifests and release verification. Existing model licenses and deferred redistribution clearance are unchanged. No credentials, raw health profiles or build artifacts are committed with this document.
+
+## Subsequent backend update — October 26
+
+The observed model-rating removal/override and cross-batch duplicates are corrected by the [backend-only update](92-shelf-model-ratings-and-duplicates.md). The saved owner scan now has six cards for 27 appearances, and the earlier cereal fixture has ten cards for 16 appearances. Build 27 itself remains unchanged; its historical release evidence above is preserved. Fresh physical acceptance is still required.

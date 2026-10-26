@@ -16,7 +16,7 @@ const wireRow=(f:EstimatedFood)=>({cell_numbers:[1],food:compactFood(f),reasons:
 const alt=(f:EstimatedFood)=>({compared_cell:1,food:compactFood(f),reasons:['Model benefit'],source_urls:[],nutrition_status:'estimated',store_name:'Wegmans',aisle:'4',retailer_product_url:null});
 const wire=(a:EstimatedFood,b:EstimatedFood[])=>({products:[wireRow(a)],alternatives:b.map(alt),unidentified_cells:[],total_duplicates_removed:0,limitations:[]});
 const returned=(v:unknown,model='gemini')=>model==='gemini'?{status:'completed',steps:[{type:'model_output',content:[{type:'text',text:JSON.stringify(v)}]}]}:{status:'completed',output:[{type:'message',status:'completed',content:[{type:'output_text',text:JSON.stringify(v)}]}]};
-const sauce=(name:string,sodium:number,protein=3,fiber=2):EstimatedFood=>({...food(name,sodium),category:'Pasta Sauce',servingGrams:125,servingText:'125 g',nutrition:{...food().nutrition,caloriesKcal:80,carbohydrateG:12,sodiumMg:sodium,sugarsG:6,addedSugarsG:1,fiberG:fiber,proteinG:protein}});
+const sauce=(name:string,sodium:number,protein=3,fiber=2):EstimatedFood=>({...food(name,sodium),rating:sodium>=460?'not_healthy':'neutral',category:'Pasta Sauce',servingGrams:125,servingText:'125 g',nutrition:{...food().nutrition,caloriesKcal:80,carbohydrateG:12,sodiumMg:sodium,sugarsG:6,addedSugarsG:1,fiberG:fiber,proteinG:protein}});
 const tick=async()=>{for(let i=0;i<60;i++)await Promise.resolve();};
 test('shelf accepts meaningful neutral and red improvements, keeps red last and reports small protein tradeoff',()=>{
  const a=sauce('Original sauce',900),red=sauce('Better red sauce',500),neutral=sauce('Low sodium sauce',100,2);

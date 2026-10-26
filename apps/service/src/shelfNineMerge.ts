@@ -1,4 +1,4 @@
-import {checkedShelfFood,isShelfHealthy,type ShelfNineProduct,type ShelfNineAlternative,type ShelfNineResult} from '../../../packages/core/src/shelfNine.ts';
+import {isShelfHealthy,type ShelfNineProduct,type ShelfNineAlternative,type ShelfNineResult} from '../../../packages/core/src/shelfNine.ts';
 import {shelfProductKey} from '../../../packages/core/src/shelfGrid.ts';
 import {estimatedRatingDecision} from '../../../packages/core/src/aiFoodReview.ts';
 import {shelfBenefits,shelfReasons,rankShelfAlternatives,sameShelfAlternativeOriginal,type ShelfDecisionObserver} from './shelfAlternativePolicy.ts';
@@ -11,7 +11,7 @@ function fillProduct(primary:ShelfNineProduct,donor:ShelfNineProduct):ShelfNineP
  const candidate={...primary.food,nutrition},check=estimatedRatingDecision(candidate);
  // Reject an incoherent combined table; never overwrite a supplied Gemini nutrient.
  if(check.reasons.some(r=>/inconsistent|exceeds|non_finite/.test(r)))return primary;
- return {...primary,food:{...candidate,rating:primary.food.rating??checkedShelfFood(candidate).rating},
+ return {...primary,food:{...candidate,rating:primary.food.rating},
   sourceUrls:[...new Set([...primary.sourceUrls,...donor.sourceUrls])].slice(0,4),nutritionStatus:'estimated'};
 }
 function fillRetailer(primary:ShelfNineAlternative,donor:ShelfNineAlternative):ShelfNineAlternative{

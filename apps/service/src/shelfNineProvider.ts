@@ -1,3 +1,4 @@
+import {ShelfDisplayIdentities} from './shelfDisplayIdentity.ts';
 import {estimatedRatingDecision} from '../../../packages/core/src/aiFoodReview.ts';
 import {partialShelfRows} from './shelfNineStream.ts';
 import {publicModelReturn,recordResponse,responseCodeHash,type ResponseJournal,type JournalRecord} from './responseJournal.ts';
@@ -60,8 +61,10 @@ export const partialShelfProducts=(text:string)=>partialShelfRows(text,'products
 
 const rowSchema=z.object({cell_numbers:z.array(z.number().int()).min(1).max(9),food:z.unknown(),reasons:z.array(z.string()).max(2).optional(),source_urls:z.array(z.string()).max(4).optional(),nutrition_status:z.enum(['verified','estimated','unknown']).optional()});
 const order={healthy:0,very_healthy:0,neutral:1,not_healthy:2};
-function safeDetails(raw:{food?:unknown;reasons?:string[];source_urls?:string[];nutrition_status?:string},grounded:boolean){
- const food=checkedShelfFood(expandCompactFood(raw.food));
+function safeDetails(raw:{food?:unknown;reasons?:string[];source_urls?:string[];nutrition_status?:string},grounded:boolean,scanned=false){
+ const supplied=expandCompactFood(raw.food);
+ // A model assessment is distinct from our nutrient-comparison eligibility checks.
+ const food=scanned?{...supplied,rating:supplied.identity.status==='identified'?supplied.rating:null}:checkedShelfFood(supplied);
  const sourceUrls=(raw.source_urls??[]).filter(u=>shelfNineProductSchema.shape.sourceUrls.element.safeParse(u).success);
  return {food,reasons:(raw.reasons??[]).map(s=>s.trim()).filter(Boolean).map(s=>s.slice(0,200)),sourceUrls,
   nutritionStatus:raw.nutrition_status==='verified'&&grounded&&sourceUrls.length?'verified' as const:raw.nutrition_status==='unknown'?'unknown' as const:'estimated' as const};
@@ -74,7 +77,7 @@ export function parseShelfNineProducts(rows:unknown[],input:ShelfNineRequest,gro
    if(seen.has(cell)||!input.cells.some(c=>c.cell===cell))throw Error('SHELF_INVALID_ASSOCIATION');seen.add(cell);
   }
   try{
-   const row=rowSchema.parse(raw),details=safeDetails(row,grounded);
+   const row=rowSchema.parse(raw),details=safeDetails(row,grounded,true);
    if(!details.food.identity.name||!['identified','uncertain'].includes(details.food.identity.status))continue;
    out.push(shelfNineProductSchema.parse({cellNumbers:row.cell_numbers,...details}));
   }catch(error){const code=error instanceof z.ZodError?'schema_'+error.issues[0]?.path.join('_'):'invalid_food';onIssue?.(code.replace(/[^a-zA-Z0-9_]/g,'_').slice(0,90));}
@@ -86,8 +89,8 @@ function mergeBatchProducts(out:ShelfNineProduct[]){
  const groups=new Map<string,ShelfNineProduct>();
  for(const row of out){const key=row.food.identity.status==='identified'?shelfProductKey(row.food):'cell:'+row.cellNumbers.join(',');
   const prior=groups.get(key);if(!prior){groups.set(key,row);continue;}
-  const conflict=JSON.stringify(prior.food.nutrition)!==JSON.stringify(row.food.nutrition)||prior.food.servingGrams!==row.food.servingGrams;
-  groups.set(key,{...prior,cellNumbers:[...prior.cellNumbers,...row.cellNumbers],food:conflict?{...prior.food,rating:null}:prior.food});
+  // Retain one complete model observation; never average facts or erase its rating.
+  groups.set(key,{...prior,cellNumbers:[...prior.cellNumbers,...row.cellNumbers]});
  }
  return [...groups.values()].sort((a,b)=>(a.food.rating?order[a.food.rating]:3)-(b.food.rating?order[b.food.rating]:3));
 }
@@ -125,7 +128,7 @@ export interface ShelfNineProvider{recognize(input:unknown,signal:AbortSignal,pr
 interface ShelfProviderOptions{root:string;gemini:Transport;gpt:Transport;directory?:StoreDirectory;audit?:BetaDiagnostics;responseJournal?:ResponseJournal;providerTimeoutMs?:number}
 const distinctAlternatives=(rows:ShelfNineAlternative[])=>rankShelfAlternatives(rows.filter((a,i,all)=>all.findIndex(b=>shelfProductKey(a.food)===shelfProductKey(b.food))===i).slice(0,3));
 const retainShelfResponse=(input:ShelfNineRequest)=>!input.shareHealth||input.diagnosticConsentVersion===SHELF_RESPONSE_CONSENT;
-const journalHashes=(root:string)=>({promptHash:responseCodeHash(readFileSync(join(root,'apps/service/prompts/shelf-nine.txt'),'utf8')),schemaHash:responseCodeHash(JSON.stringify(shelfNineWireSchema)),adapterHash:responseCodeHash(['apps/service/src/shelfNineProvider.ts','apps/service/src/shelfNineMerge.ts','apps/service/src/shelfAlternativePolicy.ts','packages/core/src/aiFoodReview.ts'].map(f=>readFileSync(join(root,f),'utf8')).join('\n'))});
+const journalHashes=(root:string)=>({promptHash:responseCodeHash(readFileSync(join(root,'apps/service/prompts/shelf-nine.txt'),'utf8')),schemaHash:responseCodeHash(JSON.stringify(shelfNineWireSchema)),adapterHash:responseCodeHash(['apps/service/src/shelfNineProvider.ts','apps/service/src/shelfNineMerge.ts','apps/service/src/shelfDisplayIdentity.ts','apps/service/src/shelfAlternativePolicy.ts','packages/core/src/aiFoodReview.ts'].map(f=>readFileSync(join(root,f),'utf8')).join('\n'))});
 export function createSingleShelfNineProvider(options:ShelfProviderOptions&{model?:GroceryModel;deferComparison?:boolean}):ShelfNineProvider{
  const cache=new Map<string,{hash:string;until:number;promise:Promise<ShelfNineResult>;pending:boolean}>();let active=0;
  return {async recognize(raw,parent,progress){
@@ -204,6 +207,7 @@ export function createSingleShelfNineProvider(options:ShelfProviderOptions&{mode
 }
 
 export function createShelfNineProvider(options:ShelfProviderOptions):ShelfNineProvider{
+ const identities=new ShelfDisplayIdentities();
  const gemini=createSingleShelfNineProvider({...options,model:'gemini-3.5-flash-lite'});
  const gpt=createSingleShelfNineProvider({...options,model:'gpt-6-luna',deferComparison:true});
  const cache=new Map<string,{hash:string;until:number;pending:boolean;promise:Promise<ShelfNineResult>}>();
@@ -217,25 +221,29 @@ export function createShelfNineProvider(options:ShelfProviderOptions):ShelfNineP
   const run=async()=>{
    const secondaryController=new AbortController(),secondarySignal=AbortSignal.any([parent,secondaryController.signal]);
    let primary:ShelfNineResult|undefined,secondary:ShelfNineResult|undefined,primaryStream:ShelfNineResult|undefined,secondaryStream:ShelfNineResult|undefined,closed=false;
-   const emit=(result:ShelfNineResult)=>{if(parent.aborted||closed)return;try{progress?.(result);}catch{/* Observers cannot fail a model request. */}};
+   const scope=createHash('sha256').update(JSON.stringify([input.shareHealth,input.context])).digest('hex');
+   const display=(result:ShelfNineResult)=>identities.normalize(result,scope);
+   const emit=(result:ShelfNineResult)=>{if(parent.aborted||closed)return;const shown=display(result);try{progress?.(shown);}catch{/* Observers cannot fail a model request. */}};
    const emitMerged=()=>{const p=primary??primaryStream;if(p)emit({...mergeParallelShelf(p,secondary??secondaryStream),complete:false,primaryComplete:true});};
    // Both models start immediately. Complete, checked alternatives stream while
    // the other model is working; no post-Gemini short deadline cancels GPT.
    const first=gemini.recognize(input,parent,r=>{if(r.primaryComplete){primaryStream=r;emitMerged();}else emit({...r,primaryComplete:false});});
    const second=gpt.recognize(input,secondarySignal,r=>{if(r.primaryComplete){secondaryStream=r;emitMerged();}}).then(r=>{secondary=r;emitMerged();return r;}).catch(()=>undefined);
+   const finish=(raw:ShelfNineResult,decisions:ShelfAlternativeDecision[],model='parallel')=>{
+    const result=display(raw);assertNineAssociation(input,result);
+    const trace=newTrace(),proposed=(primary?.alternatives.length??0)+(secondary?.alternatives.length??0),retain=retainShelfResponse(input)&&!!options.responseJournal;
+    recordDiagnostic(options.audit,trace,{kind:'shelf_alternatives',sessionId:input.sessionId,batchId:input.batchId,model,stage:'merge',attempt:0,proposed,accepted:result.alternatives.length,decisions,responseTrace:retain?trace:null});
+    if(retain)recordResponse(options.responseJournal,trace,{schemaVersion:1,model,...journalHashes(options.root),outcome:'completed',primary:publicModelReturn(undefined),shelf:{sessionId:input.sessionId,batchId:input.batchId,batchIndex:input.batchIndex,stage:'merge',requestTrace:trace,attempt:0,proposed,accepted:result.alternatives.length,decisions,result}});
+    return result;
+   };
    try{
     try{primary=await first;}catch(error){
      parent.throwIfAborted();const fallback=await second;if(!fallback)throw error;
-     const checked=mergeParallelShelf({...fallback,alternatives:[]},fallback);
-     const result={...checked,model:'gpt-6-luna' as const,primaryComplete:true,products:checked.products.map(p=>({...p,sourceModel:'gpt-6-luna' as const}))};
-     assertNineAssociation(input,result);return result;
+     const decisions:ShelfAlternativeDecision[]=[],checked=mergeParallelShelf({...fallback,alternatives:[]},fallback,d=>decisions.push(d));
+     return finish({...checked,model:'gpt-6-luna' as const,primaryComplete:true,products:checked.products.map(p=>({...p,sourceModel:'gpt-6-luna' as const}))},decisions,'gpt-6-luna');
     }
     parent.throwIfAborted();emitMerged();await second;parent.throwIfAborted();
-    const decisions:ShelfAlternativeDecision[]=[],result=mergeParallelShelf(primary,secondary,d=>decisions.push(d));assertNineAssociation(input,result);
-    const trace=newTrace(),proposed=primary.alternatives.length+(secondary?.alternatives.length??0),retain=retainShelfResponse(input)&&!!options.responseJournal;
-    recordDiagnostic(options.audit,trace,{kind:'shelf_alternatives',sessionId:input.sessionId,batchId:input.batchId,model:'parallel',stage:'merge',attempt:0,proposed,accepted:result.alternatives.length,decisions,responseTrace:retain?trace:null});
-    if(retain)recordResponse(options.responseJournal,trace,{schemaVersion:1,model:'parallel',...journalHashes(options.root),outcome:'completed',primary:publicModelReturn(undefined),shelf:{sessionId:input.sessionId,batchId:input.batchId,batchIndex:input.batchIndex,stage:'merge',requestTrace:trace,attempt:0,proposed,accepted:result.alternatives.length,decisions,result}});
-    return result;
+    const decisions:ShelfAlternativeDecision[]=[];return finish(mergeParallelShelf(primary,secondary,d=>decisions.push(d)),decisions);
    }finally{closed=true;secondaryController.abort();input.imageBase64='';entry.pending=false;}
   };
   entry.promise=run();cache.set(key,entry);return entry.promise;

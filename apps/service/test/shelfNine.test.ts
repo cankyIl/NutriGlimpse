@@ -8,7 +8,7 @@ import {food,grid} from '../../../packages/core/test/shelfGridFixtures.ts';
 import {SHELF_NINE_CONSENT,type ShelfNineRequest,type ShelfNineResult} from '../../../packages/core/src/shelfNine.ts';
 import {createAppServer} from '../src/server.ts';
 const input=(n=9,index=0):ShelfNineRequest=>({...grid(n,'b-'+index),schemaVersion:2,consentVersion:SHELF_NINE_CONSENT,capacity:9,batchIndex:index,shareHealth:false,context:{healthConditions:[],dietaryRestrictions:[],store:{name:'Wegmans',town:'Northborough',state:'MA',branch:null}}});
-const row=(cell=1,name='Oats',sodium=100)=>({cell_numbers:[cell],food:compactFood(food(name,sodium)),reasons:['Short reason'],source_urls:[],nutrition_status:'estimated'});
+const row=(cell=1,name='Oats',sodium=100)=>({cell_numbers:[cell],food:compactFood({...food(name,sodium),rating:sodium>=460?'not_healthy':'healthy'}),reasons:['Short reason'],source_urls:[],nutrition_status:'estimated'});
 const answer=(rows:unknown[],alternatives:unknown[]=[])=>({products:rows,unidentified_cells:[],alternatives,total_duplicates_removed:0,limitations:[]});
 const gemini=(v:unknown)=>({model:'gemini-3.5-flash-lite',status:'completed',steps:[{type:'model_output',content:[{type:'text',text:JSON.stringify(v)}]}],usage:{total_input_tokens:10,total_output_tokens:20}});
 const gpt=(v:unknown)=>({status:'completed',output:[{type:'message',status:'completed',content:[{type:'output_text',text:JSON.stringify(v)}]}],usage:{input_tokens:10,output_tokens:20}});
@@ -30,8 +30,8 @@ test('cell validation isolates malformed foods, refuses overlap and deduplicates
  assert.equal(rows.length,1);assert.deepEqual(rows[0].cellNumbers,[1,2]);
  assert.throws(()=>parseShelfNineProducts([row(1),row(1)],i),/ASSOCIATION/);
  assert.throws(()=>parseShelfNineProducts([row(4)],i),/ASSOCIATION/);
- const unknown=row(1);unknown.food.n.tf=null;assert.equal(parseShelfNineProducts([unknown],i)[0].food.rating,null);
- const red=row(1,'Salty',620);red.food.r='healthy';assert.equal(parseShelfNineProducts([red],i)[0].food.rating,'not_healthy');
+ const unknown=row(1);unknown.food.n.tf=null;assert.equal(parseShelfNineProducts([unknown],i)[0].food.rating,'healthy');
+ const red=row(1,'Salty',620);red.food.r='healthy';assert.equal(parseShelfNineProducts([red],i)[0].food.rating,'healthy');
 });
 test('provider streams products before final answer, routes only the chosen model, cache is idempotent',async()=>{
  let calls=0;const progress:ShelfNineResult[]=[];
