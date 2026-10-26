@@ -2,7 +2,7 @@
 
 October 25, 2026 (America/New_York).
 
-Status: **backend deployed; included in signed and uploaded build 26.** Apple processing and owner availability are tracked in [the combined release record](88-build26-combined-release.md). Build 25 retains its old client-side aisle rule; install build 26 when available to see the new display. The implementation checkpoint below predates that combined release.
+Status: **backend deployed; build 26 is available in the owner TestFlight group.** Apple VALID / IN_BETA_TESTING and release evidence are recorded in [the combined release record](88-build26-combined-release.md). Build 25 retains its old client-side aisle rule; install build 26 when available to see the new display. The implementation checkpoint below predates that combined release.
 
 ## Result and scope
 

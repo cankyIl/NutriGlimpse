@@ -2,7 +2,7 @@
 
 October 25, 2026, America/New_York.
 
-Status: backend deployed and verified; **build 26 compiled, signed and uploaded successfully**. EAS submission is FINISHED. Apple processing and owner TestFlight availability are still pending verification; installation has not been verified.
+Status: **build 26 is available in the existing owner TestFlight group.** Backend deployed and verified; native compilation/signature verified; EAS submission FINISHED; Apple VALID / IN_BETA_TESTING. Encryption exemption and English release notes are verified. Installation and physical iPhone acceptance are not yet verified.
 
 ## Included work
 
@@ -16,7 +16,7 @@ Status: backend deployed and verified; **build 26 compiled, signed and uploaded 
 
 The combined workspace passed 797 core/service tests, TypeScript and mobile lint, nine tooling checks, ten report-input checks, 76 photo UI scenarios in both timing modes, needs/onboarding checks, 11 news tests and news UI, shelf-nine UI and 12 existing shelf-grid scenarios. Four build-provenance tests and iOS JavaScript/Hermes export passed. A first provenance-test invocation used the wrong Python import context; running the test directly passed without an application-source change.
 
-The 350-file mobile archive was compared to the tested workspace, with hashes recorded. The Mac uses this frozen archive. Native output/signatures and the exact submitted IPA will be verified after compilation. Side-chat code was preserved; only the version number and two integration disclosure sentences changed after the combined starting snapshot.
+The 350-file mobile archive was compared to the tested workspace, with hashes recorded. The Mac uses this frozen archive. Native output/signatures and the exact submitted IPA were subsequently verified, as recorded below. Side-chat code was preserved; only the version number and two integration disclosure sentences changed after the combined starting snapshot.
 
 ## Backend deployment and live shelf check
 
@@ -44,4 +44,8 @@ Evidence is retained privately under artifacts/nutriglimpse-build26-2026-10-25/.
 
 ### Apple receipt
 
-Apple upload `96ff6974-c1ec-4b7c-92d5-c1a74464fa9d` is received and processing, with no errors or warnings in the checked upload record. The submission is complete; this is not yet a claim of TestFlight readiness. Encryption/owner-group checks and release-note verification run when Apple exposes the processed build.
+Apple upload/build `96ff6974-c1ec-4b7c-92d5-c1a74464fa9d` is COMPLETE / VALID, with no reported upload errors or warnings. Owner-group availability is verified as IN_BETA_TESTING. usesNonExemptEncryption=false and en-US release notes are confirmed. External testing remains READY_FOR_BETA_SUBMISSION; this checkpoint does not approve or invite new external testers.
+
+## Phone acceptance next
+
+Open TestFlight, select NutriGlimpse and update to 0.1.0 (26). Check shelf consent, Start shelf scan, streamed cards and Finish with fewer than nine products; save multiple health concerns; rescan a single product for aisle/section display and Food Facts. Physical capture, correct product variants/nutrients and actual aisle positions still require real-device checks.
