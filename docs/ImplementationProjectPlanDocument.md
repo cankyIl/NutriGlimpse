@@ -4,9 +4,17 @@
 **Authoritative workspace:** /path/to/NutriGlimpse on project-server  
 **Current release:** **0.1.0 (26), built on the Mac, Apple VALID / IN_BETA_TESTING, available to the existing owner TestFlight group.**
 **Test scope:** Three iPhone testers including the owner; possible fourth Android tester; initial beta in the United States.  
-**Acceptance boundary:** Build 26 compilation, signatures, exact source inclusion, backend deployment, Apple processing, owner-group availability, encryption and release notes are verified. Trial devices remain iPhone X / iOS 16.7.16 and iPhone 17 (minimum supported iOS 16.4). Build 26 installation and physical shelf-camera/product-accuracy acceptance remain open; automated tests and signing are not physical-device acceptance.
+**Acceptance boundary:** Build 26 compilation, signatures, exact source inclusion, backend deployment, Apple processing, owner-group availability, encryption and release notes are verified. Trial devices remain iPhone X / iOS 16.7.16 and iPhone 17 (minimum supported iOS 16.4). Build 26 use is confirmed by client timing telemetry. Physical shelf-camera acceptance failed at the capture-to-upload boundary (25 captured, zero processed); see the blocking client correction below. Product accuracy remains open; automated tests and signing are not physical-device acceptance.
 
 This is the active plan. It incorporates the [side-chat handoff](71-side-chat-news-build15-handoff-2026-10-18.md), [news implementation](69-daily-personalized-food-news.md) and [build-15 release evidence](70-build15-fresh-personalized-news.md). The complete previous plan is preserved unchanged in the [October 18 archive](history/ImplementationProjectPlanDocument-2026-10-18-before-build15-handoff-reconciliation.md). Old dated checkboxes and release instructions in historical documents are not active tasks.
+
+## Build 26 shelf capture-to-upload failure — October 25, 2026
+
+**Confirmed phone-runtime defect; source fix staged, new iPhone build required.** The owner reported 25 packages captured and zero processed. Latest single-product telemetry confirms build 26. No new shelf provider events are present; the backend remains available. A reproduction using the actual React Native `abort-controller` dependency follows the production shelf session/client with 9 + 9 + 7 packages: before the fix, **0 uploads, 0 processed, 25 unresolved**, with `parent.throwIfAborted is not a function`. The function exists in Node but not in the mobile dependency, so the client fails before uploading.
+
+Both cancellation guards now use the supported `signal.aborted` property. Five new regression cases use the mobile cancellation dependency, covering all 25 packages, streamed progress, the partial Finish batch, cancellation and invalid response associations. Full checks pass: **816 core/service tests**, TypeScript, lint, tooling, report adapters, photo/needs/news and shelf UI checks. The existing build 26 cannot receive this source correction through a backend restart. No new build/OTA/upload has been performed for this checkpoint. Keep the earlier backend alternatives improvements; release this client correction before asking for another physical shelf acceptance run. [Diagnosis and verification](90-shelf-phone-runtime-upload-failure.md).
+
+The previous tests exercised server/provider behavior and mocked/native-shaped camera events under Node; they did not verify this mobile runtime boundary. Pre-provider shelf failures also lack request-level server diagnostics, and camera-side failures are not uploaded by build 26. Add bounded capture/upload-stage diagnostics as a separate follow-up; do not infer a successful phone scan from the earlier public-grid replay.
 
 ## Shelf alternatives follow-up — October 25, 2026
 

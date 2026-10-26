@@ -4,6 +4,8 @@ October 25, 2026, America/New_York.
 
 Status: **build 26 is available in the existing owner TestFlight group.** Backend deployed and verified; native compilation/signature verified; EAS submission FINISHED; Apple VALID / IN_BETA_TESTING. Encryption exemption and English release notes are verified. Installation and physical iPhone acceptance are not yet verified.
 
+**Subsequent phone failure:** Build 26 is installed (confirmed by client timing), but its shelf upload client calls a cancellation API missing from the mobile runtime. This reproduces 25 captured / zero processed before any upload. The source correction is tested and awaits a new phone build; backend updates alone do not repair this installed build. See [diagnosis](90-shelf-phone-runtime-upload-failure.md).
+
 ## Included work
 
 - Side-chat v2 Shelf Camera: nine-package 3x3 grids, parallel Gemini/GPT requests, two in-flight batches, streamed product records, Gemini priority and bounded GPT gap filling, duplicate handling and final partial-grid processing. Existing v1 shelf recovery/rating fixes remain available for older clients.
