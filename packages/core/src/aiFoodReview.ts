@@ -57,7 +57,7 @@ type ComparisonNutrient='addedSugarsG'|'sugarsG'|'sodiumMg'|'saturatedFatG'|'fib
 export const alternativePolicyVersion='category-comparison-2026-10-17.3';
 // These families change comparison priorities, never the absolute color thresholds.
 const categoryAliases:Record<string,string>={
- cereal:'breakfastcereal',cereals:'breakfastcereal',readytoeatcereal:'breakfastcereal',
+ cereal:'breakfastcereal',cereals:'breakfastcereal',readytoeatcereal:'breakfastcereal',coldcereal:'breakfastcereal',coldcereals:'breakfastcereal',breakfastcereals:'breakfastcereal',
  butter:'butterspread',butteryspread:'butterspread',butteryspreads:'butterspread',tablebutter:'butterspread',
  pastasauce:'tomatopastasauce',marinarasauce:'tomatopastasauce',tomatosauceforpasta:'tomatopastasauce',
 };
@@ -98,7 +98,7 @@ export function alternativeRatingDecision(f:EstimatedFood):{rating:FoodRating|nu
  if(green(computed.rating)&&green(f.rating)&&computed.rating!==f.rating)return {rating:'healthy',reasons:['green_ratings_conservatively_reconciled']};
  return {rating:computed.rating,reasons:[]};
 }
-export function estimatedBenefitsDecision(a:EstimatedFood,b:EstimatedFood,options:{groundedTradeoffs?:boolean}={}):{benefits:string[];reasons:string[]}{
+export function estimatedBenefitsDecision(a:EstimatedFood,b:EstimatedFood,options:{groundedTradeoffs?:boolean;shelfTradeoffs?:boolean}={}):{benefits:string[];reasons:string[]}{
  const reject=(...reasons:string[])=>({benefits:[] as string[],reasons});
  const originalCheck=estimatedRatingDecision(a),candidateCheck=estimatedRatingDecision(b);
  if(originalCheck.rating===null)return reject('original_nutrition_or_identity_incomplete',...originalCheck.reasons);
@@ -107,7 +107,7 @@ export function estimatedBenefitsDecision(a:EstimatedFood,b:EstimatedFood,option
  if(!a.servingGrams||!b.servingGrams)return reject('serving_weight_missing');
  if(canonicalCategory(a.category)!==canonicalCategory(b.category))return reject('category_mismatch');
  const policy=comparisonPolicy(a.category);
- const relativeRed=options.groundedTradeoffs===true&&policy.relative;
+ const relativeRed=(options.groundedTradeoffs===true||options.shelfTradeoffs===true)&&policy.relative;
  if((candidateCheck.rating==='not_healthy'||b.rating==='not_healthy')&&!relativeRed)return reject('alternative_red');
  if(b.rating===null)return reject('alternative_rating_unavailable');
  if(!policy.relative&&(!['healthy','very_healthy'].includes(candidateCheck.rating)||!['healthy','very_healthy'].includes(b.rating)))return reject('unclassified_category_requires_green');
@@ -121,7 +121,11 @@ export function estimatedBenefitsDecision(a:EstimatedFood,b:EstimatedFood,option
   const x=a.nutrition[key],y=b.nutrition[key];if(x===null||y===null)return reject('comparison_missing_'+key);
   // Preserve the existing absolute + relative worsening guard and 25% improvement floor.
   if(y*factor>x+floor+epsilon&&y*factor>x*1.1+epsilon)return reject('equal_weight_worsens_'+key);
-  if(x-y*factor+epsilon>=floor&&y*factor<=x*0.75+epsilon)improved.set(key,label);
+  const shelfPrimary=options.shelfTradeoffs===true&&policy.relative&&originalComparisonConcerns(a)[0]===key;
+  // The existing priority-addressed test uses a 10% reduction plus an absolute
+  // floor. Apply that same meaningful threshold to shelf priority improvements;
+  // other benefits retain their 25% floor and all worsening guards still apply.
+  if(x-y*factor+epsilon>=floor&&y*factor<=x*(shelfPrimary?0.9:0.75)+epsilon)improved.set(key,label);
  }
  for(const [key,label] of [['fiberG','More fiber'],['proteinG','More protein']] as const){
   const x=a.nutrition[key],y=b.nutrition[key];if(x===null||y===null)return reject('comparison_missing_'+key);
@@ -129,8 +133,17 @@ export function estimatedBenefitsDecision(a:EstimatedFood,b:EstimatedFood,option
   // for a substantial sodium improvement. Fiber and other food families stay protected.
   if(y*factor+epsilon<x){
    const smallSauceProteinTradeoff=options.groundedTradeoffs===true&&key==='proteinG'&&policy.id==='tomato_sauce_v1'&&improved.has('sodiumMg')&&x-y*factor<=a.servingGrams/125+epsilon;
-   if(!smallSauceProteinTradeoff)return reject('equal_weight_loses_'+key);
-   tradeoffReasons.push('small_sauce_protein_tradeoff');
+   // Shelf-only tradeoff: at most 1g fiber/protein per standard category serving,
+   // and only when a meaningful improvement addresses the original's main concern.
+   // Unknown categories, large losses and merely cosmetic improvements stay rejected.
+   const basis=policy.id==='cereal_v1'?40:policy.id==='tomato_sauce_v1'?125:14;
+   const primary=originalComparisonConcerns(a)[0];
+   const addressesPrimary=primary==='transFatG'?a.nutrition.transFatG!>0&&b.nutrition.transFatG===0:
+    primary!==undefined&&improved.has(primary as ComparisonNutrient);
+   const smallShelfTradeoff=options.shelfTradeoffs===true&&policy.relative&&addressesPrimary&&
+    x-y*factor<=a.servingGrams/basis+epsilon;
+   if(!smallSauceProteinTradeoff&&!smallShelfTradeoff)return reject('equal_weight_loses_'+key);
+   tradeoffReasons.push(smallShelfTradeoff?'small_shelf_tradeoff_'+key:'small_sauce_protein_tradeoff');
   }
   if(y*factor-x+epsilon>=1&&y*factor+epsilon>=x*1.25)improved.set(key,label);
  }

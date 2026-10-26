@@ -1,3 +1,4 @@
+import {shelfAlternativeDecisionSchema} from './shelfAlternativePolicy.ts';
 import {scanClientTimingSchema} from '../../../packages/core/src/scanTiming.ts';
 import {DatabaseSync} from 'node:sqlite';
 import {mkdirSync,chmodSync,readFileSync,writeFileSync,existsSync} from 'node:fs';
@@ -14,6 +15,7 @@ const food=z.object({identity,category:text,servingGrams:z.number().nullable(),n
 const count=z.number().int().min(0).max(10000000);
 const candidate=z.object({index:count,food:food.nullable(),computedRating:rating,disposition:z.enum(['accepted','rejected','unused']),displayedRating:rating.optional(),reasons:z.array(code).max(20)}).strict();
 export const betaEventSchema=z.discriminatedUnion('kind',[
+ z.object({kind:z.literal('shelf_alternatives'),sessionId:code,batchId:code,model:code,stage:z.enum(['provider','merge']),attempt:count,proposed:count,accepted:count,decisions:z.array(shelfAlternativeDecisionSchema).max(20),responseTrace:z.string().uuid().nullable()}).strict(),
  z.object({kind:z.literal('alternative_supplement'),model:z.literal('gpt-6-luna'),status:code,disposition:code,elapsedMs:count,waitMs:count,added:count}).strict(),
  z.object({kind:z.literal('retailer_usage'),searches:count,elapsedMs:count,inputTokens:count.nullable(),outputTokens:count.nullable()}).strict(),
  z.object({kind:z.literal('retailer_resolution'),outcomes:z.array(z.object({index:count,status:z.enum(['branch_stock_reported','branch_listed','chain_listed','not_found','unknown']),aisle:z.boolean(),codes:z.array(code).max(12)}).strict()).max(3)}).strict(),

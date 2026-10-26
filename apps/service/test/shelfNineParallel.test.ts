@@ -40,14 +40,20 @@ test('fast GPT is held until Gemini, then only fills unresolved cells',async()=>
  assert.equal(final.products.find(p=>p.cellNumbers.includes(2))?.sourceModel,'gpt-6-luna');
  assert.deepEqual(final.unresolvedCells,[]);
 });
-test('slow GPT is bounded and cancelled; no late result can overwrite returned Gemini answer',async()=>{
- let late!:(v:unknown)=>void,aborted=false;const progress:ShelfNineResult[]=[];
- const p=createShelfNineProvider({root:projectRoot,supplementWaitMs:5,gemini:async()=>gemini(wire([row()])),gpt:async(_r,s)=>{
-  s.addEventListener('abort',()=>{aborted=true;});return new Promise(r=>{late=r;});
- }});
- const final=await p.recognize(input(),new AbortController().signal,r=>progress.push(r));
- assert.equal(final.products[0].food.identity.name,'Oats');assert.equal(aborted,true);
- const count=progress.length;late(gpt(wire([row(1,'Late result')])));await tick();assert.equal(progress.length,count);
+test('GPT gets its full provider deadline after Gemini; checked Gemini alternatives are already visible',async()=>{
+ let aborted=false;const progress:ShelfNineResult[]=[];
+ const original=row(1,'Salty oats');original.food.n.na=620;
+ const alt={...row(1,'Better oats'),compared_cell:1,store_name:'Wegmans',aisle:'4',retailer_product_url:null};
+ const p=createShelfNineProvider({root:projectRoot,providerTimeoutMs:35,gemini:async()=>gemini({...wire([original]),alternatives:[alt]}),gpt:async(_r,s)=>new Promise((_resolve,reject)=>{
+  s.addEventListener('abort',()=>{aborted=true;reject(s.reason);},{once:true});
+ })});
+ // Keep the event loop alive while the unref'ed provider deadline is tested.
+ const alive=setTimeout(()=>{},1000);
+ try{
+  const pending=p.recognize(input(),new AbortController().signal,r=>progress.push(r));await tick();
+  assert.ok(progress.some(r=>r.primaryComplete&&r.alternatives.length===1));assert.equal(aborted,false);
+  const final=await pending;assert.equal(final.alternatives.length,1);assert.equal(aborted,true);
+ }finally{clearTimeout(alive);}
 });
 test('Gemini failure can use attributed GPT fallback; GPT failure never loses Gemini',async()=>{
  const a=createShelfNineProvider({root:projectRoot,gemini:async()=>{throw Error('failed');},gpt:async()=>gpt(wire([row()]))});

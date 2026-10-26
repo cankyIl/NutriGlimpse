@@ -49,3 +49,7 @@ Apple upload/build `96ff6974-c1ec-4b7c-92d5-c1a74464fa9d` is COMPLETE / VALID, w
 ## Phone acceptance next
 
 Open TestFlight, select NutriGlimpse and update to 0.1.0 (26). Check shelf consent, Start shelf scan, streamed cards and Finish with fewer than nine products; save multiple health concerns; rescan a single product for aisle/section display and Food Facts. Physical capture, correct product variants/nutrients and actual aisle positions still require real-device checks.
+
+## Subsequent backend-only follow-up
+
+The original IPA and release measurements above remain unchanged. The [shelf alternatives follow-up](89-shelf-alternatives-streaming-and-diagnostics.md) is now live for build 26: relative alternatives, per-candidate streaming, full GPT wait and retained response/rejection diagnostics. Its separate same-image rerun and failed intermediate evidence are documented there. The updated health-context answer-retention notice is staged for a later phone build.

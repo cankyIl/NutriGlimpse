@@ -1,6 +1,7 @@
 import {checkedShelfFood,isShelfHealthy,type ShelfNineProduct,type ShelfNineAlternative,type ShelfNineResult} from '../../../packages/core/src/shelfNine.ts';
 import {shelfProductKey} from '../../../packages/core/src/shelfGrid.ts';
-import {estimatedBenefitsDecision,estimatedRatingDecision} from '../../../packages/core/src/aiFoodReview.ts';
+import {estimatedRatingDecision} from '../../../packages/core/src/aiFoodReview.ts';
+import {shelfBenefits,shelfReasons,rankShelfAlternatives,sameShelfAlternativeOriginal,type ShelfDecisionObserver} from './shelfAlternativePolicy.ts';
 const same=(a:ShelfNineProduct,b:ShelfNineProduct)=>a.food.identity.status==='identified'&&b.food.identity.status==='identified'&&shelfProductKey(a.food)===shelfProductKey(b.food);
 function fillProduct(primary:ShelfNineProduct,donor:ShelfNineProduct):ShelfNineProduct{
  if(!same(primary,donor)||!primary.food.servingGrams||primary.food.servingGrams!==donor.food.servingGrams)return primary;
@@ -18,7 +19,7 @@ function fillRetailer(primary:ShelfNineAlternative,donor:ShelfNineAlternative):S
  const sameStore=!!store&&!!donor.storeName&&store.toLowerCase()===donor.storeName.toLowerCase();
  return {...primary,storeName:store,aisle:primary.aisle??(sameStore?donor.aisle:null),retailerUrl:primary.retailerUrl??(sameStore?donor.retailerUrl:null)};
 }
-export function mergeParallelShelf(primary:ShelfNineResult,secondary?:ShelfNineResult):ShelfNineResult{
+export function mergeParallelShelf(primary:ShelfNineResult,secondary?:ShelfNineResult,onDecision?:ShelfDecisionObserver):ShelfNineResult{
  const claimed=new Set(primary.products.flatMap(p=>p.cellNumbers));
  const products:ShelfNineProduct[]=primary.products.map(p=>{
   const donor=secondary?.products.find(s=>s.cellNumbers.some(c=>p.cellNumbers.includes(c))&&same(p,s));
@@ -45,16 +46,22 @@ export function mergeParallelShelf(primary:ShelfNineResult,secondary?:ShelfNineR
    const donor=secondary?.alternatives.find(b=>shelfProductKey(b.food)===shelfProductKey(a.food));
    alternatives.push(donor?fillRetailer(a,donor):a);seen.add(shelfProductKey(a.food));
   }
-  for(const a of secondary?.alternatives??[]){
-   if(alternatives.length>=3)break;
+  for(const [index,a] of (secondary?.alternatives??[]).entries()){
+   const report=(disposition:'accepted'|'rejected'|'unused',codes:string[])=>onDecision?.({index,comparedCell:a.comparedCell,product:a.food.identity.name?.slice(0,160)??null,disposition,codes});
+   if(alternatives.length>=3){report('unused',['slots_full']);continue;}
    const original=sorted.find(p=>p.cellNumbers.includes(a.comparedCell));
    const donorOriginal=secondary?.products.find(p=>p.cellNumbers.includes(a.comparedCell));
    const key=shelfProductKey(a.food);
-   if(!original||!donorOriginal||!same(original,donorOriginal)||seen.has(key)||!isShelfHealthy(a.food)||!estimatedBenefitsDecision(original.food,a.food).benefits.length)continue;
-   alternatives.push(a);seen.add(key);
+   if(!original||!donorOriginal||!sameShelfAlternativeOriginal(original.food,donorOriginal.food)){report('rejected',['original_identity_mismatch']);continue;}
+   if(seen.has(key)){report('unused',['duplicate_or_scanned_product']);continue;}
+   const decision=shelfBenefits(original.food,a.food);
+   if(!decision.benefits.length){report('rejected',decision.reasons);continue;}
+   alternatives.push({...a,reasons:shelfReasons(original.food,a.food,decision)});seen.add(key);report('accepted',decision.reasons);
   }
+ }else{
+  for(const [index,a] of (secondary?.alternatives??[]).entries())onDecision?.({index,comparedCell:a.comparedCell,product:a.food.identity.name?.slice(0,160)??null,disposition:'unused',codes:['healthy_product_in_batch']});
  }
  const unresolved=primary.unresolvedCells.filter(c=>!sorted.some(p=>p.cellNumbers.includes(c)));
- return {...primary,model:'gemini-3.5-flash-lite',primaryComplete:true,products:sorted,alternatives,unresolvedCells:unresolved,
+ return {...primary,model:'gemini-3.5-flash-lite',primaryComplete:true,products:sorted,alternatives:rankShelfAlternatives(alternatives),unresolvedCells:unresolved,
   duplicatesRemoved:sorted.reduce((n,p)=>n+p.cellNumbers.length-1,0)};
 }

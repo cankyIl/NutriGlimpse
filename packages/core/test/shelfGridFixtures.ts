@@ -1,7 +1,7 @@
 import type {EstimatedFood} from '../src/aiFoodReview.ts';
 import {SHELF_GRID_CONSENT,type ShelfGridRequest,type ShelfGridResult} from '../src/shelfGrid.ts';
 import {dualModels} from '../src/dualAiFoodReview.ts';
-export const food=(name='Plain Oats',sodium=100):EstimatedFood=>({identity:{status:'identified',brand:'Fixture',name,variant:null,size:'400 g',visibleText:[]},category:'breakfast-cereal',servingText:'40 g',servingGrams:40,ingredients:null,rating:'healthy',nutrition:{caloriesKcal:150,saturatedFatG:0.5,transFatG:0,sugarsG:1,addedSugarsG:1,carbohydrateG:28,sodiumMg:sodium,fiberG:5,proteinG:5,potassiumMg:null,calciumMg:null,ironMg:null,magnesiumMg:null}});
+export const food=(name='Plain Oats',sodium=100):EstimatedFood=>({identity:{status:'identified',brand:'Fixture',name,variant:null,size:'400 g',visibleText:[]},category:'breakfast-cereal',servingText:'40 g dry',servingGrams:40,ingredients:null,rating:'healthy',nutrition:{caloriesKcal:150,saturatedFatG:0.5,transFatG:0,sugarsG:1,addedSugarsG:1,carbohydrateG:28,sodiumMg:sodium,fiberG:5,proteinG:5,potassiumMg:null,calciumMg:null,ironMg:null,magnesiumMg:null}});
 const segment=(marker:number,body:Buffer)=>{const head=Buffer.alloc(4);head[0]=255;head[1]=marker;head.writeUInt16BE(body.length+2,2);return Buffer.concat([head,body]);};
 // Framing-only JPEG for mocked transport tests. Not a valid decoded image or a vision accuracy fixture.
 export function jpeg(width=2048,height=2048){return Buffer.concat([Buffer.from([255,216]),segment(0xe1,Buffer.from('PRIVATE GPS')),segment(0xc0,Buffer.from([8,height>>8,height&255,width>>8,width&255,1,1,17,0])),segment(0xda,Buffer.from([1,1,0,0,63,0])),Buffer.from([0,255,0,2,255,217])]).toString('base64');}

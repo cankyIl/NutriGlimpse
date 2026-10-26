@@ -4,7 +4,7 @@ import {AppState,StyleSheet,View,Linking} from 'react-native';
 import {useFocusEffect,useLocalSearchParams} from 'expo-router';
 import {ShelfBenchmarkView,getShelfBenchmarkAvailabilityAsync,type ShelfBenchmarkAvailability} from '../../modules/shelf-benchmark';
 import {ShelfNineSession} from '../../../../packages/core/src/shelfNineSession';
-import {SHELF_NINE_CAPACITY} from '../../../../packages/core/src/shelfNine';
+import {SHELF_NINE_CAPACITY,SHELF_RESPONSE_CONSENT} from '../../../../packages/core/src/shelfNine';
 import {reviewShelfNine} from '../../../../packages/core/src/shelfNineClient';
 import {groceryContext} from '../../../../packages/core/src/groceryContext';
 import {useAppState,recordId} from '../state/AppState';
@@ -31,7 +31,7 @@ export default function ShelfNineScreen(){
   if(shareHealth===null||!availability?.available)return;
   cancel();setMessage('');setPending(0);setTotal(0);setBlocked(false);setLimit(10);setAck('');setFinish(false);
   const context=groceryContext(health.profile,shopping.selected,{profile:health.profile,panels:health.panels,panelChoice:health.panelChoice,shareHealth,origin:shopping.originFix});
-  session.current=new ShelfNineSession(recordId(),context,shareHealth,(input,signal,progress)=>reviewShelfNine(input,signal,streamingFetch as typeof fetch,progress),update,batch=>{if(alive.current)setAck(batch);});
+  session.current=new ShelfNineSession(recordId(),context,shareHealth,(input,signal,progress)=>reviewShelfNine({...input,diagnosticConsentVersion:SHELF_RESPONSE_CONSENT},signal,streamingFetch as typeof fetch,progress),update,batch=>{if(alive.current)setAck(batch);});
   setCamera(true);update();
  },[shareHealth,availability?.available,cancel,health.profile,health.panels,health.panelChoice,shopping.selected,shopping.originFix,update]);
  useEffect(()=>{if(auto==='1'&&focused&&shareHealth!==null&&availability?.available&&!autoStarted.current){autoStarted.current=true;start();}},[auto,focused,shareHealth,availability?.available,start]);
@@ -42,7 +42,7 @@ export default function ShelfNineScreen(){
  {shareHealth===null&&<Card><Heading>Shelf scan preferences</Heading>
  <Body>Numbered package crops go through our server to Google Gemini and OpenAI at the same time, with Gemini leading. Web search helps find nutrition and store information. Your selected store or nearby town is included; exact GPS and your name are not sent to either model.</Body>
  <Body>You can also share your saved age, gender, health concerns, preferences, pregnancy context, height/weight and confirmed lipid results for general nutrition guidance. This does not enable personalized medical recommendations. Private health details are excluded from search queries.</Body>
- <Body muted>Our app and server do not save shelf images or your submitted profile. Results are temporary. Google and OpenAI may retain requests under their API policies.</Body>
+ <Body muted>Shelf images and submitted profiles are not saved on our server. For beta diagnostics, both returned answers and processing decisions are encrypted for up to seven days, within 200 records and 40 MB. Answers may repeat health details you share. Results on this phone are temporary. Google and OpenAI may retain requests under their API policies.</Body>
  <Button label="Use my health details" onPress={()=>setShareHealth(true)}/><Button secondary label="Continue without health details" onPress={()=>setShareHealth(false)}/></Card>}
  {shareHealth!==null&&!camera&&(!run||run.phase==='cancelled')&&<Button icon="camera" label="Start shelf scan" disabled={!availability?.available} onPress={start}/>}
  {availability&&!availability.available&&<Status>Live shelf capture requires a supported physical iPhone with the complete app build.</Status>}

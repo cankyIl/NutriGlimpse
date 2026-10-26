@@ -1,3 +1,5 @@
+import {shelfNineResultSchema,type ShelfNineResult} from '../../../packages/core/src/shelfNine.ts';
+import {shelfAlternativeDecisionSchema,type ShelfAlternativeDecision} from './shelfAlternativePolicy.ts';
 import {z} from 'zod';
 import {groceryWireSchema} from '../../../packages/core/src/groceryReview.ts';
 import {DatabaseSync} from 'node:sqlite';
@@ -5,7 +7,8 @@ import {randomBytes,createCipheriv,createDecipheriv,createHash} from 'node:crypt
 import {mkdirSync,readFileSync,writeFileSync,lstatSync,chmodSync} from 'node:fs';
 import {join} from 'node:path';
 export type PublicModelReturn={answerText:string;citations:string[];searchQueries:string[];usage:Record<string,number>;status:string};
-export type JournalRecord={schemaVersion:1;model:string;promptHash:string;schemaHash:string;adapterHash:string;outcome:'received'|'completed'|'failed';errorCode?:string;primary:PublicModelReturn;retailerFollowup?:PublicModelReturn;supplement?:{model:string;status:string;disposition:string;elapsedMs:number;waitMs:number;added:number;promptHash:string;returned?:PublicModelReturn};displayedReview?:unknown;decisions?:unknown};
+export type ShelfJournalDetails={sessionId:string;batchId:string;batchIndex:number;stage:'provider'|'merge';requestTrace:string;attempt:number;proposed:number;accepted:number;decisions:ShelfAlternativeDecision[];result?:ShelfNineResult};
+export type JournalRecord={shelf?:ShelfJournalDetails;schemaVersion:1;model:string;promptHash:string;schemaHash:string;adapterHash:string;outcome:'received'|'completed'|'failed';errorCode?:string;primary:PublicModelReturn;retailerFollowup?:PublicModelReturn;supplement?:{model:string;status:string;disposition:string;elapsedMs:number;waitMs:number;added:number;promptHash:string;returned?:PublicModelReturn};displayedReview?:unknown;decisions?:unknown};
 export interface ResponseJournal{record(trace:string,value:JournalRecord):void}
 const cap=(v:unknown,n:number)=>typeof v==='string'?v.slice(0,n):'';
 /** Extract public answers and source metadata only. Never serialize the input or opaque provider envelope. */
@@ -35,7 +38,8 @@ export function publicModelReturn(value:any,partial=''):PublicModelReturn{
 }
 const publicReturnSchema=z.object({answerText:z.string().max(250000),citations:z.array(z.string().max(2000)).max(48),searchQueries:z.array(z.string().max(300)).max(20),usage:z.record(z.string().max(100),z.number().finite().nonnegative()),status:z.string().max(40)}).strict();
 const hash=z.string().regex(/^[a-f0-9]{64}$/);
-export const journalRecordSchema=z.object({schemaVersion:z.literal(1),model:z.string().max(80),promptHash:hash,schemaHash:hash,adapterHash:hash,outcome:z.enum(['received','completed','failed']),errorCode:z.string().regex(/^[A-Z0-9_]{1,100}$/).optional(),primary:publicReturnSchema,retailerFollowup:publicReturnSchema.optional(),supplement:z.object({model:z.literal('gpt-6-luna'),status:z.enum(['pending','completed','failed','timed_out','cancelled']),disposition:z.string().regex(/^[a-z0-9_]{1,60}$/),elapsedMs:z.number().int().nonnegative(),waitMs:z.number().int().nonnegative(),added:z.number().int().min(0).max(3),promptHash:hash,returned:publicReturnSchema.optional()}).strict().optional(),displayedReview:groceryWireSchema.optional(),decisions:z.array(z.object({foodId:z.string().max(40),code:z.string().regex(/^[a-z0-9_]{1,100}$/)}).strict()).max(500).optional()}).strict();
+const shelfJournalSchema=z.object({sessionId:z.string().max(90),batchId:z.string().max(90),batchIndex:z.number().int().min(0).max(100),stage:z.enum(['provider','merge']),requestTrace:z.string().uuid(),attempt:z.number().int().min(0).max(1),proposed:z.number().int().min(0).max(20),accepted:z.number().int().min(0).max(3),decisions:z.array(shelfAlternativeDecisionSchema).max(20),result:shelfNineResultSchema.optional()}).strict();
+export const journalRecordSchema=z.object({shelf:shelfJournalSchema.optional(),schemaVersion:z.literal(1),model:z.string().max(80),promptHash:hash,schemaHash:hash,adapterHash:hash,outcome:z.enum(['received','completed','failed']),errorCode:z.string().regex(/^[A-Z0-9_]{1,100}$/).optional(),primary:publicReturnSchema,retailerFollowup:publicReturnSchema.optional(),supplement:z.object({model:z.literal('gpt-6-luna'),status:z.enum(['pending','completed','failed','timed_out','cancelled']),disposition:z.string().regex(/^[a-z0-9_]{1,60}$/),elapsedMs:z.number().int().nonnegative(),waitMs:z.number().int().nonnegative(),added:z.number().int().min(0).max(3),promptHash:hash,returned:publicReturnSchema.optional()}).strict().optional(),displayedReview:groceryWireSchema.optional(),decisions:z.array(z.object({foodId:z.string().max(40),code:z.string().regex(/^[a-z0-9_]{1,100}$/)}).strict()).max(500).optional()}).strict();
 export class PrivateResponseJournal implements ResponseJournal{
  private db:DatabaseSync;private key:Buffer;private timer:ReturnType<typeof setInterval>;private warned=false;
  readonly folder:string;private now:()=>number;readonly maxRows:number;readonly maxBytes:number;

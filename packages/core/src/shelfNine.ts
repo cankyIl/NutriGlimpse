@@ -3,12 +3,14 @@ import {estimatedFoodSchema,estimatedRatingDecision,type EstimatedFood} from './
 import {GROCERY_MODELS,groceryContextSchema,groceryUrl,type GroceryModel} from './groceryReview.ts';
 import {shelfGridRequestSchema,shelfProductKey} from './shelfGrid.ts';
 export const SHELF_NINE_CAPACITY=9;
+export const SHELF_RESPONSE_CONSENT='shelf-responses-2026-10-25.1' as const;
 export const SHELF_NINE_CONSENT='shelf-nine-parallel-2026-10-25.2' as const;
 export const shelfNineRequestSchema=shelfGridRequestSchema.innerType().extend({
  schemaVersion:z.literal(2),consentVersion:z.literal(SHELF_NINE_CONSENT),
  capacity:z.literal(9),columns:z.number().int().min(1).max(3),rows:z.number().int().min(1).max(3),
  cells:shelfGridRequestSchema.innerType().shape.cells.max(9),
  batchIndex:z.number().int().min(0).max(100),shareHealth:z.boolean(),context:groceryContextSchema,
+ diagnosticConsentVersion:z.literal(SHELF_RESPONSE_CONSENT).optional(),
 }).strict().superRefine((v,c)=>{
  const n=v.cells.length;
  if(v.columns!==Math.ceil(Math.sqrt(n))||v.rows!==Math.ceil(n/v.columns)||v.cells.some((x,i)=>x.cell!==i+1)||new Set(v.cells.map(x=>x.packageId)).size!==n)c.addIssue({code:'custom',message:'Invalid grid layout'});
