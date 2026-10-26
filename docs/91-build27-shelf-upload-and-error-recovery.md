@@ -4,7 +4,7 @@ Date: October 25, 2026, America/New_York.
 
 ## Release state
 
-Build **0.1.0 (27)** compiled and passed package/signature checks. Upload finished successfully; Apple processing and owner-group availability are pending. Installed build 26 still has the phone-runtime defect until replaced.
+Build **0.1.0 (27)** is **available in TestFlight to the existing owner group**. Apple reports VALID / IN_BETA_TESTING; encryption=false and exact English release notes are verified. Update NutriGlimpse in TestFlight before retrying the shelf camera. Installed build 26 still has the phone-runtime defect until replaced. Installation and physical-camera acceptance of build 27 have not yet been reported.
 
 ## Changes
 
@@ -31,7 +31,8 @@ The compiled source and frozen source each matched all **351 file hashes** after
 - IPA SHA-256: `5bbb46d8db728394d45a55382519bac11e52a8ae1a3de0e768aa34e19c252d4e`.
 - EAS submission: `2c7a4cd7-962d-4036-b4f6-e35829b21b73`, **FINISHED** on October 25 at 11:33 p.m. Eastern.
 - The same verified IPA was submitted once. This was a local Mac compilation; no cloud-build allowance or new plan was required.
-- Encryption is declared non-exempt=false in the signed application. Apple processing and group eligibility will be recorded separately once verified.
+- Apple build: `e662e6b3-f730-4d43-a606-a3c2e64f235e`, **VALID / IN_BETA_TESTING**, verified October 25 at 11:36 p.m. Eastern.
+- `usesNonExemptEncryption=false`, existing owner-group availability and exact en-US testing notes are verified. External state is READY_FOR_BETA_SUBMISSION; external-tester approval/access is not claimed.
 
 ## Honest remaining limits
 
