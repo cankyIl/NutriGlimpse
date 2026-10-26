@@ -23,7 +23,7 @@ export function chainDomain(store:string|null|undefined,url:string){
 const nutrientWords:Partial<Record<keyof GroceryFood['nutrition'],RegExp>>={sodiumMg:/sodium|salt/i,addedSugarsG:/added sugar/i,sugarsG:/sugar/i,saturatedFatG:/saturated fat/i,transFatG:/trans fat/i,fiberG:/fib(?:er|re)/i,proteinG:/protein/i,carbohydrateG:/carb/i,caloriesKcal:/calori/i};
 
 /** Model-led general review. Preserves partial facts; never runs per-serving thresholds on unknown quantities. */
-export function adaptSimpleGroceryAnswer(value:unknown,context:GroceryContext,groundedUrls:ReadonlySet<string>,searchRecords:unknown=[],options:{allowUnverifiedEstimates?:boolean;primaryOriginal?:GroceryFood;idPrefix?:string}={}):{review:GroceryWire;audit:Audit[];candidates:GroceryFood[];proposedCount:number;eligible:GroceryWire['recommendations']}{
+export function adaptSimpleGroceryAnswer(value:unknown,context:GroceryContext,groundedUrls:ReadonlySet<string>,searchRecords:unknown=[],options:{allowUnverifiedEstimates?:boolean;preserveReturnedAisle?:boolean;primaryOriginal?:GroceryFood;idPrefix?:string}={}):{review:GroceryWire;audit:Audit[];candidates:GroceryFood[];proposedCount:number;eligible:GroceryWire['recommendations']}{
  const input=simpleGroceryAnswerSchema.parse(value),audit:Audit[]=[],sources:GroceryWire['sources']=[],candidates:GroceryFood[]=[];
  const grounded=new Set([...groundedUrls].flatMap(u=>exactSourceUrl(u)??[]));
  const source=(url:string|null|undefined,id:string,title:string,kind?:GroceryWire['sources'][number]['kind']):string|null=>{
@@ -70,7 +70,21 @@ export function adaptSimpleGroceryAnswer(value:unknown,context:GroceryContext,gr
   const listingId=listingUrl&&chainDomain(storeName,listingUrl)?(exactSourceUrl(listingUrl)===exactSourceUrl(raw.source_url)?sourceId:source(listingUrl,id+'-listing',raw.title+' retailer listing','retailer')):null;
   const availability:GroceryFood['availability']={status:listingId?'chain_listed':'unknown',storeName:storeName?clean(storeName,160):null,town:null,state:null,branch:null,sourceId:listingId,aisleNumber:null,section:null,aisleSourceId:null,aisleEvidence:'unknown'};
   const a=raw.aisle,store=context.store;
-  // Branch proof comes from returned source text, not from a town name in the URL.
+  // Gemini's aisle is display metadata. Missing branch proof must not erase it or certify it.
+  if(options.preserveReturnedAisle&&a){
+   const number=a.number!=null?clean(String(a.number),60)||null:null;
+   const section=a.section?clean(a.section,100)||null:null;
+   if(number||section){
+    const aisleStore=a.store?clean(a.store,160)||availability.storeName:availability.storeName;
+    // Do not attach another chain's listing to the retailer named in the aisle response.
+    if(norm(aisleStore)!==norm(availability.storeName)){availability.status='unknown';availability.sourceId=null;}
+    Object.assign(availability,{aisleNumber:number,section,storeName:aisleStore,
+     town:a.town?clean(a.town,100)||null:null,state:a.state?clean(a.state,40)||null:null,
+     aisleSourceId:source(a.source_url,id+'-aisle',raw.title+' store location','retailer')});
+    issue('model_aisle_retained');
+   }
+  }
+  // The legacy evidence path remains available; it does not gate Gemini display metadata.
   const aisleInSource=(url:string,phrase:string,town:string)=>{
    if(!Array.isArray(searchRecords)||!phrase||!town)return false;
    const target=exactSourceUrl(url),wanted=norm(phrase).split(' ');
@@ -84,7 +98,7 @@ export function adaptSimpleGroceryAnswer(value:unknown,context:GroceryContext,gr
     return false;
    }));
   };
-  if(a&&store?.town&&store.state&&a.source_url&&chainDomain(store.name,a.source_url)&&norm(a.store)===norm(store.name)&&norm(storeName)===norm(store.name)&&norm(a.town)===norm(store.town)&&norm(a.state)===norm(store.state)){
+  if(!options.preserveReturnedAisle&&a&&store?.town&&store.state&&a.source_url&&chainDomain(store.name,a.source_url)&&norm(a.store)===norm(store.name)&&norm(storeName)===norm(store.name)&&norm(a.town)===norm(store.town)&&norm(a.state)===norm(store.state)){
    const number=a.number!=null&&aisleInSource(a.source_url,'Aisle '+String(a.number).replace(/^aisle\s*/i,''),store.town)?clean(String(a.number),60)||null:null;
    const section=a.section&&aisleInSource(a.source_url,a.section,store.town)?clean(a.section,100):null;
    if(number||section){

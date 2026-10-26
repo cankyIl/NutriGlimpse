@@ -1,0 +1,46 @@
+NutriGlimpse shelf-scan reliability handoff — October 25, 2026
+
+Status: implemented and tested in the shared vghomeserver checkout.
+Live backend was not restarted or deployed. No iPhone build, upload or OTA was started.
+Changes are uncommitted. Main-thread release work and shared plan edits were preserved.
+
+Authorized scope: fixes #2 (rating disagreement), #5 (best-choice ranking), and #1 (batch recovery/diagnostics).
+
+RATING POLICY (#2)
+For shelf scans, the backend calculation from complete, coherent nutrition values determines the color. GPT's different color no longer clears a usable rating. This does not establish that model-estimated nutrition is correct. Uncertain identity, missing required nutrients, implausible nutrition, conflicting observations and unfinished reviews retain their holds. A backend red rating cannot become green from a model opinion. The ordinary single-product Gemini prompt/flow is unchanged.
+
+RANKING (#5)
+Coherent products with previously blank model-disagreement ratings participate in equal-weight, category-specific comparison. Non-dominated green choices appear first, while nutrient trade-offs remain available. Dietary/care-plan restrictions still prevent suitability ranking. Optional mineral values are not treated as zero when missing, and explicit higher/lower priority directions are honored.
+Outside-alternative requests wait for Finish and target at most one leading non-green product per category (up to three categories). A category with a green leading choice does not trigger an outside search. Existing alternative nutrition validation remains in place.
+
+RECOVERY AND DIAGNOSTICS (#1)
+Malformed food records are isolated by cell. Unreadable/unnamed uncertain cells do not discard valid neighbors. Associations remain strict: unknown or duplicate cell numbers are rejected rather than guessed.
+One recovery dispatch per model maximum: only malformed/missing cells are requested again, or a whole failed dispatch is retried for an eligible transient error. Successful cells are retained and not reassessed. Explicitly unreadable products and missing nutrient values do not cause repeated requests. Cancellation/auth failures do not retry. Recovery still uses the original grid image and restricts the requested cell numbers; it does not create fresh crops.
+Session and batch IDs, model, attempt, stage, safe failure code, affected cells and rating reconciliation are recorded as shelf_batch events. Final assembly failures are logged; one cell failure cannot discard its valid siblings. Diagnostics exclude raw image data, credentials and private health context.
+If the phone loses the final stream after receiving product progress, it retains those facts as partial and unrated, continues later batches, and excludes unfinished results from ranking. Such progress cannot replace already completed results; later matching complete evidence restores eligibility.
+
+VERIFICATION
+62 automated tests passed: core/service shelf tests, ordinary AI review and dual-review regressions, and diagnostic storage tests.
+12 shelf-screen acceptance checks passed using mocked native/network boundaries, including Finish, green-leader suppression and a single outside request per category.
+TypeScript checks passed for mobile, service and core. git diff --check passed.
+Stored-nutrition replay of the two recorded successful grids (32 cells) restored 11 previously blank ratings; one uncertain identity stayed unrated. This used a mock provider transport and existing diagnostic facts, not new photo recognition or paid API calls.
+The middle historical batch's original response is unavailable, so its precise failure was not reconstructed. Recovery coverage uses explicit malformed-cell, missing-row, transient-error, auth-error, cancellation and interrupted-stream fixtures.
+No physical-iPhone or new native-build validation was performed in this side conversation.
+
+RELEASE HANDOFF
+Backend rating/recovery changes require normal backend deployment/restart.
+The updated mobile ranking/alternative-selection and partial-stream retention require inclusion in a subsequent iPhone build. Include all source files below together; do not overwrite concurrent release configuration or shared plan changes.
+Separate proposed fixes for general duplicate identity matching, reusing the original nutrition in follow-up recognition, image coverage and parallel latency work remain outside this change.
+
+Evidence logs: .tools/shelf-reliability-2026-10-25/{regressions,shelf-ui,typecheck,diff-check}.log
+Source base observed after verification: 1621ceb6026dd9ecc7061267598245e78d5c1422
+
+CHANGED FILE SHA-256
+e5157fc85ebb61fa033083127ec5c1f88d18486e07abfc25b8b4091df9749d9f  apps/mobile/src/ui/ShelfGridScreen.tsx
+9c49689b578cf3278bebe62102df736e47905559837430d14f3b824de487d4dd  apps/service/src/betaDiagnostics.ts
+050a34d2581c7149c230d2d7f35a71522beb2c29cb2de6bc0b5b4671bac40bec  apps/service/src/shelfGridProvider.ts
+97e0165fb7b08fd0862b508754c111c555e38b278af9903468f223f0da67aa9e  apps/service/test/shelfGrid.test.ts
+143b99716c2798169b7d39c4296b14b88e3247e7f0824d9863a3545aeaacbefe  ops/shelf-grid-ui-check.cjs
+6f90722e5983b7d8ef44894dabe6e81f8ab1c7282b179087e48b2ec02c3cf303  packages/core/src/shelfGrid.ts
+0bf407d69f4187910186a9bb057502b42223653d2d5153ce08a84793404ef8d6  packages/core/src/shelfGridSession.ts
+8dc89865f333eb1a0a10550acaf2e1b84bffa5fa4852b41af9d9bbebe6fcdaa2  packages/core/test/shelfGrid.test.ts

@@ -11,7 +11,7 @@ MAIN RULES
 - Keep usable information; a missing optional field affects that field or product only.
 - Missing nutrients are unknown, never zero.
 - Display a retailer name as a suggestion. Do not request/display stock status.
-- Show an aisle only for the current store when branch evidence supports it.
+- Show the aisle number and/or section returned by Gemini with its named store. A missing source URL or missing branch evidence must not hide the aisle. Missing aisle values remain absent. This is a store suggestion, not a stock guarantee or independently verified location.
 - Existing nutrient consistency, dietary restriction and clinical boundaries remain.
 - An unreadable/non-JSON provider response is different from an omitted JSON field: it still needs a clear error rather than fabricated results.
 
@@ -31,12 +31,12 @@ RESPONSE STRUCTURE
 | <food>.image_url | Product thumbnail link | Original: use the user's scan photo. Alternative: use the product placeholder. Keep the product information. Existing image-link checks still apply. |
 | <food>.store | Suggested retailer name | If a current store exists, make at most one focused Gemini lookup for all alternatives missing a usable retailer name. If still absent, show Store: Not identified. Keep food facts and alternatives. |
 | <food>.aisle | Optional aisle/section object | Omit the aisle line. Keep the store name and product card. |
-| <food>.aisle.number | Aisle number/code | Show the supported aisle/section name alone if supplied; otherwise omit the aisle line. |
-| <food>.aisle.section | Aisle name or store section | Show the supported aisle number alone if supplied; otherwise omit the aisle line. |
-| <food>.aisle.store | Retailer associated with aisle evidence | Without a match to the current retailer, omit the aisle. Keep the product and suggested store name. |
-| <food>.aisle.town | Town associated with aisle evidence | Without matching current-branch town evidence, omit the aisle. Keep the product and suggested store name. |
-| <food>.aisle.state | State associated with aisle evidence | Without matching current-branch state evidence, omit the aisle. Keep the product and suggested store name. |
-| <food>.aisle.source_url | Source supporting the current-store aisle | Omit the unsupported aisle. This does not block the store name, nutrients, rating or product answer. |
+| <food>.aisle.number | Aisle number/code | Show the returned section name alone if supplied; otherwise omit the aisle line. |
+| <food>.aisle.section | Aisle name or store section | Show the returned aisle number alone if supplied; otherwise omit the aisle line. |
+| <food>.aisle.store | Retailer associated with aisle evidence | Use the retailer returned with the aisle, falling back to the product store when omitted. A different suggested retailer does not erase the aisle. Do not label it as confirmed stock. |
+| <food>.aisle.town | Town associated with aisle evidence | Keep any returned town; if omitted, leave town unknown and retain the aisle. |
+| <food>.aisle.state | State associated with aisle evidence | Keep any returned state; if omitted, leave state unknown and retain the aisle. |
+| <food>.aisle.source_url | Source supporting the current-store aisle | Omit the source link when unusable or unconfirmed; retain the returned aisle, store name and product answer. Do not fabricate a citation or mark branch evidence verified. |
 
 ALL NUTRIENT FIELDS
 Every nutrient below is handled independently. An omitted, null or invalid value becomes unknown. It does not erase other valid nutrients or the entire answer. Conflicting component/total values are checked individually. Missing a particular nutrient may limit the specific comparison that depends on it.

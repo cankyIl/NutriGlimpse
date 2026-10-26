@@ -293,7 +293,7 @@ function reset(){for(const s of slots.values())s.clean?.();slots=new Map();effec
  assert.ok(nodes().filter(n=>n.type==='Card').some(n=>text(n).includes('Example pasta sauce')&&text(n).includes('Aisle A12')),'Aisle belongs to the matching product card');
  factButtons()[0].props.onPress();await flush(Results);
  assert.ok(text().includes('Unknown'));assert.ok(!text().includes('AI estimate'));
- const withoutAisle=structuredClone(groceryResult);withoutAisle.review.original.availability.aisleEvidence='unknown';withoutAisle.review.original.availability.aisleSourceId=null;
+ const withoutAisle=structuredClone(groceryResult);withoutAisle.review.original.availability.aisleEvidence='unknown';withoutAisle.review.original.availability.aisleSourceId=null;withoutAisle.review.original.availability.aisleNumber=null;withoutAisle.review.original.availability.section=null;
  reset();params={scan:'gemini-no-aisle'};scanState.put(params.scan,withoutAisle,'');await flush(Results);
  assert.ok(!text().includes('Aisle A12'));assert.ok(!text().includes('Aisle null'));
  reset();
@@ -305,6 +305,18 @@ function reset(){for(const s of slots.values())s.clean?.();slots=new Map();effec
  reset();params={scan:'gemini-named-aisle'};scanState.put(params.scan,namedAisle,'');await flush(Results);assert.ok(text().includes('Pasta sauces'));assert.ok(!text().includes('Aisle null'));
  const nearbyStore=structuredClone(withoutAisle);nearbyStore.review.original.availability.storeName='Target';
  reset();params={scan:'gemini-nearby-store'};scanState.put(params.scan,nearbyStore,'');await flush(Results);assert.ok(text().replace(/\s+/g,' ').includes('Store: Target'));assert.ok(!text().includes('Aisle A12'));
+ reset();
+ const modelAisle=structuredClone(groceryResult);modelAisle.review.original.availability.aisleEvidence='unknown';modelAisle.review.original.availability.aisleSourceId=null;
+ modelAisle.review.original.nutrientEvidence=[];
+ modelAisle.review.original.assessment.limitations=['Nutrition and rating are AI estimates, not verified against a cited product label. Check the package.','Some nutrients are unknown; missing values are not zero.','Nutrition quantity is not supplied. Check the source or label before comparing amounts.','Dietary requirements are not verified for this package. Check its label.'];
+ reset();params={scan:'model-aisle-no-citation'};scanState.put(params.scan,modelAisle,'');await flush(Results);
+ assert.ok(text().includes('Aisle A12 · Pasta sauces'));
+ assert.ok(!/AI estimate|Nutrition not confirmed|Some nutrients are unknown|Nutrition quantity is not supplied|personalized medical recommendations/.test(text()),'General notices belong at entry, not on result cards');
+ assert.ok(text().includes('Dietary requirements are not verified'),'Specific dietary hold stays visible');
+ factButtons()[0].props.onPress();await flush(Results);assert.ok(text().includes('Unknown'));assert.ok(!text().includes('AI estimate'));
+ reset();
+ const Agreement=load('apps/mobile/src/ui/BetaAgreement.tsx').BetaAgreement;
+ await flush(Agreement,{readOnly:true});assert.ok(text().includes('Unknown nutrients are not zero'));assert.ok(text().includes('aisle numbers and sections'));assert.ok(text().includes('Do not change medicines'));
  reset();
  shopperConsent=null;photoConsent=true;reset();await flush(Capture);assert.ok(!nodes().some(n=>n.type==='NativePhoto'),'Existing photo consent does not silently share a profile');
  await button('Use my health details').onPress();await ready(Capture);assert.equal(shopperConsent,true);
@@ -319,5 +331,5 @@ function reset(){for(const s of slots.values())s.clean?.();slots=new Map();effec
  const cardProps={food:estimatedOriginal,referenceImage:{url:'https://images.example.org/broken.jpg',sourceUrl:'https://example.org/product',title:'Reference package'}};
  await flush(AiCard,cardProps);nodes().find(n=>n.type==='Image').props.onError();await new Promise(r=>setTimeout(r,5));await flush(AiCard,cardProps);await new Promise(r=>setTimeout(r,5));await flush(AiCard,cardProps);assert.equal(mediaCalls.length,1);assert.equal(nodes().find(n=>n.type==='Image').props.source.uri,'https://images.openfoodfacts.org/fallback.jpg');
  nodes().find(n=>n.type==='Image').props.onError();await flush(AiCard,cardProps);assert.ok(text().includes('No photo'));assert.equal(mediaCalls.length,1);reset();
- console.log(JSON.stringify({passed:74,timingMode,scope:'Production capture, product cards, source checks, home and legacy ratings with mocked native/network boundaries; not a physical camera test'}));
+ console.log(JSON.stringify({passed:76,timingMode,scope:'Production capture, product cards, source checks, home and legacy ratings with mocked native/network boundaries; not a physical camera test'}));
 })().catch(error=>{console.error(error);process.exitCode=1;}).finally(()=>{reset();global.fetch=savedFetch;});

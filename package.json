@@ -13,13 +13,14 @@
     "lint": "npm run lint --workspace @grocery/mobile",
     "test": "node --experimental-strip-types --test packages/core/test/*.test.ts apps/service/test/*.test.ts",
     "service": "npm run start --workspace @grocery/service",
-    "check": "npm run typecheck && npm run lint && npm test && npm run check:tooling && npm run test:report-input && npm run check:photo-ui && npm run check:needs-ui && npm run check:news",
+    "check": "npm run typecheck && npm run lint && npm test && npm run check:tooling && npm run test:report-input && npm run check:photo-ui && npm run check:needs-ui && npm run check:news && npm run check:shelf-nine-ui",
     "check:tooling": "node --test ops/decoder.test.cjs ops/scene-lifecycle.test.cjs ops/scan-timing-release.test.cjs",
     "postinstall": "node ops/apply-decoder-patch.cjs",
     "test:report-input": "node --test apps/mobile/modules/private-input/tests/reportInput.adapter.test.cjs",
     "check:photo-ui": "node --experimental-strip-types ops/photo-ui-check.cjs",
     "check:news": "python3 -B ops/test-food-news.py && node --experimental-strip-types ops/news-ui-check.cjs",
-    "check:needs-ui": "node --experimental-strip-types ops/needs-ui-check.cjs"
+    "check:needs-ui": "node --experimental-strip-types ops/needs-ui-check.cjs",
+    "check:shelf-nine-ui": "node --experimental-strip-types ops/shelf-nine-ui-check.cjs"
   },
   "engines": {
     "node": ">=24"

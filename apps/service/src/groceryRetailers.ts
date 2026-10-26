@@ -46,9 +46,9 @@ export function createRetailerLookup(transport:GroceryTransport,parse:(value:unk
   // Do not discard it merely because the provider omitted a usable product-page citation.
   for(const row of copy.recommendations){
    const a=row.food.availability;
-   if(a.storeName&&retailerDistance(context,a.storeName,null,null,directory)!==null){
+   if(a.storeName&&(a.aisleNumber||a.section||retailerDistance(context,a.storeName,null,null,directory)!==null)){
     decisions.push({foodId:row.food.id,code:'store_suggestion_retained'});
-    if(!context.store||!sameRetailer(context.store.name,a.storeName)){Object.assign(a,{aisleNumber:null,section:null,aisleSourceId:null,aisleEvidence:'unknown'});}
+    // Keep the returned aisle with its named retailer, including a nearby branch.
    }else if(a.storeName){
     decisions.push({foodId:row.food.id,code:'nearby_store_not_established'});
     Object.assign(a,{status:'unknown',storeName:null,sourceId:null,aisleNumber:null,section:null,aisleSourceId:null,aisleEvidence:'unknown'});
@@ -85,15 +85,17 @@ export function createRetailerLookup(transport:GroceryTransport,parse:(value:unk
     const sourceId=selected.url&&copy.sources.length<24?food.id+'-retailer':null;
     if(sourceId)copy.sources.push({id:sourceId,kind:'retailer',title:(food.title+' at '+selected.r.store).slice(0,250),url:selected.url});
     row.food.availability={status:sourceId?'chain_listed':'unknown',storeName:selected.r.store.slice(0,160),town:null,state:null,branch:null,sourceId,aisleNumber:null,section:null,aisleSourceId:null,aisleEvidence:'unknown'};
-    // Only the current store can display an aisle; reuse the existing branch-evidence validation.
-    if(context.store&&selected.distance===0&&sameRetailer(context.store.name,selected.r.store)){
-     const a=grounded.value.alternatives[selected.index]?.aisle;
-     if(a){
-      const converted=adaptSimpleGroceryAnswer({product:{title:food.title,nutrition:{},source_url:selected.url,retailer_url:selected.url,store:selected.r.store,aisle:a},alternatives:[]},context,urls,aisleRecords,{allowUnverifiedEstimates:true}).review;
-      const proof=converted.original?.availability;
-      if(proof?.aisleEvidence==='branch_specific'&&copy.sources.length<24){
-       const evidence=converted.sources.find(s=>s.id===proof.aisleSourceId);if(evidence){const id=food.id+'-retailer-aisle';copy.sources.push({...evidence,id});Object.assign(row.food.availability,{town:proof.town,state:proof.state,branch:proof.branch,aisleNumber:proof.aisleNumber,section:proof.section,aisleEvidence:'branch_specific',aisleSourceId:id});}
-      }
+    const returnedAisle=grounded.value.alternatives[selected.index]?.aisle;
+    if(returnedAisle){
+     const converted=adaptSimpleGroceryAnswer({product:{title:food.title,nutrition:{},source_url:selected.url,retailer_url:selected.url,store:selected.r.store,aisle:returnedAisle},alternatives:[]},context,urls,aisleRecords,{allowUnverifiedEstimates:true,preserveReturnedAisle:true}).review;
+     const reported=converted.original?.availability;
+     if(reported&&(reported.aisleNumber||reported.section)){
+      const evidence=converted.sources.find(s=>s.id===reported.aisleSourceId);
+      const id=evidence&&copy.sources.length<24?food.id+'-retailer-aisle':null;
+      if(id&&evidence)copy.sources.push({...evidence,id});
+      if(reported.storeName&&!sameRetailer(reported.storeName,row.food.availability.storeName??''))Object.assign(row.food.availability,{status:'unknown',sourceId:null});
+      Object.assign(row.food.availability,{storeName:reported.storeName??row.food.availability.storeName,town:reported.town,state:reported.state,aisleNumber:reported.aisleNumber,section:reported.section,aisleEvidence:'unknown',aisleSourceId:id});
+      decisions.push({foodId:food.id,code:'model_aisle_retained'});
      }
     }
     row.food.assessment.limitations=row.food.assessment.limitations.filter(t=>!/^Store availability|^Aisle not found/.test(t));

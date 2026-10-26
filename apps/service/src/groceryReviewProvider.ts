@@ -12,7 +12,7 @@ import {SHOPPER_BOUNDARY} from './groceryShopperPrompt.ts';
 import {adaptSimpleGroceryAnswer} from './geminiSimpleReview.ts';
 import {aiPhotoPreviewSchema,estimatedRatingDecision,type AiPhotoPreview} from '../../../packages/core/src/aiFoodReview.ts';
 import {createServerScanTimer} from './scanTiming.ts';
-import {resolveGeminiGroundingSources,nativeAisleEvidence} from './geminiGroundingSources.ts';
+import {resolveGeminiGroundingSources} from './geminiGroundingSources.ts';
 import {adaptApprovedGroceryAnswer} from './geminiPhotoAdapter.ts';
 import {readFileSync,openSync,fstatSync,closeSync,constants} from 'node:fs';
 import {join} from 'node:path';
@@ -170,7 +170,7 @@ export function createGroceryProvider(options:{model:GroceryModel;transport:Groc
      if(!onProgress||!partial.product||progressCount>=4)return;
      try{
       // Final source resolution is still pending. The same nutrient/restriction checks run on complete cards.
-      const {review}=adaptSimpleGroceryAnswer({product:partial.product,alternatives:partial.alternatives},request.context,new Set(),[],{allowUnverifiedEstimates:true});
+      const {review}=adaptSimpleGroceryAnswer({product:partial.product,alternatives:partial.alternatives},request.context,new Set(),[],{allowUnverifiedEstimates:true,preserveReturnedAisle:options.model==='gemini-3.5-flash-lite'});
       if(!review.original||review.recommendations.length<=lastAlternatives)return;
       lastAlternatives=review.recommendations.length;progressCount++;review.recommendationShortfall=null;
       timer('first_result');
@@ -197,8 +197,8 @@ export function createGroceryProvider(options:{model:GroceryModel;transport:Groc
    const adapterAudit:{foodId:string;code:string}[]=[];
     const simple=options.model==='gemini-3.5-flash-lite'&&(evidence.value as any)?.schemaVersion!=='gemini-grocery-review-v1'&&!(evidence.value as any)?.product?.identity;
     const native=options.model==='gemini-3.5-flash-lite'&&!(response as any)?.boundedSearch;
-    const aisleRecords=simple&&native?await nativeAisleEvidence(evidence.value,evidence.urls,signal):(response as any)?.boundedSearch?.records;
-    const adapted=simple?adaptSimpleGroceryAnswer(evidence.value,request.context,evidence.urls,aisleRecords,{allowUnverifiedEstimates:native}):null;
+    const aisleRecords=(response as any)?.boundedSearch?.records;
+    const adapted=simple?adaptSimpleGroceryAnswer(evidence.value,request.context,evidence.urls,aisleRecords,{allowUnverifiedEstimates:native,preserveReturnedAisle:true}):null;
     const wire=adapted?adapted.review:options.model==='gemini-3.5-flash-lite'&&(evidence.value as any)?.schemaVersion!=='gemini-grocery-review-v1'
      ?adaptApprovedGroceryAnswer(evidence.value,request.context,evidence.urls,adapterAudit):evidence.value;
    let {review,audit}=adapted??validateGroceryReview(wire,request.context,evidence.urls);
@@ -234,7 +234,7 @@ export function createGroceryProvider(options:{model:GroceryModel;transport:Groc
      signal.throwIfAborted();
    }
    displayedReview=review;decisions=[...adapterAudit,...audit];
-   recordDiagnostic(options.audit,trace,{kind:'retailer_resolution',outcomes:review.recommendations.map((r,index)=>({index,status:r.food.availability.status,aisle:r.food.availability.aisleEvidence==='branch_specific',codes:audit.filter(a=>a.foodId===r.food.id&&/retailer|store|aisle|source_limit/.test(a.code)).map(a=>a.code).slice(0,12)}))});
+   recordDiagnostic(options.audit,trace,{kind:'retailer_resolution',outcomes:review.recommendations.map((r,index)=>({index,status:r.food.availability.status,aisle:!!(r.food.availability.aisleNumber||r.food.availability.section),codes:audit.filter(a=>a.foodId===r.food.id&&/retailer|store|aisle|source_limit/.test(a.code)).map(a=>a.code).slice(0,12)}))});
    const validationMs=Math.max(0,Math.round(performance.now()-vStart)-retailerMs-supplementWaitMs);
     const proposed=adapted?adapted.candidates.map(food=>({food})):(wire as any).recommendations??[];
     const reasons=(id:string)=>[...new Set([...adapterAudit,...audit].filter(x=>x.foodId===id).map(x=>x.code))].slice(0,20);

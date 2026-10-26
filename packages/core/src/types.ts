@@ -1,5 +1,5 @@
 export const conditions = {
-  cardiovascular: 'Heart health / high LDL',
+  cardiovascular: 'High Cholesterol / Heart Health',
   diabetes: 'Type 2 diabetes / prediabetes',
   hypertension: 'Hypertension',
   celiac: 'Celiac disease',

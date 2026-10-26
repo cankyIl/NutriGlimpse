@@ -5,7 +5,7 @@ import {useFocusEffect,useLocalSearchParams} from 'expo-router';
 import {ShelfBenchmarkView,getShelfBenchmarkAvailabilityAsync,type ShelfBenchmarkAvailability} from '../../modules/shelf-benchmark';
 import {ShelfGridSession} from '../../../../packages/core/src/shelfGridSession';
 import {reviewShelfGrid} from '../../../../packages/core/src/shelfGridClient';
-import {SHELF_GRID_N,shelfLeadingProducts,shelfProductKey,type ShelfProduct} from '../../../../packages/core/src/shelfGrid';
+import {SHELF_GRID_N,shelfLeadingProducts,shelfAlternativeLeaders,shelfProductKey,type ShelfProduct} from '../../../../packages/core/src/shelfGrid';
 import {reviewDualProductPhoto} from '../../../../packages/core/src/dualAiFoodClient';
 import {estimatedBenefits} from '../../../../packages/core/src/aiFoodReview';
 import {rankShelfFoods} from '../../../../packages/core/src/shelfRanking';
@@ -49,7 +49,7 @@ export default function ShelfGridScreen(){
  useEffect(()=>{
   if(!finished||!run||outsideFor.current===leaderKey||!leaderKey)return;
   outsideFor.current=leaderKey;
-  const chosen=leaders.filter(p=>p.needsAlternatives&&p.photo).slice(0,3);
+  const chosen=shelfAlternativeLeaders(leaders);
   if(!chosen.length)return;
   const controller=new AbortController();outsideController.current=controller;
   queueMicrotask(()=>{if(!controller.signal.aborted&&alive.current)setCheckingOutside(true);});

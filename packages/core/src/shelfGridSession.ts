@@ -31,17 +31,22 @@ export class ShelfGridSession {
   if(this.busy||this.controller.signal.aborted)return;
   const grid=this.waiting.shift();if(!grid){if(this.phase==='finishing'){this.phase='complete';this.changed();}return;}
   this.busy=true;this.changed();
-  const input=this.input(grid);
+  const input=this.input(grid);let progressResult:ShelfGridResult|undefined;
   try{
    const result=await this.send(input,this.controller.signal,progress=>{
-    if(this.controller.signal.aborted)return;assertShelfAssociation(input,progress);
+    if(this.controller.signal.aborted)return;assertShelfAssociation(input,progress);progressResult=progress;
     this.preview=progress.cells.flatMap(c=>c.review?.original?[c.review.original.identity.name??'Product']:[]);this.changed();
    });
    if(this.controller.signal.aborted)return;assertShelfAssociation(input,result);
    this.processed+=result.cells.length;this.unresolved+=result.cells.filter(c=>!c.review?.original||c.issue!=='none').length;
    const incoming=result.cells.flatMap(c=>c.review?.original?[{packageId:c.packageId,review:c.review,needsAlternatives:c.needsAlternatives,photo:grid.cells.find(x=>x.packageId===c.packageId)?.photo}]:[]);
    this.products=mergeShelfProducts(this.products,incoming);
-  }catch(e){if(!this.controller.signal.aborted){this.unresolved+=grid.cells.length;this.error=e instanceof Error?e.message:'This shelf section could not be checked.';}}
+  }catch(e){if(!this.controller.signal.aborted){
+    // Keep validated facts after an interrupted final stream, without claiming a finished ranking.
+    const retained=progressResult?.cells.flatMap(c=>c.review?.original&&c.issue==='none'?[{packageId:c.packageId,review:{...c.review,reviewState:'partial' as const,original:{...c.review.original,rating:null}},needsAlternatives:false,rankingReady:false,photo:grid.cells.find(x=>x.packageId===c.packageId)?.photo}]:[])??[];
+    this.products=mergeShelfProducts(this.products,retained);this.processed+=retained.length;
+    this.unresolved+=grid.cells.length;this.error=e instanceof Error?e.message:'This shelf section could not be checked.';
+   }}
   finally{
    input.imageBase64='';grid.imageBase64='';grid.cells=[];this.preview=[];this.busy=false;
    if(!this.controller.signal.aborted){this.acknowledge(grid.batchId);this.changed();void this.drain();}

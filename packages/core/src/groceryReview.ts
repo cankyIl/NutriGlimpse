@@ -66,7 +66,8 @@ export function estimatedGroceryFood(f:GroceryFood):EstimatedFood{
  nutrition:Object.fromEntries(Object.keys(estimatedNutrientsSchema.shape).map(k=>[k,f.nutrition[k as keyof typeof f.nutrition]]))});
 }
 export function groceryAisleLabel(f:GroceryFood):string|null{
- const a=f.availability;if(a.aisleEvidence!=='branch_specific'||!a.aisleSourceId)return null;
+ // Evidence controls source attribution, not whether returned aisle text is visible.
+ const a=f.availability;
  const aisle=a.aisleNumber?.replace(/^aisle\s*/i,'').trim();
  return [aisle?'Aisle '+aisle:null,a.section].filter(Boolean).join(' · ')||null;
 }

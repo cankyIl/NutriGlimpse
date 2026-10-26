@@ -26,13 +26,24 @@ export function assertShelfAssociation(input:Pick<ShelfGridRequest,'sessionId'|'
  const seen=new Set<number>();
  for(const row of result.cells){const cell=input.cells.find(c=>c.cell===row.cell);if(!cell||seen.has(row.cell)||cell.packageId!==row.packageId||cell.revision!==row.revision)throw Error('Shelf cell mismatch');seen.add(row.cell);}
 }
+/** Shelf colors use coherent nutrition, not agreement with a model's color. */
+export function reconcileShelfRating(review:DualFoodResult):DualFoodResult{
+ const original=review.original;if(!original)return review;
+ const held=review.reviewState==='checking'||review.reviewState==='identity-conflict'||review.estimatesDiffer;
+ const rating=held?null:estimatedRatingDecision(original).rating;
+ return {...review,original:{...original,rating}};
+}
 const text=(s:string|null)=>String(s??'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
 // Preserve formulation and size; conservative duplicates may remain instead of losing a variant.
 export function shelfProductKey(food:EstimatedFood){return [food.identity.brand,food.identity.name,food.identity.variant,food.identity.size].map(text).join('|');}
-export type ShelfProduct={packageId:string;review:DualFoodResult;needsAlternatives:boolean;photo?:string};
+export type ShelfProduct={packageId:string;review:DualFoodResult;needsAlternatives:boolean;photo?:string;rankingReady?:boolean};
 export function mergeShelfProducts(existing:ShelfProduct[],incoming:ShelfProduct[]):ShelfProduct[]{
  const map=new Map(existing.map(row=>[row.packageId,row]));
- for(const row of incoming)map.set(row.packageId,row);
+ for(const row of incoming){
+  const prior=map.get(row.packageId);
+  if(row.rankingReady===false&&prior&&prior.rankingReady!==false)continue;
+  map.set(row.packageId,row);
+ }
  const identities=new Map<string,ShelfProduct>();
  for(const row of map.values()){
   const f=row.review.original;if(!f)continue;
@@ -42,6 +53,7 @@ export function mergeShelfProducts(existing:ShelfProduct[],incoming:ShelfProduct
   // Repeated observations cannot upgrade missing/conflicting facts to a healthy verdict.
   const differ=JSON.stringify(old.review.original?.nutrition)!==JSON.stringify(f.nutrition)||old.review.original?.servingGrams!==f.servingGrams;
   if(differ)identities.set(key,{...old,needsAlternatives:old.needsAlternatives||row.needsAlternatives,review:{...old.review,estimatesDiffer:true,original:{...old.review.original!,rating:null}}});
+  else if(old.rankingReady===false&&row.rankingReady!==false)identities.set(key,row);
  }
  return [...identities.values()];
 }
@@ -49,22 +61,45 @@ export function shelfLeadingProducts(products:ShelfProduct[],restricted=false,pr
  if(restricted)return [];
  const groups=new Map<string,ShelfProduct[]>();
  for(const row of products){
-  const f=row.review.original;if(!f||!f.rating||row.review.reviewState==='checking'||row.review.reviewState==='identity-conflict'||row.review.estimatesDiffer||estimatedRatingDecision(f).rating===null)continue;
-  const policy=comparisonPolicy(f.category);
-  const key=policy.id==='general_v1'?text(f.category):policy.id;
-  groups.set(key,[...(groups.get(key)??[]),row]);
+  if(row.rankingReady===false)continue;
+  const review=reconcileShelfRating(row.review),f=review.original;if(!f?.rating)continue;
+  const key=shelfComparisonGroup(f);
+  const rated={...row,review,needsAlternatives:f.rating==='neutral'||f.rating==='not_healthy'};
+  groups.set(key,[...(groups.get(key)??[]),rated]);
  }
  const output:ShelfProduct[]=[];
  for(const rows of groups.values()){
   const focus=comparisonPolicy(rows[0].review.original!.category).focus;
-  const keys=[...new Set([...priorities.map(p=>p.key),'transFatG' as const,...focus,'sodiumMg' as const,'saturatedFatG' as const,'fiberG' as const,'proteinG' as const])];
-  const higher=(key:keyof EstimatedFood['nutrition'])=>key==='fiberG'||key==='proteinG';
+  // Optional minerals cannot be treated as zero when absent in a peer.
+  const keys=[...new Set([...priorities.map(p=>p.key),'transFatG' as const,...focus,'sodiumMg' as const,'saturatedFatG' as const,'fiberG' as const,'proteinG' as const])].filter(k=>rows.every(row=>row.review.original!.nutrition[k]!==null));
+  const higher=(key:keyof EstimatedFood['nutrition'])=>priorities.find(p=>p.key===key)?.direction==='higher'||(!priorities.some(p=>p.key===key)&&(key==='fiberG'||key==='proteinG'));
   const value=(row:ShelfProduct,key:keyof EstimatedFood['nutrition'])=>row.review.original!.nutrition[key]!/row.review.original!.servingGrams!;
   const dominates=(a:ShelfProduct,b:ShelfProduct)=>keys.every(k=>higher(k)?value(a,k)>=value(b,k):value(a,k)<=value(b,k))&&keys.some(k=>value(a,k)!==value(b,k));
   // Preserve trade-offs. There may be several leading choices, never a forced universal winner.
   const leading=rows.filter(b=>!rows.some(a=>a!==b&&dominates(a,b)));
-  leading.sort((a,b)=>{for(const k of keys){const d=(value(a,k)-value(b,k))*(higher(k)?-1:1);if(Math.abs(d)>1e-9)return d;}return a.packageId.localeCompare(b.packageId);});
+  const colorOrder={very_healthy:0,healthy:1,neutral:2,not_healthy:3};
+  leading.sort((a,b)=>{
+   const color=colorOrder[a.review.original!.rating!]-colorOrder[b.review.original!.rating!];if(color)return color;
+   for(const k of keys){const d=(value(a,k)-value(b,k))*(higher(k)?-1:1);if(Math.abs(d)>1e-9)return d;}
+   return a.packageId.localeCompare(b.packageId);
+  });
   output.push(...leading);
  }
  return output;
+}
+
+function shelfComparisonGroup(food:EstimatedFood){
+ const policy=comparisonPolicy(food.category);return policy.id==='general_v1'?text(food.category):policy.id;
+}
+/** Search outside only for a category without a green leading choice. */
+export function shelfAlternativeLeaders(leaders:ShelfProduct[]):ShelfProduct[]{
+ const groups=new Map<string,ShelfProduct[]>();
+ for(const row of leaders){const f=row.review.original;if(!f)continue;const key=shelfComparisonGroup(f);groups.set(key,[...(groups.get(key)??[]),row]);}
+ const selected:ShelfProduct[]=[];
+ for(const rows of groups.values()){
+  if(rows.some(row=>['healthy','very_healthy'].includes(row.review.original?.rating??'')))continue;
+  const best=rows[0];
+  if(best.photo&&best.needsAlternatives&&['neutral','not_healthy'].includes(best.review.original?.rating??''))selected.push(best);
+ }
+ return selected.slice(0,3);
 }

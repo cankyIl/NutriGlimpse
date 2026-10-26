@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
-import {SHELF_GRID_N,shelfGridRequestSchema,assertShelfAssociation,mergeShelfProducts,shelfLeadingProducts,type ShelfProduct} from '../src/shelfGrid.ts';
+import {SHELF_GRID_N,shelfGridRequestSchema,assertShelfAssociation,mergeShelfProducts,shelfLeadingProducts,shelfAlternativeLeaders,type ShelfProduct} from '../src/shelfGrid.ts';
 import {ShelfGridSession} from '../src/shelfGridSession.ts';
 import {reviewShelfGrid} from '../src/shelfGridClient.ts';
 import {grid,result,food} from './shelfGridFixtures.ts';
@@ -77,4 +77,62 @@ test('real iPhone native-event target metadata cannot reject a full grid or fina
  const invalid=new ShelfGridSession('scan-1',async()=>{throw Error('must not send');},()=>{},()=>{});
  assert.throws(()=>invalid.accept({...native(),target:731,rows:1} as ReturnType<typeof native>));
  assert.equal(invalid.queued,0);
+});
+
+
+test('blank model-disagreement ratings recover for ranking, but conflicting facts and unfinished streams stay excluded',()=>{
+ const row=(id:string,f=food(id)):ShelfProduct=>({packageId:id,photo:'fixture',needsAlternatives:true,review:{...result(grid(1)).cells[0].review!,original:f}});
+ const green=row('green');green.review.original!.rating=null;
+ const neutral=row('neutral');neutral.review.original!.nutrition.fiberG=1;neutral.review.original!.nutrition.proteinG=2;
+ const incomplete=row('incomplete');incomplete.review.original!.nutrition.transFatG=null;
+ const conflict=row('conflict');conflict.review.estimatesDiffer=true;
+ const interrupted=row('interrupted');interrupted.rankingReady=false;
+ const leaders=shelfLeadingProducts([neutral,green,incomplete,conflict,interrupted]);
+ assert.deepEqual(leaders.map(r=>r.packageId),['green']);assert.equal(leaders[0].review.original?.rating,'healthy');
+ assert.equal(green.review.original?.rating,null,'ranking does not mutate its input');
+ assert.equal(shelfAlternativeLeaders(leaders).length,0);
+ assert.equal(shelfLeadingProducts([green],true).length,0);
+});
+
+test('outside alternatives target one best non-green choice per category, not duplicated facings or a category with green choices',()=>{
+ const row=(id:string,category:string):ShelfProduct=>{const f=food(id,300);f.category=category;return {packageId:id,photo:'fixture',needsAlternatives:true,review:{...result(grid(1)).cells[0].review!,original:f}};};
+ const a=row('a','crackers'),b=row('b','crackers'),sauce=row('sauce','tomato-pasta-sauce');
+ const leaders=shelfLeadingProducts([a,b,sauce]);
+ assert.deepEqual(shelfAlternativeLeaders(leaders).map(r=>r.packageId),['a','sauce']);
+ const green=row('green','crackers');green.review.original!.nutrition.sodiumMg=100;
+ assert.deepEqual(shelfAlternativeLeaders(shelfLeadingProducts([a,b,sauce,green])).map(r=>r.packageId),['sauce']);
+});
+
+test('ranking honors higher mineral priorities only when all peers have that mineral',()=>{
+ const row=(id:string,k:number|null):ShelfProduct=>{const f=food(id);f.nutrition.potassiumMg=k;return {packageId:id,needsAlternatives:false,review:{...result(grid(1)).cells[0].review!,original:f}};};
+ const priority=[{key:'potassiumMg' as const,direction:'higher' as const}];
+ assert.deepEqual(shelfLeadingProducts([row('low',100),row('high',300)],false,priority).map(r=>r.packageId),['high']);
+ assert.equal(shelfLeadingProducts([row('unknown',null),row('known',300)],false,priority).length,2);
+});
+
+test('interrupted final stream retains valid progress facts without ranking them and continues the next batch',async()=>{
+ let calls=0;const acks:string[]=[];
+ const s=new ShelfGridSession('scan-1',async(input,_signal,progress)=>{calls++;if(calls===1){progress(result(input));throw Error('Interrupted');}return result(input);},()=>{},id=>acks.push(id));
+ s.accept(native(1));await tick();assert.equal(s.products.length,1);assert.equal(s.products[0].review.original?.rating,null);
+ assert.equal(s.products[0].rankingReady,false);assert.equal(shelfLeadingProducts(s.products).length,0);
+ const next=native(1,'batch-2');next.cells[0].packageId='next-package';s.accept(next);await tick();s.finish();
+ assert.equal(s.phase,'complete');assert.equal(s.products.length,2);assert.equal(s.processed,2);assert.equal(s.unresolved,1);
+ assert.deepEqual(acks,['batch-1','batch-2']);assert.equal(shelfLeadingProducts(s.products).length,1);
+});
+
+
+test('a green non-dominated shelf choice appears before neutral trade-offs in its category',()=>{
+ const row=(id:string,f:ReturnType<typeof food>):ShelfProduct=>({packageId:id,photo:'fixture',needsAlternatives:true,review:{...result(grid(1)).cells[0].review!,original:f}});
+ const green=food('Green',180),neutral=food('Neutral',250);neutral.nutrition.addedSugarsG=0;neutral.nutrition.sugarsG=0;
+ const leaders=shelfLeadingProducts([row('neutral',neutral),row('green',green)]);
+ assert.deepEqual(leaders.map(r=>r.packageId),['green','neutral']);assert.equal(shelfAlternativeLeaders(leaders).length,0);
+});
+
+
+test('interrupted progress cannot replace completed facts; later matching completed evidence restores a retained partial product',()=>{
+ const complete:ShelfProduct={packageId:'a',review:result(grid(1)).cells[0].review!,needsAlternatives:false};
+ const partial=structuredClone(complete);partial.rankingReady=false;partial.review.reviewState='partial';partial.review.original!.rating=null;
+ assert.equal(mergeShelfProducts([complete],[partial])[0].review.reviewState,'complete');
+ const newFacing={...structuredClone(complete),packageId:'b'};
+ const recovered=mergeShelfProducts([partial],[newFacing]);assert.equal(recovered.length,1);assert.equal(recovered[0].review.reviewState,'complete');assert.equal(shelfLeadingProducts(recovered).length,1);
 });

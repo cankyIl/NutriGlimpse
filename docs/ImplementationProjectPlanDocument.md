@@ -259,3 +259,25 @@ Current sources of truth:
 The earlier October 18 handoff reconciliation was documentation-only. The subsequent build-16 checkpoint records actual implementation, backend deployment, public-fixture tests and the completed owner TestFlight release. No additional testers were invited.
 
 Editable JSON field/fallback specification: [Gemini-Response-JSON-Field-Handling-Draft.txt](Gemini-Response-JSON-Field-Handling-Draft.txt). Missing source_url is explicitly non-blocking. The latest full suite, including field handling and parallel supplementation, has 734 passing core/service tests.
+
+## Staged side-conversation work — shelf grid 9 and My Needs (October 25)
+
+Implemented and tested, **not deployed or uploaded**: a separate v2 shelf path uses 9-product 3x3 grids, parallel Gemini/GPT requests for each grid, minimal/no thinking, streamed product records, duplicate counts, batch-scoped alternatives and suppression once a healthy shelf result is available. My Needs makes multiple health concerns prominent and exposes High Cholesterol / Heart Health while preserving saved high-LDL profiles. The existing v1 shelf reliability changes and released build 25 are preserved.
+
+Latest parallel-flow checks passed (790 core/service tests, mobile typecheck/lint and UI checks). The earlier 9-cell implementation also passed iOS JS export; no signed native build was produced here. On a nine-cell repeated-US-product fixture, Gemini's first product arrived at 3.963 s and final results at 8.273 s; GPT took 21.215 s and 24.474 s. Physical-iPhone acceptance and broader exact-variant accuracy remain open. A separate non-US fixture exposed a Gemini variant-merging error; this is not claimed resolved.
+
+**Parallel pipeline implemented:** each grid starts Gemini first and immediately starts GPT with the same image and prompt. Two grids may run concurrently (four model calls), with up to two waiting grids and capture backpressure. Streamed product records update the screen; Gemini completion enables ratings and alternatives without waiting for GPT. GPT only fills missing cells, compatible missing facts and alternative slots, with a bounded 20-second supplement window after Gemini completes. Existing Gemini values win; nutrition checks remain enforced. Finish flushes a smaller grid and waits for accepted batches. Cancellation stops pending work. See [full staged handoff](Shelf-Grid9-Handoff-2026-10-25.md).
+
+## Staged single-product aisle and notice fix — October 25
+
+**Implemented and tested; not deployed or uploaded.** Gemini's returned aisle/section is retained and displayed even without a source URL or branch proof, with the returned store. GPT duplicates do not override it. The approved prompt and nutrition/dietary checks are unchanged. Repeated general warnings are consolidated in the initial beta agreement; product-specific holds and Unknown nutrient cells remain.
+
+The exact saved Prego response now carries **Aisle 10 · 07B - L** for both alternatives through the HTTP endpoint, with unchanged nutrition, ratings and reasons and no new model/search call. Full checks passed: **797 core/service tests, 76 photo UI scenarios in both timing modes, mobile typecheck/lint, existing 12 shelf UI scenarios and iOS JS export**, plus the normal tooling/report/news/needs and shelf-nine checks. Side-chat source hashes were preserved; its newer parallel shelf implementation is still staged separately.
+
+**Release item:** include the aisle/notice client and backend changes with the completed shelf work in the next numbered iPhone release. Build 25 still applies its old client-side aisle rule; this is not a backend-only visible fix. No new credentials or user decision is required for these code changes. [Implementation and evidence](87-gemini-aisles-and-once-only-notices.md).
+
+## Build 26 combined release — October 25
+
+**Backend deployed; native build in progress, not yet uploaded.** Includes the completed side-chat parallel shelf-grid-9 flow, My Needs multi-condition controls and v1 shelf reliability, together with Gemini aisle display and initial-notice changes. The 350-file mobile snapshot is frozen. Combined tests passed: 797 core/service, 76 photo UI scenarios in both timing modes, shelf/needs/news/report/tooling checks, typecheck/lint and iOS JS export.
+
+The live production shelf fixture returned three distinct products from nine cells, with first product at 4.607 s and Gemini completion at 8.759 s. GPT reached the bounded timeout and did not replace Gemini. No alternatives were accepted in that run; physical-camera and broader nutrition/alternative quality acceptance remain open. Backend health is verified and portfolio services were unchanged. [Build 26 release record](88-build26-combined-release.md).

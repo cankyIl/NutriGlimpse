@@ -40,7 +40,7 @@ function load(filename){
   if(name==='react')return hooks;
   if(name.endsWith('/modules/shelf-benchmark'))return {getShelfBenchmarkAvailabilityAsync:async()=>({available:true,modelId:'shelfset',reason:'ready'}),ShelfBenchmarkView:host('NativeShelf')};
   if(name.endsWith('/storage/shelfGridConsent'))return {readShelfConsent:async()=>photoConsent,saveShelfConsent:async()=>{photoConsent=true;}};
-  if(name.endsWith('/shelfGridClient'))return {reviewShelfGrid:async(input,signal)=>{gridRequests.push(input);return require(path.join(root,'packages/core/test/shelfGridFixtures.ts')).result(input);}};
+  if(name.endsWith('/shelfGridClient'))return {reviewShelfGrid:async(input,signal)=>{gridRequests.push(input);return shelfResponse(input);}};
 
   if(name==='expo/fetch')return {fetch:global.fetch};
   if(name==='react-native')return{Pressable:'Pressable',Image:'Image',View:'View',Text:'Text',TextInput:'TextInput',ScrollView:'ScrollView',StyleSheet:{create:x=>x,absoluteFill:{}},Linking:{openSettings:async()=>{},openURL:async()=>{}},AppState:{currentState:'active',addEventListener:(name,fn)=>{background.push(fn);return{remove(){}};}}};
@@ -76,6 +76,7 @@ function load(filename){
  };
  mod._compile(ts.transpileModule(fs.readFileSync(filename,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,jsx:ts.JsxEmit.ReactJSX,target:ts.ScriptTarget.ES2022,esModuleInterop:true}}).outputText,filename);return mod.exports;
 }
+let shelfResponse=input=>require(path.join(root,'packages/core/test/shelfGridFixtures.ts')).result(input);
 let tree;
 function render(element,key='root'){
  if(element===null||element===undefined||typeof element==='boolean')return null;
@@ -114,6 +115,22 @@ function reset(){for(const s of slots.values())s.clean?.();slots=new Map();effec
  button('Scan another shelf').onPress();await flush(Screen);assert.ok(nodes().some(n=>n.type==='NativeShelf'));
  background.forEach(fn=>fn('background'));await flush(Screen);
  assert.equal(nodes().some(n=>n.type==='NativeShelf'),false);assert.ok(text().includes('background'));
+ reset();photoConsent=true;params={auto:'1'};
+ const fixtures=require(path.join(root,'packages/core/test/shelfGridFixtures.ts'));
+ shelfResponse=input=>{const r=fixtures.result(input);r.cells[0].review.original.rating=null;r.cells[1].review.original.nutrition.sodiumMg=300;r.cells.forEach(c=>c.needsAlternatives=true);return r;};
+ let callsBefore=networkCalls;await flush(Screen);camera=nodes().find(n=>n.type==='NativeShelf');
+ let small={...make(2,'green-category'),runId:camera.props.runId};camera.props.onGrid({nativeEvent:small});await flush(Screen);
+ button('Finish scan').onPress();await flush(Screen);camera=nodes().find(n=>n.type==='NativeShelf');camera.props.onScanState({nativeEvent:{runId:camera.props.runId,state:'stopped',reason:'stopped'}});await flush(Screen);
+ assert.equal(networkCalls,callsBefore,'Green choice on the shelf suppresses unnecessary outside reviews');
+ assert.ok(text().includes('Leading choice in this category'));
+ reset();params={auto:'1'};
+ shelfResponse=input=>{const r=fixtures.result(input);r.cells.forEach(c=>{c.review.original.nutrition.sodiumMg=300;c.review.original.rating='neutral';c.needsAlternatives=true;});return r;};
+ recognition=async()=>{const r=fixtures.result(fixtures.grid(1)).cells[0].review;r.original.identity.name='product-0';r.original.nutrition.sodiumMg=300;r.original.rating='neutral';return r;};
+ callsBefore=networkCalls;await flush(Screen);camera=nodes().find(n=>n.type==='NativeShelf');small={...make(2,'neutral-category'),runId:camera.props.runId};camera.props.onGrid({nativeEvent:small});await flush(Screen);
+ assert.equal(networkCalls,callsBefore,'Outside reviews wait for Finish');
+ button('Finish scan').onPress();await flush(Screen);camera=nodes().find(n=>n.type==='NativeShelf');camera.props.onScanState({nativeEvent:{runId:camera.props.runId,state:'stopped',reason:'stopped'}});await flush(Screen);
+ assert.equal(networkCalls,callsBefore+1,'Only one category leader is reviewed outside the shelf');
+ assert.ok(text().includes('Outside alternatives'));
  reset();global.fetch=savedFetch;
- console.log(JSON.stringify({passed:10,scope:'Production shelf screen: fresh consent, 16-cell native config, rolling batch, duplicate event, Finish partial grid, result cards, pagination, new scan and background cleanup; mocked native/network boundaries'}));
+ console.log(JSON.stringify({passed:12,scope:'Production shelf screen: fresh consent, 16-cell native config, rolling batch, duplicate event, Finish partial grid, result cards, pagination, new scan, background cleanup, recovered green ranking and one outside review per category after Finish; mocked native/network boundaries'}));
 })().catch(e=>{reset();global.fetch=savedFetch;console.error(e);process.exitCode=1;});

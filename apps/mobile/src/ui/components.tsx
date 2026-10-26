@@ -44,7 +44,7 @@ export function Badge({ label }: { label: AssessmentLabel }) {
 export function Back({ label = 'Back' }: { label?: string }) {
   return <Pressable accessibilityRole="button" accessibilityLabel={label} style={s.back} onPress={() => router.canGoBack() ? router.back() : router.replace('/')}><Icon name="arrow-left" /><Text style={{ color: c.ink, fontWeight: '600' }}>{label}</Text></Pressable>;
 }
-export function SampleNotice() { return <View style={s.notice}><Icon name="info" size={14} color={c.muted} /><Text style={s.noticeText}>Beta preview · check labels and confirmed report values</Text></View>; }
+export function SampleNotice() { return <View style={s.notice}><Icon name="info" size={14} color={c.muted} /><Text style={s.noticeText}>Beta preview</Text></View>; }
 
 export function FoodArt({ kind = 'oats', small = false }: { kind?: Product['illustration']; small?: boolean }) {
   if (kind === 'apple') return <View aria-hidden accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={[s.art, small && s.artSmall]}><View style={s.leaf} /><View style={s.apple} /></View>;

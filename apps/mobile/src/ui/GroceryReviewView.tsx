@@ -1,6 +1,7 @@
 import {Linking,Pressable,Text,View} from 'react-native';
 import {type GroceryResult,type GroceryFood,estimatedGroceryFood,groceryAisleLabel} from '../../../../packages/core/src/groceryReview';
 import {AiProductCard} from './AiProductCard';
+import {isProductSpecificNotice} from './scanNotices';
 import {SearchAttribution} from './SearchAttribution';
 import {Body,Heading,s} from './components';
 export function GroceryReviewView({result,photo,pending=false}:{result:GroceryResult;photo?:string;pending?:boolean}){
@@ -12,10 +13,10 @@ export function GroceryReviewView({result,photo,pending=false}:{result:GroceryRe
   const aisle=groceryAisleLabel(food);
   const availability=food.availability;
   const facts={...estimatedGroceryFood(food),nutritionSource:source?.url?{url:source.url,title:source.title,checkedAt:result.checkedAt,confirmation:'model-web-search' as const}:null};
-  return <AiProductCard key={food.id} food={facts} detail={food} photo={original?photo:undefined} benefits={benefits}
+  return <AiProductCard key={food.id} food={facts} detail={food} showGeneralNotices={false} photo={original?photo:undefined} benefits={benefits}
    referenceImage={food.image.kind==='reference'&&food.image.url&&imageSource?.url?{url:food.image.url,sourceUrl:imageSource.url,title:imageSource.title}:undefined}>
-   {tradeoffs.map(t=><Text key={t} style={s.small}>Trade-off: {t}</Text>)}
-   {food.assessment.limitations.filter(t=>!/^Store availability|^Aisle not found/.test(t)).map(t=><Text key={t} style={s.small}>{t}</Text>)}
+   {tradeoffs.filter(isProductSpecificNotice).map(t=><Text key={t} style={s.small}>Trade-off: {t}</Text>)}
+   {food.assessment.limitations.filter(isProductSpecificNotice).map(t=><Text key={t} style={s.small}>{t}</Text>)}
    {<View style={{gap:5}}>
     <Heading>Store: {availability.storeName??(pending?'Checking…':'Not identified')}</Heading>
     {!!aisle&&<Body>{aisle}</Body>}
@@ -29,8 +30,6 @@ export function GroceryReviewView({result,photo,pending=false}:{result:GroceryRe
   {review.recommendations.map(row=>render(row.food,row.benefits.map(b=>b.text),false,row.tradeoffs))}
   {!pending&&!!review.recommendationShortfall&&<Body muted>{review.recommendationShortfall}</Body>}
   {pending&&<Body>Checking nutrition sources and remaining alternatives…</Body>}
-  <Body muted>{review.safetyReminder}</Body>
-  <Body muted>General nutrition guidance, not personalized medical recommendations.</Body>
   <SearchAttribution html={result.grounding.searchSuggestionsHtml}/>
  </View>;
 }

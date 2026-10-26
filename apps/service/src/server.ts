@@ -1,3 +1,4 @@
+import {shelfNineRoute} from './shelfNineRoute.ts';
 import {GROCERY_CONSENT,groceryRequestSchema} from '../../../packages/core/src/groceryReview.ts';
 import {GroceryProviderError} from './groceryReviewProvider.ts';
 import {createNewsSelectionRoute} from './newsSelectionRoute.ts';
@@ -24,7 +25,7 @@ import {products} from '../../../packages/core/src/fixtures.ts';
 import {readiness} from '../../../packages/core/src/privacy.ts';
 
 import type { IntakeKind } from '../../../packages/core/src/intake.ts';
-export interface ServiceOptions { groceryReviews?: import('./groceryReviewProvider.ts').GroceryProvider; webReviews?: import('./webPhotoProvider.ts').WebPhotoProvider; shelfGrids?: import("./shelfGridProvider.ts").ShelfGridProvider; dualReviews?: import('./dualPhotoProvider.ts').DualPhotoProvider; availability?: ReturnType<typeof import('./nearbyAvailability.ts').createNearbyAvailability>; scanTimingEnabled?:boolean; diagnostics?:BetaDiagnostics; accessMode?: 'open-beta'; news?:()=>ReturnType<typeof import('./foodNews.ts').readFoodNews>; newsPool?:()=>ReturnType<typeof import('./foodNews.ts').readNewsPool>; aiReviews?: import('./aiFoodReviewProvider.ts').AiReviewProvider; cardSources?: ReturnType<typeof import('./productCardSources.ts').createProductCardSources>; photoAssessments?: import('./photoAssessmentProvider.ts').PhotoAssessmentProvider; productPhotos?: ProductPhotoProvider; labelEvidence?: (food:PublicFood)=>PublicFood['glutenEvidence']; realReports?: RealReportProvider; offLookup?: (barcode:string,refreshEvidence?:boolean)=>Promise<void>; directory?: import('../../../packages/core/src/storeDetection.ts').StoreDirectory; authorize?: (header: string | undefined) => boolean; catalog?: PublicDatabase; fictional?: (kind:IntakeKind)=>Promise<unknown>; rules?: RuleDistribution; catalogBurst?: number; refillPerSecond?: number; now?: () => number }
+export interface ServiceOptions { shelfNine?: import('./shelfNineProvider.ts').ShelfNineProvider; groceryReviews?: import('./groceryReviewProvider.ts').GroceryProvider; webReviews?: import('./webPhotoProvider.ts').WebPhotoProvider; shelfGrids?: import("./shelfGridProvider.ts").ShelfGridProvider; dualReviews?: import('./dualPhotoProvider.ts').DualPhotoProvider; availability?: ReturnType<typeof import('./nearbyAvailability.ts').createNearbyAvailability>; scanTimingEnabled?:boolean; diagnostics?:BetaDiagnostics; accessMode?: 'open-beta'; news?:()=>ReturnType<typeof import('./foodNews.ts').readFoodNews>; newsPool?:()=>ReturnType<typeof import('./foodNews.ts').readNewsPool>; aiReviews?: import('./aiFoodReviewProvider.ts').AiReviewProvider; cardSources?: ReturnType<typeof import('./productCardSources.ts').createProductCardSources>; photoAssessments?: import('./photoAssessmentProvider.ts').PhotoAssessmentProvider; productPhotos?: ProductPhotoProvider; labelEvidence?: (food:PublicFood)=>PublicFood['glutenEvidence']; realReports?: RealReportProvider; offLookup?: (barcode:string,refreshEvidence?:boolean)=>Promise<void>; directory?: import('../../../packages/core/src/storeDetection.ts').StoreDirectory; authorize?: (header: string | undefined) => boolean; catalog?: PublicDatabase; fictional?: (kind:IntakeKind)=>Promise<unknown>; rules?: RuleDistribution; catalogBurst?: number; refillPerSecond?: number; now?: () => number }
 /** A bounded global limiter retains no client identifiers, addresses or request payloads. */
 export function createAppServer(options: ServiceOptions = {}) {
   const scanTimingInbox=createScanTimingInbox(options.diagnostics,options.scanTimingEnabled===true);
@@ -118,7 +119,7 @@ export function createAppServer(options: ServiceOptions = {}) {
     }
     // Opening the beta does not implicitly expose future admin, upload or rule routes.
     const betaPath=request.url??'';
-    const publicBetaRoute=betaPath==='/v1/shelf/grids'||betaPath==='/health'||/^\/v[12]\/availability\/search$/.test(betaPath)||
+    const publicBetaRoute=betaPath==='/v2/shelf/grids'||betaPath==='/v1/shelf/grids'||betaPath==='/health'||/^\/v[12]\/availability\/search$/.test(betaPath)||
       /^\/v[123456]\/photos\/(capabilities|recognize)$/.test(betaPath)||/^\/v3\/photos\/(sources|media)$/.test(betaPath)||
       /^\/v1\/reports\/(capabilities|extract)$/.test(betaPath)||
       /^\/v1\/fictional\/extract\/(product|receipt|report)$/.test(betaPath)||
@@ -129,6 +130,7 @@ export function createAppServer(options: ServiceOptions = {}) {
       return send(401,{code:'TESTER_ACCESS_REQUIRED'},true);
     }
 
+    if(betaPath==='/v2/shelf/grids'){if(!take()||activeShelfRequests>=2)return send(429,{code:'RATE_LIMITED'},true);activeShelfRequests++;let released=false;const release=()=>{if(!released){released=true;activeShelfRequests--;}};response.once('finish',release);response.once('close',release);shelfNineRoute(request,response,options.shelfNine);return;}
     if(betaPath==='/v1/shelf/grids'){if(!take()||activeShelfRequests>=2)return send(429,{code:'RATE_LIMITED'},true);activeShelfRequests++;let released=false;const release=()=>{if(!released){released=true;activeShelfRequests--;}};response.once('finish',release);response.once('close',release);shelfGridRoute(request,response,options.shelfGrids);return;}
     if(/^\/v[12]\/availability\/search$/.test(betaPath)){
       if(!openBeta&&!options.authorize)return send(401,{code:'TESTER_ACCESS_REQUIRED'},true);

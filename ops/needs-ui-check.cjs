@@ -124,6 +124,17 @@ function fill(){input('Height in feet').onChangeText('5');input('Height in inche
  reset();await flush(Onboarding);assert.deepEqual(routes,['/'],'Committed setup must redirect after navigator remount');assert.equal(nodes().some(n=>n.type==='TextInput'),false);
  reset();onboardingComplete=false;saveMode='success';profile={...core.sampleProfile,bodyMeasurements:undefined};await flush(Onboarding);
  input('Age in years').onChangeText('42');await flush(Onboarding);button('Save and start exploring').onPress();await flush(Onboarding);assert.deepEqual(routes,['/']);assert.equal(profile.bodyMeasurements,undefined);
+ reset();profile={...core.sampleProfile,primary:'noConcern',conditions:[]};await flush(Needs);
+ for(const label of ['Hypertension','Type 2 diabetes / prediabetes','High Cholesterol / Heart Health']){chip(label).onPress();await flush(Needs);}
+ assert.deepEqual(profile.conditions,[],'Edits should not mutate the saved profile before Save');
+ for(const label of ['Hypertension','Type 2 diabetes / prediabetes','High Cholesterol / Heart Health'])assert.equal(chip(label).selected,true);
+ button('Save my needs').onPress();await flush(Needs);
+ assert.deepEqual(profile.conditions,['hypertension','diabetes','cardiovascular']);
+ reset();await flush(Needs);
+ for(const label of ['Hypertension','Type 2 diabetes / prediabetes','High Cholesterol / Heart Health'])assert.equal(chip(label).selected,true);
+ chip('Hypertension').onPress();await flush(Needs);button('Save my needs').onPress();await flush(Needs);
+ assert.deepEqual(profile.conditions,['diabetes','cardiovascular']);assert.equal(profile.primary,'diabetes');
+ console.log('Multiple health concerns: hypertension + diabetes + high cholesterol save/reload and independent deselection passed.');
  console.log('Onboarding: failed-save retention, pending/double-save protection, completed-save home redirect, navigator remount and optional measurements passed.');
  console.log('Needs UI: save-success home navigation, failed-save retention/retry, no double-save, units/reload, validation, clear and hidden context passed (native boundaries mocked).');
  reset();
