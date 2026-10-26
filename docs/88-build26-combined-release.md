@@ -2,7 +2,7 @@
 
 October 25, 2026, America/New_York.
 
-Status: backend deployed and verified; signed native build is in progress. Not yet uploaded or available in TestFlight. Build 25 remains the released app until Apple acceptance is recorded below.
+Status: backend deployed and verified; **build 26 compiled, signed and uploaded successfully**. EAS submission is FINISHED. Apple processing and owner TestFlight availability are still pending verification; installation has not been verified.
 
 ## Included work
 
@@ -33,3 +33,15 @@ A live HTTPS shelf request used the existing package-only US fixture: Special K 
 ## Release evidence
 
 Evidence is retained privately under artifacts/nutriglimpse-build26-2026-10-25/. Update this section only with verified native/upload/Apple results. No new testers were contacted or invited.
+
+## Native package and upload — verified
+
+- 0.1.0 (26), arm64, iOS 16.4 minimum, compiled with Xcode 27.1. Full application signature verified on the Mac; distribution provisioning and encryption declaration checked.
+- All 350 frozen source files match; 264 compiled feature inputs match. Approved hero artwork and native icon pixels match. Both existing compiled shelf detectors are included.
+- IPA SHA-256: `6baaca4446a07ea6223482fdf68b00194e1203508feaffe0dece8488864e2cc5`.
+- EAS submission `7f83c3ef-43e3-41e1-9dd5-fb9ac37026ff` is FINISHED with no submission error. This confirms upload, not Apple processing or installation.
+- Release source commit: `d61806b539a82f4f07309b9e5f358a1db809d0d4`. No new tester invitations were sent.
+
+### Apple receipt
+
+Apple upload `96ff6974-c1ec-4b7c-92d5-c1a74464fa9d` is received and processing, with no errors or warnings in the checked upload record. The submission is complete; this is not yet a claim of TestFlight readiness. Encryption/owner-group checks and release-note verification run when Apple exposes the processed build.

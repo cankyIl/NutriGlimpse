@@ -2,7 +2,7 @@
 
 October 25, 2026 (America/New_York).
 
-Status: **implemented and tested in the workspace; not deployed or uploaded.** Build 25 remains the released iPhone app. Its client also hides uncited aisle data, so the visible change requires both these backend changes and a subsequent iPhone build. No service restart, OTA, native build or TestFlight submission was performed in this checkpoint.
+Status: **backend deployed; included in signed and uploaded build 26.** Apple processing and owner availability are tracked in [the combined release record](88-build26-combined-release.md). Build 25 retains its old client-side aisle rule; install build 26 when available to see the new display. The implementation checkpoint below predates that combined release.
 
 ## Result and scope
 

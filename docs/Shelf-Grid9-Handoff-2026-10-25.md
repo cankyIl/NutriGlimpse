@@ -4,6 +4,8 @@ Date: October 25, 2026 (America/New_York).
 
 Status: implemented and tested in the remote workspace, **not deployed, not compiled into a signed iPhone build, and not uploaded**. Build 25 remains the released version. No service restart, shared signing/build-configuration change, OTA, Git commit or push was performed in this side conversation.
 
+**Release integration:** the main release task included this complete handoff in build 26, compiled/signed it on the Mac and uploaded it successfully. The backend is deployed. Apple processing and physical-device acceptance are separate; see [build 26 evidence](88-build26-combined-release.md). The original staged status above describes this side conversation's handoff checkpoint.
+
 ## Implemented request
 
 - A standalone shelf prompt replaces the single-photo-plus-override composition in the new v2 path.
