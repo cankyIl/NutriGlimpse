@@ -1,0 +1,32 @@
+{
+  "status": "DRAFT_OWNER_REVIEW_REQUIRED",
+  "rationale": "Health/wellness is core content; optional medical/lipid educational content is available. Adult override matches the existing 21+ intended audience as closely as Apple allows. No public user posting/chat, ads, gambling or unrestricted in-app browser. External links use the system browser. Self-declared age is not age assurance.",
+  "attributes": {
+    "advertising": false,
+    "gambling": false,
+    "lootBox": false,
+    "messagingAndChat": false,
+    "parentalControls": false,
+    "ageAssurance": false,
+    "socialMedia": false,
+    "socialMediaAgeRestricted": false,
+    "unrestrictedWebAccess": false,
+    "userGeneratedContent": false,
+    "alcoholTobaccoOrDrugUseOrReferences": "NONE",
+    "contests": "NONE",
+    "gamblingSimulated": "NONE",
+    "gunsOrOtherWeapons": "NONE",
+    "profanityOrCrudeHumor": "NONE",
+    "sexualContentGraphicAndNudity": "NONE",
+    "sexualContentOrNudity": "NONE",
+    "horrorOrFearThemes": "NONE",
+    "matureOrSuggestiveThemes": "NONE",
+    "violenceCartoonOrFantasy": "NONE",
+    "violenceRealisticProlongedGraphicOrSadistic": "NONE",
+    "violenceRealistic": "NONE",
+    "healthOrWellnessTopics": true,
+    "medicalOrTreatmentInformation": "FREQUENT",
+    "ageRatingOverrideV2": "EIGHTEEN_PLUS",
+    "developerAgeRatingInfoUrl": "https://grocery.serveforwad.com/privacy"
+  }
+}

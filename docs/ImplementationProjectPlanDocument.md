@@ -1,12 +1,46 @@
 # Beta 0 Implementation Project Plan
 
-**Reconciled:** October 26, 2026, America/New_York
+**Reconciled:** October 28, 2026, America/New_York
 **Authoritative workspace:** /path/to/NutriGlimpse on project-server  
 **Current release:** **0.1.0 (27), built on the Mac, Apple VALID / IN_BETA_TESTING, available to the existing owner TestFlight group.**
 **Test scope:** Three iPhone testers including the owner; possible fourth Android tester; initial beta in the United States.  
 **Acceptance boundary:** Build 27 compilation, signatures, all 351 frozen/compiled source hashes, bundled fixes, Apple processing, owner-group availability, encryption and release notes are verified. The actual React Native cancellation dependency and a live 16-package backend replay pass; these do not execute the phone camera/Expo fetch. Trial devices remain iPhone X / iOS 16.7.16 and iPhone 17 (minimum iOS 16.4). Build 26 physical shelf acceptance failed at capture-to-upload; update to 27 and repeat physical acceptance. The latest retained phone shelf scan reached the backend with 27 appearances. Model-rating and observed duplicate defects are corrected by the October 26 backend update below; fresh phone acceptance and broader product accuracy remain open.
 
 This is the active plan. It incorporates the [side-chat handoff](71-side-chat-news-build15-handoff-2026-10-18.md), [news implementation](69-daily-personalized-food-news.md) and [build-15 release evidence](70-build15-fresh-personalized-news.md). The complete previous plan is preserved unchanged in the [October 18 archive](history/ImplementationProjectPlanDocument-2026-10-18-before-build15-handoff-reconciliation.md). Old dated checkboxes and release instructions in historical documents are not active tasks.
+
+## App Store preparation - October 27-28, 2026
+
+**Free, United States only; preparation not submission.** TestFlight **0.1.0 (27)** remains the latest uploaded VALID build. Version1.0 is Prepare for Submission, manual release, $0.00, USA only across175 territories, and new-territory expansion off. Seller **Viraank Gaur**, working **help@serveforward.us**, and private App Review contact are resolved. Listing copy, subtitle, categories, public URLs, age/health answers and reviewer notes are saved/read back. Private contact information stays out of source.
+
+**Restore point complete:** build27 IPA/source, current backend/data/dependencies,757 source hashes, three consistent databases, isolated startup and828 baseline core/service tests verified. Encrypted laptop archive and separate recovery key are preserved. Deletion intents/current usage/keys must be honored during any later restore.
+
+**Latest release source implemented and tested:** temporary scan-timing instrumentation removed; production UI/support/privacy links added; new beta journals disabled outside beta0. Production now continues expiring old beta records without recording new scans. Trace-specific deletion tooling is tested. Recognition, previews, streaming, nutrition checks, alternatives and side-chat features are preserved.
+
+**Security findings remediated in the isolated candidate:** Zod4.6.7 and node-forge1.4.2, compatible ExpoSDK57 patch updates, hash-checked deepmerge and Zod3 compatibility patches, existing decoder fix retained. Clean install and Expo Doctor **21/21** pass. npm audit still lists **11 version-based entries (3 high,3 moderate,5 low)** covering patched packages and propagated chains; these are documented, not suppressed or claimed zero. The live beta dependency installation has not been upgraded by this checkpoint.
+
+**Verified on latest source:** **825 core/service tests**,18 tooling,10 report-input adapters,76 photo UI scenarios, needs/onboarding/news/shelf checks, two deletion-helper tests and production iOS Hermes export. UI/native boundaries are mocked where documented; no live provider calls or fresh physical-camera results are claimed.
+
+**Public pages are LIVE:** https://grocery.serveforwad.com/support and https://grocery.serveforwad.com/privacy. Real HTTP/browser checks pass on phone/desktop viewports. Only these fixed routes were added to the beta service; scan behavior remains unchanged and other services are preserved. The policy distinguishes current beta logging from the planned production configuration. Ten native collected-data declarations and required-reason APIs are prepared; Apple's privacy-label worksheet is complete but not published.
+
+**Native boundary:** the preserved local signed **1.0 (28)** archive passed signature/profile/285-input checks before the new security, Expo, privacy-manifest and link changes. It is now **superseded by source changes**, not uploaded or installed. Rebuild and audit the revised artifact when the Mac is available around5pm. Its CoreSimulator component mismatch, final screenshots/accessibility, iPhoneX/iPhone17 acceptance and supported-iPad layout remain engineering work. The old archive is not proof of the new code.
+
+**Remaining owner inputs:** Mac availability; exact Google project-log expiry and any retained app-request dataset/nondefault provider settings; shelf-model redistribution permission or approval for a permitted replacement/release scope; final review of listing/privacy/age answers and device results. Logging-on/training-off, seller, support and private review contact are already confirmed. Both detectors remain retained at owner direction; rights are unresolved, not legally cleared. Optional health-feature eligibility for the Individual account remains an Apple review consideration. Hosted-backend app verification stays explicitly deferred; no tester keys reintroduced.
+
+**Next engineering:** rebuild/sign and inspect the exact candidate, complete screenshots/device acceptance and final encryption/backup checks, publish confirmed Apple privacy answers, and perform a coordinated production-backend cutover before submission. No App Review submission or new upload has occurred.
+
+[Detailed release checklist and restore evidence](93-app-store-preparation-and-restore-point.md). [Current checklist](app-store/release-checklist.md). [Security evidence](app-store/dependency-review.md). [Native evidence and its limits](app-store/native-verification.md).
+
+## Congressional App Challenge demo video — October 26, 2026
+
+**Latest owner-review copy: version 10, exactly 2:59.533**, 1080p/30 fps H.264/AAC MP4, approximately **25.6 MB**. The owner's latest requirement is a runtime above 2:59 and **strictly below 3:00**, superseding the earlier 3:10 allowance. The final export is **179.533333 seconds**, verified from the media metadata.
+
+Only quiet gaps and the final title hold were shortened from v9, saving **9.3 seconds**. **Every spoken source interval remains identical to v9; narration is neither removed nor sped up.** Gentle **0.8-second dissolves** and the closing fade are preserved. The shelf-results pause remains before the complete “If even the strongest option has drawbacks, the app can suggest alternatives” sentence.
+
+All approved content remains: the newer “I created an app” narration with **Live Healthier**, complete first-use explanation, **My mother has SIBO** in My Needs, earlier on-camera footage, newer narration over app screens, lipid-report button close-up, full camera capture before closer results, and real-store product/shelf demonstrations. Adult walkthrough narration, the new family clip with the background remark and the home cereal-box shelf recording remain excluded. The lipid sequence shows the button, not a complete report-import/extraction workflow.
+
+**Verified:** all **5,386 video frames and audio decode successfully**. Source-interval comparison confirms no spoken material was removed. Representative final frames were reviewed. Final audio: **-16.62 LUFS**, true peak **-4.03 dBTP**. Detailed metadata, source audit and checksum are in `artifacts/demo-video-2026-10-26/output/verification.json`.
+
+The v10 video, retimed captions, preview, edit notes and verification are mirrored with SHA-256 verification to the laptop's `Videos/NutriGlimpse-Demo/Finished` folder. Prior versions, source clips and the user-edited recording script remain intact. **Remaining:** owner review and eventual submission. No additional recording is required. Nothing has been published or submitted. App/backend source, releases and side-chat work are untouched.
 
 ## Shelf ratings and duplicates — October 26, 2026
 

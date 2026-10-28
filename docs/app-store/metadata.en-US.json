@@ -1,0 +1,84 @@
+{
+  "status": "DRAFT_NOT_SUBMITTED",
+  "appName": "NutriGlimpse",
+  "version": "1.0",
+  "locale": "en-US",
+  "bundleIdentifier": "org.cac.healthgrocery.beta0",
+  "subtitle": "Know your food. Choose wisely.",
+  "tagline": "Know your food. Understand your choices.",
+  "keywords": "grocery,nutrition,food,scanner,ingredients,shopping,comparison,labels,shelf",
+  "promotionalText": "See food information in context. Scan a product or compare a shelf, explore nutrition and consider alternatives while you shop.",
+  "description": "NutriGlimpse helps you understand food choices while you shop.\n\nSCAN A PRODUCT\nPhotograph a package to identify it, view available nutrition information and see a simple rating with short reasons. Explore suggested alternatives and check USDA or Open Food Facts information when available.\n\nCOMPARE A SHELF\nUse Shelf Camera to compare several packages. Results appear as products are processed, helping you explore the options in front of you.\n\nYOUR PRIORITIES\nSave dietary and food preferences in My Needs. Optional health context can inform general food guidance after you choose whether to share it with the AI providers.\n\nYOUR STORE. YOUR OPTIONS.\nChoose a grocery store or allow location while using the app. Suggestions can include store names and aisle information when available.\n\nYOU CONTROL SHARING\nHealth sharing is optional. Review the app's privacy information and sharing choices before using photo or shelf recognition.\n\nNutriGlimpse provides general nutrition information, not diagnosis, treatment or personalized medical advice. AI-generated identification, nutrition and ratings can be incomplete or incorrect. Check the package for nutrients, ingredients and allergens, and consult a qualified professional before medical decisions. Store and aisle suggestions do not guarantee availability.\n\nKnow your food. Understand your choices.",
+  "price": {
+    "amount": "0.00",
+    "currency": "USD",
+    "appleConfigurationVerified": true
+  },
+  "territories": [
+    "USA"
+  ],
+  "territoriesVerified": true,
+  "releaseType": "MANUAL",
+  "releaseTypeVerified": true,
+  "supportEmail": "help@serveforward.us",
+  "supportEmailVerified": true,
+  "supportUrl": "https://grocery.serveforwad.com/support",
+  "privacyPolicyUrl": "https://grocery.serveforwad.com/privacy",
+  "marketingUrl": null,
+  "categoryProposal": {
+    "primary": "FOOD_AND_DRINK",
+    "secondary": "HEALTH_AND_FITNESS"
+  },
+  "reviewContact": {
+    "firstName": null,
+    "lastName": null,
+    "email": null,
+    "phone": null
+  },
+  "copyright": "2026 Viraank Gaur",
+  "ageRating": "Adult override saved: 18+ on current OS; legacy readback 17+. App intended for 21+.",
+  "reviewNotes": "NutriGlimpse provides general grocery and nutrition information for adults 21 and older. It has no consumer account, subscription, paid feature, invitation code or tester key.\n\nFirst launch: read the terms, then enter optional preferences in My Needs and save. Health concerns, body measurements and lipid reports are optional; ordinary food scanning works without them. Location permission is optional and a store can be selected manually.\n\nProduct scan: tap Scan Your Product, accept the separately presented AI-processing choice, allow Camera and photograph a food package. Product information and suggested alternatives appear as processing completes. Shelf Camera detects packages on-device and sends grids of up to nine after consent; Finish sends a partial group. Internet access is required for live AI recognition.\n\nThird-party AI: photos/grids go through our backend to Google Gemini and OpenAI. Health-sharing is a separate choice. Name, raw report files and exact GPS are excluded from model prompts. Provider request logging is enabled; optional training sharing is disabled. The privacy policy describes retention and deletion limitations.\n\nOptional report import extracts supported lipid fields locally for the user to check. Remote analysis sends only the limited reviewed fields and date after consent. The app is not a diagnostic or treatment service, does not prescribe medicines or individual nutrient targets, and does not connect to HealthKit. No medical-device clearance is claimed.\n\nPrivacy controls and support links are in My Needs \u2192 Privacy & storage. Local data can be reset. Store and aisle suggestions are not stock guarantees.\n\nThe production configuration disables beta diagnostic journals. The submission candidate must be verified with that production backend before review.",
+  "submissionReadiness": "PENDING_FINAL_NATIVE_BUILD_DEVICE_ACCEPTANCE_PRIVACY_AND_RIGHTS_REVIEW",
+  "seller": {
+    "membershipType": "Individual",
+    "legalName": "Viraank Gaur",
+    "confirmedByOwner": true
+  },
+  "supportEmailVerification": "Owner confirmed receiving and sending as help@serveforward.us on 2026-10-27; no email sent by this preparation.",
+  "availableInNewTerritories": false,
+  "providerDataSettings": {
+    "confirmedByOwnerOn": "2026-10-28",
+    "evidence": "Owner confirmation; provider dashboards not independently inspected",
+    "google": {
+      "requestResponseLoggingEnabled": true,
+      "optionalTrainingImprovementSharingEnabled": false
+    },
+    "openai": {
+      "requestResponseLoggingEnabled": true,
+      "optionalTrainingImprovementSharingEnabled": false
+    },
+    "exactRetentionPeriodsVerified": false
+  },
+  "listingDraftSavedToApple": {
+    "fields": [
+      "description",
+      "keywords",
+      "promotionalText",
+      "copyright",
+      "subtitle",
+      "supportUrl",
+      "privacyPolicyUrl",
+      "privacyChoicesUrl",
+      "primaryCategory",
+      "secondaryCategory",
+      "ageRating",
+      "appReviewNotes"
+    ],
+    "verifiedOn": "2026-10-28",
+    "state": "PREPARE_FOR_SUBMISSION",
+    "submitted": false
+  },
+  "privacyChoicesUrl": "https://grocery.serveforwad.com/support",
+  "supportPagesVerifiedOn": "2026-10-28",
+  "ageRatingVerifiedOn": "2026-10-28"
+}

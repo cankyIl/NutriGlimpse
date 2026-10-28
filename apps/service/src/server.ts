@@ -1,3 +1,4 @@
+import {publicSupportRoute} from './publicSupport.ts';
 import {shelfNineRoute} from './shelfNineRoute.ts';
 import {GROCERY_CONSENT,groceryRequestSchema} from '../../../packages/core/src/groceryReview.ts';
 import {GroceryProviderError} from './groceryReviewProvider.ts';
@@ -52,6 +53,7 @@ export function createAppServer(options: ServiceOptions = {}) {
     response.setHeader('X-Content-Type-Options', 'nosniff');
     response.setHeader('Referrer-Policy', 'no-referrer');
     response.setHeader('Content-Security-Policy', "default-src 'none'; frame-ancestors 'none'");
+    if(publicSupportRoute(request,response))return;
     const trace=request.method==='POST'&&['/v3/photos/recognize','/v4/photos/recognize','/v5/photos/recognize','/v6/photos/recognize','/v3/photos/media','/v3/photos/sources'].includes(request.url??'')?newTrace():undefined;
     const scanTimer=createServerScanTimer(options.scanTimingEnabled===true&&['/v3/photos/recognize','/v4/photos/recognize','/v5/photos/recognize','/v6/photos/recognize'].includes(request.url??''),options.diagnostics,trace??'', 'request');
     if(trace&&['/v3/photos/recognize','/v4/photos/recognize','/v5/photos/recognize','/v6/photos/recognize'].includes(request.url??''))scanTimingInbox.register(trace);
