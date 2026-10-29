@@ -42,12 +42,12 @@ The age draft uses Apple's 18+ override (legacy 17+); the app's existing intende
 
 ## Screenshot selection
 
-Six unchanged native screenshots have been uploaded to Apple's asset library and are processing: home, My Needs and privacy for iPhone and iPad. They use fictional test setup, not an actual shopper's health report. Product-result and shelf-result screenshots are still needed for a stronger final selection. The local review HTML shows the existing captures together with this listing. Final image approval has not been inferred from general build acceptance.
+Six unchanged native screenshots are processed and placed in Apple's existing draft: home, My Needs and privacy for iPhone and iPad, in that order for each device group. Asset, placement and order readback passed. They use fictional test setup, not an actual shopper's health report. Product-result and shelf-result screenshots are still needed for a stronger final selection. The local review HTML shows the existing captures together with this listing. Final image approval has not been inferred from general build acceptance.
 
 ## Remaining preparation
 
 1. Restore Mac access and capture genuine product/shelf results; finish targeted accessibility/device edge checks.
-2. Prepare the final screenshot order and verify Apple's processed assets.
+2. Add the remaining product/shelf-result captures and review the final selection; the initial six-image order and processing are verified.
 3. Complete and verify the production backend change and its matching privacy wording.
 4. Present the completed package for owner review, publish the reviewed Apple privacy answers and submit for App Review.
 

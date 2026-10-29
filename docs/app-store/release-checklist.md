@@ -7,7 +7,7 @@ NutriGlimpse 1.0 (28) is Apple VALID / IN_BETA_TESTING, assigned to the existing
 | AS-01 | Restorable baseline | Complete: build 27 IPA/source/backend/data/dependencies; 757 source hashes, three databases and isolated restore checks; encrypted off-machine copy and separate key verified. |
 | AS-02 | Isolated release work | Complete: candidate branch separate from live beta. Only fixed public support/privacy routes were added to the running backend this checkpoint. Other services and app scan behavior preserved. |
 | AS-03 | Apple draft and distribution | Verified again October 28: version1.0 Prepare for Submission, manual release, $0.00, USA only, future territories off. Corrected build 28 is VALID and available to the existing owner group. |
-| AS-04 | Listing and contact | Listing/age/contact/URLs/reviewer notes saved/read back. Private contact stays outside source. Six unmodified native home/My Needs/privacy iPhone/iPad screenshots uploaded to the draft asset library October29; Apple processing/placement verification is pending. Product/shelf-result captures and final selection remain. |
+| AS-04 | Listing and contact | Listing/age/contact/URLs/reviewer notes saved/read back. Private contact stays outside source. Six unmodified native home/My Needs/privacy iPhone/iPad screenshots processed, placed and ordered in the existing draft; readback verifies three per device group on October29. Product/shelf-result captures and final selection remain. |
 | AS-05 | Production cleanup | Temporary timing modules/payloads/hooks/receiver removed. Production hides beta engineering UI and disables new answer journals. Legacy expiry prevents old beta records persisting indefinitely after cutover. |
 | AS-06 | Production UI/source | Version1.0 candidate 28 retains identity and side-chat features. Privacy links available before terms and in Privacy & storage. Latest production Hermes export passed. Included in the final signed 28 archive and simulator build. |
 | AS-07 | Public support/privacy | Complete: HTTPS pages live; GET/HEAD/method/security checks and mobile/desktop browser checks pass. Contact works per owner. Policy accurately distinguishes current beta and planned production. Final cutover wording still to update after deployment. |
@@ -26,7 +26,7 @@ NutriGlimpse 1.0 (28) is Apple VALID / IN_BETA_TESTING, assigned to the existing
 
 Mac setup and approved cleanup are complete. Signed archives, source packages, logs and rollback baseline are preserved; no further deletion approval is requested.
 
-1. Restore Mac SSH access for the remaining native result screenshots and accessibility checks. Current attempts at .67/.50/.65 failed; the server and app service remain reachable.
+1. Restore Mac SSH access for the remaining native result screenshots and accessibility checks. The owner's updated .56 address responds to ping but refuses SSH port22; Remote Login needs checking. The server and app service remain reachable.
 2. Review the finished submission package before App Review submission. Build28 general owner testing is already accepted. Existing seller, support and private contact details are complete.
 
 The owner has already directed us to retain both detectors and proceed. Do not ask again for a replacement choice. The remaining licensing uncertainty is documented in third-party-model-licenses.md; authorization to proceed is not represented as a new license grant.
