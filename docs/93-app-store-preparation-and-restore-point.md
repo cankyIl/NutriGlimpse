@@ -25,7 +25,7 @@ Only fixed support/privacy routes were added to the live beta backend; public pa
 ## Exact remaining owner inputs
 
 - Google test-dataset deletion is not a mandatory release blocker on the confirmed fictional/public-only scope. The owner previously selected deletion before launch and has now questioned its necessity; retain that choice as a preference to clarify, not an Apple requirement. No dataset has been deleted. Project-log expiry is 7 days; logging-on/training-off and dataset scope are resolved.
-- Supply rights for public redistribution of the retained shelf detectors, or approve permitted replacements/release scope. No silent removal or unverified rights declaration.
+- The October29 model decision is resolved: retain both pretrained shelf detectors and continue preparation, as explicitly directed. No replacement approval is pending. [Exact sources and remaining license uncertainty](app-store/third-party-model-licenses.md) are documented separately; this is not a declaration that third-party rights have been independently cleared.
 - Review the completed listing/privacy/age answers and final device results before authorizing App Review submission. Seller/support/private review contact are complete.
 
 Hosted-backend app verification remains explicitly deferred by the owner. The current beta's open paid endpoints have rate limits, not proof that requests originate in the official app. No manual tester-key requirement was reintroduced. Optional health-feature eligibility for an Individual account remains a review consideration; no Organization enrollment purchase is assumed.

@@ -25,4 +25,4 @@ If startup, scan compatibility or privacy checks fail, stop only the app service
 
 ## Acceptance still needed
 
-Actual-phone upgrade/persistence, camera and shelf batches, streaming, permissions/offline/retry and encrypted backup/restore; final product/shelf screenshots and accessibility review; shelf-detector distribution rights or an approved permitted replacement; owner review of listing/privacy/age answers. Native simulator checks and fixture tests do not replace these observations.
+Actual-phone upgrade/persistence, camera and shelf batches, streaming, permissions/offline/retry and encrypted backup/restore; final product/shelf screenshots and accessibility review; preservation of model notices and the recorded October29 decision to retain both models (see third-party-model-licenses.md); owner review of listing/privacy/age answers. Native simulator checks and fixture tests do not replace these observations.
