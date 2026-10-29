@@ -1,33 +1,34 @@
 # App Store native verification — October 28, 2026
 
-**Historical binary: superseded by source changes.** The signed28 results below apply to the earlier artifact only. On October28 the release branch upgraded security dependencies/Expo patches, added privacy/support links, and corrected native collected-data declarations. A new native archive is required before upload. The old IPA is preserved and has not been uploaded. The Mac is unavailable until the owner returns around5pm; no new native checks are claimed.
+**Latest candidate: NutriGlimpse 1.0 (28), signed and verified.** The Mac at the owner-confirmed address is reachable. The owner completed Xcode first-launch setup; the former CoreSimulator component mismatch is resolved. Xcode 27.1 built the exact security/privacy candidate for device and simulator. No Apple upload, App Review submission, public release or physical-phone installation has occurred.
 
-Latest source checks:825 core/service tests,18 tooling,10 report-input adapter tests,76 photo UI scenarios, needs/news/shelf checks and two deletion-helper tests pass. Expo Doctor21/21 and the final production iOS Hermes export pass. Detailed evidence is in final-security-release-check.log and production-hermes-final.log. Source privacy/encryption review is in encryption-and-manifest-review.md.
+## Exact signed artifact
 
-The isolated candidate compiled successfully for a generic iOS device using Xcode 27.1, Release, arm64, and CODE_SIGNING_ALLOWED=NO. That initial check was unsigned. A later local EAS app-store archive/export is signed and verified below; neither check is an installed-phone test, TestFlight upload or App Review submission. Live build 27/backend remain unchanged.
-
-- Marketing version 1.0; candidate build 28; existing bundle identifier org.cac.healthgrocery.beta0.
+- Source commit: `aab527897b3a216a42eceb8112532f469cc860fd`.
+- Source-package content digest: `cf4de5fb79c147b9656bd396a56e53ef959d3407c22947154fe7d72edd354e98`.
+- Source ZIP SHA-256: `1f816b65ab33b0f0040239d24bf4114af0f3569f61bf6a0f772e4de9af7e8c80`.
+- Final IPA: **59,404,907 bytes**, SHA-256 `520b765fdf4feb62cb87bbf7f56916b2089099e317d01165513d1b3646a9bc83`.
+- Signed Hermes bundle SHA-256: `0fb177a9371ae46f2ce44a78ff6af92013caf40e671f4e19d55a6526a305c0de`.
+- **282 required runtime/build inputs** match the tested source; the full source package contains 760 hash-checked files. Documents/backend/nonruntime tooling are not all mobile compilation inputs.
+- Existing bundle identifier and distribution team retained. App Store distribution signature passes `codesign --verify --deep --strict`; debugging is disabled and no device-specific provisioning list is present.
 - Minimum iOS 16.4; iPhone and iPad device families remain enabled.
-- All 285 compiled mobile inputs match the tested server checkout. Source digest: `55b73eed563ed6ee9929d58af2822f6f6ef68fe1dac0284c911df569ab1bbe93`.
-- Hermes bundle SHA-256: `76a1049f4f3cd61258c44e7e9cd555fa02cb10ba0ff97664a509aff7a26be860`. Temporary scan-timing endpoint/event/first-layout strings are absent.
-- Compiled permission purpose descriptions: camera and while-in-use location only. No microphone, Face ID, motion, always-location or local-network discovery declaration. The production config removes Expo's development Bonjour keys; beta/development introspection preserves them.
-- Eight PrivacyInfo.xcprivacy manifests are present. Their presence and a generated empty collected-data array do not establish complete App Privacy answers; backend/partner processing still needs disclosure.
-- Existing usesNonExemptEncryption=false is present. A complete export-compliance determination is still a release gate, including SQLCipher and encrypted backups.
-- Swift photo-reader typecheck and 200 native-double camera lifecycle cycles pass, including shelf preview/session ownership. These checks do not reproduce a physical iPhone camera.
-- Full production checks pass: 821 core/service tests, nine tooling tests, ten report-input adapter tests, 76 photo UI cases and profile/onboarding/news/shelf checks. Native/network boundaries in UI checks are mocked; no live model request was made.
+- Eight bundled privacy manifests inspected. Root manifest contains the ten intended collected-data types, linked=true, tracking=false, and matches source. Required reasons: UserDefaults CA92.1; FileTimestamp C617.1/3B52.1; SystemBootTime 35F9.1.
+- Camera and while-in-use-location purpose descriptions only. No development Bonjour/local-network keys. Temporary scan-timing strings absent.
+- Both ShelfSKU11Diagnostic and ShelfSetDiagnostic compiled detectors retained. Successful compilation is not redistribution-rights clearance.
+- Existing usesNonExemptEncryption=false retained. The app includes SQLCipher and encrypted backups; do not describe it as using only OS HTTPS. Final export-answer review and on-device encrypted-storage/backup acceptance remain open.
 
-Mac source is an isolated release directory. Expo prebuild and CocoaPods install completed. The final two Info.plist removals were generated by Expo config introspection, checked to affect only the development local-network keys, applied to the generated source plist and rebuilt. Future clean prebuilds include the same production plugin. Final source/bundle/manifests evidence is recorded privately in artifacts/app-store-preparation-2026-10-27/production-native-verification.json.
+The final IPA, source archive and verification are backed up on Mac, server and laptop with matching checksums. Private evidence: `artifacts/app-store-preparation-2026-10-27/signed-final-verification.json` and `nutriglimpse-1.0-build28-final-oct28.ipa`. Older signed28 artifacts are preserved as historical evidence and are superseded by this hash. Build27 and the pre-release restore point remain intact.
 
-The Mac's running CoreSimulator reported version 1171.7.0 versus Xcode's required 1174.9.2; device compilation succeeded, but simulator launch is not verified. Resolve the component mismatch before simulator screenshots. The signed archive/export is now complete; required-reason API and backup behavior review, iPhone X/iOS 16.7.16, iPhone 17 and iPad acceptance, accessibility, and actual final screenshots remain open. Recheck build-number availability before any upload.
+## Tested source and UI scope
 
-Old build 17–21 EAS work folders were removed with owner approval. Exported artifacts and build 27 remain intact. Preserved build 27 IPA SHA-256: `5bbb46d8db728394d45a55382519bac11e52a8ae1a3de0e768aa34e19c252d4e`.
+Security/privacy source passes825 core/service tests,18 tooling,10 report-input adapter tests,76 photo UI scenarios, needs/news/shelf checks and two deletion-helper tests. ExpoDoctor21/21 and production Hermes export pass. The final onboarding cleanup was additionally typechecked/linted and interaction-tested in production and beta: production says WELCOME, hides the diagnostic shelf shortcut and redirects the diagnostic route to ordinary Shelf Camera. Beta keeps its diagnostic affordance.
 
-## Signed local candidate — October 28
+The final source also compiles as a Release iOS simulator app. **Simulator interaction check: NOT PASSED.** The dedicated fresh simulator launched the app, but it stopped at storage initialization before terms/setup; the test could not reach the privacy-policy control. No fictional profile was saved. The simulator build had signing disabled and no keychain entitlements; no database was created. This is a candidate cause, not a confirmed diagnosis. The Mac also fell below0.4GB free during the attempt. The test runner stalled while finalizing its result bundle; it was stopped and only the dedicated QA simulator was shut down. The signed device IPA is separate and unchanged.
 
-The local EAS `app-store` profile completed archive/export with production stage selected. The Apple distribution signature passes codesign --verify --deep --strict; its profile is for App Store distribution, debugging is disabled, and the existing app/team identity is retained. The clean build's 285 mobile inputs match the prepared checkout. Both ShelfSKU11Diagnostic and ShelfSetDiagnostic compiled detectors are included. Their presence is not rights clearance.
+Approval is requested to remove only the failed and superseded temporary work folders (about6GB). Then rerun with adequate space and valid simulator keychain entitlements, and resolve any remaining app issue before upload. Preserve the initial failed UI log/screenshot rather than treating compilation as acceptance. No real camera, provider quality, physical permission or Apple delivery result is claimed.
 
-IPA: **NutriGlimpse 1.0 (28)**, **59,090,644 bytes**. SHA-256: `08eaee3af920e9a63f801da46a1e38911776bd89bc6ead5880a482fd9e28f611`. Signed bundle SHA-256: `a475a105165b6fb942df08163fe32686ff7cc6af8de5ee943ab3f9d7d2fe0eb3`. The compiled app retains only camera/while-in-use location purpose strings and eight privacy manifests. Temporary timing strings remain absent.
+## Remaining native acceptance and immediate blocker
 
-The private IPA and signature evidence are backed up on the Mac, project server and laptop with matching checksums. No Apple upload, TestFlight distribution, App Review submission or installation occurred. The live beta/backend are unchanged. The local verification build used an expanded source inventory, still excluding credentials, runtime databases, generated native output and artifacts. That exact packaging file is preserved privately with the build evidence. The project's original, more restrictive cloud-build ignore file is retained for future builds; it excludes nonruntime docs/backend/reference material and keeps the required detector resources. Git still excludes model binaries.
+Physical iPhoneX/iOS16.7.16 and iPhone17: setup/save, product and shelf9+partial Finish, streaming, suitable alternatives, deduplication, permissions, cancellation/backgrounding, offline/retry, encrypted persistence/reset/backup and health-sharing choices. Supported iPad layout, final truthful screenshots, text scaling, VoiceOver and touch targets remain to be verified. No unsupported accessibility claim is made. Recheck build-number availability before upload.
 
-The old archive's dependency findings have since been remediated in source, documented in dependency-review.md. They are not retroactively fixed in this IPA. Rebuild and verify the new artifact; neither archive replaces physical-device acceptance.
+The live beta's dependencies and scan behavior are unchanged; only the previously documented support/privacy routes were added. No live model call was made during these build checks.

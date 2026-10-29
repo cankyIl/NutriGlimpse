@@ -1,6 +1,6 @@
 # Release dependency review - October 28, 2026
 
-The isolated release source is remediated and tested. These dependency changes are not yet installed in the public beta backend or a newly signed iPhone archive. Native validation still requires the Mac.
+The isolated release source is remediated and tested. These dependency changes are included in the final signed1.0(28) archive and successful simulator compile. They are not yet installed in the public beta backend. Physical-device acceptance remains pending.
 
 | Finding | Completed remediation | Verification |
 |---|---|---|
@@ -14,6 +14,6 @@ Postinstall applies decoder and security patches on every npm install/ci. Securi
 
 npm audit --omit=dev still reports **11 version-based entries: 3 high, 3 moderate, 5 low, 0 critical**. These cover the patched decoder/deepmerge/Zod3 versions and their parent dependency chains. We keep truthful package versions: the scanner does not recognize local patches. This is neither eleven independent untreated runtime bugs nor a zero-findings audit. Replace local patches only after testing an upstream fix in the actual consumers.
 
-Evidence in artifacts/app-store-preparation-2026-10-27: dependency-audit-after-security.json, security-clean-install-and-check.log, security-hardening-tests.log, expo-doctor-security.log, production-hermes-security.log, final-security-release-check.log. The earlier signed build28 does not contain these updates.
+Evidence in artifacts/app-store-preparation-2026-10-27: dependency-audit-after-security.json, security-clean-install-and-check.log, security-hardening-tests.log, expo-doctor-security.log, production-hermes-security.log, final-security-release-check.log. The final IPA hash520b765fdf4feb62cb87bbf7f56916b2089099e317d01165513d1b3646a9bc83 contains these updates; earlier28 archives are superseded.
 
 References: [Zod advisory](https://github.com/advisories/GHSA-mrhx-c7xc-m3w5), [upstream size-check fix](https://github.com/colinhacks/zod/commit/a0ebf97), [deepmerge advisory](https://github.com/advisories/GHSA-gcqx-w48m-w2h4), [node-forge release](https://github.com/digitalbazaar/forge/releases/tag/v1.4.2), [decoder advisory](https://github.com/advisories/GHSA-vcc3-ghjq-m6fr).

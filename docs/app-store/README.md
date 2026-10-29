@@ -2,7 +2,7 @@
 
 Updated October 28, 2026. Preparation only: no App Review submission or public app release. Version 1.0 is in Prepare for Submission, with free pricing, USA-only availability, automatic territory expansion off and manual release verified. The released TestFlight app remains 0.1.0 (27).
 
-Support and privacy pages are now public, tested, and saved in the Apple draft. Release source stays isolated from the live beta. The previously signed 1.0 (28) archive predates the security updates and privacy-manifest correction: preserve it as evidence, but rebuild before upload.
+Support and privacy pages are now public, tested, and saved in the Apple draft. Release source stays isolated from the live beta. The final signed 1.0 (28) candidate now includes the security updates, privacy-manifest correction and production onboarding cleanup. Its signature and282 required source inputs are verified; simulator compilation passes. The first simulator interaction test failed at storage initialization; adequate disk space and simulator keychain signing must be checked before retry. It is not uploaded or physically accepted yet.
 
 - metadata.en-US.json: listing, verified settings and private-contact placeholders.
 - privacy-policy-draft.md and support-draft.md: published-page locations and cutover requirements.
@@ -11,7 +11,7 @@ Support and privacy pages are now public, tested, and saved in the Apple draft. 
 - privacy-deletion-runbook.md: verified trace deletion and restore obligations.
 - age-rating-draft.json: draft answers saved/read back in Apple, pending owner review.
 - encryption-and-manifest-review.md: source inventory, required-reason evidence and remaining binary checks.
-- native-verification.md: historical signed archive, clearly separated from the latest unbuilt source.
+- native-verification.md: exact final signed archive, simulator evidence and remaining device acceptance.
 - dependency-review.md: upstream fixes, pinned compatibility patches and residual scanner findings.
 - release-checklist.md: current gates, including device acceptance and distribution rights.
 

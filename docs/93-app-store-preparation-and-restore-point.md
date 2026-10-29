@@ -18,13 +18,12 @@ Restoring is staged into a new directory, never blindly over main. Keep current 
 
 The current detailed state is in [release-checklist.md](app-store/release-checklist.md). Public support/privacy pages and Apple draft listing/age/reviewer updates are complete. Security fixes, exact local patch provenance, privacy-manifest corrections and practical deletion/legacy-expiry behavior are implemented in the isolated candidate. Latest production checks pass825 core/service tests plus UI/tooling/report/news checks; ExpoDoctor21/21 and Hermes export pass.
 
-The preserved signed1.0(28) archive predates those source changes. It remains a verified historical artifact on Mac/server/laptop and must not be uploaded as the latest release. Its checksum, source hashes and signature details remain in [native-verification.md](app-store/native-verification.md). Mac unavailable until owner returns around5pm; rebuild, compiled-manifest/encryption/backup audit, simulator repair, screenshots and final iPhone/iPad acceptance remain.
+The final signed1.0(28) archive now contains those changes and the production onboarding cleanup. Its exact checksum,282 matching build inputs, corrected manifests and signature are recorded in [native-verification.md](app-store/native-verification.md). Matching copies are on Mac/server/laptop. Mac/Xcode setup is resolved and simulator compilation passes. The first simulator UI test failed at private-storage initialization before onboarding, with signing-disabled simulator keychain access and low disk space still under investigation. Scoped temporary-folder cleanup approval is pending. UI/screenshots, encryption/backup and physical iPhone/iPad acceptance remain; no upload has occurred.
 
 Only fixed support/privacy routes were added to the live beta backend; public pages are verified on mobile/desktop. No live beta dependency upgrade, new app upload, App Review submission or model request occurred. The final production backend cutover is still pending; policy wording distinguishes it from current beta behavior.
 
 ## Exact remaining owner inputs
 
-- Wake the Mac with Remote Login enabled when available; engineering will do the rebuild and remaining native checks.
 - Confirm Google project-log expiry and whether an app-request dataset is retained separately; report any nondefault provider/infrastructure retention setting. Logging-on/training-off has already been confirmed for Google/OpenAI.
 - Supply rights for public redistribution of the retained shelf detectors, or approve permitted replacements/release scope. No silent removal or unverified rights declaration.
 - Review the completed listing/privacy/age answers and final device results before authorizing App Review submission. Seller/support/private review contact are complete.
