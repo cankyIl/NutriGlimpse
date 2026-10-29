@@ -27,12 +27,13 @@ NutriGlimpse 1.0 (28) is Apple VALID / IN_BETA_TESTING, assigned to the existing
 Mac setup and approved cleanup are complete. Signed archives, source packages, logs and rollback baseline are preserved; no further deletion approval is requested.
 
 1. Test the installed build 28 update using testflight28-owner-checklist.md. Installation and physical acceptance are not yet verified.
-2. Confirm the fictional/public-test Google dataset has been deleted before public launch, as selected by the owner. Project-log expiry 7 days and Google/OpenAI logging-on/training-off are already confirmed. Report only nondefault provider/infrastructure settings not previously disclosed.
-3. Provide written rights to redistribute the bundled shelf models, or approve a release path using permitted replacements. Existing models remain retained until a decision.
-4. Review the concrete privacy worksheet, listing/age answers, final screenshots and device results before App Review submission. Existing seller, support and private contact details are complete.
+2. Provide written rights to redistribute the bundled shelf models, or approve a release path using permitted replacements. Existing models remain retained until a decision.
+3. Review the concrete privacy worksheet, listing/age answers, final screenshots and device results before App Review submission. Existing seller, support and private contact details are complete.
 
 Engineering still owns physical scan/backup acceptance, remaining accessibility and product/shelf screenshots, Apple privacy-label publication after review, production backend cutover and verification. Signed archive, core simulator UI checks and initial screenshot drafts are complete. Actual-phone observations may need owner participation; no physical acceptance is inferred from simulator tests. Before restoring, honor deletion intents and current usage/key state.
 
 Production deployment and rollback steps are prepared in production-cutover.md, not executed. The beta launcher overwrites inherited stage flags; the production launcher must be used at cutover.
 
 Build28 is attached to the version1.0 App Store draft. Apple read-back confirms Prepare for Submission and manual release; no App Review submission occurred.
+
+Google test-dataset retention clarification, October29: fictional/public-only scope is owner-confirmed. Deletion was an earlier optional preference, not a mandatory App Store gate. No data or provider settings were changed.

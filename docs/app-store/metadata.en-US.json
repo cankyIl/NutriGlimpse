@@ -55,8 +55,9 @@
       "projectLogExpiryDays": 7,
       "separateDatasetExists": true,
       "datasetContents": "Only fictional/public test data, confirmed by owner",
-      "datasetDisposition": "Delete before public launch",
-      "datasetDeletionVerified": false
+      "datasetDisposition": "Earlier owner preference: delete before public launch; necessity questioned October 29. Optional retention choice, not a mandatory release gate on the confirmed fictional/public-only scope.",
+      "datasetDeletionVerified": false,
+      "datasetDeletionRequiredForRelease": false
     },
     "openai": {
       "requestResponseLoggingEnabled": true,

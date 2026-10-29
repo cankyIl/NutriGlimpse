@@ -24,7 +24,7 @@ Only fixed support/privacy routes were added to the live beta backend; public pa
 
 ## Exact remaining owner inputs
 
-- Confirm the fictional/public-test Google dataset is deleted before public launch, as selected by the owner. Project logs are confirmed 7 days; logging-on/training-off and dataset scope are resolved. Report only any nondefault provider/infrastructure retention settings not previously disclosed.
+- Google test-dataset deletion is not a mandatory release blocker on the confirmed fictional/public-only scope. The owner previously selected deletion before launch and has now questioned its necessity; retain that choice as a preference to clarify, not an Apple requirement. No dataset has been deleted. Project-log expiry is 7 days; logging-on/training-off and dataset scope are resolved.
 - Supply rights for public redistribution of the retained shelf detectors, or approve permitted replacements/release scope. No silent removal or unverified rights declaration.
 - Review the completed listing/privacy/age answers and final device results before authorizing App Review submission. Seller/support/private review contact are complete.
 
