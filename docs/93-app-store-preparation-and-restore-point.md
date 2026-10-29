@@ -1,6 +1,6 @@
 # App Store preparation and restore point — October 27, 2026
 
-**Requested release:** free, United States only. **Status:** preparation in progress; not submitted or publicly released. Current TestFlight **0.1.0 (27)** and live scan behavior remain unchanged; only fixed support/privacy web routes were added.
+**Requested release:** free, United States only. **Status:** preparation in progress; not submitted or publicly released. NutriGlimpse 1.0 (28) is Apple VALID / IN_BETA_TESTING, assigned to the existing owner TestFlight group. Encryption=false and English test notes are verified. Owner installation is not yet verified. The live beta backend and other services remain unchanged.
 
 ## Verified restore point
 
@@ -18,9 +18,9 @@ Restoring is staged into a new directory, never blindly over main. Keep current 
 
 The current detailed state is in [release-checklist.md](app-store/release-checklist.md). Public support/privacy pages and Apple draft listing/age/reviewer updates are complete. Security fixes, exact local patch provenance, privacy-manifest corrections and practical deletion/legacy-expiry behavior are implemented in the isolated candidate. Latest production checks pass825 core/service tests plus UI/tooling/report/news checks; Expo Doctor 21/21 and Hermes export pass.
 
-The latest signed 1.0 (28) archive contains the security/privacy changes, production cleanup and a native keyboard fix. All 282 required inputs, corrected manifests and signature match the tested source; Mac/server/laptop copies are verified. The two approved failed/superseded build folders were deleted, recovering about 6.23 GB. Proper Xcode simulator signing resolved the test-only keychain initialization failure. iPhone setup/save/restart and larger-iPhone/iPad profile/privacy tests pass; iPad rotation and screenshot drafts are checked. Native testing found and fixed a keyboard covering Save. Physical camera/backup and full accessibility acceptance remain; no upload occurred. Exact hashes and boundaries are in [native-verification.md](app-store/native-verification.md).
+The latest signed 1.0 (28) archive contains the security/privacy changes, production cleanup and a native keyboard fix. All 282 required inputs, corrected manifests and signature match the tested source; Mac/server/laptop copies are verified. The two approved failed/superseded build folders were deleted, recovering about 6.23 GB. Proper Xcode simulator signing resolved the test-only keychain initialization failure. iPhone setup/save/restart and larger-iPhone/iPad profile/privacy tests pass; iPad rotation and screenshot drafts are checked. Native testing found and fixed a keyboard covering Save. Corrected build 28 is uploaded and Apple-accepted. Its bounded automated accessibility audit passes; physical camera/backup and full manual acceptance remain. Exact hashes and boundaries are in [native-verification.md](app-store/native-verification.md).
 
-Only fixed support/privacy routes were added to the live beta backend; public pages are verified on mobile/desktop. No live beta dependency upgrade, new app upload, App Review submission or model request occurred. The final production backend cutover is still pending; policy wording distinguishes it from current beta behavior.
+Only fixed support/privacy routes were added to the live beta backend; public pages are verified on mobile/desktop. Corrected build 28 was uploaded; no live beta dependency upgrade, App Review submission or model request occurred. The final production backend cutover is still pending; policy wording distinguishes it from current beta behavior.
 
 ## Exact remaining owner inputs
 
@@ -31,3 +31,11 @@ Only fixed support/privacy routes were added to the live beta backend; public pa
 Hosted-backend app verification remains explicitly deferred by the owner. The current beta's open paid endpoints have rate limits, not proof that requests originate in the official app. No manual tester-key requirement was reintroduced. Optional health-feature eligibility for an Individual account remains a review consideration; no Organization enrollment purchase is assumed.
 
 Private evidence is under artifacts/app-store-preparation-2026-10-27. The previous baseline and exported binaries are preserved. See [dependency review](app-store/dependency-review.md), [privacy worksheet](app-store/privacy-answers.md), [deletion procedure](app-store/privacy-deletion-runbook.md) and [encryption/manifest inventory](app-store/encryption-and-manifest-review.md).
+
+## October28 release follow-through
+
+EAS submission `ae0b85c6-3255-4689-a9b0-5b6fe4916ff7`; Apple build `4d855796-7064-49c3-9732-e8cd7b428aa9`. Corrected IPA SHA-256 `6687b560f56a1ef5aebca9b35a9ba34bf0a5d356bad6c92a76d478cf8e1076cb`, source `533030bc2ec7e1b1cf1bf37f8c1d3ddb062459b8`. No App Review submission or public release.
+
+The first upload finished delivery in EAS but Apple rejected it with 90683: expo-location references motion APIs and requires NSMotionUsageDescription. The corrected archive supplies a factual SDK compatibility description without requesting or using motion/fitness data. Apple permits reusing a failed upload number. Prior artifacts and the failure evidence are preserved. Delivery success alone is not TestFlight readiness.
+
+An automated native accessibility survey of the initial home/privacy/My Needs views on iPhone17 ProMax found one support-email label issue. A descriptive screen-reader label fixes it without changing visible text/layout; the rerun reports zero findings. The fix is included in corrected build 28. Full manual VoiceOver, larger-text and screen-by-screen acceptance remain open. Production-launcher tests pass and the cutover/rollback runbook is prepared. Use [the owner checklist](app-store/testflight28-owner-checklist.md) for actual-phone acceptance.

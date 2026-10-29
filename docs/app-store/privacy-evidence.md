@@ -1,6 +1,6 @@
 # App Store privacy evidence — release candidate, October 27, 2026
 
-This is engineering evidence; the public policy is now live at https://grocery.serveforwad.com/privacy. Apple privacy-label answers remain unpublished; see privacy-answers.md. App/backend production configuration must move together. TestFlight27 and current beta scan behavior remain unchanged.
+This is engineering evidence; the public policy is now live at https://grocery.serveforwad.com/privacy. Apple privacy-label answers remain unpublished; see privacy-answers.md. App/backend production configuration must move together. Corrected TestFlight28 is available for owner testing; the existing beta backend remains unchanged until coordinated production cutover.
 
 ## Actual data paths
 

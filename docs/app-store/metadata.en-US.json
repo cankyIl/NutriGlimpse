@@ -85,5 +85,12 @@
   },
   "privacyChoicesUrl": "https://grocery.serveforwad.com/support",
   "supportPagesVerifiedOn": "2026-10-28",
-  "ageRatingVerifiedOn": "2026-10-28"
+  "ageRatingVerifiedOn": "2026-10-28",
+  "draftBuild": {
+    "version": "1.0",
+    "buildNumber": "28",
+    "appleBuildId": "4d855796-7064-49c3-9732-e8cd7b428aa9",
+    "verifiedAttached": true,
+    "submittedForReview": false
+  }
 }
