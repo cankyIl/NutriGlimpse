@@ -20,10 +20,10 @@ No proprietary/custom cryptographic algorithm was found in the inspected first-p
 | UserDefaults | CA92.1 | App's own preferences/settings |
 | SystemBootTime | 35F9.1 | Elapsed intervals within the app/runtime |
 
-No first-party disk-space API use was found; an unused reason was not added. Candidate declares no tracking domains and ten collected-data types matching privacy-answers.md. The old signed28 root manifest's empty data array was an identified gap and is corrected in source. The final signed28 archive now verifies all ten collected types and required reasons against source; eight bundled manifests were inspected.
+No first-party disk-space API use was found; an unused reason was not added. Candidate declares no tracking domains and ten collected-data types matching privacy-answers.md. The old signed 28 root manifest's empty data array was an identified gap and is corrected in source. The final signed 28 archive now verifies all ten collected types and required reasons against source; eight bundled manifests were inspected.
 
 ## Native verification and remaining checks
 
-Final signed28: source and binary hashes, distribution entitlements/signature, all eight manifests, collected types/reasons, camera/while-in-use-location purpose strings and absence of temporary timing markers are verified; see native-verification.md. Production onboarding/debug-route guards pass in both stage configurations. Backup-exclusion behavior, secure-key accessibility and encrypted database/backup round trips on real devices remain acceptance work. Do not infer these from codesign or simulator compilation.
+Latest signed 28: source/binary hashes, distribution signature, all eight manifests, ten collected types/reasons, camera/location purpose strings and absence of timing markers are verified; see native-verification.md. Production guards pass in both stage configurations. Native simulator setup/restart persistence passes; its encrypted database header and Documents backup-exclusion attribute are checked. Secure-key accessibility and encrypted backup/export/restore on real devices remain acceptance work; simulator evidence is not a substitute.
 
 References: https://developer.apple.com/help/app-store-connect/reference/app-information/export-compliance-documentation-for-encryption and https://developer.apple.com/help/app-store-connect/manage-app-information/overview-of-export-compliance/.

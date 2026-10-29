@@ -1,34 +1,48 @@
-# App Store native verification — October 28, 2026
+# App Store native verification - October 28, 2026
 
-**Latest candidate: NutriGlimpse 1.0 (28), signed and verified.** The Mac at the owner-confirmed address is reachable. The owner completed Xcode first-launch setup; the former CoreSimulator component mismatch is resolved. Xcode 27.1 built the exact security/privacy candidate for device and simulator. No Apple upload, App Review submission, public release or physical-phone installation has occurred.
+**Latest candidate: NutriGlimpse 1.0 (28), signed and verified, not uploaded.** Xcode 27.1 compiled the security/privacy release and the keyboard follow-up. No App Review submission, public release or physical-phone installation occurred during this checkpoint.
 
 ## Exact signed artifact
 
-- Source commit: `aab527897b3a216a42eceb8112532f469cc860fd`.
-- Source-package content digest: `cf4de5fb79c147b9656bd396a56e53ef959d3407c22947154fe7d72edd354e98`.
-- Source ZIP SHA-256: `1f816b65ab33b0f0040239d24bf4114af0f3569f61bf6a0f772e4de9af7e8c80`.
-- Final IPA: **59,404,907 bytes**, SHA-256 `520b765fdf4feb62cb87bbf7f56916b2089099e317d01165513d1b3646a9bc83`.
-- Signed Hermes bundle SHA-256: `0fb177a9371ae46f2ce44a78ff6af92013caf40e671f4e19d55a6526a305c0de`.
-- **282 required runtime/build inputs** match the tested source; the full source package contains 760 hash-checked files. Documents/backend/nonruntime tooling are not all mobile compilation inputs.
-- Existing bundle identifier and distribution team retained. App Store distribution signature passes `codesign --verify --deep --strict`; debugging is disabled and no device-specific provisioning list is present.
-- Minimum iOS 16.4; iPhone and iPad device families remain enabled.
-- Eight bundled privacy manifests inspected. Root manifest contains the ten intended collected-data types, linked=true, tracking=false, and matches source. Required reasons: UserDefaults CA92.1; FileTimestamp C617.1/3B52.1; SystemBootTime 35F9.1.
-- Camera and while-in-use-location purpose descriptions only. No development Bonjour/local-network keys. Temporary scan-timing strings absent.
-- Both ShelfSKU11Diagnostic and ShelfSetDiagnostic compiled detectors retained. Successful compilation is not redistribution-rights clearance.
-- Existing usesNonExemptEncryption=false retained. The app includes SQLCipher and encrypted backups; do not describe it as using only OS HTTPS. Final export-answer review and on-device encrypted-storage/backup acceptance remain open.
+- Mobile source commit: `c0c64afcd911d4f0bf377cd91f71c3e3346fa323`.
+- Source-package content digest: `50f740197154c37b45d4d54801d7ec4cc6eae9a5705bf4e8de2f2bf6493f3a7a`.
+- Source ZIP SHA-256: `0726be9051b58dbefd77611ac49285ab2a017b753d48be66690b5c1cd625e259`; 760 files checked.
+- Latest IPA: **59,405,489 bytes**, SHA-256 `937919b95c6b094a1510033dad84d976c81d1e9a148d6d7f43deca58493eac6c`.
+- Signed Hermes bundle SHA-256: `6aeb69348144dded545dfaefc03089a2eed00ff6ce8051457de36053fdfed45f`.
+- All **282 required runtime/build inputs** match the tested source. Later documentation updates do not change this compiled source identity.
+- App Store distribution signature passes strict verification; debugging is disabled and there is no device-specific provisioning list. Existing identity/team retained.
+- Minimum iOS 16.4; iPhone and iPad support retained.
+- Eight privacy manifests inspected. Root declares all ten intended data categories, linked=true, tracking=false. Required reasons: UserDefaults CA92.1; FileTimestamp C617.1/3B52.1; SystemBootTime 35F9.1.
+- Only camera and while-in-use-location purpose strings; no development Bonjour/local-network keys or temporary scan-timing markers.
+- Both compiled ShelfSKU11Diagnostic and ShelfSetDiagnostic models retained. Compilation does not resolve redistribution rights.
+- Existing usesNonExemptEncryption=false retained for the US-only release. SQLCipher and encrypted exports are present; this is not an OS-HTTPS-only app. Final export-answer review remains part of submission review.
 
-The final IPA, source archive and verification are backed up on Mac, server and laptop with matching checksums. Private evidence: `artifacts/app-store-preparation-2026-10-27/signed-final-verification.json` and `nutriglimpse-1.0-build28-final-oct28.ipa`. Older signed28 artifacts are preserved as historical evidence and are superseded by this hash. Build27 and the pre-release restore point remain intact.
+IPA and source backup hashes match across Mac/server/laptop. Private evidence: artifacts/app-store-preparation-2026-10-27/signed-keyboard-verification.json and nutriglimpse-1.0-build28-keyboard.ipa. The earlier520b765f archive predates the keyboard fix and is superseded, not deleted. Build 27 and the encrypted restore baseline are preserved.
 
-## Tested source and UI scope
+## Cleanup and native issue resolved
 
-Security/privacy source passes825 core/service tests,18 tooling,10 report-input adapter tests,76 photo UI scenarios, needs/news/shelf checks and two deletion-helper tests. ExpoDoctor21/21 and production Hermes export pass. The final onboarding cleanup was additionally typechecked/linted and interaction-tested in production and beta: production says WELCOME, hides the diagnostic shelf shortcut and redirects the diagnostic route to ordinary Shelf Camera. Beta keeps its diagnostic affordance.
+The owner approved exactly two failed/superseded temporary build folders. Their resolved paths were checked, then deleted; **6,229,364,736 bytes** were recovered. All IPAs, source archives, logs, final working directory and rollback files were retained. approved-cleanup-oct28.json records the operation and preservation check.
 
-The final source also compiles as a Release iOS simulator app. **Simulator interaction check: NOT PASSED.** The dedicated fresh simulator launched the app, but it stopped at storage initialization before terms/setup; the test could not reach the privacy-policy control. No fictional profile was saved. The simulator build had signing disabled and no keychain entitlements; no database was created. This is a candidate cause, not a confirmed diagnosis. The Mac also fell below0.4GB free during the attempt. The test runner stalled while finalizing its result bundle; it was stopped and only the dedicated QA simulator was shut down. The signed device IPA is separate and unchanged.
+Freeing disk did not itself resolve the first simulator storage failure. The test build had signing disabled. Rebuilding through Xcode with normal ad-hoc simulator signing and its generated simulated entitlements allowed SecureStore initialization; no secure-storage app workaround or device-signature change was required. Initial failure logs remain evidence. Use the normal Xcode simulator signing pipeline and disable automatic test sysdiagnose collection for these bounded UI runs, rather than manually signing restricted entitlements.
 
-Approval is requested to remove only the failed and superseded temporary work folders (about6GB). Then rerun with adequate space and valid simulator keychain entitlements, and resolve any remaining app issue before upload. Preserve the initial failed UI log/screenshot rather than treating compilation as acceptance. No real camera, provider quality, physical permission or Apple delivery result is claimed.
+Native testing then found the numeric keyboard covering Save during setup. The shared page now dismisses the keyboard on scroll, adjusts keyboard insets and lets handled button taps through. The regression deliberately leaves the keyboard open, scrolls, saves and checks home navigation plus persisted age 52 after relaunch. Typecheck, lint, production needs/photo/shelf checks and beta needs checks pass after this small change.
 
-## Remaining native acceptance and immediate blocker
+## Native interaction evidence
 
-Physical iPhoneX/iOS16.7.16 and iPhone17: setup/save, product and shelf9+partial Finish, streaming, suitable alternatives, deduplication, permissions, cancellation/backgrounding, offline/retry, encrypted persistence/reset/backup and health-sharing choices. Supported iPad layout, final truthful screenshots, text scaling, VoiceOver and touch targets remain to be verified. No unsupported accessibility claim is made. Recheck build-number availability before upload.
+| Target | Verified | Evidence |
+|---|---|---|
+| iPhone 17 simulator, iOS 27 | Setup, keyboard dismissal, Save to home and restart persistence | ui-keyboard-run-exit-code0 and results-keyboard.xcresult |
+| iPhone 17 Pro Max simulator, iOS 27 | Terms/privacy access, setup, age 52 save/restart, privacy controls, My Needs persistence, production beta-banner absence | results-promax.xcresult |
+| iPad Pro 13 M5 simulator, iOS 27 | Same setup/profile/privacy path; portrait/landscape navigation and return to portrait | results-ipad-retry.xcresult; results-ipad-layout.xcresult |
 
-The live beta's dependencies and scan behavior are unchanged; only the previously documented support/privacy routes were added. No live model call was made during these build checks.
+The first iPad harness attempt submitted age 5 because a digit was dropped by rapid test entry. The app correctly rejected that underage profile. The corrected harness asserts each entered digit and full Save-button visibility; it passes without further app changes. A separate settled-orientation capture resolves a screenshot taken during rotation. Original failures and transient screenshots remain in private QA evidence; they are excluded from listing drafts.
+
+The simulator database is non-plaintext, and Documents carries the native backup-exclusion attribute. This confirms those observed simulator properties and persisted profile behavior, not real-device key accessibility or an encrypted export/restore round trip.
+
+## Screenshot drafts and remaining acceptance
+
+Unmodified native drafts: iPhone 1320x2868 and iPad 2064x2752, showing home, My Needs and privacy controls. Fictional age 52 only; no health concern or private report used. Layouts visually reviewed. The iPad landscape capture is QA evidence. Nothing is uploaded to Apple. Product/shelf-result screenshots still need actual flow acceptance; no fabricated model result is presented.
+
+Earlier full source checks passed 825 core/service, 18 tooling, 10 report adapters, 76 photo UI scenarios, needs/news/shelf checks and two deletion-helper tests; Expo Doctor 21/21 and production Hermes export passed. This checkpoint adds targeted keyboard checks and the native interactions above, not a claim of repeated live-model testing.
+
+Remaining physical iPhone X/iOS 16.7.16 and iPhone 17 acceptance: product and shelf 9 + partial Finish, streaming, suitable alternatives, deduplication, permissions, cancellation/backgrounding, offline/retry, reset, encrypted backup/restore and health-sharing choices. Full text scaling, VoiceOver and accessibility audit remain open. Recheck Apple build-number availability before upload. Live beta dependencies/scan behavior and other services remain unchanged. No live model call was made.

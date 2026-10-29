@@ -23,14 +23,14 @@ The shelf server retains recent result promises in a bounded memory map to avoid
 | Google Gemini / AI Studio | Enabled | Disabled | Owner confirmation in this conversation; dashboard not independently inspected. |
 | OpenAI API | Enabled | Disabled | Owner confirmation in this conversation; dashboard not independently inspected. |
 
-This resolves the open yes/no account-setting question. It does not establish Zero Data Retention or a particular project log-expiry setting. Production app/server journal disablement remains independent of provider logging; do not change request store:false options to create extra provider-side state. Verify applicable log periods/dataset exceptions when finalizing the retention schedule. No provider setting was changed by this preparation.
+Owner follow-up confirms Google project-log expiry is7 days. A separate dataset contains only fictional/public test data and is to be deleted before public launch; deletion is not yet verified. These confirmations resolve the account-setting questions, not Zero Data Retention. Provider logging remains separate from our production journal disablement. No provider setting or dataset was changed by this preparation.
 
 ## Provider retention evidence
 
 - OpenAI: the app's request builders use store:false. That avoids normal retrievable Responses state; it does not itself eliminate abuse-monitoring retention. Standard abuse-monitoring retention is up to30 days, with policy exceptions. API data is not used for training by default; the owner confirms optional training/improvement sharing is disabled. Do not claim Zero Data Retention. [Official OpenAI documentation](https://developers.openai.com/api/docs/guides/your-data).
 - Google paid Gemini: paid-service prompts/responses are not used for product improvement under the standard paid-service terms. Search grounding retains prompts/context/output for30 days for grounding/debugging purposes. [Gemini API terms](https://ai.google.dev/gemini-api/terms).
 - Google abuse monitoring separately describes55-day retention of prompts/context/output. [Abuse-monitoring policy](https://ai.google.dev/gemini-api/docs/usage-policies).
-- AI Studio project logs are a separate configurable store. Logging defaults depend on API/project creation date; a paid key alone does not prove it is off. Logs can be retained7/14/28/55 days; datasets can persist longer. The owner confirms logging on and contribution off; the configured period and any retained datasets are not independently verified. [Logging policy](https://ai.google.dev/gemini-api/docs/logs-policy).
+- AI Studio project logs are a separate configurable store. Owner confirms7-day expiry, logging on and contribution off. A fictional/public-test dataset exists; it is slated for deletion before public launch, not yet verified deleted. The7-day log setting does not prove dataset expiry or override service/security retention. [Logging policy](https://ai.google.dev/gemini-api/docs/logs-policy).
 
 ## App Privacy worksheet
 
@@ -40,6 +40,6 @@ Public contact is help@serveforward.us, verified receiving/replying by owner. Pr
 
 ## Remaining before App Store submission
 
-Support/privacy pages are published, tested and saved in the Apple draft. Native manifest declarations are corrected in source; ten proposed data types are documented in privacy-answers.md. Age/health questionnaire draft answers are saved/read back. The exact Google project-log expiry/dataset exceptions remain an owner confirmation. Final owner review, native/device verification and publication of Apple's privacy label remain open.
+Support/privacy pages are published, tested and saved in the Apple draft. The signed candidate verifies ten proposed data types and native reasons; age/health draft answers are saved/read back. Google project-log expiry and dataset scope are owner-confirmed. Remaining: dataset deletion verification, final owner review, physical acceptance, production cutover and Apple privacy-label publication.
 
 A deletion helper is implemented and tested; see privacy-deletion-runbook.md. The production candidate continues expiring pre-existing beta records without creating new journal files or loading response keys. This behavior is tested but not yet deployed. Provider retention and third-party deletion limitations are still separate.

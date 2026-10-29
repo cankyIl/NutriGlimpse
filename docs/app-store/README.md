@@ -2,7 +2,7 @@
 
 Updated October 28, 2026. Preparation only: no App Review submission or public app release. Version 1.0 is in Prepare for Submission, with free pricing, USA-only availability, automatic territory expansion off and manual release verified. The released TestFlight app remains 0.1.0 (27).
 
-Support and privacy pages are now public, tested, and saved in the Apple draft. Release source stays isolated from the live beta. The final signed 1.0 (28) candidate now includes the security updates, privacy-manifest correction and production onboarding cleanup. Its signature and282 required source inputs are verified; simulator compilation passes. The first simulator interaction test failed at storage initialization; adequate disk space and simulator keychain signing must be checked before retry. It is not uploaded or physically accepted yet.
+Support and privacy pages are public, tested and saved in the Apple draft. Release source stays isolated from the live beta. The latest signed 1.0 (28) candidate includes security/privacy updates, production cleanup and the keyboard fix. Its signature and 282 required inputs match the tested source. iPhone setup/save/restart and larger-iPhone/iPad profile/privacy interactions pass; tablet rotation and initial screenshot drafts are checked. The earlier simulator storage failure was caused by the unsigned simulator test build and is resolved with Xcode simulator signing. The candidate is not uploaded or physically accepted yet.
 
 - metadata.en-US.json: listing, verified settings and private-contact placeholders.
 - privacy-policy-draft.md and support-draft.md: published-page locations and cutover requirements.

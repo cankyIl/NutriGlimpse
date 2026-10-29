@@ -4,9 +4,9 @@
 
 ## Verified restore point
 
-Git tag: **baseline/beta0-build27-pre-app-store-2026-10-27**, pushed to the existing GitHub repository at commit e12d311d7d5d0467ba391f93334fc0cfff3abccf. This is the source-history marker; the private archives also preserve working documents, current runtime data and exact dependencies.
+Git tag: **baseline/beta0-build 27-pre-app-store-2026-10-27**, pushed to the existing GitHub repository at commit e12d311d7d5d0467ba391f93334fc0cfff3abccf. This is the source-history marker; the private archives also preserve working documents, current runtime data and exact dependencies.
 
-Private restore folder: `artifacts/restore-points/beta0-build27-before-appstore-2026-10-27` on the project server. It contains the exact build27 IPA/source, the current backend including post-build27 fixes, consistent catalog/usage databases, Node24 and Linux dependencies, native model resources, private provider/signing configuration, manifests and service recovery instructions.
+Private restore folder: `artifacts/restore-points/beta0-build 27-before-appstore-2026-10-27` on the project server. It contains the exact build 27 IPA/source, the current backend including post-build 27 fixes, consistent catalog/usage databases, Node24 and Linux dependencies, native model resources, private provider/signing configuration, manifests and service recovery instructions.
 
 Verified in a separate restore directory: **757 source files**, three SQLite integrity checks, isolated backend HTTP200 startup, **828 core/service tests**, typecheck/lint, nine tooling tests, ten report adapter tests and photo/needs/news/shelf UI checks. No provider calls were made, so this proves restore/startup/regression behavior, not current model quality or physical camera execution.
 
@@ -16,15 +16,15 @@ Restoring is staged into a new directory, never blindly over main. Keep current 
 
 ## Current preparation status - October 28
 
-The current detailed state is in [release-checklist.md](app-store/release-checklist.md). Public support/privacy pages and Apple draft listing/age/reviewer updates are complete. Security fixes, exact local patch provenance, privacy-manifest corrections and practical deletion/legacy-expiry behavior are implemented in the isolated candidate. Latest production checks pass825 core/service tests plus UI/tooling/report/news checks; ExpoDoctor21/21 and Hermes export pass.
+The current detailed state is in [release-checklist.md](app-store/release-checklist.md). Public support/privacy pages and Apple draft listing/age/reviewer updates are complete. Security fixes, exact local patch provenance, privacy-manifest corrections and practical deletion/legacy-expiry behavior are implemented in the isolated candidate. Latest production checks pass825 core/service tests plus UI/tooling/report/news checks; Expo Doctor 21/21 and Hermes export pass.
 
-The final signed1.0(28) archive now contains those changes and the production onboarding cleanup. Its exact checksum,282 matching build inputs, corrected manifests and signature are recorded in [native-verification.md](app-store/native-verification.md). Matching copies are on Mac/server/laptop. Mac/Xcode setup is resolved and simulator compilation passes. The first simulator UI test failed at private-storage initialization before onboarding, with signing-disabled simulator keychain access and low disk space still under investigation. Scoped temporary-folder cleanup approval is pending. UI/screenshots, encryption/backup and physical iPhone/iPad acceptance remain; no upload has occurred.
+The latest signed 1.0 (28) archive contains the security/privacy changes, production cleanup and a native keyboard fix. All 282 required inputs, corrected manifests and signature match the tested source; Mac/server/laptop copies are verified. The two approved failed/superseded build folders were deleted, recovering about 6.23 GB. Proper Xcode simulator signing resolved the test-only keychain initialization failure. iPhone setup/save/restart and larger-iPhone/iPad profile/privacy tests pass; iPad rotation and screenshot drafts are checked. Native testing found and fixed a keyboard covering Save. Physical camera/backup and full accessibility acceptance remain; no upload occurred. Exact hashes and boundaries are in [native-verification.md](app-store/native-verification.md).
 
 Only fixed support/privacy routes were added to the live beta backend; public pages are verified on mobile/desktop. No live beta dependency upgrade, new app upload, App Review submission or model request occurred. The final production backend cutover is still pending; policy wording distinguishes it from current beta behavior.
 
 ## Exact remaining owner inputs
 
-- Confirm Google project-log expiry and whether an app-request dataset is retained separately; report any nondefault provider/infrastructure retention setting. Logging-on/training-off has already been confirmed for Google/OpenAI.
+- Confirm the fictional/public-test Google dataset is deleted before public launch, as selected by the owner. Project logs are confirmed 7 days; logging-on/training-off and dataset scope are resolved. Report only any nondefault provider/infrastructure retention settings not previously disclosed.
 - Supply rights for public redistribution of the retained shelf detectors, or approve permitted replacements/release scope. No silent removal or unverified rights declaration.
 - Review the completed listing/privacy/age answers and final device results before authorizing App Review submission. Seller/support/private review contact are complete.
 

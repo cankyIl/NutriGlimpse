@@ -24,7 +24,7 @@ All ten types are also declared in the candidate's native manifest. Support corr
 ## Confirm before publishing
 
 - Already confirmed: Google and OpenAI logging on; optional training/product-improvement sharing off. Do not ask the owner to re-confirm the same yes/no question.
-- Needed: Google AI Studio project log-expiry value (7, 14, 28 or 55 days) and whether any app-request dataset is retained separately. No screenshot containing keys or actual prompts is needed.
+- Confirmed October 28: Google AI Studio project logs expire after 7 days. A separate dataset exists and contains only fictional/public test data; the owner chose to delete it before public launch. Verify deletion before launch. This is separate from service/grounding/security retention; no dashboard contents or credentials were inspected.
 - Needed only if configured: any nondefault OpenAI retention/storage arrangement, or infrastructure request-body/IP-log export. Standard service security retention remains disclosed; store:false is not Zero Data Retention.
 - A deployment check must establish production journal disablement and the retirement of old beta records; source alone is not deployment evidence.
 - Owner reviews the completed answers and contact/policy text. Exact backend-only secrets and private review phone remain outside source and the public listing.

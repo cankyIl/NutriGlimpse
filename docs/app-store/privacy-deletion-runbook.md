@@ -20,6 +20,10 @@ The two synthetic helper tests cover preview, execution, unrelated rows, retry/r
 
 ## Restores and providers
 
-Before serving traffic from a restored backup, reapply every applicable private deletion intent, prune expired diagnostic records, and preserve current usage counters/keys. Do not overwrite an immutable recovery archive just to pretend deletion is global. The original build27 restore point excluded expiring shopper diagnostics; any later backup must follow the same exclusion or enforce deletion on restore.
+Before serving traffic from a restored backup, reapply every applicable private deletion intent, prune expired diagnostic records, and preserve current usage counters/keys. Do not overwrite an immutable recovery archive just to pretend deletion is global. The original build 27 restore point excluded expiring shopper diagnostics; any later backup must follow the same exclusion or enforce deletion on restore.
 
 Reset does not delete Google/OpenAI or hosting records already retained. Use the providers' supported privacy/support process for identifiable records and explain any account, retention or legal limits to the requester. Do not promise immediate or universal erasure. Record only necessary case status in the monitored support inbox, and remove unnecessary attachments after resolution. No deletion request was sent externally and no real scan was deleted by this preparation.
+
+## Google test dataset - October 28 owner follow-up
+
+Owner confirms a separate Google AI Studio dataset contains only fictional/public test data and chooses deletion before public launch. Record its deletion confirmation before launch; do not treat7-day project-log expiry as dataset expiry. No dataset identifier/content or Google management credentials were provided, and deletion has not been performed or verified. Do not claim this deletes service-security/grounding records.
