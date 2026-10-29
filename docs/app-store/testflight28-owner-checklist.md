@@ -1,5 +1,7 @@
 # NutriGlimpse 1.0 (28) - iPhone acceptance checklist
 
+Owner acceptance recorded October29: "I tested the build 28 - its good". No repeat general acceptance request is pending. The checklist below remains an engineering coverage reference; the owner did not separately report device models or results for every listed scenario.
+
 Use this checklist after TestFlight lists version 1.0 (28) as available. Install it as an update over the existing app so we can check that saved data survives. Do not uninstall first. TestFlight availability does not mean the app has been published in the App Store.
 
 1. Open the updated app. Confirm your saved My Needs choices and preferences remain. Change one harmless preference, save, close and reopen. Save should return to the main screen, including when the numeric keyboard was open.

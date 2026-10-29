@@ -1,6 +1,6 @@
 # App Store native verification - October 28, 2026
 
-NutriGlimpse 1.0 (28) is Apple VALID / IN_BETA_TESTING, assigned to the existing owner TestFlight group. Encryption=false and English test notes are verified. Owner installation is not yet verified. EAS submission `ae0b85c6-3255-4689-a9b0-5b6fe4916ff7`; Apple build `4d855796-7064-49c3-9732-e8cd7b428aa9`. Corrected IPA SHA-256 `6687b560f56a1ef5aebca9b35a9ba34bf0a5d356bad6c92a76d478cf8e1076cb`, source `533030bc2ec7e1b1cf1bf37f8c1d3ddb062459b8`. No App Review submission or public release.
+NutriGlimpse 1.0 (28) is Apple VALID / IN_BETA_TESTING, assigned to the existing owner TestFlight group. Encryption=false and English test notes are verified. Owner confirmed testing build 28 successfully on October29. This is owner acceptance; device models and individual edge-case results were not specified. EAS submission `ae0b85c6-3255-4689-a9b0-5b6fe4916ff7`; Apple build `4d855796-7064-49c3-9732-e8cd7b428aa9`. Corrected IPA SHA-256 `6687b560f56a1ef5aebca9b35a9ba34bf0a5d356bad6c92a76d478cf8e1076cb`, source `533030bc2ec7e1b1cf1bf37f8c1d3ddb062459b8`. No App Review submission or public release.
 
 ## Exact signed artifact
 
@@ -56,3 +56,11 @@ An automated native accessibility survey of the initial home/privacy/My Needs vi
 Existing 825 core/service,10 report adapters,76 photo UI scenarios, needs/news/shelf/deletion checks and Expo Doctor 21/21 passed. This checkpoint passes 21 tooling checks, typecheck/lint, native compilation, all 282 input hashes, distribution signature and ten collected-data/eight-manifest verification. Unchanged setup/save/restart and iPhone/iPad privacy/profile/rotation flows retain their native evidence. Physical camera, upgrade and encrypted-backup acceptance remain open. The only mobile changes since the keyboard archive are the support-email label/import cleanup and motion declaration. The corrected archive verifies all 282 source inputs; these changes do not change scan routing or add a permission request.
 
 Accessibility evidence archive SHA-256:10c088b478900ca533b4fbbe5fed80eb7743cc33854196b3d2c0166c2aad6ae0, matching Mac/server/laptop copies. Apple failed-upload reuse documentation: https://developer.apple.com/help/app-store-connect/reference/app-uploads/build-upload-statuses. No live paid model call was made.
+
+## October29 owner acceptance and release preparation
+
+The owner stated: "I tested the build 28 - its good". General owner acceptance is passed. This supersedes earlier statements that owner installation/testing was unverified; it does not establish separate device models or every checklist scenario. No new build was made.
+
+Six existing native home/My Needs/privacy images (three iPhone 1320x2868, three iPad 2064x2752) were visually reviewed and uploaded to Apple's asset library. All are RGB PNG without alpha, unchanged from the native captures. Processing/placement readback is pending; final product/shelf-result captures still need the Mac. The Mac did not accept SSH at .67/.50/.65.
+
+Twenty-two focused production-launcher, security, release-streaming, legacy-journal-expiry and public-page tests pass with no model calls. The live service is a user systemd unit (`systemctl --user`); loopback and public curl health checks returned200. No deployment or App Review submission occurred. Evidence: artifacts/owner-acceptance-2026-10-29.

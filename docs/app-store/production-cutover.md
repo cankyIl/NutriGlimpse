@@ -4,7 +4,7 @@ Build 28 owner testing uses the existing beta backend. Uploading an iPhone binar
 
 ## Verified starting point
 
-- The current app service is `congress-beta-backend.service`, started with `ops/run-beta-backend.sh` from the existing project root. It listens on loopback port 3002. Other services and the Cloudflare route must stay unchanged.
+- The current app service is the user unit `congress-beta-backend.service` (use `systemctl --user`, not the system manager), started with `ops/run-beta-backend.sh` from the existing project root. It listens on loopback port 3002. Other services and the Cloudflare route must stay unchanged.
 - The isolated release checkout already contains `ops/run-production-backend.sh`. It sets production stage and disables new beta answer/decision journals while preserving existing photo consent settings and model routing. Simply setting environment variables on the beta launcher is insufficient: that launcher overwrites the stage and diagnostics flags.
 - Two launcher tests pass, including inherited beta flags, explicit report disablement and preserved consent requirements. No production deployment or paid model request was made by those tests.
 - The build 27 rollback baseline is preserved. A fresh checkpoint is required immediately before cutover because databases, usage counters, keys, deletion requests and concurrent changes can advance after that baseline.
@@ -25,4 +25,4 @@ If startup, scan compatibility or privacy checks fail, stop only the app service
 
 ## Acceptance still needed
 
-Actual-phone upgrade/persistence, camera and shelf batches, streaming, permissions/offline/retry and encrypted backup/restore; final product/shelf screenshots and accessibility review; preservation of model notices and the recorded October29 decision to retain both models (see third-party-model-licenses.md); owner review of listing/privacy/age answers. Native simulator checks and fixture tests do not replace these observations.
+Owner general build28 acceptance was received October29. Specific unreported device/upgrade/permissions/offline/backup scenarios remain engineering coverage items; final product/shelf screenshots and accessibility review; preservation of model notices and the recorded October29 decision to retain both models (see third-party-model-licenses.md); owner review of listing/privacy/age answers. Native simulator checks and fixture tests do not replace these observations.
