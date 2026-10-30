@@ -1,6 +1,6 @@
 # App Store privacy evidence — release candidate, October 27, 2026
 
-This is engineering evidence; the public policy is now live at https://grocery.serveforwad.com/privacy. Apple privacy-label answers remain unpublished; see privacy-answers.md. App/backend production configuration must move together. Corrected TestFlight28 is available for owner testing; the existing beta backend remains unchanged until coordinated production cutover.
+This is engineering evidence; the public policy is now live at https://grocery.serveforwad.com/privacy. The owner confirmed Apple privacy-label publication on October 29; see privacy-answers.md for the prepared proposal and readback limits. Build 29 is Apple VALID, and the matching frozen production backend and updated policy are deployed. Build 28 owner acceptance and build 29 targeted native evidence are recorded.
 
 ## Actual data paths
 
@@ -40,6 +40,10 @@ Public contact is help@serveforward.us, verified receiving/replying by owner. Pr
 
 ## Remaining before App Store submission
 
-Support/privacy pages are published, tested and saved in the Apple draft. The signed candidate verifies ten proposed data types and native reasons; age/health draft answers are saved/read back. Google project-log expiry and dataset scope are owner-confirmed. October 29: production cutover and updated retention wording are complete; build28 owner acceptance and build 29 targeted native checks are recorded. Remaining: final owner review and Apple privacy-label publication. Specific physical/Files-picker restore and full manual VoiceOver coverage are not inferred.
+Support/privacy pages are published, tested and saved in the Apple draft. The signed candidate verifies ten proposed data types and native reasons; age/health draft answers are saved/read back. Google project-log expiry and dataset scope are owner-confirmed. October 29: production cutover and updated retention wording are complete; build28 owner acceptance and build 29 targeted native checks are recorded. App Privacy publication is owner-confirmed. App Review submission is explicitly authorized; Apple requires its regulated-medical-device declaration before accepting review. Specific physical/Files-picker restore and full manual VoiceOver coverage are not inferred.
 
 A deletion helper is implemented and tested; see privacy-deletion-runbook.md. The production candidate continues expiring pre-existing beta records without creating new journal files or loading response keys. This behavior is deployed and verified October 29; live public-fixture calls added no beta journal records. Provider retention and third-party deletion limitations are still separate.
+
+## Publication and linkage evidence - October 29
+
+The owner reports the App Privacy answers are published. Browser automation failed before publication, so the exact published values were not independently observed. The prepared linked-to-user Yes entries were conservative proposals, not proof of identity linkage for every category. Source inspection found no name, home address, phone number, consumer account or device identifier in the grocery request schema; health sharing is optional and location is limited to selected public stores or rounded coordinates. Per-request trace and shelf-session identifiers are not proof of a named shopper identity. Provider/CDN and voluntary support correspondence may have additional linkage; their exact account settings were not independently audited. This checkpoint records owner publication without asserting an unverified privacy-label readback or changing any published answer.

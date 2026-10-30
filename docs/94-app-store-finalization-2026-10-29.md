@@ -34,10 +34,18 @@ Rollback: the private backend-checkpoint contains the exact former unit, databas
 
 All ten screenshots are processed/ordered; build 29 is attached to version 1.0, Prepare for Submission, manual release. Free/USA-only settings remain. TestFlight access is verified for the existing owner group; installation of build 29 is not claimed.
 
-Review the final listing, ten screenshots, privacy/age answers and test coverage; publish the prepared App Privacy questionnaire in App Store Connect; authorize App Review submission. No new account, credential, payment, recording or model-replacement decision is requested.
+The owner authorized submission of version 1.0 (29), listing and ten screenshots. App Privacy publication is owner-confirmed. Apple validation now requires only the Regulated Medical Device declaration in App Store Connect > General > App Information > App Store Regulations & Permits. Save No for the general nutrition-information release, then resume the already-authorized submission. Free, USA-only distribution and manual release stay selected; no new build or renewed submission approval is needed.
 
-The local browser-control tool failed to initialize with a missing-assets-path error. Apple API draft/build checks succeeded, but no App Privacy questionnaire publication was attempted through an unverified API. The prepared privacy worksheet provides the exact ten categories and purposes.
+The local browser-control tool failed to initialize with a missing-assets-path error. Apple API draft/build checks succeeded, but no App Privacy questionnaire publication was attempted through an unverified API. The owner subsequently confirmed publishing App Privacy answers on October 29. The worksheet records the prepared proposal, not an independently verified readback of those published entries.
 
 Full manual VoiceOver, per-device physical interruption/permissions and a complete native Files-picker backup/restore remain coverage limits. Build28's owner acceptance is retained; it is not substituted for observations never reported.
 
 Private evidence: artifacts/appstore-finalization-2026-10-29. No App Review submission, public release, new tester invitation or message was sent.
+
+## App Review submission attempt - October 29 evening
+
+The owner explicitly approved submitting 1.0 (29) with the prepared listing and all ten screenshots. Fresh Apple checks confirmed build identity/VALID, encryption false, reviewer details, unchanged listing, ten COMPLETE screenshot assets, free USA-only distribution and manual release. Apple accepted one draft review container (17cb8679-e504-4514-9cb6-6813a2916277), but rejected adding the app version; it has zero items and no submitted date. It is not Waiting for Review. No duplicate submission was created.
+
+Apple first reported missing content rights and regulated-medical-device declarations. USES_THIRD_PARTY_CONTENT was saved and verified under the existing owner release decision; the documented model-license uncertainty is unchanged. The subsequent validation reports only STATE_ERROR.CANNOT_SUBMIT_MISSING_REGULATED_MEDICAL_DEVICE_APP_DECLARATION. The current public Apple API specification 4.5.1 has no medical-declaration endpoint. Browser control again failed with the missing kernel-assets path error. Owner action: App Store Connect > Apps > NutriGlimpse > General > App Information > App Store Regulations & Permits > Declare Regulated Medical Device > No > Save for the described general nutrition-information release. Existing submission authorization persists after this is saved.
+
+The guarded helper reuses the exact draft container, confirms the sole app-version item and build29, and preserves manual release before submitting. No release or new build is authorized by this checkpoint. Evidence: app-review-owner-authorization.json, app-review-preflight.json, app-review-api-error-detail.json, content-rights-readback.json and app-review-created-submission.json in the private finalization artifacts.

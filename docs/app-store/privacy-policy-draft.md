@@ -8,4 +8,4 @@ Production is deployed: new beta answer/decision journals are disabled and exist
 
 Google project logging expires after seven days per owner confirmation. Optional provider training/improvement sharing is off. The separate Google dataset contains only fictional/public test data, is not populated from real shoppers, and remains outside the seven-day log schedule. Deleting it is optional on that scope. Google grounding/security and OpenAI security retention are disclosed separately; no zero-retention claim is made.
 
-HTTP public-page checks pass, including the deployed production wording. Earlier mobile/desktop layout checks are retained; this wording update did not change layout. Apple App Privacy answers are a separate browser step and remain unpublished pending owner review.
+HTTP public-page checks pass, including the deployed production wording. Earlier mobile/desktop layout checks are retained; this wording update did not change layout. The owner confirmed publishing the separate Apple App Privacy answers on October 29. Exact published entries have not been independently read back.

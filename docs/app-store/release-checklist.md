@@ -20,7 +20,7 @@ NutriGlimpse 1.0 (29) is Apple VALID and available to the existing owner TestFli
 | Shelf models | Retained per owner decision. Licensing uncertainty documented; no new license grant claimed or replacement decision pending. |
 | Dataset | Fictional/public-only; optional deletion, not a mandatory release gate. |
 | Strong app-only access | Explicitly deferred by owner; no tester-key flow reintroduced. |
-| App Privacy questionnaire | Prepared ten-category worksheet; publication still required through App Store Connect browser. Tool initialization failed. |
-| Final submission | Review the final listing, ten screenshots, privacy/age answers and test coverage; publish the prepared App Privacy questionnaire in App Store Connect; authorize App Review submission. No new account, credential, payment, recording or model-replacement decision is requested. |
+| App Privacy questionnaire | Owner confirmed publication October 29. Exact published entries were not independently read back; browser tool initialization failed. |
+| Final submission | The owner authorized submission of version 1.0 (29), listing and ten screenshots. App Privacy publication is owner-confirmed. Apple validation now requires only the Regulated Medical Device declaration in App Store Connect > General > App Information > App Store Regulations & Permits. Save No for the general nutrition-information release, then resume the already-authorized submission. Free, USA-only distribution and manual release stay selected; no new build or renewed submission approval is needed. |
 
 Full manual VoiceOver, device-specific physical interruptions/permissions and the full native Files-picker restore flow remain coverage limits. No new screenshot recording, Mac setup, support verification or seller/contact detail is needed. No tester was contacted.

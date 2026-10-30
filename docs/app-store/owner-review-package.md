@@ -42,12 +42,12 @@ The age draft uses Apple's 18+ override (legacy 17+); the app's existing intende
 
 ## Screenshot selection
 
-Ten screenshots are processed, placed and ordered in Apple's English draft: seven iPhone and three iPad. iPhone order: home, product result, alternatives, real-store shelf camera, shelf results, My Needs, privacy. iPad order: home, My Needs, privacy. Four product/shelf images use the owner's existing build27 recordings; six native captures are retained. Real app content is preserved with viewport crops and separate headings. See [provenance](screenshot-provenance.md). No fresh recording is needed. The local review HTML contains all ten. Final selection approval has not been inferred from general build acceptance.
+Ten screenshots are processed, placed and ordered in Apple's English draft: seven iPhone and three iPad. iPhone order: home, product result, alternatives, real-store shelf camera, shelf results, My Needs, privacy. iPad order: home, My Needs, privacy. Four product/shelf images use the owner's existing build27 recordings; six native captures are retained. Real app content is preserved with viewport crops and separate headings. See [provenance](screenshot-provenance.md). No fresh recording is needed. The local review HTML contains all ten. The owner explicitly approved submitting build29 with this listing and ten screenshots on October 29.
 
 ## Remaining owner actions
 
-1. Review this listing, all ten screenshots, privacy/age answers and the coverage below, then authorize App Review submission.
-2. Publish the prepared [App Privacy answers](privacy-answers.md) in App Store Connect. The browser-control tool failed to initialize; API checks cannot be treated as completed questionnaire publication.
+1. Save the Regulated Medical Device declaration in App Store Connect > General > App Information > App Store Regulations & Permits. Select No for this general nutrition-information release. Apple will not accept the submission until this declaration is saved.
+App Privacy publication is complete according to the owner's October 29 confirmation. Exact published answers have not been independently read back. Submission of the prepared version 1.0 (29), listing and ten screenshots is now explicitly authorized; the missing Apple medical declaration is the remaining validation blocker. Manual release stays selected.
 
 Native encrypted export and share cancellation also pass. The captured fictional-profile archive decrypts with the expected passphrase, rejects a wrong passphrase and is removed from the app cache when sharing closes. Full Files-picker restore on a physical phone remains untested.
 

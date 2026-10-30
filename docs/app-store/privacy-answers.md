@@ -1,5 +1,7 @@
 # Proposed App Privacy answers - owner review required
 
+**Status, October 29:** The owner confirmed publishing App Privacy answers. This document preserves the prepared proposal; the exact published selections were not independently read back. The linked-to-user Yes entries were conservative proposals rather than verified identity linkage for every category. See privacy-evidence.md. No repeat publication action is requested.
+
 These answers describe the production candidate plus partner processing, not merely records written by our own server. They are prepared in source; the App Store Connect questionnaire has not been published. Optional health sharing is still collection when the chosen feature sends it to a provider that retains it. We cannot claim that retained model prompts/images have been anonymized.
 
 App Store Connect: NutriGlimpse -> App Privacy -> Get Started/Edit. Answer **Yes, data is collected from this app**, including collection by partners. Use https://grocery.serveforwad.com/privacy as the policy and https://grocery.serveforwad.com/support for privacy choices. Review and publish the label only after the final implementation and owner settings match this worksheet.
@@ -35,4 +37,4 @@ Sources: https://developer.apple.com/app-store/app-privacy-details/ and https://
 
 ## Exact browser step remaining
 
-After reviewing this worksheet, open App Store Connect → My Apps → NutriGlimpse → App Privacy. Enter the ten rows above, use the listed purposes, linked to user Yes and tracking No, then publish. Browser-control initialization failed during preparation; no questionnaire publication is claimed. Publishing privacy answers does not itself release the app.
+Publication was subsequently confirmed by the owner. The preparation did not itself operate the questionnaire or independently verify its final selections. Publishing privacy answers does not itself release the app.
