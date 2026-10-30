@@ -1,6 +1,6 @@
 # NutriGlimpse - owner submission review package
 
-October 29, 2026. Preparation draft: no App Review submission or public release. Build28 owner testing is accepted. Final result screenshots, remaining accessibility checks, production backend cutover and Apple privacy-label publication remain.
+October 29, 2026. Preparation draft: no App Review submission or public release. Build28 owner testing is accepted. Screenshot assets and targeted native checks are complete. Production cutover, matching policy wording, final privacy-label publication and package review remain. Manual accessibility and specific physical edge cases are not implied.
 
 ## Release
 
@@ -42,13 +42,13 @@ The age draft uses Apple's 18+ override (legacy 17+); the app's existing intende
 
 ## Screenshot selection
 
-Six unchanged native screenshots are processed and placed in Apple's existing draft: home, My Needs and privacy for iPhone and iPad, in that order for each device group. Asset, placement and order readback passed. They use fictional test setup, not an actual shopper's health report. Product-result and shelf-result screenshots are still needed for a stronger final selection. The local review HTML shows the existing captures together with this listing. Final image approval has not been inferred from general build acceptance.
+Ten screenshots are processed, placed and ordered in Apple's English draft: seven iPhone and three iPad. iPhone order: home, product result, alternatives, real-store shelf camera, shelf results, My Needs, privacy. iPad order: home, My Needs, privacy. Four product/shelf images use the owner's existing build27 recordings; six native captures are retained. Real app content is preserved with viewport crops and separate headings. See [provenance](screenshot-provenance.md). No fresh recording is needed. The local review HTML contains all ten. Final selection approval has not been inferred from general build acceptance.
 
 ## Remaining preparation
 
-1. Restore Mac access and capture genuine product/shelf results; finish targeted accessibility/device edge checks.
-2. Add the remaining product/shelf-result captures and review the final selection; the initial six-image order and processing are verified.
-3. Complete and verify the production backend change and its matching privacy wording.
-4. Present the completed package for owner review, publish the reviewed Apple privacy answers and submit for App Review.
+1. Complete and verify the production backend change and matching policy wording.
+2. Review the listing, ten screenshots, privacy/age answers and stated test coverage with the owner. Publish final Apple privacy answers and submit after authorization.
+
+The Mac reconnected. Five extended native scenarios passed, including public catalog/store navigation, camera-unavailable recovery, reset cancellation/persistence and largest text on iPhone/iPad. Audited screens have zero automated findings. Full manual VoiceOver, real-camera interruptions and encrypted backup/restore remain specific coverage gaps; build28 general owner acceptance is already recorded.
 
 No new account, credential, payment or model-replacement choice is requested. The decision to retain both detectors is recorded separately in [the license record](third-party-model-licenses.md).

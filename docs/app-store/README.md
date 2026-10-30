@@ -24,3 +24,5 @@ Run node ops/app-store-preflight.cjs from this checkout. It reports actual local
 Build28 is attached to the version1.0 App Store draft. Apple read-back confirms Prepare for Submission and manual release; no App Review submission occurred.
 
 - owner-review-package.md: listing/privacy summary and screenshot preparation status for final review.
+
+October29 screenshot/native checkpoint: ten images (seven iPhone, three iPad) verified in the Apple draft; five extended simulator scenarios pass, including largest text on both device families. No new recording or Mac-access action is pending. See [screenshot provenance](screenshot-provenance.md), [native evidence](native-verification.md) and [owner package](owner-review-package.md). Production cutover and final privacy/submission review remain.
