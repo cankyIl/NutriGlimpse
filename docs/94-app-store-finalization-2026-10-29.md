@@ -1,6 +1,6 @@
 # App Store finalization - October 29, 2026
 
-NutriGlimpse 1.0 (29) is Apple VALID and available to the existing owner TestFlight group. It is attached to the Prepare for Submission draft with manual release. The large-text home heading is corrected. Production backend and matching privacy policy are live. No App Review submission or public release.
+NutriGlimpse 1.0 (29) was submitted to Apple on October 29 at 10:54 p.m. EDT and is WAITING_FOR_REVIEW. Free USA-only distribution and manual release are verified; it is not publicly released. The large-text home heading is corrected. Production backend and matching privacy policy are live. Existing owner TestFlight access is retained.
 
 ## Signed build and source
 
@@ -32,20 +32,26 @@ Rollback: the private backend-checkpoint contains the exact former unit, databas
 
 ## Apple preparation and remaining actions
 
-All ten screenshots are processed/ordered; build 29 is attached to version 1.0, Prepare for Submission, manual release. Free/USA-only settings remain. TestFlight access is verified for the existing owner group; installation of build 29 is not claimed.
+All ten screenshots are processed/ordered; build 29 is attached to version 1.0, Waiting for Review, manual release. Free/USA-only settings remain. TestFlight access is verified for the existing owner group; installation of build 29 is not claimed.
 
-The owner authorized submission of version 1.0 (29), listing and ten screenshots. App Privacy publication is owner-confirmed. Apple validation now requires only the Regulated Medical Device declaration in App Store Connect > General > App Information > App Store Regulations & Permits. Save No for the general nutrition-information release, then resume the already-authorized submission. Free, USA-only distribution and manual release stay selected; no new build or renewed submission approval is needed.
+No owner input is required for the submitted version now. The owner confirmed saving the medical-device declaration; Apple accepted the authorized version 1.0 (29), listing and ten screenshots. Await Apple review and address any review feedback. Manual release after approval remains a separate action; the app stays free and USA-only.
 
 The local browser-control tool failed to initialize with a missing-assets-path error. Apple API draft/build checks succeeded, but no App Privacy questionnaire publication was attempted through an unverified API. The owner subsequently confirmed publishing App Privacy answers on October 29. The worksheet records the prepared proposal, not an independently verified readback of those published entries.
 
 Full manual VoiceOver, per-device physical interruption/permissions and a complete native Files-picker backup/restore remain coverage limits. Build28's owner acceptance is retained; it is not substituted for observations never reported.
 
-Private evidence: artifacts/appstore-finalization-2026-10-29. No App Review submission, public release, new tester invitation or message was sent.
+Private evidence: artifacts/appstore-finalization-2026-10-29. The authorized App Review submission was sent and accepted. No public release, new tester invitation or tester message was sent.
 
-## App Review submission attempt - October 29 evening
+## Earlier submission validation - resolved October 29 evening
 
-The owner explicitly approved submitting 1.0 (29) with the prepared listing and all ten screenshots. Fresh Apple checks confirmed build identity/VALID, encryption false, reviewer details, unchanged listing, ten COMPLETE screenshot assets, free USA-only distribution and manual release. Apple accepted one draft review container (17cb8679-e504-4514-9cb6-6813a2916277), but rejected adding the app version; it has zero items and no submitted date. It is not Waiting for Review. No duplicate submission was created.
+The owner explicitly approved submitting 1.0 (29) with the prepared listing and all ten screenshots. Fresh Apple checks confirmed build identity/VALID, encryption false, reviewer details, unchanged listing, ten COMPLETE screenshot assets, free USA-only distribution and manual release. Apple accepted one draft review container (17cb8679-e504-4514-9cb6-6813a2916277), but rejected adding the app version; it then had zero items and no submitted date. This historical attempt was not yet Waiting for Review. No duplicate submission was created.
 
-Apple first reported missing content rights and regulated-medical-device declarations. USES_THIRD_PARTY_CONTENT was saved and verified under the existing owner release decision; the documented model-license uncertainty is unchanged. The subsequent validation reports only STATE_ERROR.CANNOT_SUBMIT_MISSING_REGULATED_MEDICAL_DEVICE_APP_DECLARATION. The current public Apple API specification 4.5.1 has no medical-declaration endpoint. Browser control again failed with the missing kernel-assets path error. Owner action: App Store Connect > Apps > NutriGlimpse > General > App Information > App Store Regulations & Permits > Declare Regulated Medical Device > No > Save for the described general nutrition-information release. Existing submission authorization persists after this is saved.
+Apple first reported missing content rights and regulated-medical-device declarations. USES_THIRD_PARTY_CONTENT was saved and verified under the existing owner release decision; the documented model-license uncertainty is unchanged. The next validation reported only STATE_ERROR.CANNOT_SUBMIT_MISSING_REGULATED_MEDICAL_DEVICE_APP_DECLARATION. The current public Apple API specification 4.5.1 has no medical-declaration endpoint. Browser control again failed with the missing kernel-assets path error. The owner subsequently confirmed completing the requested medical-device declaration in App Information. The saved field is not independently readable through the public API, but Apple accepted the subsequent submission and no longer rejected this declaration.
 
 The guarded helper reuses the exact draft container, confirms the sole app-version item and build29, and preserves manual release before submitting. No release or new build is authorized by this checkpoint. Evidence: app-review-owner-authorization.json, app-review-preflight.json, app-review-api-error-detail.json, content-rights-readback.json and app-review-created-submission.json in the private finalization artifacts.
+
+## Submission accepted - October 29, 10:54 p.m. EDT
+
+Apple accepted the authorized review submission at 2026-10-30T02:54:28.284Z. Submission 17cb8679-e504-4514-9cb6-6813a2916277 and version fd671053-0397-4200-97e5-0317e7991f63 both read WAITING_FOR_REVIEW. The reused container has exactly one item for version 1.0 with build29 (0d16fdf3-0139-408a-9f31-16377675b241). Final checks verified the reviewed listing, ten completed screenshots, reviewer contact, free USA-only distribution, VALID build and encryption declaration. Manual release remains selected. No duplicate submission, source change, new build, deployment or public release occurred.
+
+Evidence: app-review-submit-response.json, app-review-submission-receipt.json, app-review-created-item.json, app-review-before-submit.json and the refreshed apple-draft-readback.json. Owner authorization and previous validation failures remain preserved. No owner action is currently needed; await Apple review, then separately decide the manual public-release step. Review acceptance is not app approval and does not certify nutrition, privacy or licensing claims.

@@ -1,6 +1,6 @@
 # App Store screenshot provenance - October 29, 2026
 
-All ten screenshots are processed, placed and ordered in the existing English draft. Seven iPhone images are 1320 x 2868; three iPad images are 2064 x 2752. The owner explicitly approved this selection for build29 submission on October 29. Apple review acceptance remains pending its required medical-device declaration.
+All ten screenshots are processed, placed and ordered in the existing English draft. Seven iPhone images are 1320 x 2868; three iPad images are 2064 x 2752. The owner explicitly approved this selection for build29 submission on October 29. Apple accepted the build29 review submission with these ten screenshots on October 29 at 10:54 p.m. EDT; status WAITING_FOR_REVIEW.
 
 The owner requested the ScreenRecording files and identified them as build 27 with the same appearance as 28. Originals are untouched. Source comparison found unchanged product-card/review components, theme and shelf route; relevant shelf/photo differences concern diagnostic consent and timing instrumentation. This supports visible continuity, not a claim that the recorded phone was running 28.
 

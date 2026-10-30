@@ -1,6 +1,6 @@
 # NutriGlimpse - owner submission review package
 
-October 29, 2026. NutriGlimpse 1.0 (29) is Apple VALID and available to the existing owner TestFlight group. It is attached to the Prepare for Submission draft with manual release. The large-text home heading is corrected. Production backend and matching privacy policy are live. No App Review submission or public release. 825 core/service, 21 tooling, 10 report-adapter and 76 photo-UI checks passed, alongside needs/news/shelf checks; eight focused runtime/privacy/expiry checks and two production-launcher checks pass. Typecheck/lint pass. All 282 native inputs, App Store signature, eight privacy manifests and ten declared data types verify. Five targeted build 29 simulator scenarios pass, including largest text on iPhone/iPad and profile persistence across installation over build 28.
+October 29, 2026. NutriGlimpse 1.0 (29) was submitted to Apple on October 29 at 10:54 p.m. EDT and is WAITING_FOR_REVIEW. Free USA-only distribution and manual release are verified; it is not publicly released. The large-text home heading is corrected. Production backend and matching privacy policy are live. Existing owner TestFlight access is retained. 825 core/service, 21 tooling, 10 report-adapter and 76 photo-UI checks passed, alongside needs/news/shelf checks; eight focused runtime/privacy/expiry checks and two production-launcher checks pass. Typecheck/lint pass. All 282 native inputs, App Store signature, eight privacy manifests and ten declared data types verify. Five targeted build 29 simulator scenarios pass, including largest text on iPhone/iPad and profile persistence across installation over build 28.
 
 ## Release
 
@@ -44,10 +44,10 @@ The age draft uses Apple's 18+ override (legacy 17+); the app's existing intende
 
 Ten screenshots are processed, placed and ordered in Apple's English draft: seven iPhone and three iPad. iPhone order: home, product result, alternatives, real-store shelf camera, shelf results, My Needs, privacy. iPad order: home, My Needs, privacy. Four product/shelf images use the owner's existing build27 recordings; six native captures are retained. Real app content is preserved with viewport crops and separate headings. See [provenance](screenshot-provenance.md). No fresh recording is needed. The local review HTML contains all ten. The owner explicitly approved submitting build29 with this listing and ten screenshots on October 29.
 
-## Remaining owner actions
+## Submission status and next step
 
-1. Save the Regulated Medical Device declaration in App Store Connect > General > App Information > App Store Regulations & Permits. Select No for this general nutrition-information release. Apple will not accept the submission until this declaration is saved.
-App Privacy publication is complete according to the owner's October 29 confirmation. Exact published answers have not been independently read back. Submission of the prepared version 1.0 (29), listing and ten screenshots is now explicitly authorized; the missing Apple medical declaration is the remaining validation blocker. Manual release stays selected.
+Apple accepted the authorized submission on October 29 at 10:54 p.m. EDT. Version 1.0 (29) and its submission both show WAITING_FOR_REVIEW. No owner input is needed now; await review feedback. Manual public release after approval remains separate.
+App Privacy publication is complete according to the owner's October 29 confirmation. Exact published answers have not been independently read back. The owner confirmed saving the medical-device declaration, and Apple accepted version 1.0 (29), the listing and ten screenshots. Manual release stays selected.
 
 Native encrypted export and share cancellation also pass. The captured fictional-profile archive decrypts with the expected passphrase, rejects a wrong passphrase and is removed from the app cache when sharing closes. Full Files-picker restore on a physical phone remains untested.
 

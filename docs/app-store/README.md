@@ -1,8 +1,8 @@
 # NutriGlimpse App Store preparation
 
-NutriGlimpse 1.0 (29) is Apple VALID and available to the existing owner TestFlight group. It is attached to the Prepare for Submission draft with manual release. The large-text home heading is corrected. Production backend and matching privacy policy are live. No App Review submission or public release.
+NutriGlimpse 1.0 (29) was submitted to Apple on October 29 at 10:54 p.m. EDT and is WAITING_FOR_REVIEW. Free USA-only distribution and manual release are verified; it is not publicly released. The large-text home heading is corrected. Production backend and matching privacy policy are live. Existing owner TestFlight access is retained.
 
-The owner authorized submission of version 1.0 (29), listing and ten screenshots. App Privacy publication is owner-confirmed. Apple validation now requires only the Regulated Medical Device declaration in App Store Connect > General > App Information > App Store Regulations & Permits. Save No for the general nutrition-information release, then resume the already-authorized submission. Free, USA-only distribution and manual release stay selected; no new build or renewed submission approval is needed.
+No owner input is required for the submitted version now. The owner confirmed saving the medical-device declaration; Apple accepted the authorized version 1.0 (29), listing and ten screenshots. Await Apple review and address any review feedback. Manual release after approval remains a separate action; the app stays free and USA-only.
 
 - [Owner package](owner-review-package.md): listing, screenshots, privacy/age answers and actual test coverage.
 - [Release checklist](release-checklist.md): current status and settled owner decisions.

@@ -1,6 +1,6 @@
 # App Store release checklist - October 29 finalization
 
-NutriGlimpse 1.0 (29) is Apple VALID and available to the existing owner TestFlight group. It is attached to the Prepare for Submission draft with manual release. The large-text home heading is corrected. Production backend and matching privacy policy are live. No App Review submission or public release.
+NutriGlimpse 1.0 (29) was submitted to Apple on October 29 at 10:54 p.m. EDT and is WAITING_FOR_REVIEW. Free USA-only distribution and manual release are verified; it is not publicly released. The large-text home heading is corrected. Production backend and matching privacy policy are live. Existing owner TestFlight access is retained.
 
 | Item | Current status |
 |---|---|
@@ -15,12 +15,12 @@ NutriGlimpse 1.0 (29) is Apple VALID and available to the existing owner TestFli
 | Backup check | Native encrypted export and share cancellation also pass. The captured fictional-profile archive decrypts with the expected passphrase, rejects a wrong passphrase and is removed from the app cache when sharing closes. Full Files-picker restore on a physical phone remains untested. |
 | Live scans | Product: 3 alternatives, first content 4.775s, final 23.223s. Shelf:9/9 cells,7 distinct products, first 5.959s, final 90.176s; supplemental GPT completion not established. |
 | Screenshots | Ten complete and ordered:7 iPhone,3 iPad. Four use owner-approved build27 recordings; default layout unchanged. |
-| Apple draft | Build29 attached; free,USA-only,manual release; contact/age/listing saved; no review submission. |
+| Apple submission | Version1.0/build29 WAITING_FOR_REVIEW; submitted October29,10:54p.m.EDT. Free,USA-only,manual release verified; contact/age/listing saved. |
 | TestFlight | Exact build 29 VALID and assigned to existing owner group; owner installation of29 not claimed. Build28 general acceptance retained. |
 | Shelf models | Retained per owner decision. Licensing uncertainty documented; no new license grant claimed or replacement decision pending. |
 | Dataset | Fictional/public-only; optional deletion, not a mandatory release gate. |
 | Strong app-only access | Explicitly deferred by owner; no tester-key flow reintroduced. |
 | App Privacy questionnaire | Owner confirmed publication October 29. Exact published entries were not independently read back; browser tool initialization failed. |
-| Final submission | The owner authorized submission of version 1.0 (29), listing and ten screenshots. App Privacy publication is owner-confirmed. Apple validation now requires only the Regulated Medical Device declaration in App Store Connect > General > App Information > App Store Regulations & Permits. Save No for the general nutrition-information release, then resume the already-authorized submission. Free, USA-only distribution and manual release stay selected; no new build or renewed submission approval is needed. |
+| Final submission | No owner input is required for the submitted version now. The owner confirmed saving the medical-device declaration; Apple accepted the authorized version 1.0 (29), listing and ten screenshots. Await Apple review and address any review feedback. Manual release after approval remains a separate action; the app stays free and USA-only. |
 
 Full manual VoiceOver, device-specific physical interruptions/permissions and the full native Files-picker restore flow remain coverage limits. No new screenshot recording, Mac setup, support verification or seller/contact detail is needed. No tester was contacted.
