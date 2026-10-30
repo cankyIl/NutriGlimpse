@@ -37,8 +37,8 @@
   },
   "copyright": "2026 Viraank Gaur",
   "ageRating": "Adult override saved: 18+ on current OS; legacy readback 17+. App intended for 21+.",
-  "reviewNotes": "NutriGlimpse provides general grocery and nutrition information for adults 21 and older. It has no consumer account, subscription, paid feature, invitation code or tester key.\n\nFirst launch: read the terms, then enter optional preferences in My Needs and save. Health concerns, body measurements and lipid reports are optional; ordinary food scanning works without them. Location permission is optional and a store can be selected manually.\n\nProduct scan: tap Scan Your Product, accept the separately presented AI-processing choice, allow Camera and photograph a food package. Product information and suggested alternatives appear as processing completes. Shelf Camera detects packages on-device and sends grids of up to nine after consent; Finish sends a partial group. Internet access is required for live AI recognition.\n\nThird-party AI: photos/grids go through our backend to Google Gemini and OpenAI. Health-sharing is a separate choice. Name, raw report files and exact GPS are excluded from model prompts. Provider request logging is enabled; optional training sharing is disabled. The privacy policy describes retention and deletion limitations.\n\nOptional report import extracts supported lipid fields locally for the user to check. Remote analysis sends only the limited reviewed fields and date after consent. The app is not a diagnostic or treatment service, does not prescribe medicines or individual nutrient targets, and does not connect to HealthKit. No medical-device clearance is claimed.\n\nPrivacy controls and support links are in My Needs → Privacy & storage. Local data can be reset. Store and aisle suggestions are not stock guarantees.\n\nThe production configuration disables beta diagnostic journals. The submission candidate must be verified with that production backend before review.",
-  "submissionReadiness": "PENDING_PRIVACY_CUTOVER_AND_FINAL_OWNER_REVIEW",
+  "reviewNotes": "NutriGlimpse provides general grocery and nutrition information for adults 21 and older. It has no consumer account, subscription, paid feature, invitation code or tester key.\n\nFirst launch: read the terms, then enter optional preferences in My Needs and save. Health concerns, body measurements and lipid reports are optional; ordinary food scanning works without them. Location permission is optional and a store can be selected manually.\n\nProduct scan: tap Scan Your Product, accept the separately presented AI-processing choice, allow Camera and photograph a food package. Product information and suggested alternatives appear as processing completes. Shelf Camera detects packages on-device and sends grids of up to nine after consent; Finish sends a partial group. Internet access is required for live AI recognition.\n\nThird-party AI: photos/grids go through our backend to Google Gemini and OpenAI. Health-sharing is a separate choice. Name, raw report files and exact GPS are excluded from model prompts. Provider request logging is enabled; optional training sharing is disabled. The privacy policy describes retention and deletion limitations.\n\nOptional report import extracts supported lipid fields locally for the user to check. Remote analysis sends only the limited reviewed fields and date after consent. The app is not a diagnostic or treatment service, does not prescribe medicines or individual nutrient targets, and does not connect to HealthKit. No medical-device clearance is claimed.\n\nPrivacy controls and support links are in My Needs \u2192 Privacy & storage. Local data can be reset. Store and aisle suggestions are not stock guarantees.\n\nThe production backend is deployed and verified with public product/shelf test images. New beta diagnostic journals are disabled; older consented beta records expire within seven days. Provider logging and retention remain as described in the privacy policy.",
+  "submissionReadiness": "PENDING_APP_PRIVACY_PUBLICATION_AND_FINAL_OWNER_APPROVAL",
   "seller": {
     "membershipType": "Individual",
     "legalName": "Viraank Gaur",
@@ -85,12 +85,12 @@
     "submitted": false
   },
   "privacyChoicesUrl": "https://grocery.serveforwad.com/support",
-  "supportPagesVerifiedOn": "2026-10-28",
-  "ageRatingVerifiedOn": "2026-10-28",
+  "supportPagesVerifiedOn": "2026-10-29",
+  "ageRatingVerifiedOn": "2026-10-29",
   "draftBuild": {
     "version": "1.0",
-    "buildNumber": "28",
-    "appleBuildId": "4d855796-7064-49c3-9732-e8cd7b428aa9",
+    "buildNumber": "29",
+    "appleBuildId": "0d16fdf3-0139-408a-9f31-16377675b241",
     "verifiedAttached": true,
     "submittedForReview": false
   },
@@ -141,7 +141,7 @@
   },
   "extendedNativeChecks": {
     "verifiedOn": "2026-10-29",
-    "sourceBuild": "1.0 (28)",
+    "sourceBuild": "1.0 (29)",
     "passedScenarios": 5,
     "automatedAccessibilityFindings": 0,
     "targets": [
@@ -150,6 +150,17 @@
     ],
     "largestAccessibilityTextVerified": true,
     "manualVoiceOverClaimed": false,
-    "freshPhysicalCameraTestClaimed": false
+    "freshPhysicalCameraTestClaimed": false,
+    "largeTextHeadingCorrected": true,
+    "simulatorUpgradePreservesProfile": true,
+    "nativeExportVerified": true,
+    "fullNativeRestoreVerified": false
+  },
+  "backendProduction": {
+    "deployed": true,
+    "sourceRevision": "0182f18020f57e38cdc399974b45b3d95dd219d0",
+    "newBetaJournalsDisabled": true,
+    "legacyExpiryDays": 7,
+    "verifiedOn": "2026-10-29"
   }
 }

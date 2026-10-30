@@ -1,39 +1,26 @@
-# App Store release checklist - October 29, 2026
+# App Store release checklist - October 29 finalization
 
-NutriGlimpse 1.0 (28) is Apple VALID / IN_BETA_TESTING, assigned to the existing owner TestFlight group. Encryption=false and English test notes are verified. Owner confirmed testing build 28 successfully on October29. This is owner acceptance; device models and individual edge-case results were not specified. EAS submission `ae0b85c6-3255-4689-a9b0-5b6fe4916ff7`; Apple build `4d855796-7064-49c3-9732-e8cd7b428aa9`. Corrected IPA SHA-256 `6687b560f56a1ef5aebca9b35a9ba34bf0a5d356bad6c92a76d478cf8e1076cb`, source `533030bc2ec7e1b1cf1bf37f8c1d3ddb062459b8`. No App Review submission or public release. The existing beta backend remains unchanged for owner testing.
+NutriGlimpse 1.0 (29) is Apple VALID and available to the existing owner TestFlight group. It is attached to the Prepare for Submission draft with manual release. The large-text home heading is corrected. Production backend and matching privacy policy are live. No App Review submission or public release.
 
-| ID | Item | Current status |
-|---|---|---|
-| AS-01 | Restorable baseline | Complete: build 27 IPA/source/backend/data/dependencies; 757 source hashes, three databases and isolated restore checks; encrypted off-machine copy and separate key verified. |
-| AS-02 | Isolated release work | Complete: candidate branch separate from live beta. Only fixed public support/privacy routes were added to the running backend this checkpoint. Other services and app scan behavior preserved. |
-| AS-03 | Apple draft and distribution | Verified again October 28: version1.0 Prepare for Submission, manual release, $0.00, USA only, future territories off. Corrected build 28 is VALID and available to the existing owner group. |
-| AS-04 | Listing and contact | Listing/age/contact/URLs/reviewer notes saved/read back. Private contact stays outside source. Ten screenshots processed, placed and ordered: seven iPhone and three iPad. Four use owner-approved build27 recordings; six native captures retained. Final selection review remains. |
-| AS-05 | Production cleanup | Temporary timing modules/payloads/hooks/receiver removed. Production hides beta engineering UI and disables new answer journals. Legacy expiry prevents old beta records persisting indefinitely after cutover. |
-| AS-06 | Production UI/source | Version1.0 candidate 28 retains identity and side-chat features. Privacy links available before terms and in Privacy & storage. Latest production Hermes export passed. Included in the final signed 28 archive and simulator build. |
-| AS-07 | Public support/privacy | Complete: HTTPS pages live; GET/HEAD/method/security checks and mobile/desktop browser checks pass. Contact works per owner. Policy accurately distinguishes current beta and planned production. Final cutover wording still to update after deployment. |
-| AS-08 | Privacy/age declarations | Ten collected-data categories and required-reason APIs declared in source. Detailed Apple privacy worksheet prepared; privacy label not yet published. Adult age override and health/medical topics saved/read back; final owner review pending. |
-| AS-09 | Shelf models and license record | Owner explicitly directed retention of both pretrained models and continued preparation on October29; no replacement decision is pending. Model use is distinguished from training-dataset use. Source licenses/notices stay intact. [The license record](third-party-model-licenses.md) separates published terms, remaining scope uncertainty and the owner decision; it does not assert legal clearance or a blanket App Store prohibition. |
-| AS-10 | Seller/health scope | Individual / Viraank Gaur confirmed. General nutrition scope and optional health features accurately described. Apple5.1.1(ix) eligibility remains a review consideration, not an automatic requirement to purchase an Organization account. |
-| AS-11 | Hosted backend access | Stronger app verification remains explicitly deferred by owner. Existing rate limits do not prevent a fork using the hosted paid endpoints. No tester-key flow reintroduced. |
-| AS-12 | Native archive | Complete: latest signed 28 passes distribution signature,282 source-input and ten-type/eight-manifest checks. Both approved temporary folders deleted; about 6.23 GB recovered. Proper Xcode simulator signing resolved initial storage failure. Setup/save/restart and larger-iPhone/iPad privacy/profile checks pass. Corrected build 28 is uploaded and accepted; the first 90683 validation error was fixed without enabling motion collection. |
-| AS-13 | Device acceptance | Owner accepted build28 on October29: "I tested the build 28 - its good". Do not ask for the same general acceptance again. This does not claim separate iPhone X/17 results or completion of every permissions, interruption, offline, reset or encrypted-backup scenario; engineering retains those specific coverage gaps. |
-| AS-14 | iPad/screenshots/accessibility | iPad portrait/landscape evidence retained. Screenshot assets complete. Largest accessibility text and automated audits pass on home/My Needs/privacy on iPhone17 ProMax and iPadPro13 M5; default home/history/privacy/My Needs audits also pass. Full manual VoiceOver and exhaustive screen-by-screen/touch/contrast acceptance remain unclaimed. |
-| AS-15 | Security/dependencies | Candidate fixes implemented: upstream Zod4.6.7/node-forge1.4.2, Expo patch alignment, hash-pinned deepmerge/Zod3 compatibility patches and existing decoder fix. Clean install passes; Expo Doctor 21/21. Audit still reports11 version-based entries for patched packages/parent chains. Final native archive and simulator compilation pass. General owner acceptance is complete; specific physical edge cases remain unreported. |
-| AS-16 | Regression evidence | Prior core/service,tooling,report,photo UI,needs/news/shelf/deletion evidence retained. Five extended native scenarios pass: store/catalog lookup/details/save; camera recovery/shelf navigation; reset cancellation/persistence; largest text on iPhone and iPad. Exact282-input and simulator signature checks pass. No live paid model call. |
-| AS-17 | Final submission | Complete production cutover and matching privacy wording; publish final reviewed privacy label and obtain package/submission approval. Screenshot assets and targeted native checks are complete. Preserve stated coverage gaps and third-party notices. Manual release retained; no App Review submission. |
+| Item | Current status |
+|---|---|
+| Restore points | Build27 encrypted baseline retained; build28 retained; fresh service/config checkpoint and 14 consistent SQLite backups verified. |
+| Heading | Fixed in build29; whole-word wrapping visually checked at maximum text on iPhone/iPad. |
+| Source and side-chat work | Frozen revision 0182f18020f57e38cdc399974b45b3d95dd219d0; 282 native inputs match; existing features and approved prompts preserved. |
+| Security/dependencies | Reviewed dependency patches verify; production launcher deployed. Existing version-based audit findings and mitigations remain documented in dependency-review.md. No claim of an empty vulnerability report. |
+| Backend/privacy | Live production mode; no new beta journals after live scans; legacy seven-day expiry; existing catalog/keys/usage preserved. |
+| Support/privacy pages | Public HTTPS passes; seven-day Google project-log setting and separate provider/test-dataset retention accurately disclosed. |
+| Native build | Signed build 29; 8 manifests, 10 declared data types, encryption=false, minimum iOS 16.4; iPhone/iPad retained. |
+| Regression checks | 825 core/service, 21 tooling, 10 report-adapter and 76 photo-UI checks passed, alongside needs/news/shelf checks; eight focused runtime/privacy/expiry checks and two production-launcher checks pass. Typecheck/lint pass. All 282 native inputs, App Store signature, eight privacy manifests and ten declared data types verify. Five targeted build 29 simulator scenarios pass, including largest text on iPhone/iPad and profile persistence across installation over build 28. |
+| Backup check | Native encrypted export and share cancellation also pass. The captured fictional-profile archive decrypts with the expected passphrase, rejects a wrong passphrase and is removed from the app cache when sharing closes. Full Files-picker restore on a physical phone remains untested. |
+| Live scans | Product: 3 alternatives, first content 4.775s, final 23.223s. Shelf:9/9 cells,7 distinct products, first 5.959s, final 90.176s; supplemental GPT completion not established. |
+| Screenshots | Ten complete and ordered:7 iPhone,3 iPad. Four use owner-approved build27 recordings; default layout unchanged. |
+| Apple draft | Build29 attached; free,USA-only,manual release; contact/age/listing saved; no review submission. |
+| TestFlight | Exact build 29 VALID and assigned to existing owner group; owner installation of29 not claimed. Build28 general acceptance retained. |
+| Shelf models | Retained per owner decision. Licensing uncertainty documented; no new license grant claimed or replacement decision pending. |
+| Dataset | Fictional/public-only; optional deletion, not a mandatory release gate. |
+| Strong app-only access | Explicitly deferred by owner; no tester-key flow reintroduced. |
+| App Privacy questionnaire | Prepared ten-category worksheet; publication still required through App Store Connect browser. Tool initialization failed. |
+| Final submission | Review the final listing, ten screenshots, privacy/age answers and test coverage; publish the prepared App Privacy questionnaire in App Store Connect; authorize App Review submission. No new account, credential, payment, recording or model-replacement decision is requested. |
 
-## Exact remaining owner actions
-
-Mac setup and approved cleanup are complete. Signed archives, source packages, logs and rollback baseline are preserved; no further deletion approval is requested.
-
-1. Review the completed screenshot/listing/privacy/age package and authorize App Review submission once production verification is complete. Build28 owner testing, seller/support/contact details and Mac access are resolved. No new recording, account, credential or repeated general build test is needed.
-
-The owner has already directed us to retain both detectors and proceed. Do not ask again for a replacement choice. The remaining licensing uncertainty is documented in third-party-model-licenses.md; authorization to proceed is not represented as a new license grant.
-
-Engineering still owns production backend cutover/verification and matching policy wording, final Apple privacy-label publication after review, and specific unreported physical/backup/manual-accessibility scenarios. Signed archive, screenshot assets and targeted native checks are complete. Actual-phone observations may need owner participation; no physical acceptance is inferred from simulator tests. Before restoring, honor deletion intents and current usage/key state.
-
-Production deployment and rollback steps are prepared in production-cutover.md, not executed. The beta launcher overwrites inherited stage flags; the production launcher must be used at cutover.
-
-Build28 is attached to the version1.0 App Store draft. Apple read-back confirms Prepare for Submission and manual release; no App Review submission occurred.
-
-Google test-dataset retention clarification, October29: fictional/public-only scope is owner-confirmed. Deletion was an earlier optional preference, not a mandatory App Store gate. No data or provider settings were changed.
+Full manual VoiceOver, device-specific physical interruptions/permissions and the full native Files-picker restore flow remain coverage limits. No new screenshot recording, Mac setup, support verification or seller/contact detail is needed. No tester was contacted.

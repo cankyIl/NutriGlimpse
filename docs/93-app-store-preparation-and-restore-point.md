@@ -1,5 +1,7 @@
 # App Store preparation and restore point — October 27, 2026
 
+**Current October 29 finalization:** NutriGlimpse 1.0 (29) is Apple VALID and available to the existing owner TestFlight group. It is attached to the Prepare for Submission draft with manual release. The large-text home heading is corrected. Production backend and matching privacy policy are live. No App Review submission or public release. See [build29 evidence](94-app-store-finalization-2026-10-29.md). Earlier checkpoints below are historical.
+
 **Requested release:** free, United States only. **Status:** preparation in progress; not submitted or publicly released. NutriGlimpse 1.0 (28) is Apple VALID / IN_BETA_TESTING, assigned to the existing owner TestFlight group. Encryption=false and English test notes are verified. Owner confirmed testing build 28 successfully on October29. This is owner acceptance; device models and individual edge-case results were not specified. The live beta backend and other services remain unchanged.
 
 ## Verified restore point

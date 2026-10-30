@@ -27,3 +27,7 @@ Reset does not delete Google/OpenAI or hosting records already retained. Use the
 ## Google test dataset - October 28 owner follow-up
 
 Owner confirms a separate Google AI Studio dataset contains only fictional/public test data. The earlier choice to delete it before launch was a retention preference, not an established Apple requirement; on October29 the owner questioned the need. Keeping this test dataset does not by itself block release on the confirmed scope. No deletion is scheduled by this procedure. If the owner retains the earlier deletion choice, record completion when actually performed. Do not treat 7-day project-log expiry as dataset expiry. No dataset identifier/content or Google management credentials were provided, and deletion has not been performed or verified. Do not claim this deletes service-security/grounding records.
+
+## Deployed runtime - October29
+
+The source is frozen in releases/backend-production-2026-10-29 while private runtime data remains in the original project root. Run the deletion helper from the deployed checkout and pass the runtime directory explicitly with --root as shown above. The new checkpoint excludes both shopper diagnostic journals, preserving the earlier backup-retention rule. Production starts the legacy seven-day expiry scheduler but creates no new beta journals.

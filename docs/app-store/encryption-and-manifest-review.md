@@ -1,5 +1,7 @@
 # Encryption and privacy-manifest review - October 28, 2026
 
+Current October 29 checkpoint: build 29 verifies the same reviewed dependency patches, eight manifests, ten declared data categories, required-reason APIs and encryption=false. All 282 native inputs match. The production backend now uses the reviewed dependencies. Earlier build28/source audit records below remain evidence; they do not mean cutover or the new archive is still pending. See native-verification.md and ../94-app-store-finalization-2026-10-29.md.
+
 ## Source inventory
 
 | Use | Implementation | Release implication |

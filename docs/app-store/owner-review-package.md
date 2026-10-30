@@ -1,10 +1,10 @@
 # NutriGlimpse - owner submission review package
 
-October 29, 2026. Preparation draft: no App Review submission or public release. Build28 owner testing is accepted. Screenshot assets and targeted native checks are complete. Production cutover, matching policy wording, final privacy-label publication and package review remain. Manual accessibility and specific physical edge cases are not implied.
+October 29, 2026. NutriGlimpse 1.0 (29) is Apple VALID and available to the existing owner TestFlight group. It is attached to the Prepare for Submission draft with manual release. The large-text home heading is corrected. Production backend and matching privacy policy are live. No App Review submission or public release. 825 core/service, 21 tooling, 10 report-adapter and 76 photo-UI checks passed, alongside needs/news/shelf checks; eight focused runtime/privacy/expiry checks and two production-launcher checks pass. Typecheck/lint pass. All 282 native inputs, App Store signature, eight privacy manifests and ten declared data types verify. Five targeted build 29 simulator scenarios pass, including largest text on iPhone/iPad and profile persistence across installation over build 28.
 
 ## Release
 
-- NutriGlimpse 1.0 (28), published by Viraank Gaur (Individual account).
+- NutriGlimpse 1.0 (29), published by Viraank Gaur (Individual account).
 - Free, United States only; new territories disabled; manual release after Apple review.
 - Support/privacy: help@serveforward.us.
 - [Support](https://grocery.serveforwad.com/support) and [Privacy policy](https://grocery.serveforwad.com/privacy).
@@ -44,11 +44,13 @@ The age draft uses Apple's 18+ override (legacy 17+); the app's existing intende
 
 Ten screenshots are processed, placed and ordered in Apple's English draft: seven iPhone and three iPad. iPhone order: home, product result, alternatives, real-store shelf camera, shelf results, My Needs, privacy. iPad order: home, My Needs, privacy. Four product/shelf images use the owner's existing build27 recordings; six native captures are retained. Real app content is preserved with viewport crops and separate headings. See [provenance](screenshot-provenance.md). No fresh recording is needed. The local review HTML contains all ten. Final selection approval has not been inferred from general build acceptance.
 
-## Remaining preparation
+## Remaining owner actions
 
-1. Complete and verify the production backend change and matching policy wording.
-2. Review the listing, ten screenshots, privacy/age answers and stated test coverage with the owner. Publish final Apple privacy answers and submit after authorization.
+1. Review this listing, all ten screenshots, privacy/age answers and the coverage below, then authorize App Review submission.
+2. Publish the prepared [App Privacy answers](privacy-answers.md) in App Store Connect. The browser-control tool failed to initialize; API checks cannot be treated as completed questionnaire publication.
 
-The Mac reconnected. Five extended native scenarios passed, including public catalog/store navigation, camera-unavailable recovery, reset cancellation/persistence and largest text on iPhone/iPad. Audited screens have zero automated findings. Full manual VoiceOver, real-camera interruptions and encrypted backup/restore remain specific coverage gaps; build28 general owner acceptance is already recorded.
+Native encrypted export and share cancellation also pass. The captured fictional-profile archive decrypts with the expected passphrase, rejects a wrong passphrase and is removed from the app cache when sharing closes. Full Files-picker restore on a physical phone remains untested.
 
-No new account, credential, payment or model-replacement choice is requested. The decision to retain both detectors is recorded separately in [the license record](third-party-model-licenses.md).
+The five build 29 native scenarios pass, including largest-text heading checks. Single/shelf public-image transport tests pass. The shelf shows initial cards in about 6 seconds but waited about 90 seconds to finalize; successful supplemental GPT completion is not proven by this run. A missing product photo and model fact variability remain possible. Full manual VoiceOver and unreported physical interruption/permission scenarios are not claimed.
+
+No new account, credential, payment, recording or model-replacement choice is needed. Both retained models and their unresolved licensing scope are documented in the existing license record. Build28 owner acceptance remains recorded. Final submission will retain manual release.

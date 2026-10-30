@@ -1,0 +1,39 @@
+NUTRIGLIMPSE - APP PRIVACY ENTRY CHECKLIST
+Prepared October 29, 2026 for version 1.0 (29).
+The answers are prepared but have not been published in App Store Connect.
+
+Open App Store Connect > My Apps > NutriGlimpse > App Privacy.
+Privacy Policy URL: https://grocery.serveforwad.com/privacy
+Privacy Choices URL (if offered): https://grocery.serveforwad.com/support
+Answer YES to collecting data, including data retained by AI partners.
+
+For EVERY type below:
+  Linked to the user's identity: YES (conservative disclosure).
+  Used for tracking: NO.
+  Do not select advertising, developer marketing or analytics purposes.
+
+Data type                        Purposes
+Health                           App Functionality; Product Personalization
+Sensitive Info                   App Functionality; Product Personalization
+Photos or Videos                 App Functionality
+Coarse Location                  App Functionality; Product Personalization
+Precise Location                 App Functionality; Product Personalization
+Other User Content               App Functionality; Product Personalization
+Other Data Types                 App Functionality; Product Personalization
+Search History                   App Functionality
+Customer Support                 App Functionality
+Email Address                    App Functionality
+
+Review the generated summary, then click Publish for these privacy answers.
+This publishes the privacy label, not the app itself.
+
+These disclosures include optional health sharing and support correspondence.
+Google project logs expire after 7 days. Other provider retention is separate.
+Optional provider training/improvement sharing is disabled.
+The separate dataset contains fictional/public test data only.
+Production beta diagnostic journals are disabled; older records expire.
+See privacy-answers.md for the reasons behind each data category.
+
+After reviewing the listing, screenshots, privacy/age answers and coverage,
+confirm authorization to submit version 1.0 (29) for App Review. Manual release
+is selected, so approval by Apple will not automatically launch the app.

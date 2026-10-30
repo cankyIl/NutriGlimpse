@@ -26,9 +26,13 @@ All ten types are also declared in the candidate's native manifest. Support corr
 - Already confirmed: Google and OpenAI logging on; optional training/product-improvement sharing off. Do not ask the owner to re-confirm the same yes/no question.
 - Confirmed October 28: Google AI Studio project logs expire after 7 days. A separate dataset exists and contains only fictional/public test data; the owner previously chose deletion before launch, but questioned its necessity on October29. Deletion is an optional retention preference, not an automatic App Store requirement for fictional/public test data. If retained, document its scope and keep real shopper information out of this test dataset. This is separate from service/grounding/security retention; no dashboard contents or credentials were inspected.
 - Needed only if configured: any nondefault OpenAI retention/storage arrangement, or infrastructure request-body/IP-log export. Standard service security retention remains disclosed; store:false is not Zero Data Retention.
-- A deployment check must establish production journal disablement and the retirement of old beta records; source alone is not deployment evidence.
+- Complete October 29: deployed production flags and unchanged journal timestamps/counts across live scans verify no new beta journals. Legacy expiry tests and the running scheduler preserve seven-day retirement.
 - Owner reviews the completed answers and contact/policy text. Exact backend-only secrets and private review phone remain outside source and the public listing.
 
 This worksheet does not certify medical or legal compliance. The app gives general food guidance with optional health context; Apple may ask about the Individual-account scope under its review rules.
 
 Sources: https://developer.apple.com/app-store/app-privacy-details/ and https://developer.apple.com/help/app-store-connect/manage-app-information/manage-app-privacy/.
+
+## Exact browser step remaining
+
+After reviewing this worksheet, open App Store Connect → My Apps → NutriGlimpse → App Privacy. Enter the ten rows above, use the listed purposes, linked to user Yes and tracking No, then publish. Browser-control initialization failed during preparation; no questionnaire publication is claimed. Publishing privacy answers does not itself release the app.
