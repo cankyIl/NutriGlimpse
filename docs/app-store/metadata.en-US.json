@@ -200,5 +200,17 @@
     "priorDeclarationErrorsResolvedByAppleValidation": true,
     "medicalDeviceDeclarationValueIndependentlyReadBack": false
   },
-  "nextReleaseAction": "Await Apple App Review; manual public release after approval is a separate action."
+  "nextReleaseAction": "Await Apple App Review; manual public release after approval is a separate action.",
+  "appReviewFollowup": {
+    "sentOn": "2026-11-01",
+    "topic": "App Review Status",
+    "channel": "Apple Developer Support email form",
+    "sent": true,
+    "confirmedByApple": true,
+    "caseDetailsInPrivateArtifacts": true,
+    "latestVerifiedAppState": "WAITING_FOR_REVIEW",
+    "awaitingReply": true,
+    "expeditedReviewRequested": false,
+    "submissionChanged": false
+  }
 }

@@ -1,12 +1,16 @@
 # Beta 0 Implementation Project Plan
 
-**Reconciled:** October 29, 2026, America/New_York
+**Reconciled:** November 1, 2026, America/New_York
 **Authoritative workspace:** /path/to/NutriGlimpse on project-server  
 **Current release:** NutriGlimpse 1.0 (29) was submitted to Apple on October 29 at 10:54 p.m. EDT and is WAITING_FOR_REVIEW. Free USA-only distribution and manual release are verified; it is not publicly released. The large-text home heading is corrected. Production backend and matching privacy policy are live. Existing owner TestFlight access is retained.
 **Test scope:** Three iPhone testers including the owner; possible fourth Android tester; initial beta in the United States.  
 **Acceptance boundary:** 825 core/service, 21 tooling, 10 report-adapter and 76 photo-UI checks passed, alongside needs/news/shelf checks; eight focused runtime/privacy/expiry checks and two production-launcher checks pass. Typecheck/lint pass. All 282 native inputs, App Store signature, eight privacy manifests and ten declared data types verify. Five targeted build 29 simulator scenarios pass, including largest text on iPhone/iPad and profile persistence across installation over build 28. Native encrypted export and share cancellation also pass. The captured fictional-profile archive decrypts with the expected passphrase, rejects a wrong passphrase and is removed from the app cache when sharing closes. Full Files-picker restore on a physical phone remains untested. Build28 owner acceptance is retained. Full manual VoiceOver, physical interruption/permission testing and per-device iPhone X/17 acceptance are not newly claimed.
 
 This is the active plan. It incorporates the [side-chat handoff](71-side-chat-news-build15-handoff-2026-10-18.md), [news implementation](69-daily-personalized-food-news.md) and [build-15 release evidence](70-build15-fresh-personalized-news.md). The complete previous plan is preserved unchanged in the [October 18 archive](history/ImplementationProjectPlanDocument-2026-10-18-before-build15-handoff-reconciliation.md). Old dated checkboxes and release instructions in historical documents are not active tasks.
+
+## App Review follow-up - November 1, 2026
+
+The owner-authorized status inquiry was sent through Apple Developer Support > App Review > App Review Status > Email after build29 remained WAITING_FOR_REVIEW for more than 48 hours. Apple displayed a successful submission confirmation and assigned a support case; the case ID, exact message and screenshot are preserved in private release artifacts. The inquiry asks whether the submission is correctly queued and whether Apple needs information or action. Await Apple's email response. This was not an expedited-review request, cancellation, resubmission, new build or public release. Manual release is unchanged.
 
 ## App Store submission - October 29, 2026
 
