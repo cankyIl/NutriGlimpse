@@ -1,0 +1,39 @@
+NUTRIGLIMPSE — PUBLIC TESTFLIGHT BETA WEBPAGE COPY
+Prepared November 3, 2026. Apple Beta App Review is pending.
+
+CURRENT PUBLISHABLE STATUS
+Try NutriGlimpse Beta
+Know your food. Understand your choices.
+
+Our iPhone and iPad beta is coming soon through Apple's TestFlight.
+For US participants aged 21 and older. Requires iOS/iPadOS 16.4 or later and an internet connection.
+
+Button while approval is pending: Beta access coming soon
+Keep this button disabled. There is no active public invitation link yet.
+
+AFTER BETA APPROVAL AND PUBLIC-LINK VERIFICATION
+Heading: Try NutriGlimpse Beta
+Text: Scan a grocery product or compare a shelf. Explore nutrition, ratings and suggested alternatives, then help us make NutriGlimpse better.
+Button: Join the free beta on TestFlight
+Button URL: {{TESTFLIGHT_PUBLIC_URL}}
+
+Replace the placeholder only with the verified https://testflight.apple.com/join/... URL supplied by Apple. Do not use the internal tester invitation link.
+
+Installation steps:
+1. Open the beta link on your iPhone or iPad.
+2. Install Apple's TestFlight app if prompted.
+3. Return to the link, accept the invitation and install NutriGlimpse.
+4. Start with a grocery package at home or in a store. Health details and location sharing are optional.
+5. Send feedback from TestFlight or email help@serveforward.us. Exclude personal medical reports from feedback screenshots.
+
+Short footer:
+Free beta for US participants aged 21 and older. iOS/iPadOS 16.4+. Beta results may be incomplete or incorrect; check the package for nutrients and allergens. General food information, not medical advice.
+Privacy: https://grocery.serveforwad.com/privacy
+Support: https://grocery.serveforwad.com/support
+
+OPERATOR NOTES — NOT CUSTOMER COPY
+Requested public-link cap: 10,000 enrollments, to be set and verified on activation.
+US-only is the intended audience; TestFlight does not enforce country through public-link criteria.
+The backend currently allows two simultaneous photo requests and two shelf requests. Enrollment capacity is not a performance guarantee. Start with a small wave and measure before a large campaign.
+Build29 expires January 27, 2027, approximately 8:06 p.m. Eastern.
+Do not describe the beta as App Store approved. App Store and TestFlight reviews are separate.

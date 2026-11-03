@@ -59,3 +59,7 @@ Evidence: app-review-submit-response.json, app-review-submission-receipt.json, a
 ## Review-status inquiry sent - November 1
 
 The owner requested a follow-up and completed Apple website sign-in. The inquiry was sent through the dedicated App Review Status email-support form. Apple confirmed successful receipt and assigned a case; its ID, exact text and screenshot are private artifacts under app-review-followup-2026-11-01. Build29 was freshly verified WAITING_FOR_REVIEW immediately before sending. The message requests queue confirmation and any required information or action. Await the email response; no expedited review, cancellation, duplicate submission or automatic release was requested.
+
+## Public beta preparation - November 3
+
+Build29 was separately submitted for TestFlight Beta App Review and is WAITING_FOR_BETA_REVIEW. The external group and metadata are prepared. Public-link activation and its requested 10,000 cap await approval; no new binary or App Store resubmission occurred. See [public beta preparation](95-public-testflight-beta-2026-11-03.md) for capacity limits and webpage handoff.
