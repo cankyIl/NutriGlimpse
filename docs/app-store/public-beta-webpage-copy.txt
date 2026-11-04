@@ -1,23 +1,14 @@
 NUTRIGLIMPSE — PUBLIC TESTFLIGHT BETA WEBPAGE COPY
-Prepared November 3, 2026. Apple Beta App Review is pending.
+Updated November 3, 2026. Apple Beta App Review approved; public link verified active.
 
-CURRENT PUBLISHABLE STATUS
-Try NutriGlimpse Beta
-Know your food. Understand your choices.
-
-Our iPhone and iPad beta is coming soon through Apple's TestFlight.
-For US participants aged 21 and older. Requires iOS/iPadOS 16.4 or later and an internet connection.
-
-Button while approval is pending: Beta access coming soon
-Keep this button disabled. There is no active public invitation link yet.
-
-AFTER BETA APPROVAL AND PUBLIC-LINK VERIFICATION
+PUBLISHABLE COPY
 Heading: Try NutriGlimpse Beta
+Subtitle: Know your food. Understand your choices.
 Text: Scan a grocery product or compare a shelf. Explore nutrition, ratings and suggested alternatives, then help us make NutriGlimpse better.
 Button: Join the free beta on TestFlight
-Button URL: {{TESTFLIGHT_PUBLIC_URL}}
+Button URL: https://testflight.apple.com/join/pA6z7nPH
 
-Replace the placeholder only with the verified https://testflight.apple.com/join/... URL supplied by Apple. Do not use the internal tester invitation link.
+For US participants aged 21 and older. Requires iOS/iPadOS 16.4 or later and an internet connection.
 
 Installation steps:
 1. Open the beta link on your iPhone or iPad.
@@ -32,7 +23,7 @@ Privacy: https://grocery.serveforwad.com/privacy
 Support: https://grocery.serveforwad.com/support
 
 OPERATOR NOTES — NOT CUSTOMER COPY
-Requested public-link cap: 10,000 enrollments, to be set and verified on activation.
+Active public-link cap: 10,000 enrollments, independently verified in Apple API.
 US-only is the intended audience; TestFlight does not enforce country through public-link criteria.
 The backend currently allows two simultaneous photo requests and two shelf requests. Enrollment capacity is not a performance guarantee. Start with a small wave and measure before a large campaign.
 Build29 expires January 27, 2027, approximately 8:06 p.m. Eastern.

@@ -2,7 +2,7 @@
 
 ## Verified outcome
 
-NutriGlimpse 1.0 (29) was accepted for **TestFlight Beta App Review** on November 3 at 6:54:55 a.m. Eastern. Apple reports `WAITING_FOR_REVIEW` for the beta review and `WAITING_FOR_BETA_REVIEW` for external testing. The existing App Store submission remains Waiting for Review with manual release.
+NutriGlimpse 1.0 (29) was accepted for **TestFlight Beta App Review** on November 3 at 6:54:55 a.m. Eastern. Later on November 3, Apple approval was verified: beta review `APPROVED`; external testing is now `IN_BETA_TESTING`. The existing App Store submission remains Waiting for Review with manual release.
 
 The external group **NutriGlimpse - Public Beta (US)** is created. Its build relationship confirms build29 only. Feedback is enabled. Apple Silicon Mac and Apple Vision availability are off for this group; intended devices are iPhone and iPad running iOS/iPadOS 16.4 or later. The owner internal group remains present.
 
@@ -10,11 +10,13 @@ English beta description, feedback email (`help@serveforward.us`), privacy URL, 
 
 ## Public invitation link
 
-Requested limit: **10,000 external testers**. The public link remains disabled while beta review is pending. There is no usable invitation URL yet. Apple rejected setting the tester limit while the link was disabled, so the 10,000 cap is prepared for activation, not already configured. Automatic tester notification is off until the approved build is deliberately started for external testing.
+**Active public invitation:** [https://testflight.apple.com/join/pA6z7nPH](https://testflight.apple.com/join/pA6z7nPH)
 
-After approval, the private activation helper checks the exact build/group, expiry, approval, device scope and external-testing state. It starts testing when required, enables the public link with the 10,000 cap, and verifies Apple's actual `https://testflight.apple.com/join/...` URL. Do not substitute an internal tester invitation URL.
+The link is enabled with **10,000 external tester enrollments**. Independent Apple API readback verifies enabled=true, limitEnabled=true, limit=10000, exact build29 membership, APPROVED beta review and external IN_BETA_TESTING. The public invitation page returned HTTP200 with title "Join the NutriGlimpse beta - TestFlight - Apple" and TestFlight installation / View NutriGlimpse Beta instructions. No full/unavailable message was present. Installation by any new tester is not claimed.
 
-The owner will add the link to the NutriGlimpse webpage. [Webpage copy](app-store/public-beta-webpage-copy.txt) is ready, including a disabled “Beta access coming soon” button for now. No website was changed.
+The activation helper was updated to recognize Apple's documented BETA_APPROVED state as eligible to start testing. It retained approval, exact build/group, expiry and device checks. Starting testing completed before enabling the invitation; the server read back IN_BETA_TESTING. No duplicate group, build or review submission was created.
+
+The owner can add this URL to the NutriGlimpse webpage. [Webpage copy](app-store/public-beta-webpage-copy.txt) now contains the live URL and "Join the free beta on TestFlight" button wording. No website was changed.
 
 ## Audience and capacity
 
@@ -27,13 +29,13 @@ Existing app-attestation deferral and shelf-model licensing uncertainty are unch
 ## Verification and remaining steps
 
 - Build29: VALID, unexpired, minimum OS 16.4, encryption=false and internal state IN_BETA_TESTING.
-- Beta submission receipt and independent readback confirm the review is pending.
+- Beta approval, external testing and the active public link/cap are confirmed by independent readback.
 - Direct group/build relationship confirms exactly build29. Expanded Apple listings intermittently returned empty lists or HTTP500 after submission; direct object/relationship reads established the saved state. No duplicate group, upload or beta submission was made.
 - Public health, support and privacy URLs return HTTP200 with a browser user agent. Plain Python's default user agent received HTTP errors; this was not diagnosed as an app outage. The backend service remains active.
-- The App Store submission ID/date and manual release are unchanged. No additional testers were emailed or invited.
+- The App Store submission ID/date and manual release are unchanged; review remains WAITING_FOR_REVIEW. Public invitation access is enabled. No individual tester invitations or messages were sent.
 - Build29 expires January 27, 2027, approximately 8:06 p.m. Eastern. Continued beta testing beyond expiry requires a newer build.
 
-Remaining: Apple Beta App Review approval; then start testing, activate/verify the invitation link and provide it for the owner's webpage. No new Apple account, Mac connection, tester-email list or app access keys are needed for this preparation. Capacity work remains separate before broad promotion.
+Remaining: owner posts the link on the webpage and begins a small testing wave. No Apple beta approval, account, Mac connection, tester-email list or access-key dependency remains for invitations. Capacity measurement, queueing and provider-limit work remain before broad promotion. The discussed 10-photo/2-shelf then 20-photo/4-shelf levels are future load-test targets, not measured or deployed capacity.
 
 Private snapshots, receipts, pre-change values and read/activation helpers are in `artifacts/testflight-public-beta-2026-11-03`. Private credentials and review-contact phone numbers are excluded from public docs.
 

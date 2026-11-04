@@ -62,4 +62,4 @@ The owner requested a follow-up and completed Apple website sign-in. The inquiry
 
 ## Public beta preparation - November 3
 
-Build29 was separately submitted for TestFlight Beta App Review and is WAITING_FOR_BETA_REVIEW. The external group and metadata are prepared. Public-link activation and its requested 10,000 cap await approval; no new binary or App Store resubmission occurred. See [public beta preparation](95-public-testflight-beta-2026-11-03.md) for capacity limits and webpage handoff.
+Build29 was separately approved for TestFlight Beta App Review on November 3. External testing is IN_BETA_TESTING and the public invitation [https://testflight.apple.com/join/pA6z7nPH](https://testflight.apple.com/join/pA6z7nPH) is enabled with a verified 10,000-enrollment cap. The public landing page returns HTTP200 and offers NutriGlimpse beta installation instructions. App Store review remains WAITING_FOR_REVIEW with manual release. No new binary or deployment occurred. See [public beta handoff](95-public-testflight-beta-2026-11-03.md) for capacity limits and webpage copy.
