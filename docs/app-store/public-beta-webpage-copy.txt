@@ -1,5 +1,6 @@
 NUTRIGLIMPSE — PUBLIC TESTFLIGHT BETA WEBPAGE COPY
 Updated November 3, 2026. Apple Beta App Review approved; public link verified active.
+Published on https://serveforward.us/nutriglimpse with a prominent TestFlight button and brief installation instructions.
 
 PUBLISHABLE COPY
 Heading: Try NutriGlimpse Beta

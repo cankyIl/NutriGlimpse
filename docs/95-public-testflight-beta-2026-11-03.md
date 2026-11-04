@@ -16,7 +16,7 @@ The link is enabled with **10,000 external tester enrollments**. Independent App
 
 The activation helper was updated to recognize Apple's documented BETA_APPROVED state as eligible to start testing. It retained approval, exact build/group, expiry and device checks. Starting testing completed before enabling the invitation; the server read back IN_BETA_TESTING. No duplicate group, build or review submission was created.
 
-The owner can add this URL to the NutriGlimpse webpage. [Webpage copy](app-store/public-beta-webpage-copy.txt) now contains the live URL and "Join the free beta on TestFlight" button wording. No website was changed.
+The public invitation is now published on [https://serveforward.us/nutriglimpse](https://serveforward.us/nutriglimpse) as a prominent "Join the free beta on TestFlight" button next to "Watch the demo", with short iPhone/iPad installation instructions. [Webpage copy](app-store/public-beta-webpage-copy.txt) contains the live URL. Browser click reached Apple's NutriGlimpse invitation page. Both page routes and the new CSS return HTTP200; the existing demo video still supports byte-range HTTP206. The origin HTML matches the deployed file; Cloudflare adds its existing analytics script at the edge. Video/poster/icon, the main homepage and backend files retain their prior hashes. Backup and verification: ServeForward/releases/nutriglimpse-testflight-20261103. No service restart was required.
 
 ## Audience and capacity
 
@@ -35,7 +35,7 @@ Existing app-attestation deferral and shelf-model licensing uncertainty are unch
 - The App Store submission ID/date and manual release are unchanged; review remains WAITING_FOR_REVIEW. Public invitation access is enabled. No individual tester invitations or messages were sent.
 - Build29 expires January 27, 2027, approximately 8:06 p.m. Eastern. Continued beta testing beyond expiry requires a newer build.
 
-Remaining: owner posts the link on the webpage and begins a small testing wave. No Apple beta approval, account, Mac connection, tester-email list or access-key dependency remains for invitations. Capacity measurement, queueing and provider-limit work remain before broad promotion. The discussed 10-photo/2-shelf then 20-photo/4-shelf levels are future load-test targets, not measured or deployed capacity.
+Remaining: begin a small testing wave using the published webpage invitation. No Apple beta approval, account, Mac connection, tester-email list or access-key dependency remains for invitations. Capacity measurement, queueing and provider-limit work remain before broad promotion. The discussed 10-photo/2-shelf then 20-photo/4-shelf levels are future load-test targets, not measured or deployed capacity.
 
 Private snapshots, receipts, pre-change values and read/activation helpers are in `artifacts/testflight-public-beta-2026-11-03`. Private credentials and review-contact phone numbers are excluded from public docs.
 
