@@ -1,6 +1,14 @@
 # App Store finalization - October 29, 2026
 
-NutriGlimpse 1.0 (29) was submitted to Apple on October 29 at 10:54 p.m. EDT and is WAITING_FOR_REVIEW. Free USA-only distribution and manual release are verified; it is not publicly released. The large-text home heading is corrected. Production backend and matching privacy policy are live. Existing owner TestFlight access is retained.
+As of November 8 at 10:03 a.m. EST, Apple still reports WAITING_FOR_REVIEW for NutriGlimpse 1.0 (29). The owner authorized public release, but Apple rejected the official release request with HTTP409 / ENTITY_ERROR.RELATIONSHIP.INVALID.INVALID_STATE: "You cannot send the latest version of the App live in the current state." The November 6 Apple Support email says Ready for Distribution, so the email and live release system conflict. The US listing returns HTTP404 and the public lookup has zero results. Free USA-only configuration is verified; the app is not publicly released.
+
+## Owner-authorized release attempt - November 8, 2026
+
+As of November 8 at 10:03 a.m. EST, Apple still reports WAITING_FOR_REVIEW for NutriGlimpse 1.0 (29). The owner authorized public release, but Apple rejected the official release request with HTTP409 / ENTITY_ERROR.RELATIONSHIP.INVALID.INVALID_STATE: "You cannot send the latest version of the App live in the current state." The November 6 Apple Support email says Ready for Distribution, so the email and live release system conflict. The US listing returns HTTP404 and the public lookup has zero results. Free USA-only configuration is verified; the app is not publicly released.
+
+The request targeted app 6823645787, version fd671053-0397-4200-97e5-0317e7991f63 and VALID build29 (0d16fdf3-0139-408a-9f31-16377675b241), after fresh free/US-only and manual-release checks. One release POST was attempted at 2026-11-08T15:03:16Z; fresh readback stayed WAITING_FOR_REVIEW. No duplicate request, review resubmission, new build, deployment or tester email occurred. The failed request does not make the app public.
+
+**Dependency:** Apple must resolve the support-email/release-state contradiction. Exact response, preflight and public lookup evidence are retained privately in artifacts/testflight-public-beta-2026-11-03/app-store-release-attempt-2026-11-08.json and app-store-public-after-release-attempt-2026-11-08.json.
 
 ## Signed build and source
 
@@ -34,7 +42,7 @@ Rollback: the private backend-checkpoint contains the exact former unit, databas
 
 All ten screenshots are processed/ordered; build 29 is attached to version 1.0, Waiting for Review, manual release. Free/USA-only settings remain. TestFlight access is verified for the existing owner group; installation of build 29 is not claimed.
 
-No owner input is required for the submitted version now. The owner confirmed saving the medical-device declaration; Apple accepted the authorized version 1.0 (29), listing and ten screenshots. Await Apple review and address any review feedback. Manual release after approval remains a separate action; the app stays free and USA-only.
+The owner authorized releasing exact version 1.0 (29) on November 8. Apple rejected the release because its live version remains WAITING_FOR_REVIEW. Apple Support must reconcile that state with its November 6 Ready for Distribution email before release can proceed. No additional owner release permission is needed for this version. Do not cancel or resubmit the existing review; preserve free USA-only distribution and the existing TestFlight beta.
 
 The local browser-control tool failed to initialize with a missing-assets-path error. Apple API draft/build checks succeeded, but no App Privacy questionnaire publication was attempted through an unverified API. The owner subsequently confirmed publishing App Privacy answers on October 29. The worksheet records the prepared proposal, not an independently verified readback of those published entries.
 
@@ -58,7 +66,7 @@ Evidence: app-review-submit-response.json, app-review-submission-receipt.json, a
 
 ## Review-status inquiry sent - November 1
 
-The owner requested a follow-up and completed Apple website sign-in. The inquiry was sent through the dedicated App Review Status email-support form. Apple confirmed successful receipt and assigned a case; its ID, exact text and screenshot are private artifacts under app-review-followup-2026-11-01. Build29 was freshly verified WAITING_FOR_REVIEW immediately before sending. The message requests queue confirmation and any required information or action. Await the email response; no expedited review, cancellation, duplicate submission or automatic release was requested.
+The owner requested a follow-up and completed Apple website sign-in. The inquiry was sent through the dedicated App Review Status email-support form. Apple confirmed successful receipt and assigned a case; its ID, exact text and screenshot are private artifacts under app-review-followup-2026-11-01. Build29 was freshly verified WAITING_FOR_REVIEW immediately before sending. The message requests queue confirmation and any required information or action. Apple replied on November 6 saying Ready for Distribution; the November 8 release attempt above records the conflicting live state. No expedited review, cancellation, duplicate submission or automatic release was requested.
 
 ## Public beta preparation - November 3
 

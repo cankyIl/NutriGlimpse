@@ -1,8 +1,8 @@
 # Beta 0 Implementation Project Plan
 
-**Reconciled:** November 3, 2026, America/New_York
+**Reconciled:** November 8, 2026, America/New_York
 **Authoritative workspace:** /path/to/NutriGlimpse on project-server  
-**Current release:** NutriGlimpse 1.0 (29) was submitted to Apple on October 29 at 10:54 p.m. EDT and is WAITING_FOR_REVIEW. Free USA-only distribution and manual release are verified; it is not publicly released. The large-text home heading is corrected. Production backend and matching privacy policy are live. Existing owner TestFlight access is retained.
+**Current release:** As of November 8 at 10:03 a.m. EST, Apple still reports WAITING_FOR_REVIEW for NutriGlimpse 1.0 (29). The owner authorized public release, but Apple rejected the official release request with HTTP409 / ENTITY_ERROR.RELATIONSHIP.INVALID.INVALID_STATE: "You cannot send the latest version of the App live in the current state." The November 6 Apple Support email says Ready for Distribution, so the email and live release system conflict. The US listing returns HTTP404 and the public lookup has zero results. Free USA-only configuration is verified; the app is not publicly released.
 **Test scope:** Existing owner testing; public iPhone/iPad beta requested for up to 10,000 enrollments, intended for US adults 21+, Apple beta approval and public invitation activation verified November 3. Android participation remains separate.
 **Acceptance boundary:** 825 core/service, 21 tooling, 10 report-adapter and 76 photo-UI checks passed, alongside needs/news/shelf checks; eight focused runtime/privacy/expiry checks and two production-launcher checks pass. Typecheck/lint pass. All 282 native inputs, App Store signature, eight privacy manifests and ten declared data types verify. Five targeted build 29 simulator scenarios pass, including largest text on iPhone/iPad and profile persistence across installation over build 28. Native encrypted export and share cancellation also pass. The captured fictional-profile archive decrypts with the expected passphrase, rejects a wrong passphrase and is removed from the app cache when sharing closes. Full Files-picker restore on a physical phone remains untested. Build28 owner acceptance is retained. Full manual VoiceOver, physical interruption/permission testing and per-device iPhone X/17 acceptance are not newly claimed.
 
@@ -16,9 +16,17 @@ This is the active plan. It incorporates the [side-chat handoff](71-side-chat-ne
 
 **Webpage live:** [https://serveforward.us/nutriglimpse](https://serveforward.us/nutriglimpse) now has the verified "Join the free beta on TestFlight" button, a demo link and brief installation instructions. Browser click reaches Apple's NutriGlimpse invitation. **Next:** begin a small testing wave. Capacity measurement and queueing remain before broad promotion; no capacity increase or load test is claimed. No tester email list, new account, Mac or app access key is required. [Beta handoff](95-public-testflight-beta-2026-11-03.md) / [Webpage copy](app-store/public-beta-webpage-copy.txt).
 
+## Owner-authorized release attempt - November 8, 2026
+
+As of November 8 at 10:03 a.m. EST, Apple still reports WAITING_FOR_REVIEW for NutriGlimpse 1.0 (29). The owner authorized public release, but Apple rejected the official release request with HTTP409 / ENTITY_ERROR.RELATIONSHIP.INVALID.INVALID_STATE: "You cannot send the latest version of the App live in the current state." The November 6 Apple Support email says Ready for Distribution, so the email and live release system conflict. The US listing returns HTTP404 and the public lookup has zero results. Free USA-only configuration is verified; the app is not publicly released.
+
+The request targeted app 6823645787, version fd671053-0397-4200-97e5-0317e7991f63 and VALID build29 (0d16fdf3-0139-408a-9f31-16377675b241), after fresh free/US-only and manual-release checks. One release POST was attempted at 2026-11-08T15:03:16Z; fresh readback stayed WAITING_FOR_REVIEW. No duplicate request, review resubmission, new build, deployment or tester email occurred. The failed request does not make the app public.
+
+**Dependency:** Apple must resolve the support-email/release-state contradiction. Exact response, preflight and public lookup evidence are retained privately in artifacts/testflight-public-beta-2026-11-03/app-store-release-attempt-2026-11-08.json and app-store-public-after-release-attempt-2026-11-08.json.
+
 ## App Review follow-up - November 1, 2026
 
-The owner-authorized status inquiry was sent through Apple Developer Support > App Review > App Review Status > Email after build29 remained WAITING_FOR_REVIEW for more than 48 hours. Apple displayed a successful submission confirmation and assigned a support case; the case ID, exact message and screenshot are preserved in private release artifacts. The inquiry asks whether the submission is correctly queued and whether Apple needs information or action. Await Apple's email response. This was not an expedited-review request, cancellation, resubmission, new build or public release. Manual release is unchanged.
+The owner-authorized status inquiry was sent through Apple Developer Support > App Review > App Review Status > Email after build29 remained WAITING_FOR_REVIEW for more than 48 hours. Apple displayed a successful submission confirmation and assigned a support case; the case ID, exact message and screenshot are preserved in private release artifacts. The inquiry asks whether the submission is correctly queued and whether Apple needs information or action. Apple replied on November 6 saying Ready for Distribution; the November 8 release attempt above documents the conflicting live state. This was not an expedited-review request, cancellation, resubmission, new build or public release. Manual release is unchanged.
 
 ## App Store submission - October 29, 2026
 
@@ -32,7 +40,7 @@ The owner-authorized status inquiry was sent through Apple Developer Support > A
 
 **Apple submission:** 0d16fdf3-0139-408a-9f31-16377675b241 is attached as build29. All ten screenshots remain processed/ordered. Encryption=false, owner-group access and English test notes are verified. Free USA-only/manual release remain configured. The owner confirmed App Privacy answers are published on October 29. Exact published entries have not been independently read back because browser-control initialization failed. Google/OpenAI settings already supplied by the owner are recorded; no credentials or retention re-confirmation is needed.
 
-**Next step:** No owner input is required for the submitted version now. The owner confirmed saving the medical-device declaration; Apple accepted the authorized version 1.0 (29), listing and ten screenshots. Await Apple review and address any review feedback. Manual release after approval remains a separate action; the app stays free and USA-only.
+**Next step:** The owner authorized releasing exact version 1.0 (29) on November 8. Apple rejected the release because its live version remains WAITING_FOR_REVIEW. Apple Support must reconcile that state with its November 6 Ready for Distribution email before release can proceed. No additional owner release permission is needed for this version. Do not cancel or resubmit the existing review; preserve free USA-only distribution and the existing TestFlight beta.
 
 Build28 owner acceptance remains recorded: "I tested the build 28 - its good". The build29 phone change is limited to heading scaling and build number; earlier side-chat features are preserved. Largest-text automatic audits pass with no findings in the surveyed screens. Full manual VoiceOver and specific unreported physical scenarios remain explicitly unverified, rather than being described as completed.
 
