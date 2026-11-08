@@ -10,6 +10,8 @@ The request targeted app 6823645787, version fd671053-0397-4200-97e5-0317e7991f6
 
 **Dependency:** Apple must resolve the support-email/release-state contradiction. Exact response, preflight and public lookup evidence are retained privately in artifacts/testflight-public-beta-2026-11-03/app-store-release-attempt-2026-11-08.json and app-store-public-after-release-attempt-2026-11-08.json.
 
+**Support follow-up sent - November 8, 10:05 a.m. EST:** At the owner's request, replied to Apple's existing support email with its November 6 Ready for Distribution confirmation, the exact HTTP409 release error, app/version/build identifiers and the unavailable public US listing. Asked Apple to reconcile and resolve the blocking state, confirm approval of this exact version and escalate to the responsible release team if needed. The sent reply to Apple App Review was verified in Outlook. Await Apple's response; publishing remains blocked. Message text, case number and sent receipt are retained in private release evidence.
+
 ## Signed build and source
 
 - Source commit: 0182f18020f57e38cdc399974b45b3d95dd219d0.
