@@ -1,8 +1,22 @@
 # App Store finalization - October 29, 2026
 
-As of November 8 at 10:03 a.m. EST, Apple still reports WAITING_FOR_REVIEW for NutriGlimpse 1.0 (29). The owner authorized public release, but Apple rejected the official release request with HTTP409 / ENTITY_ERROR.RELATIONSHIP.INVALID.INVALID_STATE: "You cannot send the latest version of the App live in the current state." The November 6 Apple Support email says Ready for Distribution, so the email and live release system conflict. The US listing returns HTTP404 and the public lookup has zero results. Free USA-only configuration is verified; the app is not publicly released.
+Apple approved NutriGlimpse 1.0 (29) on November 9, 2026. At the owner's request, the manual App Store release was accepted at 5:54 p.m. EST (22:54:11 UTC): HTTP201, followed by appStoreState=READY_FOR_SALE and appVersionState=READY_FOR_DISTRIBUTION. Free USA-only distribution was freshly verified. By 5:57 p.m. EST, the public US listing returned HTTP200 and Apple's catalog returned NutriGlimpse 1.0 at USD0. The App Store listing is live; installation on a phone has not been newly tested. Existing TestFlight access and the deployed app/backend are unchanged.
 
-## Owner-authorized release attempt - November 8, 2026
+## App Store release accepted - November 9, 2026
+
+Apple approved NutriGlimpse 1.0 (29) on November 9, 2026. At the owner's request, the manual App Store release was accepted at 5:54 p.m. EST (22:54:11 UTC): HTTP201, followed by appStoreState=READY_FOR_SALE and appVersionState=READY_FOR_DISTRIBUTION. Free USA-only distribution was freshly verified. By 5:57 p.m. EST, the public US listing returned HTTP200 and Apple's catalog returned NutriGlimpse 1.0 at USD0. The App Store listing is live; installation on a phone has not been newly tested. Existing TestFlight access and the deployed app/backend are unchanged.
+
+Apple's new approval emails were received at 2:45 p.m. EST and identify the exact submitted review. Fresh API checks confirmed review submission COMPLETE, version PENDING_DEVELOPER_RELEASE, attached VALID build29, manual release, free pricing and only USA enabled before the single release request. The request was accepted with HTTP201; its immediate readback is READY_FOR_SALE / READY_FOR_DISTRIBUTION. Initial public lookup returned zero results and the listing returned HTTP404. A fresh 5:57 p.m. EST check confirmed propagation completed: the listing returns HTTP200 with NutriGlimpse and Apple's catalog returns exactly app6823645787, version1.0, price0 USD. The November 8 failure and support follow-up remain below as historical evidence.
+
+**Evidence:** private artifacts/testflight-public-beta-2026-11-03/app-store-audit-2026-11-09.json, app-store-release-attempt-2026-11-09.json and app-store-public-after-release-2026-11-09.json. Public link: [NutriGlimpse on the US App Store](https://apps.apple.com/us/app/nutriglimpse/id6823645787). No app/backend source, distribution territory, price or TestFlight group was changed. At the owner's subsequent request, the webpage now carries the official App Store badge; see the webpage checkpoint below.
+
+## App Store website badge published - November 9, 2026
+
+The official unmodified black **Download on the App Store** badge is now the primary action on [serveforward.us/nutriglimpse](https://serveforward.us/nutriglimpse), pointing to [NutriGlimpse on the US App Store](https://apps.apple.com/us/app/nutriglimpse/id6823645787). Watch the demo and the existing TestFlight link remain; beta instructions are secondary. The outdated whole-app beta wording was removed. Only the NutriGlimpse HTML, a new page-v4.css and Apple's SVG badge were deployed, with a recoverable source backup; no service restart occurred.
+
+**Verified:** both page routes return200 with the correct badge/link; CSS and SVG return200 and match deployed SHA-256 hashes; demo range requests return206; homepage and transparency return200. Video, poster, app icon, former CSS, server and main homepage hashes are unchanged. Browser visual verification was unavailable because local browser use is disabled in Work settings. Deployment/verification/badge provenance are under ServeForward/releases/nutriglimpse-appstore-20261109, mirrored in private App Store release evidence.
+
+## Historical release attempt - November 8 (resolved November 9)
 
 As of November 8 at 10:03 a.m. EST, Apple still reports WAITING_FOR_REVIEW for NutriGlimpse 1.0 (29). The owner authorized public release, but Apple rejected the official release request with HTTP409 / ENTITY_ERROR.RELATIONSHIP.INVALID.INVALID_STATE: "You cannot send the latest version of the App live in the current state." The November 6 Apple Support email says Ready for Distribution, so the email and live release system conflict. The US listing returns HTTP404 and the public lookup has zero results. Free USA-only configuration is verified; the app is not publicly released.
 
@@ -42,15 +56,15 @@ Rollback: the private backend-checkpoint contains the exact former unit, databas
 
 ## Apple preparation and remaining actions
 
-All ten screenshots are processed/ordered; build 29 is attached to version 1.0, Waiting for Review, manual release. Free/USA-only settings remain. TestFlight access is verified for the existing owner group; installation of build 29 is not claimed.
+All ten screenshots are processed/ordered; build 29 is attached to version 1.0, approved and released November 9. Apple reports READY_FOR_DISTRIBUTION and the public US listing is verified live. Free/USA-only settings remain. TestFlight access is verified for the existing owner group; installation of build 29 is not claimed.
 
-The owner authorized releasing exact version 1.0 (29) on November 8. Apple rejected the release because its live version remains WAITING_FOR_REVIEW. Apple Support must reconcile that state with its November 6 Ready for Distribution email before release can proceed. No additional owner release permission is needed for this version. Do not cancel or resubmit the existing review; preserve free USA-only distribution and the existing TestFlight beta.
+The owner-authorized release of exact version 1.0 (29) was accepted on November 9 and the public US listing is verified live. Apple's approval/release-state contradiction is resolved. No publishing dependency remains. Continue ordinary app support and staged capacity verification; actual App Store installation on a phone has not been newly tested.
 
 The local browser-control tool failed to initialize with a missing-assets-path error. Apple API draft/build checks succeeded, but no App Privacy questionnaire publication was attempted through an unverified API. The owner subsequently confirmed publishing App Privacy answers on October 29. The worksheet records the prepared proposal, not an independently verified readback of those published entries.
 
 Full manual VoiceOver, per-device physical interruption/permissions and a complete native Files-picker backup/restore remain coverage limits. Build28's owner acceptance is retained; it is not substituted for observations never reported.
 
-Private evidence: artifacts/appstore-finalization-2026-10-29. The authorized App Review submission was sent and accepted. No public release, new tester invitation or tester message was sent.
+Private evidence: artifacts/appstore-finalization-2026-10-29 and artifacts/testflight-public-beta-2026-11-03. The authorized App Review submission and November 9 public-release request were accepted. Public US storefront visibility is verified; phone installation is not newly claimed. No new tester invitation or tester message was sent.
 
 ## Earlier submission validation - resolved October 29 evening
 
