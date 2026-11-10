@@ -8,6 +8,10 @@
 
 This is the active plan. It incorporates the [side-chat handoff](71-side-chat-news-build15-handoff-2026-10-18.md), [news implementation](69-daily-personalized-food-news.md) and [build-15 release evidence](70-build15-fresh-personalized-news.md). The complete previous plan is preserved unchanged in the [October 18 archive](history/ImplementationProjectPlanDocument-2026-10-18-before-build15-handoff-reconciliation.md). Old dated checkboxes and release instructions in historical documents are not active tasks.
 
+## Ongoing source and plan synchronization
+
+**Owner instruction, November 9, 2026:** after every completed, tested code change, update this plan and affected documentation, publish the reviewed code/documentation to `cankyIl/NutriGlimpse`, verify GitHub's remote commit, and mirror the plan to the laptop with hash verification. Keep validation results and remaining dependencies accurate; supersede outdated pending items. Routine pushes to this repository are already authorized. Preserve concurrent work and existing private-file/history exclusions; report any failed check or blocked push rather than claiming synchronization. GitHub updates alone do not authorize an app/backend deployment. See [normal repository update workflow](GitHub-Repository-Setup.md#normal-updates).
+
 ## GitHub source checkpoint - November 9, 2026
 
 The public source update brings the mobile/frontend, backend/shared code and release tooling to the approved App Store build29, with the latest release plan and README download links. The tested candidate matches the release source outside README/docs. Full automated checks pass: typecheck/lint, 828 core/service, 21 tooling, ten report-input and 76 photo-UI checks, plus needs/onboarding, eleven news tests and news/shelf UI checks. The existing unpublished operational history is retained privately; only a reviewed current-source snapshot and clean documentation history are included in the GitHub update. Credentials, private diagnostics and detector binaries remain excluded. No application deployment, new native build or physical-device test is claimed. [Repository details](GitHub-Repository-Setup.md).

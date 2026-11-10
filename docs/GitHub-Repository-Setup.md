@@ -56,7 +56,17 @@ The owner selected MIT licensing for original project code and authorized public
 
 ## Normal updates
 
-Review changes and run relevant checks before commits. Push only reviewed source to this repository. Keep secrets/runtime files excluded. A Git push does not deploy the backend or publish an iPhone build; those remain explicit release steps. Another project can use a separate repository and deploy key under a different account.
+**Standing owner instruction, November 9, 2026:** keep this repository updated after every tested code change and keep the project plan in sync. Routine updates to this existing repository are authorized; do not ask for permission again for each push.
+
+For each completed, tested change:
+
+1. Run the meaningful checks for that change and retain the results. Reconcile concurrent work; publish only reviewed, tested changes.
+2. Update `docs/ImplementationProjectPlanDocument.md` with what changed, actual validation, remaining limitations and dependencies. Remove or supersede outdated pending items; update related release/setup documentation when affected.
+3. Review the changes and outgoing history for credentials, private operator details, runtime/diagnostic records and development-assistant metadata. Keep existing exclusions intact. Do not publish private operational branch history simply to synchronize its current files.
+4. Commit the tested code and corresponding documentation, push to `cankyIl/NutriGlimpse` using the project-specific connection, and verify that GitHub's remote commit matches the intended commit. Reconcile remote changes without overwriting other contributors' work or force-pushing shared history.
+5. Mirror the updated project plan and related documents to the laptop project folder, verify file hashes, and report any test, review, connectivity or push blocker accurately. Do not claim GitHub is updated until the remote verification succeeds.
+
+A Git push does not deploy the backend or publish an iPhone build; those remain explicit release steps. Another project can use a separate repository and deploy key under a different account.
 
 ## Initial source checkpoint
 
