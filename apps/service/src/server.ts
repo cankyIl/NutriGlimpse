@@ -6,7 +6,6 @@ import {createNewsSelectionRoute} from './newsSelectionRoute.ts';
 import {shelfGridRoute} from './shelfGridRoute.ts';
 import {DUAL_FOOD_CONSENT,dualFoodRequestSchema,activePhotoModels} from '../../../packages/core/src/dualAiFoodReview.ts';
 import {availabilityRequestSchema,legacyAvailabilityResultSchema} from '../../../packages/core/src/nearbyAvailability.ts';
-import {createScanTimingInbox,createServerScanTimer} from './scanTiming.ts';
 import {newTrace,recordDiagnostic,type BetaDiagnostics} from './betaDiagnostics.ts';
 import {AI_FOOD_CONSENT,aiFoodRequestSchema,type AiPhotoPreview} from '../../../packages/core/src/aiFoodReview.ts';
 import {photoIdentitySchema} from '../../../packages/core/src/productPhoto.ts';
@@ -26,10 +25,9 @@ import {products} from '../../../packages/core/src/fixtures.ts';
 import {readiness} from '../../../packages/core/src/privacy.ts';
 
 import type { IntakeKind } from '../../../packages/core/src/intake.ts';
-export interface ServiceOptions { shelfNine?: import('./shelfNineProvider.ts').ShelfNineProvider; groceryReviews?: import('./groceryReviewProvider.ts').GroceryProvider; webReviews?: import('./webPhotoProvider.ts').WebPhotoProvider; shelfGrids?: import("./shelfGridProvider.ts").ShelfGridProvider; dualReviews?: import('./dualPhotoProvider.ts').DualPhotoProvider; availability?: ReturnType<typeof import('./nearbyAvailability.ts').createNearbyAvailability>; scanTimingEnabled?:boolean; diagnostics?:BetaDiagnostics; accessMode?: 'open-beta'; news?:()=>ReturnType<typeof import('./foodNews.ts').readFoodNews>; newsPool?:()=>ReturnType<typeof import('./foodNews.ts').readNewsPool>; aiReviews?: import('./aiFoodReviewProvider.ts').AiReviewProvider; cardSources?: ReturnType<typeof import('./productCardSources.ts').createProductCardSources>; photoAssessments?: import('./photoAssessmentProvider.ts').PhotoAssessmentProvider; productPhotos?: ProductPhotoProvider; labelEvidence?: (food:PublicFood)=>PublicFood['glutenEvidence']; realReports?: RealReportProvider; offLookup?: (barcode:string,refreshEvidence?:boolean)=>Promise<void>; directory?: import('../../../packages/core/src/storeDetection.ts').StoreDirectory; authorize?: (header: string | undefined) => boolean; catalog?: PublicDatabase; fictional?: (kind:IntakeKind)=>Promise<unknown>; rules?: RuleDistribution; catalogBurst?: number; refillPerSecond?: number; now?: () => number }
+export interface ServiceOptions { shelfNine?: import('./shelfNineProvider.ts').ShelfNineProvider; groceryReviews?: import('./groceryReviewProvider.ts').GroceryProvider; webReviews?: import('./webPhotoProvider.ts').WebPhotoProvider; shelfGrids?: import("./shelfGridProvider.ts").ShelfGridProvider; dualReviews?: import('./dualPhotoProvider.ts').DualPhotoProvider; availability?: ReturnType<typeof import('./nearbyAvailability.ts').createNearbyAvailability>;  diagnostics?:BetaDiagnostics; accessMode?: 'open-beta'; news?:()=>ReturnType<typeof import('./foodNews.ts').readFoodNews>; newsPool?:()=>ReturnType<typeof import('./foodNews.ts').readNewsPool>; aiReviews?: import('./aiFoodReviewProvider.ts').AiReviewProvider; cardSources?: ReturnType<typeof import('./productCardSources.ts').createProductCardSources>; photoAssessments?: import('./photoAssessmentProvider.ts').PhotoAssessmentProvider; productPhotos?: ProductPhotoProvider; labelEvidence?: (food:PublicFood)=>PublicFood['glutenEvidence']; realReports?: RealReportProvider; offLookup?: (barcode:string,refreshEvidence?:boolean)=>Promise<void>; directory?: import('../../../packages/core/src/storeDetection.ts').StoreDirectory; authorize?: (header: string | undefined) => boolean; catalog?: PublicDatabase; fictional?: (kind:IntakeKind)=>Promise<unknown>; rules?: RuleDistribution; catalogBurst?: number; refillPerSecond?: number; now?: () => number }
 /** A bounded global limiter retains no client identifiers, addresses or request payloads. */
 export function createAppServer(options: ServiceOptions = {}) {
-  const scanTimingInbox=createScanTimingInbox(options.diagnostics,options.scanTimingEnabled===true);
   const openBeta = options.accessMode === 'open-beta';
   let activeAvailabilityRequests=0; let activeShelfRequests=0;
   let activeDownloads=0; let activePhotoRequests=0; let activeMediaRequests=0;
@@ -55,8 +53,6 @@ export function createAppServer(options: ServiceOptions = {}) {
     response.setHeader('Content-Security-Policy', "default-src 'none'; frame-ancestors 'none'");
     if(publicSupportRoute(request,response))return;
     const trace=request.method==='POST'&&['/v3/photos/recognize','/v4/photos/recognize','/v5/photos/recognize','/v6/photos/recognize','/v3/photos/media','/v3/photos/sources'].includes(request.url??'')?newTrace():undefined;
-    const scanTimer=createServerScanTimer(options.scanTimingEnabled===true&&['/v3/photos/recognize','/v4/photos/recognize','/v5/photos/recognize','/v6/photos/recognize'].includes(request.url??''),options.diagnostics,trace??'', 'request');
-    if(trace&&['/v3/photos/recognize','/v4/photos/recognize','/v5/photos/recognize','/v6/photos/recognize'].includes(request.url??''))scanTimingInbox.register(trace);
     const requestStarted=Date.now();let diagnosticFinished=false;
     const operation=request.url?.endsWith('/media')?'media':request.url?.endsWith('/sources')?'sources':'recognize';
     if(trace){response.setHeader('X-Grocery-Trace-Id',trace);recordDiagnostic(options.diagnostics,trace,{kind:'request',operation,phase:'started'});}
@@ -84,8 +80,6 @@ export function createAppServer(options: ServiceOptions = {}) {
       response.setHeader('Access-Control-Allow-Headers','Authorization, Content-Type');
       response.writeHead(204);response.end();return;
     }
-    // TEMPORARY BETA-0: bounded write-only timing reports, separate from scan admission.
-    if(scanTimingInbox.handle(request,response))return;
     // Public ODbL directory: no user coordinates, credentials or personal records.
     if(request.url==='/v1/stores/directory'&&['GET','HEAD'].includes(request.method??'')){
       if(request.headers['transfer-encoding']||(request.headers['content-length']&&request.headers['content-length']!=='0'))return send(400,{code:'REQUEST_BODY_NOT_ALLOWED'},true);
@@ -195,7 +189,7 @@ export function createAppServer(options: ServiceOptions = {}) {
       const identityStreaming=aiMode&&request.headers.accept==='application/x-ndjson; preview=identity';
       const streaming=identityStreaming||(aiMode&&request.headers.accept==='application/x-ndjson');
       const streamEvent=(type:string,value:unknown)=>{if(response.destroyed||response.writableEnded)return;if(!response.headersSent){response.setHeader('Content-Type','application/x-ndjson; charset=utf-8');response.setHeader('Cache-Control','no-store, no-transform');response.setHeader('X-Accel-Buffering','no');response.writeHead(200);response.flushHeaders();}response.write(JSON.stringify({type,...(type==='error'?value as object:{result:value})})+'\n');};
-      const finish=(status:number,value:unknown,close=false)=>{if(finished)return;finished=true;scanTimer('response_sent');finishDiagnostic(status,value);chunks=[];clearTimeout(timer);release();if(!response.destroyed&&!response.writableEnded){if(streaming&&(status===200||response.headersSent)){streamEvent(status===200?'result':'error',value);response.end();}else send(status,value,close);}};
+      const finish=(status:number,value:unknown,close=false)=>{if(finished)return;finished=true;finishDiagnostic(status,value);chunks=[];clearTimeout(timer);release();if(!response.destroyed&&!response.writableEnded){if(streaming&&(status===200||response.headersSent)){streamEvent(status===200?'result':'error',value);response.end();}else send(status,value,close);}};
       const abort=()=>{controller.abort();chunks=[];clearTimeout(timer);release();};
       // Covers slow body uploads and a stalled provider. There is no retry queue.
       const timer=setTimeout(()=>{abort();finish(408,{code:'PHOTO_TIMED_OUT'},true);},webMode?105000:assessmentMode?90000:45000);
@@ -207,14 +201,14 @@ export function createAppServer(options: ServiceOptions = {}) {
       });
       request.once('end',()=>{
         if(finished||controller.signal.aborted)return;
-        scanTimer('body_received');
+
         let input:{consentVersion:string;imageBase64:string};
         try{const body=JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(Buffer.concat(chunks)));chunks=[];
           if(body?.consentVersion!==consentVersion){finish(400,{code:'PHOTO_CONSENT_REQUIRED'});return;}
           input=schema.parse(body);
         }catch{finish(400,{code:'INVALID_PRODUCT_IMAGE'});return;}
-        scanTimer('provider_start');
-        void recognize(input,controller.signal,streaming?value=>{if(!finished&&!controller.signal.aborted){scanTimer('first_result');streamEvent('progress',value);}}:undefined,trace,identityStreaming?identity=>{if(!finished&&!controller.signal.aborted)streamEvent('identity',identity);}:undefined).then(value=>{input.imageBase64='';if(!controller.signal.aborted)finish(200,value);},error=>{
+
+        void recognize(input,controller.signal,streaming?value=>{if(!finished&&!controller.signal.aborted){streamEvent('progress',value);}}:undefined,trace,identityStreaming?identity=>{if(!finished&&!controller.signal.aborted)streamEvent('identity',identity);}:undefined).then(value=>{input.imageBase64='';if(!controller.signal.aborted)finish(200,value);},error=>{
           input.imageBase64='';if(controller.signal.aborted)return;
           const code=error instanceof ProductPhotoError||error instanceof GroceryProviderError?error.code:'PHOTO_OUTCOME_UNKNOWN';
           finish(code==='PHOTO_BUSY'?429:code==='INVALID_PRODUCT_IMAGE'?400:503,{code});

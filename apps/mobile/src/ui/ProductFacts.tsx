@@ -22,7 +22,7 @@ export function ProductFacts({food,pool,metric,automaticMetric=false,photoResult
  <Button secondary label={details?'Hide details':'Details · nutrition, ingredients & sources'} onPress={()=>setDetails(!details)}/>
  {details&&<>
  <Body muted>{offline?'Included or saved food record':'Server food record'}{foodIsStale(food)?' · Refresh before relying on current packaging.':''}</Body>
- <Text style={s.small}>These are general food comparisons, not personalized medical recommendations. Colored ratings use a versioned beta app rubric built from label facts; they are not FDA whole-food ratings. Missing nutrients remain unknown. Health conditions, age and laboratory results do not determine these colors. Source details and reported nutrient values are below.</Text>
+ <Text style={s.small}>These are general food comparisons, not personalized medical recommendations. Colored ratings use a versioned app rubric built from label facts; they are not FDA whole-food ratings. Missing nutrients remain unknown. Health conditions, age and laboratory results do not determine these colors. Source details and reported nutrient values are below.</Text>
  <Text style={s.small}>Amounts below are per 100 g.</Text>
  {([['caloriesKcal','Energy','kcal'],['saturatedFatG','Saturated fat','g'],['fiberG','Fiber','g'],['sodiumMg','Sodium','mg'],['sugarsG','Total sugars','g']] as const).map(([field,label,unit])=><Body key={field}>{label}: {food.nutrients[field]===null?'Not reported':food.nutrients[field]+' '+unit}</Body>)}
  <Text style={s.small}>Ingredients: {food.ingredients??'Not reported'}</Text>

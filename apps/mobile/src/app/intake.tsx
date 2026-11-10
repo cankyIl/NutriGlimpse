@@ -77,7 +77,7 @@ export default function Intake() {
   <Button label={busy?'Working…':'Read fictional '+kind+' image'} disabled={busy} onPress={()=>void read()}/>
   {kind==='report'&&Platform.OS!=='web'&&<Button secondary label="Read fictional two-page PDF" disabled={busy} onPress={()=>void read(true)}/>}
   <Button secondary label="Review a server AI example" disabled={busy||!backendUrl} onPress={()=>void read(false,true)}/>
-  <Button secondary label="Food facts" disabled={busy} onPress={()=>router.push('/catalog')}/><Body muted>{backendUrl?'Only the example type is sent. Examples reuse saved fictional AI results without a new paid request.':'Server AI examples will be available after the secure beta server address is configured.'}</Body>
+  <Button secondary label="Food facts" disabled={busy} onPress={()=>router.push('/catalog')}/><Body muted>{backendUrl?'Only the example type is sent. Examples reuse saved fictional AI results without a new paid request.':'Server AI examples will be available after the secure server address is configured.'}</Body>
   {busy&&<Button secondary label="Cancel reading" onPress={()=>controller.current?.abort()}/>}
   <Button secondary label="Personal camera / document access: locked" disabled={busy} onPress={()=>void requestPersonalInput('document').catch(()=>setMessage('Personal capture is disabled before any permission request or file picker. Device privacy verification and provider setup are still required.'))}/>
   {review&&<Card><Heading>Review before saving</Heading>

@@ -2,7 +2,6 @@ import {buildAiReviewRequest} from './aiFoodReviewProvider.ts';
 import {CLAUDE_PHOTO_MODEL} from '../../../packages/core/src/dualAiFoodReview.ts';
 import {readStreamLines} from '../../../packages/core/src/streamLines.ts';
 import {PhotoStreamFailure} from './photoStreamTransport.ts';
-import type {ServerTimingStage} from './scanTiming.ts';
 
 // Anthropic does not accept OpenAI's length/item constraints and caps nullable
 // grammar parameters. Reuse identical definitions; the common Zod validator still
@@ -41,15 +40,14 @@ export function buildClaudeReviewRequest(image:string){
 /** One image request, no tools/retries; adapt only completed text to the common parser envelope. */
 export function createClaudePhotoTransport(key:string,fetcher:typeof fetch=fetch,timeoutMs=60000){
  if(!key.startsWith('sk-ant-')||key.length>1000||/\s/.test(key))throw Error('Claude server key required.');
- return async(request:Record<string,unknown>,parent:AbortSignal,onText?:(text:string)=>void,onTiming?:(stage:ServerTimingStage)=>void)=>{
-  const timing=(stage:ServerTimingStage)=>{try{onTiming?.(stage);}catch{}};
+ return async(request:Record<string,unknown>,parent:AbortSignal,onText?:(text:string)=>void)=>{
   const signal=AbortSignal.any([parent,AbortSignal.timeout(timeoutMs)]);
   let usage:Record<string,unknown>={};
   let text='',data:string[]=[],started=false,block=false,blockEnded=false,finished=false,stop=false;
-  const body=JSON.stringify({...request,stream:true});timing('model_dispatch');
+  const body=JSON.stringify({...request,stream:true});
   const response=await fetcher('https://api.anthropic.com/v1/messages',{method:'POST',signal,redirect:'error',
    headers:{'x-api-key':key,'anthropic-version':'2023-06-01','Content-Type':'application/json'},body});
-  timing('model_headers');
+
   if(response.status!==200||response.redirected||!response.headers.get('content-type')?.startsWith('text/event-stream')||!response.body){
    void response.body?.cancel().catch(()=>{});throw new PhotoStreamFailure('claude_http_'+response.status);
   }
@@ -65,7 +63,7 @@ export function createClaudePhotoTransport(key:string,fetcher:typeof fetch=fetch
     block=true;
    }else if(e.type==='content_block_delta'){
     if(!block||blockEnded||e.index!==0||e.delta?.type!=='text_delta'||typeof e.delta.text!=='string')throw new PhotoStreamFailure('claude_invalid_delta');
-    if(!text&&e.delta.text)timing('model_first_text');text+=e.delta.text;
+    text+=e.delta.text;
     if(text.length>200000)throw new PhotoStreamFailure('claude_text_limit');onText?.(text);
    }else if(e.type==='content_block_stop'){
     if(!block||blockEnded||e.index!==0)throw new PhotoStreamFailure('claude_invalid_stop');blockEnded=true;

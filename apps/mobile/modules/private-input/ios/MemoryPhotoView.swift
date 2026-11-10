@@ -12,7 +12,6 @@ final class MemoryPhotoView: ExpoView {
   var active = false
   var captureId = 0
   var imageForAI = false
-  var timingEnabled = false // TEMPORARY Beta 0 instrumentation
   private var lastCapture = 0
   private var wanted = false
   private var asking = false
@@ -54,7 +53,7 @@ final class MemoryPhotoView: ExpoView {
     }
     guard authorization == .authorized else { onStatus(["state":"denied", "message":"Allow camera access in Settings, or search by name."]); return }
     if !wanted { wanted = true; engine.start() }
-    if captureId > lastCapture { lastCapture = captureId; engine.capture(captureId, imageForAI: imageForAI, timingEnabled: timingEnabled) }
+    if captureId > lastCapture { lastCapture = captureId; engine.capture(captureId, imageForAI: imageForAI) }
   }
 }
 
@@ -72,7 +71,7 @@ private final class MemoryPhotoEngine: NSObject, AVCapturePhotoCaptureDelegate {
   private let deliveryLock = NSLock()
   private var deliveryGeneration = 0
   private var desired = false
-  private var shot: (Int64, Int, Int, Bool, TimeInterval?)?
+  private var shot: (Int64, Int, Int, Bool)?
   private var request: VNRecognizeTextRequest?
   private var timeout: DispatchWorkItem?
   private var interruptions: [NSObjectProtocol] = []
@@ -126,7 +125,7 @@ private final class MemoryPhotoEngine: NSObject, AVCapturePhotoCaptureDelegate {
       } catch { self.emit("status", ["state":"error", "message":"Camera could not start. Please retry."]) }
     }
   }
-  func capture(_ id:Int, imageForAI:Bool, timingEnabled:Bool) {
+  func capture(_ id:Int, imageForAI:Bool) {
     queue.async { [weak self] in
       guard let self, self.desired, self.session.isRunning, self.shot == nil else { return }
       let settings = AVCapturePhotoSettings(format:[AVVideoCodecKey:AVVideoCodecType.jpeg])
@@ -136,7 +135,7 @@ private final class MemoryPhotoEngine: NSObject, AVCapturePhotoCaptureDelegate {
         settings.isShutterSoundSuppressionEnabled = true
       }
       if let connection = self.output.connection(with:.video), connection.isVideoOrientationSupported { connection.videoOrientation = .portrait }
-      self.shot = (settings.uniqueID,id,self.generation,imageForAI,timingEnabled ? ProcessInfo.processInfo.systemUptime : nil)
+      self.shot = (settings.uniqueID,id,self.generation,imageForAI)
       self.emit("status", ["state":"reading", "captureId":id, "message":"Reading your photo on this phone…"])
       let token = self.generation
       let timer = DispatchWorkItem { [weak self] in
@@ -150,7 +149,6 @@ private final class MemoryPhotoEngine: NSObject, AVCapturePhotoCaptureDelegate {
   func photoOutput(_ output:AVCapturePhotoOutput,didFinishProcessingPhoto photo:AVCapturePhoto,error:Error?) {
     // The encoded data is an in-memory buffer, never a filesystem representation.
     let data = error == nil ? photo.fileDataRepresentation() : nil
-    let capturedAt = ProcessInfo.processInfo.systemUptime
     let uniqueID = photo.resolvedSettings.uniqueID
     queue.async { [weak self] in
       guard let self, let shot = self.shot, shot.0 == uniqueID, shot.2 == self.generation else { return }
@@ -159,17 +157,13 @@ private final class MemoryPhotoEngine: NSObject, AVCapturePhotoCaptureDelegate {
       request.recognitionLanguages = ["en-US"]; request.usesLanguageCorrection = false
       self.request = request
       self.reading.async { [weak self] in
-        let prepared = MemoryPhotoReader.prepare(data, request:request, imageForAI:shot.3, timingEnabled:shot.4 != nil)
+        let prepared = MemoryPhotoReader.prepare(data, request:request, imageForAI:shot.3)
         let result = prepared.page, barcodes = prepared.barcodes, encoded = prepared.jpeg
         self?.queue.async { [weak self] in
           guard let self, self.generation == shot.2, self.shot?.0 == uniqueID else { return }
           self.timeout?.cancel(); self.timeout = nil; self.request = nil; self.shot = nil
           if let encoded {
             var payload:[String:Any] = ["captureId":shot.1,"imageBase64":encoded,"barcodes":barcodes]
-            if let start = shot.4, var timings = prepared.timings {
-              timings["captureMs"] = max(0,Int((capturedAt-start)*1000))
-              payload["timings"] = timings
-            }
             if let result { payload["page"] = result }
             self.emit("photo",payload)
           }

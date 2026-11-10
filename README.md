@@ -2,10 +2,12 @@
 
 *Know your food. Understand your choices.*
 
-NutriGlimpse is a iPhone App which is meant for seniors and moms as a health and nutrition grocery companion. To help user make better food choices it provides easy to use interface through which user can find out whether a given product is healthy given their circumstances. It identifies foods from product photos, explains general nutrition considerations, and suggests alternatives with information about availability in the current store or nearby store. 
-It also includes a feature called ShelfScan which can scan a grocery shelf or part of a shelf and rank products in that shelf according to their health credentials. 
+NutriGlimpse is an iPhone and iPad app which is meant for seniors and moms as a health and nutrition grocery companion. To help user make better food choices it provides easy to use interface through which user can find out whether a given product is healthy given their circumstances. It identifies foods from product photos, explains general nutrition considerations, and suggests alternatives with information about availability in the current store or nearby store.
+It also includes a feature called ShelfScan which can scan a grocery shelf or part of a shelf and rank products in that shelf according to their health credentials.
 
-This is an **experimental Beta 0 source repository**. Current status, acceptance evidence and open issues live in the [implementation project plan](docs/ImplementationProjectPlanDocument.md). Build **0.1.0 (23)** is available to the existing owner TestFlight group. Availability is not a claim of physical-device acceptance or validated nutrition accuracy.
+**NutriGlimpse 1.0 (build 29) is live on the U.S. App Store, free for iPhone and iPad.** Apple approved and released it on November 9, 2026. This repository includes the mobile frontend, backend, shared comparison logic and tests used for that release. Current verification evidence and remaining limitations are in the [implementation project plan](docs/ImplementationProjectPlanDocument.md). App Store approval is not independent validation of nutrition accuracy.
+
+[Download on the App Store](https://apps.apple.com/us/app/nutriglimpse/id6823645787) · [Watch the demo](https://serveforward.us/nutriglimpse) · [Join the TestFlight beta](https://testflight.apple.com/join/pA6z7nPH)
 
 ## Repository layout
 
@@ -37,9 +39,9 @@ The existing development server and backend deployment are unchanged. [Remote op
 
 - A normal product photo goes through several processing. It goes through OCR decoding on phone and that is used to query OpenFood/USDA. The photos are also sent to LLM using the approved shopper prompt, which includes user dietary preferences and health information. Results stream progressively.
 - Shopper health details and preferences are shared only through the implemented explicit consent path. General food guidance is not a medical recommendation but a healthy food recommendation.
-- On iPhone, Shelf Camera detects full packages locally using Apple Vision capabilities, checks duplicates and creates grids of up to 16 crops for further review.
+- On iPhone, Shelf Camera detects full packages locally using Apple Vision capabilities, checks duplicates and creates grids of up to nine crops (3 × 3) for progressive review; Finish submits the remaining smaller group.
 - Store names and available aisle evidence are shown when returned. Catalog membership or an AI suggestion does not establish branch stock.
-- USDA and Open Food Facts provide additional reference checks. 
+- USDA and Open Food Facts provide additional reference checks.
 
 ## Configuration, assets and licenses
 
@@ -53,6 +55,7 @@ Original NutriGlimpse code is licensed under [MIT](LICENSE). [Third-party and da
 - [Design and implementation](docs/02-design-and-implementation-specification.md)
 - [Current project plan](docs/ImplementationProjectPlanDocument.md)
 - [Shared prompt, field rules and validation](docs/85-nutriglimpse-shared-prompt-and-field-rules.md)
-- [Build 23 release](docs/nutriglimpse-build23-artwork-release-2026-10-25.md)
+- [App Store release and build 29 verification](docs/94-app-store-finalization-2026-10-29.md)
+- [Public TestFlight beta](docs/95-public-testflight-beta-2026-11-03.md)
 
 Older documents preserve historical decisions and may describe superseded behavior. The current plan is the status authority.

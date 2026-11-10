@@ -42,6 +42,7 @@ __pycache__/
 !/apps/service/package.json
 /ops/**
 !/ops/apply-decoder-patch.cjs
+!/ops/apply-security-patches.cjs
 !/ops/check-scan-timing-release.cjs
 # Historical detector reference is not a runtime resource.
 /apps/mobile/modules/shelf-benchmark/reference/

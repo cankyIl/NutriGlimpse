@@ -8,6 +8,10 @@
 
 This is the active plan. It incorporates the [side-chat handoff](71-side-chat-news-build15-handoff-2026-10-18.md), [news implementation](69-daily-personalized-food-news.md) and [build-15 release evidence](70-build15-fresh-personalized-news.md). The complete previous plan is preserved unchanged in the [October 18 archive](history/ImplementationProjectPlanDocument-2026-10-18-before-build15-handoff-reconciliation.md). Old dated checkboxes and release instructions in historical documents are not active tasks.
 
+## GitHub source checkpoint - November 9, 2026
+
+The public source update brings the mobile/frontend, backend/shared code and release tooling to the approved App Store build29, with the latest release plan and README download links. The tested candidate matches the release source outside README/docs. Full automated checks pass: typecheck/lint, 828 core/service, 21 tooling, ten report-input and 76 photo-UI checks, plus needs/onboarding, eleven news tests and news/shelf UI checks. The existing unpublished operational history is retained privately; only a reviewed current-source snapshot and clean documentation history are included in the GitHub update. Credentials, private diagnostics and detector binaries remain excluded. No application deployment, new native build or physical-device test is claimed. [Repository details](GitHub-Repository-Setup.md).
+
 ## Public TestFlight beta - November 3, 2026
 
 **Approved and public invitation activated.** Exact build29 is linked to **NutriGlimpse - Public Beta (US)**. Apple reports APPROVED and external IN_BETA_TESTING. The verified public link is [https://testflight.apple.com/join/pA6z7nPH](https://testflight.apple.com/join/pA6z7nPH), enabled with a 10,000-tester enrollment cap. The public Apple invitation page returns HTTP200 and shows NutriGlimpse beta installation instructions. English description, feedback/privacy details, review contact and testing instructions are saved. App Store release was accepted November 9 and the public US listing is verified live. Existing owner testing is intact.

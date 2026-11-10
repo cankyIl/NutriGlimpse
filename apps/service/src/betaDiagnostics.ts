@@ -1,5 +1,4 @@
 import {shelfAlternativeDecisionSchema} from './shelfAlternativePolicy.ts';
-import {scanClientTimingSchema} from '../../../packages/core/src/scanTiming.ts';
 import {DatabaseSync} from 'node:sqlite';
 import {mkdirSync,chmodSync,readFileSync,writeFileSync,existsSync} from 'node:fs';
 import {dirname,join} from 'node:path';
@@ -25,8 +24,6 @@ export const betaEventSchema=z.discriminatedUnion('kind',[
  z.object({kind:z.literal('shelf_usage'),model:code,inputTokens:count.nullable(),outputTokens:count.nullable(),cachedTokens:count.nullable(),elapsedMs:count,cells:count}).strict(),
  z.object({kind:z.literal('shelf_cell'),cell:count,models:z.array(code).max(2),issue:code,food:food.nullable(),needsAlternatives:z.boolean()}).strict(),
  z.object({kind:z.literal('dual_decision'),models:z.array(code).min(1).max(2),reviewState:code,original:food.nullable(),originals:z.array(z.object({model:code,food:food.nullable()}).strict()).min(1).max(2),candidates:z.array(candidate).max(10),accepted:count,reason:code}).strict(),
- scanClientTimingSchema.omit({traceId:true}).extend({kind:z.literal('scan_client_timing')}),
- z.object({kind:z.literal('scan_server_timing'),clock:z.enum(['request','provider']),stage:z.enum(['body_received','provider_start','model_dispatch','model_headers','model_first_text','first_result','model_complete','response_sent']),elapsedMs:z.number().int().min(0).max(180000)}).strict(),
  z.object({kind:z.literal('request'),operation:z.enum(['recognize','media','sources']),phase:z.enum(['started','finished']),status:count.optional(),code:code.optional(),elapsedMs:count.optional()}).strict(),
  z.object({kind:z.literal('model_query'),model:code,promptHash:z.string().regex(/^[a-f0-9]{64}$/),rulesHash:z.string().regex(/^[a-f0-9]{64}$/),maxOutputTokens:count,imageDetail:z.enum(['high','original']),personalContext:z.literal(false)}).strict(),
  z.object({kind:z.literal('decision'),status:code,original:food.nullable(),originalModelRating:rating,originalComputedRating:rating,originalReasons:z.array(code).max(20),alternatives:z.array(candidate).max(5),proposed:count,accepted:count,reason:code}).strict(),

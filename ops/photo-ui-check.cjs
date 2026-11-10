@@ -27,8 +27,8 @@ const aiOutcome={schemaVersion:3,model:'gpt-6-luna',status:'identified',original
 let recognition=async()=>aiOutcome,sourceCalls=[];
 let mediaCalls=[],mediaResponder=async()=>({image:null,reference:true});
 let shopping={selected:null,origin:null},availabilityCalls=[],availabilityResponder=async()=>({schemaVersion:2,status:'no-matches',listings:[],checkedAt:new Date().toISOString(),source:'Google via SerpApi',cached:false});
-const timingMode=process.env.EXPO_PUBLIC_BUILD_STAGE==='beta0',timingReports=[],savedFetch=global.fetch;
-global.fetch=async(url,init)=>{assert.ok(String(url).endsWith('/v3/photos/timing'),'Unexpected test network request');timingReports.push(JSON.parse(init.body));return new Response(null,{status:204});};
+const unexpectedRequests=[],savedFetch=global.fetch;
+global.fetch=async(url)=>{unexpectedRequests.push(String(url));throw Error('Unexpected test network request');};
 const router={replace:v=>routes.push(v),push:v=>routes.push(v)};
 const modules=new Map();
 function load(filename){
@@ -49,10 +49,10 @@ function load(filename){
   if(name.endsWith('/storage/testerKey'))throw Error('Screens must never read tester credentials');
   if(name.endsWith('/storage/repository'))return{openRepository:async()=>({})};
   if(name.endsWith('/ui/PhotoCaptureView'))return{photoCameraAvailable:true,PhotoCaptureView:host('NativePhoto')};
-  if(name.endsWith('/groceryClient'))return {reviewGroceryPhoto:async(image,context,signal,fetcher,onProgress,onTiming,onIdentity,retainResponse,parallelContextConsentVersion)=>{assert.equal(parallelContextConsentVersion,require(path.join(root,'packages/core/src/groceryReview.ts')).GROCERY_PARALLEL_CONSENT);assert.equal(retainResponse,true,'New consent must accompany response capture');networkCalls++;lastGroceryContext=context;onTiming?.({stage:'uploadStartMs'});onTiming?.({stage:'responseHeadersMs',traceId:'12345678-1234-4234-8234-123456789012'});return recognition(image,signal,fetcher,onProgress,onTiming,onIdentity);}};
-  if(name.endsWith('/dualAiFoodClient'))return {reviewDualProductPhoto:async(...args)=>{networkCalls++;args[4]?.({stage:'uploadStartMs'});args[4]?.({stage:'responseHeadersMs',traceId:'12345678-1234-4234-8234-123456789012'});return recognition(...args);}};
-  if(name.endsWith('/webAiFoodClient'))return {reviewWebProductPhoto:async(...args)=>{networkCalls++;args[4]?.({stage:'uploadStartMs'});args[4]?.({stage:'responseHeadersMs',traceId:'12345678-1234-4234-8234-123456789012'});return recognition(...args);}};
-  if(name.endsWith('/aiFoodClient'))return {reviewProductPhoto:async(...args)=>{networkCalls++;args[4]?.({stage:'uploadStartMs'});args[4]?.({stage:'responseHeadersMs',traceId:'12345678-1234-4234-8234-123456789012'});return recognition(...args);},checkProductSources:async(identity)=>{sourceCalls.push(identity);return {foods:[food],match:'possible',checkedAt:new Date().toISOString()};},findProductMedia:async(identity)=>{mediaCalls.push(identity);return mediaResponder(identity);}};
+  if(name.endsWith('/groceryClient'))return {reviewGroceryPhoto:async(image,context,signal,fetcher,onProgress,onIdentity,retainResponse,parallelContextConsentVersion)=>{assert.equal(parallelContextConsentVersion,require(path.join(root,'packages/core/src/groceryReview.ts')).GROCERY_PARALLEL_CONSENT);assert.equal(retainResponse,process.env.EXPO_PUBLIC_BUILD_STAGE==='beta0','Only beta builds opt into response capture');networkCalls++;lastGroceryContext=context;return recognition(image,signal,fetcher,onProgress,onIdentity);}};
+  if(name.endsWith('/dualAiFoodClient'))return {reviewDualProductPhoto:async(...args)=>{networkCalls++;return recognition(...args);}};
+  if(name.endsWith('/webAiFoodClient'))return {reviewWebProductPhoto:async(...args)=>{networkCalls++;return recognition(...args);}};
+  if(name.endsWith('/aiFoodClient'))return {reviewProductPhoto:async(...args)=>{networkCalls++;return recognition(...args);},checkProductSources:async(identity)=>{sourceCalls.push(identity);return {foods:[food],match:'possible',checkedAt:new Date().toISOString()};},findProductMedia:async(identity)=>{mediaCalls.push(identity);return mediaResponder(identity);}};
   if(name.endsWith('/ui/FoodNews'))return {FoodNews:host('FoodNews')};
   if(name.endsWith('/photoAssessmentClient'))return{assessProductPhoto:async(...args)=>{networkCalls++;return recognition(...args);}};
   if(name.endsWith('/RetailerCheck'))return{RetailerCheck:host('RetailerCheck')};
@@ -91,7 +91,7 @@ function reset(){for(const s of slots.values())s.clean?.();slots=new Map();effec
 (async()=>{
  const Capture=load('apps/mobile/src/app/capture.tsx').default;
  photoConsent=false;await flush(Capture);assert.ok(text().includes('OpenAI')&&!text().includes('Anthropic'));
- assert.ok(!text().includes('Read package text on this phone instead'));assert.ok(text().includes('seven days')&&text().includes('Answers may repeat health details'));
+ assert.ok(!text().includes('Read package text on this phone instead'));if(process.env.EXPO_PUBLIC_BUILD_STAGE==='beta0')assert.ok(text().includes('seven days')&&text().includes('Answers may repeat health details'));else{assert.ok(text().includes('Saved scan-answer diagnostics are disabled'));assert.ok(!text().includes('Continuing enables this diagnostic capture'));}
  assert.ok(!nodes().some(n=>n.type==='NativePhoto'),'Camera waits for photo privacy choice');
  await button('Continue without health details').onPress();await flush(Capture);
  assert.equal(shutter().disabled,true);shutter().onPress();await flush(Capture);
@@ -168,14 +168,13 @@ function reset(){for(const s of slots.values())s.clean?.();slots=new Map();effec
  await flush(PhotoRating,{result:outcome,restrictions:['glutenFree'],now:Date.now()});assert.ok(text().includes('dietary requirements are not verified'));assert.ok(!text().includes('Healthier alternatives'));reset();
  await flush(PhotoRating,{result:outcome,restrictions:[],now:Date.now()+11*60*1000});assert.ok(text().includes('refresh'));reset();
 
- reset();recognition=async()=>aiOutcome;const timingBefore=timingReports.length;
- await ready(Capture);assert.equal(nodes().find(n=>n.type==='NativePhoto').props.timingEnabled,timingMode);
+ // Complete scan and three alternatives render without a timing prop or extra request.
+ reset();recognition=async()=>aiOutcome;
+ await ready(Capture);assert.equal('timingEnabled' in nodes().find(n=>n.type==='NativePhoto').props,false);
  shutter().onPress();await flush(Capture);camera=nodes().find(n=>n.type==='NativePhoto').props;
- camera.onPhoto({nativeEvent:{captureId:camera.captureId,imageBase64:'aGVsbG8=',timings:{captureMs:120,preparationMs:900,ocrMs:850,barcodeJpegMs:400}}});await flush(Capture);
- const timingTarget=routes[0];reset();params=timingTarget.params;await flush(Results);
- const layout=nodes().find(n=>n.type==='View'&&typeof n.props.onLayout==='function');assert.ok(layout);layout.props.onLayout();layout.props.onLayout();await flush(Results);
- assert.equal(timingReports.length,timingBefore+(timingMode?1:0));
- if(timingMode){const report=timingReports.at(-1);assert.equal(report.outcome,'completed');assert.equal(report.marks.captureMs,120);assert.equal(report.marks.ocrMs,850);assert.ok(report.marks.firstCardLayoutMs>=report.marks.firstResultMs);assert.ok(report.marks.thirdAlternativeMs>=report.marks.firstResultMs);assert.ok(!JSON.stringify(report).includes('aGVsbG8='));}
+ camera.onPhoto({nativeEvent:{captureId:camera.captureId,imageBase64:'aGVsbG8='}});await flush(Capture);
+ const releaseTarget=routes[0];reset();params=releaseTarget.params;await flush(Results);
+ assert.equal(factButtons().length,4);assert.equal(unexpectedRequests.length,0);
  reset();
  const neutralOriginal={...estimatedOriginal,identity:{...estimatedOriginal.identity,name:'Synthetic Spread'},category:'butter-spread',servingGrams:14,servingText:'14 g',rating:'neutral',nutrition:{...estimatedOriginal.nutrition,caloriesKcal:90,carbohydrateG:0,sugarsG:0,addedSugarsG:0,saturatedFatG:3,sodiumMg:90,fiberG:0,proteinG:0}};
  const neutralAlternative={...neutralOriginal,identity:{...neutralOriginal.identity,name:'Synthetic Improved Spread'},nutrition:{...neutralOriginal.nutrition,saturatedFatG:2}};
@@ -195,13 +194,13 @@ function reset(){for(const s of slots.values())s.clean?.();slots=new Map();effec
  const severalConcerns={...estimatedOriginal,servingGrams:100,nutrition:{...estimatedOriginal.nutrition,sodiumMg:600,fiberG:4,proteinG:4,saturatedFatG:2}};
  const unchangedSalt={...severalConcerns,rating:'neutral',identity:{...severalConcerns.identity,name:'Secondary Concern'},servingGrams:50,nutrition:{...severalConcerns.nutrition,caloriesKcal:70,carbohydrateG:20,sugarsG:2,addedSugarsG:2,sodiumMg:300,fiberG:2,proteinG:2,saturatedFatG:0.5}};
  await flush(AiCard,{food:unchangedSalt,benefits:aiCore.estimatedBenefits(severalConcerns,unchangedSalt)});assert.ok(text().indexOf('Less added sugar')<text().indexOf('Sodium not meaningfully lower'));assert.ok(text().includes('Sodium not meaningfully lower'));reset();
- reset();const previewReportStart=timingReports.length;let identityCallback,previewProgress,finishPreview,previewSignal;
- recognition=(_image,signal,_fetch,onProgress,_timing,onIdentity)=>{previewSignal=signal;identityCallback=onIdentity;previewProgress=onProgress;return new Promise(resolve=>finishPreview=resolve);};
+ reset();let identityCallback,previewProgress,finishPreview,previewSignal;
+ recognition=(_image,signal,_fetch,onProgress,onIdentity)=>{previewSignal=signal;identityCallback=onIdentity;previewProgress=onProgress;return new Promise(resolve=>finishPreview=resolve);};
  await ready(Capture);shutter().onPress();await flush(Capture);camera=nodes().find(n=>n.type==='NativePhoto').props;camera.onPhoto({nativeEvent:{captureId:camera.captureId,imageBase64:'aGVsbG8='}});await flush(Capture);const earlyTarget=routes[0];reset();params=earlyTarget.params;await flush(Results);
- assert.equal(previewSignal.aborted,false);assert.ok(text().includes('Identifying your product'));assert.equal(factButtons().length,0);nodes().find(n=>n.type==='View'&&n.props.onLayout).props.onLayout();
- identityCallback(aiCore.photoPreviewOf(estimatedOriginal.identity));await flush(Results);assert.ok(text().includes('Honey Oat Cereal'));assert.ok(text().includes('Finding nutrition sources'));assert.equal(factButtons().length,0);assert.ok(!text().includes('Not healthy'));nodes().find(n=>n.type==='View'&&n.props.onLayout).props.onLayout();
- previewProgress({...aiOutcome,alternatives:[]});await flush(Results);assert.equal(factButtons().length,1,'Nutrition card appears only after checked product');nodes().find(n=>n.type==='View'&&n.props.onLayout).props.onLayout();finishPreview(aiOutcome);await flush(Results);assert.equal(factButtons().length,4);
- assert.equal(timingReports.length,previewReportStart+(timingMode?1:0));if(timingMode){const marks=timingReports.at(-1).marks;assert.ok(marks.photoPreviewLayoutMs<=marks.identityPreviewMs);assert.ok(marks.identityPreviewMs<=marks.identityPreviewLayoutMs);assert.ok(marks.identityPreviewLayoutMs<=marks.firstResultMs);assert.ok(marks.firstResultMs<=marks.firstCardLayoutMs);}
+ assert.equal(previewSignal.aborted,false);assert.ok(text().includes('Identifying your product'));assert.equal(factButtons().length,0);
+ identityCallback(aiCore.photoPreviewOf(estimatedOriginal.identity));await flush(Results);assert.ok(text().includes('Honey Oat Cereal'));assert.ok(text().includes('Finding nutrition sources'));assert.equal(factButtons().length,0);assert.ok(!text().includes('Not healthy'));
+ previewProgress({...aiOutcome,alternatives:[]});await flush(Results);assert.equal(factButtons().length,1,'Nutrition card appears only after checked product');finishPreview(aiOutcome);await flush(Results);assert.equal(factButtons().length,4);
+  assert.equal(unexpectedRequests.length,0);
  reset();await ready(Capture);shutter().onPress();await flush(Capture);camera=nodes().find(n=>n.type==='NativePhoto').props;camera.onPhoto({nativeEvent:{captureId:camera.captureId,imageBase64:'aGVsbG8='}});await flush(Capture);const uncertainTarget=routes[0];reset();params=uncertainTarget.params;await flush(Results);
  identityCallback({...aiCore.photoPreviewOf(estimatedOriginal.identity),status:'uncertain'});await flush(Results);assert.ok(text().includes('Possible match'));assert.equal(factButtons().length,0);
  background.forEach(fn=>fn('background'));await flush(Results);assert.equal(previewSignal.aborted,true);assert.ok(!nodes().some(n=>n.type==='Image'));identityCallback(aiCore.photoPreviewOf(estimatedOriginal.identity));finishPreview(aiOutcome);await flush(Results);assert.ok(!text().includes('Honey Oat Cereal'));reset();
@@ -331,5 +330,5 @@ function reset(){for(const s of slots.values())s.clean?.();slots=new Map();effec
  const cardProps={food:estimatedOriginal,referenceImage:{url:'https://images.example.org/broken.jpg',sourceUrl:'https://example.org/product',title:'Reference package'}};
  await flush(AiCard,cardProps);nodes().find(n=>n.type==='Image').props.onError();await new Promise(r=>setTimeout(r,5));await flush(AiCard,cardProps);await new Promise(r=>setTimeout(r,5));await flush(AiCard,cardProps);assert.equal(mediaCalls.length,1);assert.equal(nodes().find(n=>n.type==='Image').props.source.uri,'https://images.openfoodfacts.org/fallback.jpg');
  nodes().find(n=>n.type==='Image').props.onError();await flush(AiCard,cardProps);assert.ok(text().includes('No photo'));assert.equal(mediaCalls.length,1);reset();
- console.log(JSON.stringify({passed:76,timingMode,scope:'Production capture, product cards, source checks, home and legacy ratings with mocked native/network boundaries; not a physical camera test'}));
+ console.log(JSON.stringify({passed:76,timingRemoved:true,scope:'Production capture, product cards, source checks, home and legacy ratings with mocked native/network boundaries; not a physical camera test'}));
 })().catch(error=>{console.error(error);process.exitCode=1;}).finally(()=>{reset();global.fetch=savedFetch;});

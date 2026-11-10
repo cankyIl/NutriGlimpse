@@ -1,3 +1,4 @@
+import {betaRelease,scanDiagnosticNotice} from '../releaseConfig';
 import {fetch as streamingFetch} from 'expo/fetch';
 import {useCallback,useEffect,useRef,useState} from 'react';
 import {AppState,StyleSheet,View,Linking} from 'react-native';
@@ -31,7 +32,7 @@ export default function ShelfNineScreen(){
   if(shareHealth===null||!availability?.available)return;
   cancel();setMessage('');setPending(0);setTotal(0);setBlocked(false);setLimit(10);setAck('');setFinish(false);
   const context=groceryContext(health.profile,shopping.selected,{profile:health.profile,panels:health.panels,panelChoice:health.panelChoice,shareHealth,origin:shopping.originFix});
-  session.current=new ShelfNineSession(recordId(),context,shareHealth,(input,signal,progress)=>reviewShelfNine({...input,diagnosticConsentVersion:SHELF_RESPONSE_CONSENT},signal,streamingFetch as typeof fetch,progress),update,batch=>{if(alive.current)setAck(batch);});
+  session.current=new ShelfNineSession(recordId(),context,shareHealth,(input,signal,progress)=>reviewShelfNine({...input,...(betaRelease?{diagnosticConsentVersion:SHELF_RESPONSE_CONSENT}:{})},signal,streamingFetch as typeof fetch,progress),update,batch=>{if(alive.current)setAck(batch);});
   setCamera(true);update();
  },[shareHealth,availability?.available,cancel,health.profile,health.panels,health.panelChoice,shopping.selected,shopping.originFix,update]);
  useEffect(()=>{if(auto==='1'&&focused&&shareHealth!==null&&availability?.available&&!autoStarted.current){autoStarted.current=true;start();}},[auto,focused,shareHealth,availability?.available,start]);
@@ -42,7 +43,7 @@ export default function ShelfNineScreen(){
  {shareHealth===null&&<Card><Heading>Shelf scan preferences</Heading>
  <Body>Numbered package crops go through our server to Google Gemini and OpenAI at the same time, with Gemini leading. Web search helps find nutrition and store information. Your selected store or nearby town is included; exact GPS and your name are not sent to either model.</Body>
  <Body>You can also share your saved age, gender, health concerns, preferences, pregnancy context, height/weight and confirmed lipid results for general nutrition guidance. This does not enable personalized medical recommendations. Private health details are excluded from search queries.</Body>
- <Body muted>Shelf images and submitted profiles are not saved on our server. For beta diagnostics, both returned answers and processing decisions are encrypted for up to seven days, within 200 records and 40 MB. Answers may repeat health details you share. Results on this phone are temporary. Google and OpenAI may retain requests under their API policies.</Body>
+ <Body muted>Shelf images and submitted profiles are not saved on our server. {scanDiagnosticNotice} Results on this phone are temporary. Google and OpenAI may retain requests under their API policies.</Body>
  <Button label="Use my health details" onPress={()=>setShareHealth(true)}/><Button secondary label="Continue without health details" onPress={()=>setShareHealth(false)}/></Card>}
  {shareHealth!==null&&!camera&&(!run||run.phase==='cancelled')&&<Button icon="camera" label="Start shelf scan" disabled={!availability?.available} onPress={start}/>}
  {availability&&!availability.available&&<Status>Live shelf capture requires a supported physical iPhone with the complete app build.</Status>}

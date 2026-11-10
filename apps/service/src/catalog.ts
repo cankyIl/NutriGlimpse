@@ -1,7 +1,7 @@
 import { normalizeBarcode } from '../../../packages/core/src/barcode.ts';
 import { z } from 'zod';
 const finite = z.number().finite().nonnegative();
-const responseSchema = z.object({ product: z.object({ code: z.string(), product_name: z.string().max(500).optional(), brands: z.string().max(500).optional(), ingredients_text: z.string().max(10000).optional(), nutriments: z.record(z.unknown()).optional(), last_modified_t: finite.optional() }).passthrough().optional() }).passthrough();
+const responseSchema = z.object({ product: z.object({ code: z.string(), product_name: z.string().max(500).optional(), brands: z.string().max(500).optional(), ingredients_text: z.string().max(10000).optional(), nutriments: z.record(z.string(),z.unknown()).optional(), last_modified_t: finite.optional() }).passthrough().optional() }).passthrough();
 export interface CatalogFact {
   barcode: string; name: string; brand: string | null; ingredients: string | null;
   basis: '100g'; saturatedFatG: number | null; fiberG: number | null; sodiumMg: number | null;

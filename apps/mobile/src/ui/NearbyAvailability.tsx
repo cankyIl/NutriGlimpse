@@ -26,7 +26,7 @@ export function NearbyAvailability({identity}:{identity:PhotoIdentity}){
  },[requestKey,requestVersion,setState]));
  const current=state.key===requestVersion?state:undefined,result=current?.result;
  const message=!product?'A clearer product name is needed to find stores.':!foreground?'':!location?'Choose a store to find this nearby.':
-  current?.error??(!result?'Finding store listings…':result.status==='no-matches'?'No matching store listing found.':result.status==='limit-reached'?'Store searches are temporarily at their beta limit.':result.status==='unsupported-area'?'Store search is unavailable for this area.':result.status==='unavailable'?'Store lookup unavailable.':'');
+  current?.error??(!result?'Finding store listings…':result.status==='no-matches'?'No matching store listing found.':result.status==='limit-reached'?'Store searches have temporarily reached their limit. Please try again later.':result.status==='unsupported-area'?'Store search is unavailable for this area.':result.status==='unavailable'?'Store lookup unavailable.':'');
  const retry=!!location&&(!!current?.error||result?.status==='unavailable');
  return <View style={styles.box}>
   <View style={styles.heading}><Icon name="map-pin" size={15}/><Text style={styles.title}>Where to find it</Text></View>

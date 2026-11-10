@@ -11,7 +11,6 @@ import {readGeminiStream,partialGroceryAnswer} from './geminiStream.ts';
 import {SHOPPER_BOUNDARY} from './groceryShopperPrompt.ts';
 import {adaptSimpleGroceryAnswer} from './geminiSimpleReview.ts';
 import {aiPhotoPreviewSchema,estimatedRatingDecision,type AiPhotoPreview} from '../../../packages/core/src/aiFoodReview.ts';
-import {createServerScanTimer} from './scanTiming.ts';
 import {resolveGeminiGroundingSources} from './geminiGroundingSources.ts';
 import {adaptApprovedGroceryAnswer} from './geminiPhotoAdapter.ts';
 import {readFileSync,openSync,fstatSync,closeSync,constants} from 'node:fs';
@@ -22,7 +21,7 @@ import {cleanProductJpeg} from './photoImage.ts';
 import {ProductPhotoError} from './productPhotoProvider.ts';
 import {recordDiagnostic,newTrace,diagnosticHash,diagnosticFood,type BetaDiagnostics} from './betaDiagnostics.ts';
 export class GroceryProviderError extends Error {readonly code:string;constructor(code:string){super(code);this.code=code;}}
-export type GroceryTransportHooks={onText?:(text:string)=>void;onIdentity?:(identity:AiPhotoPreview)=>void;onStage?:(stage:"model_dispatch"|"model_first_text"|"model_complete")=>void};
+export type GroceryTransportHooks={onText?:(text:string)=>void;onIdentity?:(identity:AiPhotoPreview)=>void};
 export type GroceryTransport=(request:Record<string,unknown>,signal:AbortSignal,hooks?:GroceryTransportHooks)=>Promise<unknown>;
 const root=projectRoot;
 export function groceryPrompt(projectRoot=root){
@@ -60,7 +59,7 @@ export function createGroceryTransport(model:GroceryModel,key:string,fetcher:typ
   });
   if(!response.ok){void response.body?.cancel().catch(()=>{});throw new GroceryProviderError([402,429].includes(response.status)?'PROVIDER_QUOTA':response.status===401||response.status===403?'PROVIDER_ACCESS':'PROVIDER_HTTP_'+response.status);}
   if(!response.body)throw new GroceryProviderError('PROVIDER_EMPTY');
-  if(gemini&&response.headers.get('content-type')?.startsWith('text/event-stream'))return readGeminiStream(response.body,signal,hooks?.onText,()=>hooks?.onStage?.('model_first_text'));
+  if(gemini&&response.headers.get('content-type')?.startsWith('text/event-stream'))return readGeminiStream(response.body,signal,hooks?.onText);
   const reader=response.body.getReader(),decoder=new TextDecoder();let raw='',size=0;
   try{for(;;){const {value,done}=await reader.read();if(done)break;size+=value.length;if(size>2000000)throw new GroceryProviderError('PROVIDER_RESPONSE_LIMIT');raw+=decoder.decode(value,{stream:true});}}
   finally{await reader.cancel();}
@@ -157,7 +156,6 @@ export function createGroceryProvider(options:{model:GroceryModel;transport:Groc
   try{
    const signal=AbortSignal.any([parent,AbortSignal.timeout(95000)]);
    const body=buildGroceryRequest(image,request.context,options.model,options.projectRoot,options.directory);
-   const timer=createServerScanTimer(true,options.audit,trace,'provider');
     let previewSent=false,progressCount=0,lastAlternatives=-1;
     const emitPartial=(text:string)=>{
      if(retain)partialText=text;
@@ -173,23 +171,23 @@ export function createGroceryProvider(options:{model:GroceryModel;transport:Groc
       const {review}=adaptSimpleGroceryAnswer({product:partial.product,alternatives:partial.alternatives},request.context,new Set(),[],{allowUnverifiedEstimates:true,preserveReturnedAisle:options.model==='gemini-3.5-flash-lite'});
       if(!review.original||review.recommendations.length<=lastAlternatives)return;
       lastAlternatives=review.recommendations.length;progressCount++;review.recommendationShortfall=null;
-      timer('first_result');
+
       onProgress(groceryResultSchema.parse({schemaVersion:6,model:options.model,status:review.original.identity.status,
        original:estimatedGroceryFood(review.original),alternatives:review.recommendations.map(r=>estimatedGroceryFood(r.food)),checkedAt:new Date().toISOString(),review,
        grounding:{searchSuggestionsHtml:null,queries:[]},timing:{providerMs:Math.round(performance.now()-start),validationMs:0}}));
      }catch{/* Wait for a complete valid card; never stream malformed/half-written values. */}
     };
-    timer('model_dispatch');
+
     if(options.model==='gemini-3.5-flash-lite'&&options.supplementTransport){
      try{supplement=startAlternativeRequest(options.supplementTransport,buildAlternativeRequest(image,options.projectRoot??root,supplementContext(request.context,request.parallelContextConsentVersion),options.directory),signal,options.supplementTimeoutMs);supplementDisposition='pending';}
      catch{supplementDisposition='configuration_failed';}
     }
-    const response=await options.transport(body,signal,{onText:emitPartial,onStage:timer,onIdentity:value=>{
+    const response=await options.transport(body,signal,{onText:emitPartial,onIdentity:value=>{
      if(signal.aborted||previewSent)return;
      const preview=aiPhotoPreviewSchema.safeParse(value);if(!preview.success)return;
      previewSent=true;onIdentity?.(preview.data);
     }}),providerMs=Math.round(performance.now()-start);
-    returned=response;saveResponse('received');timer('model_complete');
+    returned=response;saveResponse('received');
    const parsed=parseGroceryResponse(response,options.model),vStart=performance.now();
    if(!parsed.searches)throw new GroceryProviderError('PROVIDER_GROUNDING_MISSING');
    const evidence=options.model==='gemini-3.5-flash-lite'
@@ -244,7 +242,7 @@ export function createGroceryProvider(options:{model:GroceryModel;transport:Groc
      originalReasons:reasons('original'),proposed:adapted?.proposedCount??proposed.length,accepted:review.recommendations.length,
      alternatives:proposed.slice(0,5).map((row:any,index:number)=>{const f=estimatedGroceryFood(row.food),accepted=review.recommendations.find(r=>r.food.id===row.food.id);return {index,food:diagnosticFood(f),computedRating:simple?null:estimatedRatingDecision(f).rating,disposition:accepted?'accepted':'rejected',displayedRating:accepted?.food.assessment.rating??null,reasons:reasons(row.food.id)};}),
      reason:original?.rating===null?'original_rating_unavailable':review.recommendations.length?'recommendations_available':'no_eligible_recommendations'});
-    timer('first_result');
+
    recordDiagnostic(options.audit,trace,{kind:'grocery_usage',model:options.model,promptHash:diagnosticHash(options.model==='gemini-3.5-flash-lite'?readFileSync(join(options.projectRoot??root,'apps/service/prompts/gemini-product-photo-native.txt'),'utf8'):groceryPrompt(options.projectRoot)),inputTokens:parsed.inputTokens,outputTokens:parsed.outputTokens,cachedTokens:parsed.cachedTokens,thinkingTokens:parsed.thinkingTokens,searches:parsed.searches,elapsedMs:providerMs,validationMs,accepted:review.recommendations.length,issues:request.context.shopper?[]:audit.map(x=>x.code).slice(0,40)});
    const result=groceryResultSchema.parse({schemaVersion:6,model:options.model,status:review.original?.identity.status??'no-product',
     original:review.original?estimatedGroceryFood(review.original):null,alternatives:review.recommendations.map(r=>estimatedGroceryFood(r.food)),checkedAt:new Date().toISOString(),

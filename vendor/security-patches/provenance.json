@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-28",
+  "advisories": [
+    "https://github.com/advisories/GHSA-gcqx-w48m-w2h4",
+    "https://github.com/advisories/GHSA-mrhx-c7xc-m3w5"
+  ],
+  "packages": [
+    {
+      "name": "deepmerge",
+      "version": "4.3.1",
+      "files": [
+        {
+          "path": "index.js",
+          "originalSha256": "12440c84957c1990ea2d5e33dc0091722dc1dc1585c6d20e0c780e568ffa9d30",
+          "patchedSha256": "3cb847d7fba089bcd81d988ff02782a9be8a55218485fc23317797c58f8765a1"
+        },
+        {
+          "path": "dist/cjs.js",
+          "originalSha256": "2e5160f84a1141bd927264afe4d15766f1e6cf07daef182b37ff53fea121de7d",
+          "patchedSha256": "a2ee5c2b59b3cd864778d4c5a483a265c0b115a715559f75ce243e4f03e31a79"
+        },
+        {
+          "path": "dist/umd.js",
+          "originalSha256": "f33e6596482d1fb5c7c427f8ef92f2aa849eea9223acd974176b2fb27ddbf73a",
+          "patchedSha256": "e6bc0824d988fa25b97d41fb1f20e33637e3d730eb65a64abe929aa112636136"
+        }
+      ]
+    },
+    {
+      "name": "zod",
+      "version": "3.25.76",
+      "files": [
+        {
+          "path": "v3/types.cjs",
+          "originalSha256": "06487cc05ed45c5dd29789bf0aa75734d1ce06592a7f2665ba4ca90a68e8a3e1",
+          "patchedSha256": "7a92b44e9decb0991e55bb7d47af84ae11ab1eb3908ec318cfe23cbd0a18c2a8"
+        },
+        {
+          "path": "v3/types.js",
+          "originalSha256": "9763a2938f0e7f983363ef4bf6530e7583e3f2d54f8a4a6684efad58febc6e8e",
+          "patchedSha256": "2ff48063d1695da97408b101860a1b23fe80b6410e3c55e6264b802dcb9693c7"
+        }
+      ]
+    },
+    {
+      "name": "zod",
+      "version": "4.6.7",
+      "files": [
+        {
+          "path": "v3/types.cjs",
+          "originalSha256": "7a2f06d88e280bdd198c60e0d292ed7f1e3993e877be4415de07e6abc7746dd1",
+          "patchedSha256": "4e2d8471658b356e0a277c43cd313d045977f4f3b08394bc68b0fc063003e49a"
+        },
+        {
+          "path": "v3/types.js",
+          "originalSha256": "d7214e1dacf9e6e70c9ca80247717b4be13b240510428fef132b7da3260d1a32",
+          "patchedSha256": "f6953caee92613eea11c489060fd8c99191cf45bdc3505d07db9bda2ebf10ef3"
+        }
+      ]
+    }
+  ],
+  "expectedFiles": 7
+}

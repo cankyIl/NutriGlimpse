@@ -156,7 +156,7 @@ test('actual v6 HTTP route and client deliver identity before final nutrition wi
  const imageBase64=Buffer.from('ffd8ffc00011080020002003011100021100031100ffda000c03010002110311003f0000ffd9','hex').toString('base64');
  let gotPreview!:(value:unknown)=>void;const preview=new Promise(r=>{gotPreview=r;});
  const controller=new AbortController();
- const pending=reviewGroceryPhoto(imageBase64,context,controller.signal,async(target,init)=>fetch(base+new URL(String(target)).pathname,init),undefined,undefined,gotPreview).then(result=>{finished=true;return result;});
+ const pending=reviewGroceryPhoto(imageBase64,context,controller.signal,async(target,init)=>fetch(base+new URL(String(target)).pathname,init),undefined,gotPreview).then(result=>{finished=true;return result;});
  try{assert.deepEqual(await preview,identity);assert.equal(finished,false);assert.equal(modelCalls,1);release();const result=await pending;assert.equal(result.schemaVersion,6);assert.equal(result.alternatives.length,3);}
  finally{release();controller.abort();await pending.catch(()=>{});await new Promise<void>(r=>server.close(()=>r()));}
 });

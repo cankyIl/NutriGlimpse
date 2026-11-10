@@ -115,7 +115,11 @@ function fill(){input('Height in feet').onChangeText('5');input('Height in inche
  // root provider's setup/shopping key changes. Failed/pending writes must not leave.
  const Onboarding=load('apps/mobile/src/app/onboarding.tsx').default;
  reset();profile={...core.sampleProfile,bodyMeasurements:undefined};onboardingComplete=false;
- await flush(Onboarding);input('Age in years').onChangeText('42');fill();await flush(Onboarding);
+ await flush(Onboarding);
+ const beta=process.env.EXPO_PUBLIC_BUILD_STAGE==='beta0';
+ assert.equal(nodes().some(n=>n.type==='Button'&&n.props.label==='Test the shelf camera'),beta,'Production onboarding must not expose the diagnostic camera');
+ assert.equal(nodes().find(n=>n.type==='Title').props.eyebrow,beta?'WELCOME · BETA 0':'WELCOME');
+ input('Age in years').onChangeText('42');fill();await flush(Onboarding);
  saveMode='failure';button('Save and start exploring').onPress();await flush(Onboarding);
  assert.equal(routes.length,0);assert.equal(onboardingComplete,false);assert.equal(input('Age in years').value,'42');assert.ok(text().includes('Could not save'));
  saveMode='pending';const initialSaves=saveCalls;const save=button('Save and start exploring').onPress;save();save();await flush(Onboarding);

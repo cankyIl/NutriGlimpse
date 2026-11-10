@@ -1,5 +1,4 @@
 import {GroceryReviewView} from '../ui/GroceryReviewView';
-import {markScanLayout,markScanPreview} from '../state/ScanTiming';
 import {AppState,Image,StyleSheet,View} from 'react-native';
 import {useCallback,useEffect,useState} from 'react';
 import {router,useFocusEffect,useLocalSearchParams} from 'expo-router';
@@ -18,7 +17,7 @@ export default function PhotoResults(){
  const web=result?.schemaVersion===5;
  const labelCheck=!!((result?.schemaVersion===4||result?.schemaVersion===5)&&result.reviewState==='complete'&&result.estimatesDiffer&&original?.rating===null);
  return <Page><Back/><Title eyebrow="YOUR PRODUCT">A clearer picture.</Title>
- {result?.schemaVersion===6?<View onLayout={()=>markScanLayout(scan??'')}><GroceryReviewView result={result} photo={selected?.photo} pending={selected?.pending}/>{selected?.pending&&<Button secondary label="Cancel scan" onPress={()=>aiScanState.cancel(scan??'')}/>}</View>:selected?.pending&&!original?<View key={selected.identity?'identity-preview':'photo-preview'} onLayout={()=>markScanPreview(scan??'',!!selected.identity)}><Card>
+ {result?.schemaVersion===6?<View><GroceryReviewView result={result} photo={selected?.photo} pending={selected?.pending}/>{selected?.pending&&<Button secondary label="Cancel scan" onPress={()=>aiScanState.cancel(scan??'')}/>}</View>:selected?.pending&&!original?<View key={selected.identity?'identity-preview':'photo-preview'}><Card>
   <View style={styles.top}>
    {!!selected.photo&&<Image source={{uri:'data:image/jpeg;base64,'+selected.photo}} style={styles.preview} resizeMode="contain" accessibilityLabel="Your product photo"/>}
    <View style={styles.identity}>
@@ -29,7 +28,7 @@ export default function PhotoResults(){
   </View>
   <Body>{selected.identity?.status==='uncertain'?'Possible match. Checking product details…':selected.identity?'Finding nutrition sources…':'Identifying your product…'}</Body>
   <Button secondary label="Cancel scan" onPress={()=>aiScanState.cancel(scan??'')}/>
- </Card></View>:original&&result?<><View onLayout={()=>markScanLayout(scan??'')}><AiProductCard food={original} photo={selected?.photo} restricted={restricted} labelCheck={labelCheck} reviewPending={web&&(selected?.pending||result.reviewState==='checking')}/></View>
+ </Card></View>:original&&result?<><View><AiProductCard food={original} photo={selected?.photo} restricted={restricted} labelCheck={labelCheck} reviewPending={web&&(selected?.pending||result.reviewState==='checking')}/></View>
  {result.alternatives.length>0&&<><Heading>{restricted?'Comparable options':'Healthier alternatives'}</Heading><Body muted>{web?'Compared at equal weight using the nutrition found by web search.':'Estimated improvements at equal weight.'} Nearby store listings load separately.</Body>{result.alternatives.map(food=><AiProductCard key={[food.identity.brand,food.identity.name,food.identity.variant].join('|')} food={food} benefits={estimatedBenefits(original,food)} restricted={restricted} nearby/>)}</>}
  {(result?.schemaVersion===4||result?.schemaVersion===5)&&result.reviewState==='identity-conflict'&&<Body muted>The product identity is uncertain. Check the name or take another photo.</Body>}
  {(result?.schemaVersion===4||result?.schemaVersion===5)&&result.estimatesDiffer&&result.reviewState!=='identity-conflict'&&<Body muted>{web?'The sources returned different nutrition values. Check the linked labels before choosing.':labelCheck?'The nutrition information needs a label check before assigning a rating.':'Nutrition estimates differ. Check the package for exact values.'}</Body>}

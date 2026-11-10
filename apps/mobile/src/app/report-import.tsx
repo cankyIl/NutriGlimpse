@@ -14,7 +14,7 @@ const resultMessages: Record<string, string> = {
   'save-pending': 'The result is available in memory but could not be saved. Retry saving; AI processing will not repeat.',
   'storage-failed': 'Private storage could not be updated. No successful save is claimed.',
   'outcome-unknown': 'Processing was interrupted or no usable result arrived. A retry may repeat a request that already reached OpenAI.',
-  'consent-required': 'Please accept the current beta agreement before report processing.', failed: 'This attempt failed before a usable result was saved. Choose an explicit retry if you want to try again.',
+  'consent-required': 'Please accept the current agreement before report processing.', failed: 'This attempt failed before a usable result was saved. Choose an explicit retry if you want to try again.',
   discarded: 'This import changed or was removed. The old response was discarded.',
 };
 const issueText: Record<string, string> = { 'date-missing': 'The printed test date was not found. Enter it from your source.', 'date-ambiguous': 'More than one possible test date was found. Check the source.', 'value-illegible': 'Some values could not be read clearly.', 'unit-ambiguous': 'Some printed units could not be identified confidently.', 'partial-source': 'Only part of the report could be extracted. Check for omitted tests.' };
@@ -135,14 +135,14 @@ export default function ReportImport() {
   const pending = fingerprint ? state.hasPendingReportImport(fingerprint) : false;
   return <Page><Back /><Title eyebrow="OPTIONAL · LIPID REPORT">Bring your results into the picture.</Title>
     <Body>Add a PDF or photo whenever you like. Confirmed results personalize supported shelf comparisons using the latest printed test date.</Body>
-    <Card><Heading>A limited request, then a local result</Heading><Body>The phone removes identifying text by preparing only supported lipid values, units and the test date. Those fields go through our backend to OpenAI under the beta agreement. The original file is not uploaded or kept in app data. OpenAI may retain submitted fields under its data policy.</Body><Button secondary label="Review beta terms & privacy" onPress={() => router.push('/beta-terms')} /></Card>
+    <Card><Heading>A limited request, then a local result</Heading><Body>The phone removes identifying text by preparing only supported lipid values, units and the test date. Those fields go through our backend to OpenAI under the agreement. The original file is not uploaded or kept in app data. OpenAI may retain submitted fields under its data policy.</Body><Button secondary label="Review terms & privacy" onPress={() => router.push('/beta-terms')} /></Card>
     {Platform.OS === 'web' ? <Body muted>Real PDF/photo import is available in the native phone build. This browser preview does not accept personal files.</Body> : <>
       <Button label="Take a report photo" icon="camera" disabled={busy || !capabilities?.available} onPress={() => void choose('camera')} />
       <Button secondary label="Choose a PDF or image" icon="upload" disabled={busy || !capabilities?.available} onPress={() => void choose('document')} />
       <Body muted>PDF, JPEG or PNG · up to 20 MB and 10 pages. Keep the page straight, well lit and readable.</Body>
     </>}
     {!!capError && <Status>{capError}</Status>}
-    {capabilities && !capabilities.available && <Status>{capabilities.reason === 'budget-unavailable' ? 'Beta report processing is paused because its shared test allowance is unavailable. Saved results still work.' : 'Report processing is not available on this backend yet. Saved results remain on your device.'}</Status>}
+    {capabilities && !capabilities.available && <Status>{capabilities.reason === 'budget-unavailable' ? 'Report processing is temporarily unavailable. Saved results still work.' : 'Report processing is not available on this backend yet. Saved results remain on your device.'}</Status>}
     {!capabilities?.available && <><Button secondary label={checking ? 'Checking…' : 'Check report connection'} disabled={busy || checking} onPress={checkCapabilities} /></>}
     {!!message && <Status>{message}</Status>}
     {busy && <Button secondary label="Cancel analysis" onPress={() => { inputAbort.current?.abort(); if (currentFingerprint.current) state.cancelReportImport(currentFingerprint.current); }} />}

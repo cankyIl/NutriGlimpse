@@ -49,6 +49,12 @@
         "simulator": false,
         "buildConfiguration": "Release"
       }
+    },
+    "app-store": {
+      "extends": "testflight",
+      "env": {
+        "EXPO_PUBLIC_BUILD_STAGE": "production"
+      }
     }
   },
   "submit": {

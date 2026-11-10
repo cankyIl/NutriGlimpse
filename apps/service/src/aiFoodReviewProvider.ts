@@ -1,6 +1,5 @@
 import {compactReviewJsonSchema,compactReviewInstructions,expandCompactReview,expandCompactIdentity} from './compactPhotoReview.ts';
 import {photoPreviewOf,type AiPhotoPreview} from '../../../packages/core/src/aiFoodReview.ts';
-import {createServerScanTimer,type ServerTimingStage} from './scanTiming.ts';
 import {archiveDiagnosticRules,diagnosticHash,diagnosticFood,newTrace,recordDiagnostic,type BetaDiagnostics,type BetaEvent} from './betaDiagnostics.ts';
 import {z} from 'zod';
 import {join} from 'node:path';
@@ -91,10 +90,9 @@ export function parseReviewProgress(text:string):AiFoodResult|null{
  }catch{return null;}
 }
 export interface AiReviewProvider{available():boolean;recognize(input:unknown,signal:AbortSignal,onProgress?:(result:AiFoodResult)=>void,trace?:string,onIdentity?:(identity:AiPhotoPreview)=>void):Promise<AiFoodResult>}
-export function createAiReviewProvider(options:{transport:(request:Record<string,unknown>,signal:AbortSignal,onText?:(text:string)=>void,onTiming?:(stage:ServerTimingStage)=>void)=>Promise<string>;timingEnabled?:boolean;reserveBudget:()=>Promise<void>;diagnostic?:(code:string)=>void;audit?:BetaDiagnostics;ruleHashes?:{promptHash:string;rulesHash:string}}):AiReviewProvider{
+export function createAiReviewProvider(options:{transport:(request:Record<string,unknown>,signal:AbortSignal,onText?:(text:string)=>void)=>Promise<string>;reserveBudget:()=>Promise<void>;diagnostic?:(code:string)=>void;audit?:BetaDiagnostics;ruleHashes?:{promptHash:string;rulesHash:string}}):AiReviewProvider{
  let active=false,budgetUnavailable=false;
  return {available:()=>!budgetUnavailable,async recognize(input,parent,onProgress,trace=newTrace(),onIdentity){
-  const timing=createServerScanTimer(options.timingEnabled===true,options.audit,trace,'provider');
   const parsed=aiFoodRequestSchema.parse(input);parent.throwIfAborted();
   if(active)throw new ProductPhotoError('PHOTO_BUSY');if(budgetUnavailable)throw new ProductPhotoError('PHOTO_BUDGET_UNAVAILABLE');
   let image:string;try{image=cleanProductJpeg(parsed.imageBase64);}catch{throw new ProductPhotoError('INVALID_PRODUCT_IMAGE');}
@@ -103,8 +101,8 @@ export function createAiReviewProvider(options:{transport:(request:Record<string
    try{await options.reserveBudget();}catch{budgetUnavailable=true;throw new ProductPhotoError('PHOTO_BUDGET_UNAVAILABLE');}
    signal.throwIfAborted();stage='transport';recordDiagnostic(options.audit,trace,{kind:'model_query',model:PRODUCT_PHOTO_MODEL,promptHash:options.ruleHashes?.promptHash??diagnosticHash(aiReviewInstructions+'\n'+compactReviewInstructions),rulesHash:options.ruleHashes?.rulesHash??diagnosticHash('unarchived-test-rules'),maxOutputTokens:4500,imageDetail:'high',personalContext:false});const raw=await options.transport(buildAiReviewRequest(image),signal,onProgress||onIdentity?text=>{
     signal.throwIfAborted();if(onIdentity&&!identitySent){const identity=parseReviewIdentity(text);if(identity){identitySent=true;onIdentity(identity);}}const progress=parseReviewProgress(text);if(!progress?.original||progress.alternatives.length<=lastProgress)return;
-    lastProgress=progress.alternatives.length;timing('first_result');onProgress?.(progress);
-   }:undefined,options.timingEnabled?timing:undefined);timing('model_complete');image='';parsed.imageBase64='';
+    lastProgress=progress.alternatives.length;onProgress?.(progress);
+   }:undefined);image='';parsed.imageBase64='';
    signal.throwIfAborted();stage='response';const result=parseAiReview(raw,Date.now(),event=>recordDiagnostic(options.audit,trace,event));options.diagnostic?.('completed');return result;
   }catch(error){recordDiagnostic(options.audit,trace,{kind:'failure',stage,code:signal.aborted?'cancelled':error instanceof PhotoStreamFailure?error.code:error instanceof ProductPhotoError?error.code:error instanceof Error&&error.name==='TimeoutError'?'provider_timeout':'PHOTO_OUTCOME_UNKNOWN',elapsedMs:Date.now()-started});options.diagnostic?.(signal.aborted?'cancelled':stage+'_failed');if(error instanceof ProductPhotoError)throw error;throw new ProductPhotoError(signal.aborted?'PHOTO_CANCELLED':'PHOTO_OUTCOME_UNKNOWN');}
   finally{image='';parsed.imageBase64='';active=false;}
@@ -113,6 +111,6 @@ export function createAiReviewProvider(options:{transport:(request:Record<string
 export function loadAiReviewProvider(root:string,environment:NodeJS.ProcessEnv=process.env,audit?:BetaDiagnostics):AiReviewProvider|undefined{
  if(environment.GROCERY_PHOTO_ASSESSMENT_ENABLED!=='true'||environment.GROCERY_PHOTO_ASSESSMENT_CONSENT!==PHOTO_ASSESSMENT_CONSENT)return undefined;
  let ruleHashes:{promptHash:string;rulesHash:string}|undefined;try{if(audit)ruleHashes=archiveDiagnosticRules(root,aiReviewInstructions+'\n'+compactReviewInstructions);}catch{console.warn('beta-diagnostics rule archive unavailable');}
- try{return createAiReviewProvider({audit,ruleHashes,timingEnabled:environment.GROCERY_BUILD_STAGE==='beta0'&&environment.GROCERY_BETA_SCAN_TIMING==='true',transport:createPhotoStreamTransport(readPrivateKey(join(root,'.tools/openai/api-key'))),reserveBudget:createSharedReportBudget(root,'product-photo'),diagnostic:code=>console.info('photo-v3',code)});}catch{return undefined;}
+ try{return createAiReviewProvider({audit,ruleHashes,transport:createPhotoStreamTransport(readPrivateKey(join(root,'.tools/openai/api-key'))),reserveBudget:createSharedReportBudget(root,'product-photo'),diagnostic:code=>console.info('photo-v3',code)});}catch{return undefined;}
 }
 export {AI_FOOD_CONSENT};

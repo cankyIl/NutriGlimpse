@@ -52,7 +52,7 @@ class MemoryPhotoEngine {
  func start(){ session.startRunning() }
  // Deterministically hold the stop in-flight while UIKit unmount proceeds.
  func stop(){ session.stopping=true }
- func capture(_ id:Int,imageForAI:Bool,timingEnabled:Bool){}
+ func capture(_ id:Int,imageForAI:Bool){}
 }
 """
 photo_test=r"""

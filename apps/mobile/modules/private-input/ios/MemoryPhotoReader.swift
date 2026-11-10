@@ -8,30 +8,25 @@ enum MemoryPhotoReader {
   // Independent barcode/JPEG work overlaps accurate OCR; at most two workers per shot.
   private final class Supplement: @unchecked Sendable {
     private let lock = NSLock()
-    private var value: ([[String:String]], String?, Int?) = ([], nil, nil)
-    func set(_ barcodes:[[String:String]], _ jpeg:String?, _ elapsed:Int?) { lock.lock(); value = (barcodes,jpeg,elapsed); lock.unlock() }
-    func get() -> ([[String:String]], String?, Int?) { lock.lock(); defer { lock.unlock() }; return value }
+    private var value: ([[String:String]], String?) = ([], nil)
+    func set(_ barcodes:[[String:String]], _ jpeg:String?) { lock.lock(); value = (barcodes,jpeg); lock.unlock() }
+    func get() -> ([[String:String]], String?) { lock.lock(); defer { lock.unlock() }; return value }
   }
-  static func prepare(_ data:Data, request:VNRecognizeTextRequest, imageForAI:Bool, timingEnabled:Bool = false) -> (page:[String:Any]?, barcodes:[[String:String]], jpeg:String?, timings:[String:Int]?) {
-    if !imageForAI { return (read(data,request:request),[],nil,nil) }
-    let started = timingEnabled ? ProcessInfo.processInfo.systemUptime : 0
+  static func prepare(_ data:Data, request:VNRecognizeTextRequest, imageForAI:Bool) -> (page:[String:Any]?, barcodes:[[String:String]], jpeg:String?) {
+    if !imageForAI { return (read(data,request:request),[],nil) }
     let group = DispatchGroup(), supplement = Supplement()
     group.enter()
     DispatchQueue.global(qos:.userInitiated).async {
-      let extraStart = timingEnabled ? ProcessInfo.processInfo.systemUptime : 0
       autoreleasepool {
         let codes = barcodes(data), jpeg = productJPEG(data)?.base64EncodedString()
-        supplement.set(codes,jpeg,timingEnabled ? Int((ProcessInfo.processInfo.systemUptime-extraStart)*1000) : nil)
+        supplement.set(codes,jpeg)
       }
       group.leave()
     }
-    let ocrStart = timingEnabled ? ProcessInfo.processInfo.systemUptime : 0
     let page = read(data,request:request)
-    let ocrMs = timingEnabled ? Int((ProcessInfo.processInfo.systemUptime-ocrStart)*1000) : 0
     group.wait()
     let extra = supplement.get()
-    let timings:[String:Int]? = timingEnabled ? ["preparationMs":Int((ProcessInfo.processInfo.systemUptime-started)*1000),"ocrMs":ocrMs,"barcodeJpegMs":extra.2 ?? 0] : nil
-    return (page,extra.0,extra.1,timings)
+    return (page,extra.0,extra.1)
   }
   // Decode orientation, reduce pixels, then encode a fresh JPEG without source properties.
   // EXIF, GPS, camera IDs and thumbnails are not copied into the new image.

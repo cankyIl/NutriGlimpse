@@ -1,4 +1,3 @@
-import {notifyScanTiming,type ScanTimingHook} from './scanTiming.ts';
 import {readStreamLines} from './streamLines.ts';
 import {aiPhotoPreviewSchema,photoPreviewOf,type AiPhotoPreview} from './aiFoodReview.ts';
 import {betaCatalogUrl} from './catalogClient.ts';
@@ -7,7 +6,7 @@ import {DUAL_FOOD_CONSENT as AI_FOOD_CONSENT,dualFoodRequestSchema as aiFoodRequ
 
 class PhotoRequestError extends Error {}
 const unreadable=()=>new PhotoRequestError('The review response could not be read. Please try again.');
-async function post(path:string,input:unknown,parent:AbortSignal,fetcher:typeof fetch,onProgress?:(result:AiFoodResult)=>void,onTiming?:ScanTimingHook,onIdentity?:(identity:AiPhotoPreview)=>void){
+async function post(path:string,input:unknown,parent:AbortSignal,fetcher:typeof fetch,onProgress?:(result:AiFoodResult)=>void,onIdentity?:(identity:AiPhotoPreview)=>void){
  // React Native's AbortSignal supports .aborted, but not throwIfAborted().
  if(parent.aborted)throw new PhotoRequestError('Scan cancelled.');
  const controller=new AbortController(),abort=()=>controller.abort();
@@ -15,9 +14,9 @@ async function post(path:string,input:unknown,parent:AbortSignal,fetcher:typeof 
  const timer=setTimeout(abort,path==='recognize'?100000:35000);
  let stage:'transport'|'response'='transport';
  try{
-  const body=JSON.stringify(input);notifyScanTiming(onTiming,{stage:'uploadStartMs'});
+  const body=JSON.stringify(input);
   const response=await fetcher(betaCatalogUrl+'/v5/photos/'+path,{method:'POST',redirect:'error',signal:controller.signal,headers:{'Content-Type':'application/json',...(onProgress||onIdentity?{'Accept':onIdentity?'application/x-ndjson; preview=identity':'application/x-ndjson'}:{})},body});
-  notifyScanTiming(onTiming,{stage:'responseHeadersMs',traceId:response.headers.get('X-Grocery-Trace-Id')??undefined});
+
   stage='response';
   if(response.ok&&(onProgress||onIdentity)&&response.headers.get('content-type')?.startsWith('application/x-ndjson')){
    if(!response.body)throw unreadable();let final:AiFoodResult|undefined,count=0,firstOriginal:string|undefined,preview:AiPhotoPreview|undefined;
@@ -59,8 +58,8 @@ async function post(path:string,input:unknown,parent:AbortSignal,fetcher:typeof 
   throw new PhotoRequestError(stage==='transport'?'Could not connect. Check your connection and try again.':'The review response was interrupted. Please try again.');
  }finally{clearTimeout(timer);parent.removeEventListener('abort',abort);}
 }
-export async function reviewWebProductPhoto(imageBase64:string,signal:AbortSignal,fetcher:typeof fetch=fetch,onProgress?:(result:AiFoodResult)=>void,onTiming?:ScanTimingHook,onIdentity?:(identity:AiPhotoPreview)=>void){
+export async function reviewWebProductPhoto(imageBase64:string,signal:AbortSignal,fetcher:typeof fetch=fetch,onProgress?:(result:AiFoodResult)=>void,onIdentity?:(identity:AiPhotoPreview)=>void){
  const input=aiFoodRequestSchema.parse({imageBase64,consentVersion:AI_FOOD_CONSENT});
- try{const result=aiFoodResultSchema.safeParse(await post('recognize',input,signal,fetcher,onProgress,onTiming,onIdentity));if(!result.success)throw unreadable();return result.data;}
+ try{const result=aiFoodResultSchema.safeParse(await post('recognize',input,signal,fetcher,onProgress,onIdentity));if(!result.success)throw unreadable();return result.data;}
  finally{input.imageBase64='';}
 }

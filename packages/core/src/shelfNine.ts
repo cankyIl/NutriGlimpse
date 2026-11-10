@@ -5,10 +5,10 @@ import {shelfGridRequestSchema,shelfProductKey} from './shelfGrid.ts';
 export const SHELF_NINE_CAPACITY=9;
 export const SHELF_RESPONSE_CONSENT='shelf-responses-2026-10-25.1' as const;
 export const SHELF_NINE_CONSENT='shelf-nine-parallel-2026-10-25.2' as const;
-export const shelfNineRequestSchema=shelfGridRequestSchema.innerType().extend({
+export const shelfNineRequestSchema=z.object({...shelfGridRequestSchema.shape,
  schemaVersion:z.literal(2),consentVersion:z.literal(SHELF_NINE_CONSENT),
  capacity:z.literal(9),columns:z.number().int().min(1).max(3),rows:z.number().int().min(1).max(3),
- cells:shelfGridRequestSchema.innerType().shape.cells.max(9),
+ cells:shelfGridRequestSchema.shape.cells.max(9),
  batchIndex:z.number().int().min(0).max(100),shareHealth:z.boolean(),context:groceryContextSchema,
  diagnosticConsentVersion:z.literal(SHELF_RESPONSE_CONSENT).optional(),
 }).strict().superRefine((v,c)=>{

@@ -1,3 +1,4 @@
+import {betaRelease} from '../releaseConfig';
 import React, { type ReactNode } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View, type StyleProp, type ViewStyle, type ColorValue } from 'react-native';
 import Feather from '@expo/vector-icons/Feather';
@@ -10,7 +11,7 @@ export function Icon({ name, size = 20, color = c.ink }: { name: IconName; size?
   return <View aria-hidden accessibilityElementsHidden importantForAccessibility="no-hide-descendants"><Feather name={name} size={size} color={color} accessible={false} /></View>;
 }
 export function Page({ children }: { children: ReactNode }) {
-  return <ScrollView contentContainerStyle={s.page} keyboardShouldPersistTaps="handled"><View style={s.content}>{children}</View></ScrollView>;
+  return <ScrollView contentContainerStyle={s.page} keyboardShouldPersistTaps="handled" keyboardDismissMode="on-drag" automaticallyAdjustKeyboardInsets><View style={s.content}>{children}</View></ScrollView>;
 }
 export function Title({ children, eyebrow }: { children: ReactNode; eyebrow?: string }) {
   return <View style={{ gap: 8 }}>{eyebrow && <Text style={s.eyebrow}>{eyebrow}</Text>}<Text accessibilityRole="header" style={s.title}>{children}</Text></View>;
@@ -44,7 +45,7 @@ export function Badge({ label }: { label: AssessmentLabel }) {
 export function Back({ label = 'Back' }: { label?: string }) {
   return <Pressable accessibilityRole="button" accessibilityLabel={label} style={s.back} onPress={() => router.canGoBack() ? router.back() : router.replace('/')}><Icon name="arrow-left" /><Text style={{ color: c.ink, fontWeight: '600' }}>{label}</Text></Pressable>;
 }
-export function SampleNotice() { return <View style={s.notice}><Icon name="info" size={14} color={c.muted} /><Text style={s.noticeText}>Beta preview</Text></View>; }
+export function SampleNotice() { if(!betaRelease)return null; return <View style={s.notice}><Icon name="info" size={14} color={c.muted} /><Text style={s.noticeText}>Beta preview</Text></View>; }
 
 export function FoodArt({ kind = 'oats', small = false }: { kind?: Product['illustration']; small?: boolean }) {
   if (kind === 'apple') return <View aria-hidden accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={[s.art, small && s.artSmall]}><View style={s.leaf} /><View style={s.apple} /></View>;

@@ -10,9 +10,8 @@ import {mergeDualReviews,readDualEnvelope,type ReviewEnvelope} from './dualPhoto
 import {cleanProductJpeg} from './photoImage.ts';
 import {ProductPhotoError} from './productPhotoProvider.ts';
 import {createSharedReportBudget,readPrivateKey} from './realReportProvider.ts';
-import {createServerScanTimer,type ServerTimingStage} from './scanTiming.ts';
 import {recordDiagnostic,diagnosticHash,newTrace,archiveDiagnosticRules,type BetaDiagnostics} from './betaDiagnostics.ts';
-type Transport=(request:Record<string,unknown>,signal:AbortSignal,onText?:(text:string)=>void,onTiming?:(stage:ServerTimingStage)=>void)=>Promise<string>;
+type Transport=(request:Record<string,unknown>,signal:AbortSignal,onText?:(text:string)=>void)=>Promise<string>;
 type ReviewPhase='request'|'transport'|'preview'|'response';
 // Fixed codes only; never retain provider bodies, exception messages or schema values.
 function failureCode(error:unknown,phase:ReviewPhase):string{
@@ -28,7 +27,7 @@ function failureCode(error:unknown,phase:ReviewPhase):string{
  return 'dual_'+phase+'_unexpected_error';
 }
 export interface DualPhotoProvider{available():boolean;recognize(input:unknown,signal:AbortSignal,onProgress?:(result:DualFoodResult)=>void,trace?:string,onIdentity?:(identity:AiPhotoPreview)=>void):Promise<DualFoodResult>}
-export function createDualPhotoProvider(options:{gpt:Transport;claude?:Transport;reservePair:()=>Promise<void>;audit?:BetaDiagnostics;timingEnabled?:boolean;ruleHashes?:{promptHash:string;rulesHash:string}}):DualPhotoProvider{
+export function createDualPhotoProvider(options:{gpt:Transport;claude?:Transport;reservePair:()=>Promise<void>;audit?:BetaDiagnostics;ruleHashes?:{promptHash:string;rulesHash:string}}):DualPhotoProvider{
  const models:readonly DualModel[]=options.claude?dualModels:activePhotoModels;
  let active=false,budgetUnavailable=false;
  return {available:()=>!budgetUnavailable,async recognize(input,parent,onProgress,trace=newTrace(),onIdentity){
@@ -36,7 +35,6 @@ export function createDualPhotoProvider(options:{gpt:Transport;claude?:Transport
   if(active)throw new ProductPhotoError('PHOTO_BUSY');if(budgetUnavailable)throw new ProductPhotoError('PHOTO_BUDGET_UNAVAILABLE');
   let image:string;try{image=cleanProductJpeg(parsed.imageBase64);}catch{throw new ProductPhotoError('INVALID_PRODUCT_IMAGE');}
   active=true;const signal=AbortSignal.any([parent,AbortSignal.timeout(65000)]),started=Date.now();
-  const timer=createServerScanTimer(options.timingEnabled===true,options.audit,trace,'provider');
   let previewModel:DualModel|undefined,progressSent=false;
   try{
    try{await options.reservePair();}catch{budgetUnavailable=true;throw new ProductPhotoError('PHOTO_BUDGET_UNAVAILABLE');}
@@ -53,18 +51,18 @@ export function createDualPhotoProvider(options:{gpt:Transport;claude?:Transport
       if(!previewModel){const identity=parseReviewIdentity(text);if(identity){previewModel=model;onIdentity?.(identity);}}
       if(previewModel!==model||progressSent)return;
       const progress=parseReviewProgress(text);if(!progress?.original)return;
-      progressSent=true;timer('first_result');
+      progressSent=true;
       const {model:ignored,...record}=progress;void ignored;
       onProgress?.(dualFoodResultSchema.parse({...record,schemaVersion:4,models:[model],alternatives:[],reviewState:'checking',estimatesDiffer:false}));
       }catch(error){previewFailed=true;throw error;}
-     }:undefined,options.timingEnabled&&model===dualModels[0]?timer:undefined);
+     }:undefined);
      signal.throwIfAborted();phase='response';return {model,envelope:readDualEnvelope(raw)};
     }catch(error){
      recordDiagnostic(options.audit,trace,{kind:'failure',stage:model===dualModels[0]?'dual_gpt':'dual_claude',code:parent.aborted?'cancelled':signal.aborted?'provider_timeout':failureCode(error,previewFailed?'preview':phase),elapsedMs:Date.now()-started});
      throw error;
     }
    });
-   const settled=await Promise.allSettled(tasks);signal.throwIfAborted();timer('model_complete');
+   const settled=await Promise.allSettled(tasks);signal.throwIfAborted();
    const reviews=settled.flatMap(row=>row.status==='fulfilled'?[row.value]:[]) as {model:DualModel;envelope:ReviewEnvelope}[];
    if(!reviews.length)throw new ProductPhotoError('PHOTO_OUTCOME_UNKNOWN');
    return mergeDualReviews(reviews,previewModel,Date.now(),event=>recordDiagnostic(options.audit,trace,event),models);
@@ -76,7 +74,7 @@ export function loadDualPhotoProvider(root:string,environment:NodeJS.ProcessEnv=
  if(environment.GROCERY_DUAL_PHOTO_CONSENT!==DUAL_FOOD_CONSENT)return undefined;
  try{
   const ruleHashes=audit?archiveDiagnosticRules(root,aiReviewInstructions+'\n'+compactReviewInstructions,'\n// Dual union and identity rules\n'+readFileSync(join(root,'apps/service/src/dualPhotoReview.ts'),'utf8')):undefined;
-  return createDualPhotoProvider({audit,ruleHashes,timingEnabled:environment.GROCERY_BUILD_STAGE==='beta0'&&environment.GROCERY_BETA_SCAN_TIMING==='true',
+  return createDualPhotoProvider({audit,ruleHashes,
    gpt:createPhotoStreamTransport(readPrivateKey(join(root,'.tools/openai/api-key'))),
    reservePair:createSharedReportBudget(root,'product-photo',1)});
  }catch{return undefined;}

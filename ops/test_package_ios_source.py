@@ -12,7 +12,7 @@ class SourcePackageTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root = pathlib.Path(directory)
             paths = [
-                'package.json', 'apps/mobile/src/app.ts', 'apps/service/src/server.ts',
+                'package.json', '.easignore', 'ops/apply-security-patches.cjs', 'apps/mobile/eas.json', 'apps/mobile/src/app.ts', 'apps/service/src/server.ts',
                 'apps/mobile/AGENTS.md', 'apps/mobile/src/AGENTS.md', 'docs/CLAUDE.md',
                 'apps/mobile/src/.codex/state.json', 'docs/codex/local.txt',
                 'apps/mobile/modules/demo/.cursor/rules.md', 'docs/AppleCredentials',
@@ -28,7 +28,7 @@ class SourcePackageTests(unittest.TestCase):
                 actual = {path.relative_to(root).as_posix() for path in packager.paths()}
             finally:
                 packager.ROOT = previous
-            self.assertEqual(actual, {'package.json', 'apps/mobile/src/app.ts', 'apps/service/src/server.ts', 'docs/README.md'})
+            self.assertEqual(actual, {'package.json', '.easignore', 'ops/apply-security-patches.cjs', 'apps/mobile/eas.json', 'apps/mobile/src/app.ts', 'apps/service/src/server.ts', 'docs/README.md'})
 
 if __name__ == '__main__':
     unittest.main()

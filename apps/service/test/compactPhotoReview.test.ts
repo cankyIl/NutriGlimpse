@@ -50,7 +50,7 @@ test('real HTTP opt-in delivers identity before nutrition and final three; old c
  const aiReviews=createAiReviewProvider({reserveBudget:async()=>{reservations++;},transport:async(_request,_signal,onText)=>{calls++;onText?.(text.slice(0,text.indexOf(',"c"')));if(calls===1)await gate;onText?.(text);return envelope(compact);}});
  const server=createAppServer({accessMode:'open-beta',aiReviews});await new Promise<void>(r=>server.listen(0,'127.0.0.1',r));const url='http://127.0.0.1:'+(server.address() as AddressInfo).port+'/v3/photos/recognize';
  try{
-  const pending=reviewProductPhoto(jpeg,new NativeController().signal,(_url,init)=>fetch(url,init),()=>progress++,undefined,identity=>{assert.deepEqual(identity,photoPreviewOf(original.identity));seen();}).then(value=>{finished=true;return value;});
+  const pending=reviewProductPhoto(jpeg,new NativeController().signal,(_url,init)=>fetch(url,init),()=>progress++,identity=>{assert.deepEqual(identity,photoPreviewOf(original.identity));seen();}).then(value=>{finished=true;return value;});
   await previewSeen;assert.equal(progress,0);assert.equal(finished,false);release();assert.equal((await pending).alternatives.length,3);
   const legacy=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/x-ndjson'},body:JSON.stringify({imageBase64:jpeg,consentVersion:AI_FOOD_CONSENT})});const rows=(await legacy.text()).trim().split('\n').map(row=>JSON.parse(row));
   assert.ok(rows.every(row=>['progress','result'].includes(row.type)));assert.equal(rows.at(-1).result.alternatives.length,3);assert.equal(calls,2);assert.equal(reservations,2);
@@ -60,12 +60,12 @@ test('identity previews reject extra claims, repeats, changes and interrupted st
  const identity=photoPreviewOf(original.identity),event=(type:string,result:unknown)=>JSON.stringify({type,result})+'\n';
  const preview=event('identity',identity),done=event('result',final),progress=event('progress',{...final,alternatives:[]});
  for(const rows of [preview,preview+preview+done,progress+preview+done,event('identity',{...identity,rating:'healthy'})+done,event('identity',{...identity,name:'Different cereal'})+done,preview+event('error',{code:'x'}),preview+event('result',{...final,original:null})]){
-  let calls=0;await assert.rejects(reviewProductPhoto(jpeg,new NativeController().signal,async()=>{calls++;return new Response(rows,{headers:{'Content-Type':'application/x-ndjson'}});},()=>{},undefined,()=>{}));assert.equal(calls,1);
+  let calls=0;await assert.rejects(reviewProductPhoto(jpeg,new NativeController().signal,async()=>{calls++;return new Response(rows,{headers:{'Content-Type':'application/x-ndjson'}});},()=>{},()=>{}));assert.equal(calls,1);
  }
- let seen=0;const controller=new NativeController();await assert.rejects(reviewProductPhoto(jpeg,controller.signal,async()=>new Response(preview+done,{headers:{'Content-Type':'application/x-ndjson'}}),()=>{},undefined,()=>{seen++;controller.abort();}),/cancelled/i);assert.equal(seen,1);
+ let seen=0;const controller=new NativeController();await assert.rejects(reviewProductPhoto(jpeg,controller.signal,async()=>new Response(preview+done,{headers:{'Content-Type':'application/x-ndjson'}}),()=>{},()=>{seen++;controller.abort();}),/cancelled/i);assert.equal(seen,1);
 });
 test('new preview-capable clients still accept legacy JSON responses without a preview',async()=>{
- const previews:AiPhotoPreview[]=[];const result=await reviewProductPhoto(jpeg,new NativeController().signal,async()=>Response.json(final),()=>{},undefined,value=>previews.push(value));assert.deepEqual(result,final);assert.deepEqual(previews,[]);
+ const previews:AiPhotoPreview[]=[];const result=await reviewProductPhoto(jpeg,new NativeController().signal,async()=>Response.json(final),()=>{},value=>previews.push(value));assert.deepEqual(result,final);assert.deepEqual(previews,[]);
 });
 
 

@@ -1,11 +1,10 @@
 import {groceryRequestSchema,groceryResultSchema,GROCERY_CONSENT,GROCERY_RESPONSE_CONSENT,GROCERY_PARALLEL_CONSENT,type GroceryContext,type GroceryResult} from './groceryReview.ts';
 import {reviewWebProductPhoto} from './webAiFoodClient.ts';
 import {betaCatalogUrl} from './catalogClient.ts';
-import {notifyScanTiming,type ScanTimingHook} from './scanTiming.ts';
 import {aiPhotoPreviewSchema,type AiPhotoPreview} from './aiFoodReview.ts';
 import {readStreamLines} from './streamLines.ts';
 import type {PhotoReviewResult} from './dualAiFoodReview.ts';
-export async function reviewGroceryPhoto(imageBase64:string,context:GroceryContext,parent:AbortSignal,fetcher:typeof fetch=fetch,onProgress?:(r:PhotoReviewResult)=>void,onTiming?:ScanTimingHook,onIdentity?:(i:AiPhotoPreview)=>void,retainResponse=false,parallelContextConsentVersion?:typeof GROCERY_PARALLEL_CONSENT):Promise<PhotoReviewResult>{
+export async function reviewGroceryPhoto(imageBase64:string,context:GroceryContext,parent:AbortSignal,fetcher:typeof fetch=fetch,onProgress?:(r:PhotoReviewResult)=>void,onIdentity?:(i:AiPhotoPreview)=>void,retainResponse=false,parallelContextConsentVersion?:typeof GROCERY_PARALLEL_CONSENT):Promise<PhotoReviewResult>{
  if(parent.aborted)throw Error('Scan cancelled.');
  const controller=new AbortController(),abort=()=>controller.abort();
  parent.addEventListener('abort',abort,{once:true});const timer=setTimeout(abort,100000);
@@ -16,14 +15,14 @@ export async function reviewGroceryPhoto(imageBase64:string,context:GroceryConte
   const rawCaps=await caps.text();if(rawCaps.length>4096)throw Error('The scan settings could not be read.');
   const capability=JSON.parse(rawCaps);
   if(capability.schemaVersion!==6||typeof capability.available!=='boolean')throw Error('The scan settings could not be read.');
-  if(!capability.available)return await reviewWebProductPhoto(imageBase64,controller.signal,fetcher,onProgress,onTiming,onIdentity);
+  if(!capability.available)return await reviewWebProductPhoto(imageBase64,controller.signal,fetcher,onProgress,onIdentity);
   if(parent.aborted||controller.signal.aborted)throw Error('Scan cancelled.');
   const input=groceryRequestSchema.parse({imageBase64,context,consentVersion:GROCERY_CONSENT,...(retainResponse?{diagnosticConsentVersion:GROCERY_RESPONSE_CONSENT}:{}),...(parallelContextConsentVersion?{parallelContextConsentVersion}:{})});
-  notifyScanTiming(onTiming,{stage:'uploadStartMs'});
+
   let response:Response;
   try{response=await fetcher(betaCatalogUrl+'/v6/photos/recognize',{method:'POST',redirect:'error',signal:controller.signal,headers:{'Content-Type':'application/json',...(onIdentity||onProgress?{Accept:onIdentity?'application/x-ndjson; preview=identity':'application/x-ndjson'}:{})},body:JSON.stringify(input)});}
   finally{input.imageBase64='';}
-  notifyScanTiming(onTiming,{stage:'responseHeadersMs',traceId:response.headers.get('X-Grocery-Trace-Id')??undefined});
+
   if(response.ok&&(onIdentity||onProgress)&&response.headers.get('content-type')?.startsWith('application/x-ndjson')){
    if(!response.body)throw Error('The review response could not be read.');
    let final:GroceryResult|undefined,identitySeen=false,count=0;

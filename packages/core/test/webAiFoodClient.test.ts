@@ -14,7 +14,7 @@ test('web streamed client shows early identity/original and accepts an explicitl
  const frames=[{type:'identity',result:preview},{type:'progress',result:progress},{type:'result',result:final}];
  const calls:string[]=[];
  const fetcher=async()=>new Response(frames.map(f=>JSON.stringify(f)).join('\n')+'\n',{headers:{'Content-Type':'application/x-ndjson'}});
- const actual=await reviewWebProductPhoto('AAAAAAAA',new NativeController().signal,fetcher,()=>calls.push('original'),undefined,()=>calls.push('identity'));
+ const actual=await reviewWebProductPhoto('AAAAAAAA',new NativeController().signal,fetcher,()=>calls.push('original'),()=>calls.push('identity'));
  assert.deepEqual(calls,['identity','original']);assert.equal(actual.reviewState,'identity-conflict');assert.equal(actual.original?.rating,null);
 });
 

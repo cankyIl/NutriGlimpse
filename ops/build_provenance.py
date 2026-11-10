@@ -2,11 +2,11 @@
 import hashlib, json, os, pathlib
 ROOTS = ('apps/mobile/src', 'apps/mobile/modules', 'apps/mobile/plugins', 'apps/mobile/assets',
          'packages/core/src', 'vendor')
-FILES = ('package.json', 'package-lock.json', 'apps/mobile/package.json', 'apps/mobile/app.json',
+FILES = ('package.json', 'package-lock.json', '.easignore', 'apps/mobile/eas.json', 'apps/mobile/package.json', 'apps/mobile/app.json',
          'apps/mobile/tsconfig.json', 'apps/mobile/babel.config.js', 'apps/mobile/metro.config.js',
          'packages/core/package.json', 'packages/core/tsconfig.json', 'ops/build-preview.py',
          'ops/build_provenance.py', 'ops/internal-signing.gradle', 'ops/apply-decoder-patch.cjs',
-         'ops/remote-env.sh')
+         'ops/remote-env.sh', 'ops/apply-security-patches.cjs')
 # Editor/assistant instructions and local state are not application build inputs.
 DEVELOPMENT_DIRS = {'codex', '.codex', '.agents', '.claude', '.cursor', '.gemini'}
 DEVELOPMENT_FILES = {'agents.md', 'claude.md', 'gemini.md', '.cursorrules', 'copilot-instructions.md'}

@@ -4,11 +4,11 @@ import {photoIdentitySchema,type PhotoIdentity} from '../../../packages/core/src
 // Provider-only wire format. Public v3 records and all validation rules stay unchanged.
 export const identityKeys={s:'status',b:'brand',n:'name',v:'variant',z:'size'} as const;
 export const nutrientKeys={kcal:'caloriesKcal',sf:'saturatedFatG',tf:'transFatG',su:'sugarsG',ad:'addedSugarsG',cb:'carbohydrateG',na:'sodiumMg',fi:'fiberG',pr:'proteinG',k:'potassiumMg',ca:'calciumMg',fe:'ironMg',mg:'magnesiumMg'} as const;
-const identity=z.object(Object.fromEntries(Object.entries(identityKeys).map(([key,name])=>[key,photoIdentitySchema.innerType().shape[name]]))).strict();
+const identity=z.object(Object.fromEntries(Object.entries(identityKeys).map(([key,name])=>[key,photoIdentitySchema.shape[name]]))).strict();
 const nutrients=z.object(Object.fromEntries(Object.entries(nutrientKeys).map(([key,name])=>[key,estimatedNutrientsSchema.shape[name]]))).strict();
 const f=estimatedFoodSchema.shape;
-const compactFoodSchema=z.object({i:identity,c:f.category,st:f.servingText,g:f.servingGrams,n:nutrients,r:f.rating,ig:f.ingredients,t:photoIdentitySchema.innerType().shape.visibleText}).strict();
-export const compactReviewSchema=z.object({s:photoIdentitySchema.innerType().shape.status,o:compactFoodSchema.nullable(),a:z.array(compactFoodSchema).max(5)}).strict();
+const compactFoodSchema=z.object({i:identity,c:f.category,st:f.servingText,g:f.servingGrams,n:nutrients,r:f.rating,ig:f.ingredients,t:photoIdentitySchema.shape.visibleText}).strict();
+export const compactReviewSchema=z.object({s:photoIdentitySchema.shape.status,o:compactFoodSchema.nullable(),a:z.array(compactFoodSchema).max(5)}).strict();
 const expand=(value:Record<string,unknown>,keys:Record<string,string>)=>Object.fromEntries(Object.entries(keys).map(([key,name])=>[name,value[key]]));
 export function expandCompactIdentity(value:unknown):PhotoIdentity{
  return photoIdentitySchema.parse({...expand(identity.parse(value),identityKeys),visibleText:[]});
@@ -30,7 +30,7 @@ export function compactFood(value:EstimatedFood){
 // Bad candidates still get rejected individually by the existing review validator.
 export function expandCompactReview(value:unknown):unknown{
  if(!value||typeof value!=='object'||!('s' in value))return value;
- const row=z.object({s:photoIdentitySchema.innerType().shape.status,o:z.unknown(),a:z.array(z.unknown()).max(5)}).strict().parse(value);
+ const row=z.object({s:photoIdentitySchema.shape.status,o:z.unknown(),a:z.array(z.unknown()).max(5)}).strict().parse(value);
  const food=(raw:unknown)=>{try{return expandCompactFood(raw);}catch{return {};}};
  return {status:row.s,original:row.o===null?null:food(row.o),alternatives:row.a.map(food)};
 }

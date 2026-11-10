@@ -1,6 +1,7 @@
+import { betaRelease } from '../releaseConfig';
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { AppState, Linking, StyleSheet, Text, View } from 'react-native';
-import { useFocusEffect } from 'expo-router';
+import { Redirect, useFocusEffect } from 'expo-router';
 import {
   getShelfBenchmarkAvailabilityAsync, ShelfBenchmarkView,
   type ShelfBenchmarkAvailability, type ShelfBenchmarkMetrics, type ShelfBenchmarkModelId, type ShelfBenchmarkSummary,
@@ -43,7 +44,10 @@ function Result({ result }: { result: ShelfBenchmarkSummary }) {
     <Text selectable style={s.small}>Model: {result.modelName}{'\n'}Fingerprint: {result.modelFingerprint}{'\n'}Completed: {result.completedAt}{'\n'}Low Power Mode: {result.lowPowerMode ? 'on' : 'off'}</Text>
   </Card>;
 }
-export default function ShelfBenchmarkScreen() {
+export default function ShelfBenchmarkRoute() {
+  return betaRelease ? <ShelfBenchmarkScreen /> : <Redirect href="/shelf" />;
+}
+function ShelfBenchmarkScreen() {
   const [modelId, setModelId] = useState<ShelfBenchmarkModelId>('shelfset');
   const availabilityRequest = useRef(0);
   const [availability, setAvailability] = useState<ShelfBenchmarkAvailability | null>(null);

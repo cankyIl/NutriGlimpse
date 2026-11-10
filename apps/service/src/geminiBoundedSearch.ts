@@ -131,7 +131,7 @@ export function createBoundedGeminiTransport(modelTransport:GroceryTransport,sea
    const next={...request,store:false,input:history,tools:final?[]:[productSearchTool],
     system_instruction:String(request.system_instruction??'')+'\n'+extra,
     generation_config:{...(request.generation_config as any),tool_choice:final?'none':turn===0?'any':'auto'}};
-   const start=performance.now();hooks?.onStage?.('model_dispatch');response=await modelTransport(next,signal);signal.throwIfAborted();modelTimings.push(Math.round(performance.now()-start));hooks?.onStage?.('model_first_text');
+   const start=performance.now();response=await modelTransport(next,signal);signal.throwIfAborted();modelTimings.push(Math.round(performance.now()-start));
    for(const field of Object.keys(usage)){
     const n=response.usage?.[field];usage[field]=usage[field]===null||typeof n!=='number'||!Number.isSafeInteger(n)||n<0?null:usage[field]!+n;
    }

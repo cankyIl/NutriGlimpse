@@ -6,7 +6,7 @@ from build_provenance import snapshot_inputs, DEVELOPMENT_DIRS, DEVELOPMENT_FILE
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'artifacts/independent-development/delivery'
 SKIP={'node_modules','build','.cxx','.gradle','.expo','.git','.tools','dist','__pycache__','Pods'}
-FILES=['package.json','package-lock.json','.gitignore','README.md']
+FILES=['package.json','package-lock.json','.gitignore','.easignore','README.md']
 FOLDERS=['apps/mobile/src','apps/mobile/modules','apps/mobile/plugins','apps/mobile/assets','apps/service/src','apps/service/test','packages','vendor','data/guidance','docs','ops']
 def paths():
  found={ROOT/x for x in FILES if (ROOT/x).is_file()}

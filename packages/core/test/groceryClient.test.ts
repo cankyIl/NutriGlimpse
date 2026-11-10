@@ -64,17 +64,17 @@ test('Gemini preview arrives while the final response is still pending, includin
   if(++calls===1)return Response.json({schemaVersion:6,available:true});
   assert.equal(new Headers(init?.headers).get('Accept'),'application/x-ndjson; preview=identity');
   return new Response(new ReadableStream({start(c){stream=c;const line=JSON.stringify({type:'identity',result:identity})+'\n';c.enqueue(encoder.encode(line.slice(0,20)));c.enqueue(encoder.encode(line.slice(20)));}}),{headers:{'Content-Type':'application/x-ndjson'}});
- },undefined,undefined,gotPreview).then(v=>{done=true;return v;});
+ },undefined,gotPreview).then(v=>{done=true;return v;});
  assert.deepEqual(await preview,identity);assert.equal(done,false);
  stream.enqueue(encoder.encode(JSON.stringify({type:'result',result})+'\n'));stream.close();assert.deepEqual(await pending,result);
 });
 test('Gemini preview cancellation and duplicate or unsafe events do not become a completed review',async()=>{
  const identity={status:'identified',brand:'Fixture',name:'Cereal',variant:null,size:null};
  for(const events of [[{type:'identity',result:identity},{type:'identity',result:identity}],[{type:'identity',result:{...identity,rating:'healthy'}}],[{type:'result',result},{type:'identity',result:identity}]]){
-  let calls=0;await assert.rejects(reviewGroceryPhoto('AAAAAAAA',context,new NativeController().signal,async()=>++calls===1?Response.json({schemaVersion:6,available:true}):new Response(events.map(e=>JSON.stringify(e)).join('\n')+'\n',{headers:{'Content-Type':'application/x-ndjson'}}),undefined,undefined,()=>{}),/response could not be read/);
+  let calls=0;await assert.rejects(reviewGroceryPhoto('AAAAAAAA',context,new NativeController().signal,async()=>++calls===1?Response.json({schemaVersion:6,available:true}):new Response(events.map(e=>JSON.stringify(e)).join('\n')+'\n',{headers:{'Content-Type':'application/x-ndjson'}}),undefined,()=>{}),/response could not be read/);
  }
  const controller=new NativeController();let calls=0;
- await assert.rejects(reviewGroceryPhoto('AAAAAAAA',context,controller.signal,async()=>++calls===1?Response.json({schemaVersion:6,available:true}):new Response(JSON.stringify({type:'identity',result:identity})+'\n'+JSON.stringify({type:'result',result})+'\n',{headers:{'Content-Type':'application/x-ndjson'}}),undefined,undefined,()=>controller.abort()),/cancelled/);
+ await assert.rejects(reviewGroceryPhoto('AAAAAAAA',context,controller.signal,async()=>++calls===1?Response.json({schemaVersion:6,available:true}):new Response(JSON.stringify({type:'identity',result:identity})+'\n'+JSON.stringify({type:'result',result})+'\n',{headers:{'Content-Type':'application/x-ndjson'}}),undefined,()=>controller.abort()),/cancelled/);
 });
 
 test('new parallel context consent is transmitted only when explicitly supplied by the caller',async()=>{
@@ -83,6 +83,6 @@ test('new parallel context consent is transmitted only when explicitly supplied 
   await reviewGroceryPhoto('AAAAAAAA',context,new NativeController().signal,async(_url,init)=>{
    if(++calls===1)return Response.json({schemaVersion:6,available:true});
    assert.equal(JSON.parse(String(init?.body)).parallelContextConsentVersion,consent);return Response.json(result);
-  },undefined,undefined,undefined,false,consent);
+  },undefined,undefined,false,consent);
  }
 });

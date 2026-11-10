@@ -66,7 +66,6 @@ public class PrivateInputModule: Module {
     Name("PrivateInput")
     View(MemoryPhotoView.self) {
       // TEMPORARY Beta 0 timing; remove before Beta 1.
-      Prop("timingEnabled") { (view: MemoryPhotoView, value: Bool) in view.timingEnabled = value }
       Prop("imageForAI") { (view: MemoryPhotoView, value: Bool) in view.imageForAI = value }
       Events("onStatus", "onPhoto")
       Prop("active") { (view: MemoryPhotoView, value: Bool) in view.active = value }
